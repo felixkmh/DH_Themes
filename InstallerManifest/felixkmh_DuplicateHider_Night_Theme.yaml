@@ -1,6 +1,5 @@
 AddonId: felixkmh_DuplicateHider_Night_Theme
 Packages:
-Packages:
   - Version: 1.1
     RequiredApiVersion: 2.0.0
     ReleaseDate: 2021-09-03
