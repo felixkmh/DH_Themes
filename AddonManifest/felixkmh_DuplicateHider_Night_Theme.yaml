@@ -3,7 +3,8 @@ Type: ThemeDesktop
 Name: DH_Night
 Author: felixkmh
 ShortDescription: Showcase theme for the custom UI integration of the DuplicateHider extension.
-InstallerManifestUrl: https://raw.githubusercontent.com/felixkmh/DH_Themes/main/InstallerManifest/felixkmh_DuplicateHider_Night_Theme.yamlSourceUrl: https://github.com/felixkmh/DH_Themes
+InstallerManifestUrl: https://raw.githubusercontent.com/felixkmh/DH_Themes/main/InstallerManifest/felixkmh_DuplicateHider_Night_Theme.yaml
+SourceUrl: https://github.com/felixkmh/DH_Themes
 Tags: ["duplicates", "libary"]
 Links:
     GitHub: https://github.com/felixkmh/DH_Themes
