@@ -10,6 +10,7 @@
         <Setter Property="Margin" Value="0,5,0,5" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="Background" Value="Transparent"/>
     </Style>
 
     <Style x:Key="MainMenuHeaderText" BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock" >
