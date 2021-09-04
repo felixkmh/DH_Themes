@@ -1,0 +1,158 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                    
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">
+
+    <Style x:Key="ButtonGameStatusAction" BasedOn="{StaticResource {x:Type ButtonEx}}" TargetType="ButtonEx">
+        <Setter Property="Margin" Value="0,5,0,5" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="MinWidth" Value="100" />
+    </Style>
+
+    <Style TargetType="{x:Type GameStatus}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GameStatus}">
+                    <Grid Background="Transparent"
+                          x:Name="PART_ViewHost"
+                          d:DesignWidth="{StaticResource DesignWidth}"
+                          d:DesignHeight="{StaticResource DesignHeight}"
+                          d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
+                          KeyboardNavigation.DirectionalNavigation="Contained"
+                          KeyboardNavigation.TabNavigation="Contained">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"
+                               RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform x:Name="CoverScale"/>
+                                    <TranslateTransform x:Name="CoverTranslate"/>
+                                </TransformGroup>
+                            </Grid.RenderTransform>
+                            <Image Name="PART_ImageCover"
+                                   RenderOptions.BitmapScalingMode="Fant"
+                                   Height="380" 
+                                   Effect="{DynamicResource DefaultDropShadow}"
+                                   >
+                            </Image>
+                        </Grid>
+
+                        <TextBlock Name="PART_TextStatus" TextWrapping="Wrap"
+                                   Style="{StaticResource TextBlockBaseStyle}"
+                                   HorizontalAlignment="Center" Margin="0,20,0,20"                                   
+                                   Grid.Row="2" Grid.Column="1"/>
+
+                        <StackPanel Name="PART_PanelActionButtons" Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Grid.Row="3" Grid.Column="1"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <StopStoryboard BeginStoryboardName="Hide"/>
+                                <BeginStoryboard x:Name="Reveal">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:4" 
+                                                         Storyboard.TargetName="CoverScale"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         To="1.1"
+                                                         AutoReverse="True"
+                                                         RepeatBehavior="0:0:15">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Duration="0:0:4" 
+                                                         Storyboard.TargetName="CoverScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         To="1.1"
+                                                         AutoReverse="True"
+                                                         RepeatBehavior="0:0:15">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Duration="0:0:15" 
+                                                         Storyboard.TargetName="CoverTranslate"
+                                                         Storyboard.TargetProperty="X"
+                                                         From="-5"
+                                                         To="5"
+                                                         AutoReverse="True"
+                                                         RepeatBehavior="0:0:15">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Duration="0:0:10" 
+                                                         Storyboard.TargetName="CoverTranslate"
+                                                         Storyboard.TargetProperty="Y"
+                                                         From="-5"
+                                                         To="5"
+                                                         AutoReverse="True"
+                                                         RepeatBehavior="0:0:15">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="Reveal"/>
+                                <BeginStoryboard x:Name="Hide">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.5" 
+                                                         Storyboard.TargetName="CoverScale"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         To="1">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Duration="0:0:0.5" 
+                                                         Storyboard.TargetName="CoverScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         To="1">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Duration="0:0:0.5" 
+                                                         Storyboard.TargetName="CoverTranslate"
+                                                         Storyboard.TargetProperty="X"
+                                                         To="0">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Duration="0:0:0.5" 
+                                                         Storyboard.TargetName="CoverTranslate"
+                                                         Storyboard.TargetProperty="Y"
+                                                         To="0">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
