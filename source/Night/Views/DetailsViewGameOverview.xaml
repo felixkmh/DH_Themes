@@ -139,7 +139,7 @@
                                                 <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray" />
                                                 <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}"/>
                                                 <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray"/>
-                                                <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}"/>
+                                                <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </DockPanel>
