@@ -91,7 +91,7 @@
     </Style>
 
     <Style TargetType="{x:Type Expander}">
-        <Setter Property="Background" Value="{DynamicResource ExpanderBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrushHighlight}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -100,13 +100,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
                     <DockPanel>
-                        <ToggleButton BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                                      Style="{DynamicResource ExpanderDownHeaderStyle}"
-                                      Padding="{TemplateBinding Padding}"
-                                      MinHeight="25" DockPanel.Dock="Top"
-                                      Background="{TemplateBinding Background}"
-                                      Content="{TemplateBinding Header}"
-                                      IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <Grid DockPanel.Dock="Top">
+                            <Border Background="{TemplateBinding Background}" OpacityMask="{DynamicResource LeftFadingBrush}" CornerRadius="{DynamicResource ControlCornerRadius}"/>
+                            <ToggleButton BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                          Style="{DynamicResource ExpanderDownHeaderStyle}"
+                                          Padding="{TemplateBinding Padding}"
+                                          MinHeight="25"
+                                          Content="{TemplateBinding Header}"
+                                          IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                                          Background="Transparent"/>
+                        </Grid>
                         <Border x:Name="Border" DockPanel.Dock="Top" Visibility="Collapsed"
                                 BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter Focusable="False"
