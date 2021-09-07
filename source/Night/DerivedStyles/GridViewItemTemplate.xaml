@@ -65,6 +65,40 @@
                                        Background="{DynamicResource WindowBackgourndBrushLight}"/>
                             </StackPanel>
                         </Border>
+                        <!--<Popup x:Name="GridDetailsPopup" StaysOpen="True" Placement="Right" 
+                               IsOpen="{Binding RelativeSource={RelativeSource AncestorType={x:Type GameListItem}}, Path=IsMouseOver, Mode=OneWay}"
+                               Effect="{DynamicResource DefaultDropShadow}"
+                               Margin="{DynamicResource DropShadowThickness}">
+                            <Grid Width="400" 
+                                  Height="{Binding ActualHeight, ElementName=Mask}" >
+                                <Border Background="{DynamicResource BackgroundImage}"
+                                        CornerRadius="{DynamicResource GridItemCornerRadius}"
+                                        IsHitTestVisible="False"
+                                        Height="{Binding ActualHeight, ElementName=Mask}"
+                                        Width="400" >
+                                    <Grid>
+                                        <StackPanel>
+                                            <Image Stretch="UniformToFill"
+                                                   Source="{Binding BackgroundImage, Converter={StaticResource ImageStringToImageConverterCached}}"
+                                                   Height="{Binding ActualHeight, ElementName=Mask}"
+                                                   Width="400"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center">
+                                            </Image>
+                                            <StackPanel.OpacityMask>
+                                                <VisualBrush Visual="{Binding ElementName=PopupMask}"/>
+                                            </StackPanel.OpacityMask>
+                                        </StackPanel>
+                                        <Border x:Name="PopupMask" Background="{DynamicResource WindowBackgourndBrushLight}" CornerRadius="{DynamicResource GridItemCornerRadius}"/>
+                                        
+                                    </Grid>
+                                </Border>
+                                <StackPanel Margin="10">
+                                    <Label Content="{Binding DisplayName}"/>
+                                    <Label Content="{Binding Source.Name}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Popup>-->
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsInstalled}" Value="False">
@@ -121,9 +155,13 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
+                        <Grid.ToolTip>
+                            <TextBlock Text="{Binding DisplayString}"/>
+                        </Grid.ToolTip>
                         <Border x:Name="IconBackground" CornerRadius="8" Background="{DynamicResource WindowBackgourndBrushHighlightHover}" Opacity="1" Visibility="Hidden">
                         </Border>
-                        <Image Source="{Binding Icon}" RenderOptions.BitmapScalingMode="Fant" Margin="3"/>
+                        <Image Source="{Binding Icon}" RenderOptions.BitmapScalingMode="Fant" Margin="3" 
+                               Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
