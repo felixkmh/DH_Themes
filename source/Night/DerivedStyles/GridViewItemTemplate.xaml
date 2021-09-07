@@ -66,11 +66,12 @@
                             </StackPanel>
                         </Border>
                         <!--<Popup x:Name="GridDetailsPopup" StaysOpen="True" Placement="Right" 
-                               IsOpen="{Binding RelativeSource={RelativeSource AncestorType={x:Type GameListItem}}, Path=IsMouseOver, Mode=OneWay}"
-                               Effect="{DynamicResource DefaultDropShadow}"
-                               Margin="{DynamicResource DropShadowThickness}">
+                               IsOpen="{Binding RelativeSource={RelativeSource AncestorType={x:Type GameListItem}}, Path=IsMouseOver, Mode=OneWay}">
                             <Grid Width="400" 
-                                  Height="{Binding ActualHeight, ElementName=Mask}" >
+                                  Effect="{DynamicResource DefaultDropShadow}"
+                                  Margin="{DynamicResource DropShadowThickness}"
+                                  Height="{Binding ActualHeight, ElementName=Mask}" 
+                                  Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type Popup}}, Path=IsOpen, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Border Background="{DynamicResource BackgroundImage}"
                                         CornerRadius="{DynamicResource GridItemCornerRadius}"
                                         IsHitTestVisible="False"
@@ -79,7 +80,7 @@
                                     <Grid>
                                         <StackPanel>
                                             <Image Stretch="UniformToFill"
-                                                   Source="{Binding BackgroundImage, Converter={StaticResource ImageStringToImageConverterCached}}"
+                                                   Source="{Binding BackgroundImage, Converter={StaticResource ImageStringToImageConverter}}"
                                                    Height="{Binding ActualHeight, ElementName=Mask}"
                                                    Width="400"
                                                    HorizontalAlignment="Center"
