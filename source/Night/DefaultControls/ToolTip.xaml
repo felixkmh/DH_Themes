@@ -16,5 +16,14 @@
         <Setter Property="BorderThickness" Value="{DynamicResource PopupBorderThickness}" />
         <Setter Property="Effect" Value="{DynamicResource DefaultDropShadow}"/>
         <Setter Property="Margin" Value="{DynamicResource DropShadowThickness}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="{DynamicResource ControlCornerRadius}">
+                        <ContentPresenter Margin="5"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>
