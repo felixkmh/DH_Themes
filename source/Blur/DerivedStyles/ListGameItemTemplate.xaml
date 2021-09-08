@@ -9,22 +9,36 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
                     <Grid>
+                        <Border x:Name="Proxy" Visibility="{Binding CoverImage, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" 
+                                Opacity="0" Focusable="False" IsHitTestVisible="False"/>
                         <Image x:Name="PART_ImageCover"
                                RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
                                VerticalAlignment="Center" HorizontalAlignment="Center"
                                Stretch="{Settings CoverArtStretch}" ></Image>
+                        <Grid Visibility="{Binding ElementName=Proxy, Path=IsVisible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2"
+                                       Visibility="{Binding ElementName=BottomText, Path=IsVisible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                       Style="{DynamicResource TextBlockBaseStyle}"
+                                       TextAlignment="Center" Padding="5"
+                                       FontSize="{DynamicResource FontSize}"
+                                       Effect="{DynamicResource DefaultDropShadow}"/>
+                        </Grid>
                         <Border Background="#AA000000" x:Name="BorderDarken" Visibility="Collapsed" CornerRadius="{DynamicResource GridItemCornerRadius}" />
                         <StackPanel VerticalAlignment="Bottom">
                             <Border Background="#34000000" CornerRadius="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5,5,5" >
                                 <ContentControl x:Name="DuplicateHider_SourceSelector" Margin="3,3,3,3" HorizontalAlignment="Right" VerticalAlignment="Bottom" MaxHeight="30"/>
                             </Border>
-                            <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
-                                           Visibility="{Settings Fullscreen.ShowGameTitles}"
-                                           Style="{DynamicResource TextBlockBaseStyle}"
-                                           FontSize="{DynamicResource FontSizeSmall}"
-                                           HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
-                                           TextAlignment="Center" Padding="5"                                    
-                                           Background="{DynamicResource MainBackgourndBrushLight}"/>
+                            <TextBlock x:Name="BottomText" Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
+                                       Visibility="{Settings Fullscreen.ShowGameTitles}"
+                                       Style="{DynamicResource TextBlockBaseStyle}"
+                                       FontSize="{DynamicResource FontSizeSmall}"
+                                       HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                                       TextAlignment="Center" Padding="5"                                    
+                                       Background="{DynamicResource MainBackgourndBrushLight}"/>
                         </StackPanel>
                     </Grid>
                     <ControlTemplate.Triggers>
