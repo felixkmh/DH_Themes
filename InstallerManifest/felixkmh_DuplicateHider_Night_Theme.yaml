@@ -22,3 +22,10 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.3.0/felixkmh_DuplicateHider_Night_Theme_1_3.pthm
     Changelog:
       - Expander Style now fits the rest of the theme 
+  - Version: 1.4
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-09-07
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.4.0/felixkmh_DuplicateHider_Night_Theme_1_4.pthm
+    Changelog:
+      - 'rounded corners on tooltips'
+      - 'fixed source icons not fading out when game is uninstalled'
