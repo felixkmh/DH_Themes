@@ -2,13 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     mc:Ignorable="d">
 
     <Style x:Key="ListGameItemTemplate" TargetType="{x:Type GameListItem}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
-                    <Grid>
+                    <Grid x:Name="MainGrid">
                         <Border x:Name="Proxy" Visibility="{Binding CoverImage, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" 
                                 Opacity="0" Focusable="False" IsHitTestVisible="False"/>
                         <Image x:Name="PART_ImageCover"
@@ -40,6 +41,126 @@
                                        TextAlignment="Center" Padding="5"                                    
                                        Background="{DynamicResource MainBackgourndBrushLight}"/>
                         </StackPanel>
+                        <!--<Popup x:Name="InfoPopup" StaysOpen="False" Placement="Right" AllowsTransparency="True"
+                               PopupAnimation="Fade" IsOpen="False" >
+                            <Border Height="{Binding ElementName=MainGrid, Path=ActualHeight}"
+                                    Background="{DynamicResource BackgroundImage}" CornerRadius="{DynamicResource GridItemCornerRadius}"
+                                    BorderBrush="Transparent"
+                                    Margin="20" BorderThickness="5,0">
+                                <Border x:Name="MainBorder" BorderThickness="5" BorderBrush="{DynamicResource SelectionBrush}"
+                                        Margin="-5.5" CornerRadius="3">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Opacity="1" Direction="0"
+                                                  Color="{DynamicResource GlyphColor}"                                                  
+                                                  RenderingBias="Quality" BlurRadius="20"/>
+                                    </Border.Effect>
+                                    <Grid Width="720" Background="{DynamicResource BackgroundImage}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Name="VideoTrailerPath" Foreground="White" Tag="{DynamicResource ExtraMetadataPath}" Visibility="Collapsed">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Text">
+                                                        <Setter.Value>
+                                                            <MultiBinding StringFormat="{}{0}{1}{2}\VideoTrailer.mp4">
+                                                                <Binding RelativeSource="{RelativeSource Self}" Path="Tag" />
+                                                                <Binding Source="\ExtraMetadata\games\"/>
+                                                                <Binding Path="Game.Id"/>
+                                                            </MultiBinding>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+
+                                        <Image Source="{Binding BackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
+                                               Stretch="UniformToFill" 
+                                               HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center"
+                                               Grid.RowSpan="2"/>
+                                        <MediaElement x:Name="VideoTrailer" MediaElementBehaviors.Repeat="True" 
+                                                        Stretch="UniformToFill" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                        Visibility="Collapsed"
+                                                        Opacity="0">
+                                            <MediaElement.Style>
+                                                <Style>
+                                                    <Setter Property="MediaElement.Source" Value="" />
+                                                    <Setter Property="MediaElement.Volume" Value="0"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="MediaElement.Visibility" Value="Visible">
+                                                            <Setter Property="MediaElement.Source" Value="{Binding ElementName=VideoTrailerPath, Path=Text}" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </MediaElement.Style>
+                                        </MediaElement>
+                                        <Border Grid.RowSpan="2" Background="{DynamicResource MainBackgourndBrush}" OpacityMask="{DynamicResource CenterFadeBrush}"/>
+
+                                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                    Text="{Binding DisplayName}"
+                                                    Foreground="White" FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                                    FontSize="38" Margin="20,20,20,0"
+                                                    TextWrapping="Wrap" Grid.Row="0"/>
+
+                                        <Grid Grid.Row="1" VerticalAlignment="Bottom" Margin="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <StackPanel Grid.Column="0" Margin="0,0,5,0">
+                                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                    FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                                    Text="{DynamicResource LOCTimePlayed}"
+                                                    Margin="0,0,0,0" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left"/>
+                                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                            Text="{Binding Playtime, Converter={StaticResource PlayTimeToStringConverter}}" 
+                                                           HorizontalAlignment="Left"/>
+                                            </StackPanel>
+
+
+                                            <StackPanel Grid.Column="1" Margin="0,0,5,0">
+                                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                    FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                                    Text="{DynamicResource LOCGameLastActivityTitle}"
+                                                    Margin="0,0,0,0" TextTrimming="CharacterEllipsis"
+                                                           HorizontalAlignment="Left"/>
+                                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                    Text="{Binding LastActivity, Converter={StaticResource DateTimeToLastPlayedConverter}}" 
+                                                           HorizontalAlignment="Left" />
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="2" Margin="0,0,5,0">
+                                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                    FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                                    Text="{DynamicResource LOCGameReleaseDateTitle}"
+                                                    Margin="0,0,0,0" TextTrimming="CharacterEllipsis"
+                                                           HorizontalAlignment="Right"/>
+                                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                    Text="{Binding ReleaseDate}" 
+                                                           HorizontalAlignment="Right"/>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="3">
+                                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                    FontFamily="{DynamicResource FontTitilliumWebBold}"
+                                                    Text="{DynamicResource LOCGamePlatformTitle}"
+                                                    Margin="0,0,0,0" TextTrimming="CharacterEllipsis"
+                                                           HorizontalAlignment="Right"/>
+                                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                                    Text="{Binding Platforms, Converter={StaticResource ListToStringConverter}}" 
+                                                            HorizontalAlignment="Right"/>
+                                            </StackPanel>
+                                        </Grid>
+
+                                    </Grid>
+                                </Border>
+                            </Border>
+                        </Popup>-->
                     </Grid>
                     <ControlTemplate.Triggers>
                         <MultiDataTrigger>
@@ -49,6 +170,36 @@
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderDarken" />
                         </MultiDataTrigger>
+                        <!--<DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}, Mode=OneWay, Path=IsKeyboardFocused}"
+                                     Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard x:Name="ShowPopup">
+                                    <Storyboard BeginTime="0:0:1">
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="InfoPopup"  Storyboard.TargetProperty="(Popup.IsOpen)">
+                                            <DiscreteBooleanKeyFrame KeyTime="0:0:1" Value="True"/>
+                                        </BooleanAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VideoTrailer" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:2" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="VideoTrailer" Storyboard.TargetProperty="Opacity" BeginTime="0:0:2.5" To="1" From="0" Duration="0:0:1">
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="ShowPopup"/>
+                                <BeginStoryboard x:Name="HidePopup">
+                                    <Storyboard FillBehavior="HoldEnd">
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="InfoPopup"  Storyboard.TargetProperty="(Popup.IsOpen)">
+                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False"/>
+                                        </BooleanAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VideoTrailer" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

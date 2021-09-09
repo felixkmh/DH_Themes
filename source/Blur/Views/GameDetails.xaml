@@ -45,15 +45,53 @@
                                 >
                         </Border>
 
-                        <FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
-                                   Grid.ColumnSpan="4" Grid.RowSpan="2"
-                                   x:Name="PART_ImageBackground"  Background="{DynamicResource MainBackgourndBrush}"
-                                   />
+                        <Grid Grid.ColumnSpan="4" Grid.RowSpan="2" x:Name="BackgroundImageGrid">
+                            <FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
+                                       x:Name="PART_ImageBackground"  Background="{DynamicResource MainBackgourndBrush}"
+                                       />
+                            <MediaElement x:Name="VideoTrailer" MediaElementBehaviors.Repeat="True" 
+                                      Stretch="UniformToFill"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="1">
+                                <MediaElement.Style>
+                                    <Style>
+                                        <Setter Property="MediaElement.Source" Value="" />
+                                        <Setter Property="MediaElement.Volume" Value="0"/>
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GameDetails}}, Path=IsVisible}" Value="True"/>
+                                                    <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="True"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <MultiDataTrigger.Setters>
+                                                    <Setter Property="MediaElement.Source" Value="{Binding ElementName=VideoTrailerPath, Path=Text}" />
+                                                </MultiDataTrigger.Setters>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </MediaElement.Style>
+                            </MediaElement>
+                        </Grid>
+
+                        <TextBlock Name="VideoTrailerPath" Foreground="White" Tag="{DynamicResource ExtraMetadataPath}" Visibility="Collapsed">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text">
+                                        <Setter.Value>
+                                            <MultiBinding StringFormat="{}{0}{1}{2}\VideoTrailer.mp4">
+                                                <Binding RelativeSource="{RelativeSource Self}" Path="Tag" />
+                                                <Binding Source="\ExtraMetadata\games\"/>
+                                                <Binding Path="Game.Id"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
 
                         <Border CornerRadius="30,30,0,0" x:Name="InfoPanelBackgroundBlur"
                                 Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Opacity="1" Margin="{Binding Margin, ElementName=InfoPanelBackground, Mode=OneWay}" Effect="{DynamicResource DefaultBlur}">
                             <Border.Background>
-                                <VisualBrush Visual="{Binding ElementName=PART_ImageBackground}" Stretch="None" AlignmentY="Bottom"/>
+                                <VisualBrush Visual="{Binding ElementName=BackgroundImageGrid}" Stretch="None" AlignmentY="Bottom"/>
                             </Border.Background>
                         </Border>
 
@@ -153,11 +191,13 @@
 
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" x:Name="ButtonPanel">
                                 <ButtonEx x:Name="PART_ButtonContext"
-                                          Margin="2,2,2,2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center" />
+                                          Margin="2,2,2,2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center"
+                                          Background="{DynamicResource ButtonDefaultBrush}"/>
 
                                 <ButtonEx x:Name="PART_ButtonOptions"
                                           Content="{DynamicResource LOCGameOptions}"
-                                          Margin="5,2,2,2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center" />
+                                          Margin="5,2,2,2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center" 
+                                          Background="{DynamicResource ButtonDefaultBrush}"/>
 
 
 
@@ -181,7 +221,8 @@
                                                                               Visibility="{Binding IsCurrent, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
                                                                               BorderBrush="{StaticResource SelectionLightBrush}" 
                                                                               Margin="5,0,2,0" MinWidth="100" HorizontalContentAlignment="Center"
-                                                                              VerticalContentAlignment="Center" BorderThickness="2,2,2,2" Command="{Binding LaunchCommand}">
+                                                                              VerticalContentAlignment="Center" BorderThickness="2,2,2,2" Command="{Binding LaunchCommand}"
+                                                                              Background="{DynamicResource ButtonDefaultBrush}">
                                                                         <TextBlock Text="{Binding SourceName}" 
                                                                                    Style="{DynamicResource TextBlockBaseStyle}" 
                                                                                    Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}"/>
@@ -230,6 +271,9 @@
                                         <DoubleAnimation Storyboard.TargetName="InfoPanelBackgroundBlur"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0:0:0.5" To="0" />
+                                        <DoubleAnimation Storyboard.TargetName="VideoTrailer"
+                                                         Storyboard.TargetProperty="Volume"
+                                                         Duration="0:0:0.5" To="0.5" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
@@ -248,6 +292,9 @@
                                         <DoubleAnimation Storyboard.TargetName="InfoPanelBackgroundBlur"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0:0:0.5" To="1" />
+                                        <DoubleAnimation Storyboard.TargetName="VideoTrailer"
+                                                         Storyboard.TargetProperty="Volume"
+                                                         Duration="0:0:0.5" To="0" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>

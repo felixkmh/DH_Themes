@@ -16,10 +16,18 @@
                         <Storyboard x:Key="FocusedOn">
                             <DoubleAnimation Storyboard.TargetName="ScaleTransform"
                                              Storyboard.TargetProperty="ScaleX"
-                                             From="1" To="1.06" Duration="0:0:0.1"/>
+                                             From="1" To="1.08" Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <BounceEase Bounces="1" Bounciness="2" EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
                             <DoubleAnimation Storyboard.TargetName="ScaleTransform"
                                              Storyboard.TargetProperty="ScaleY"
-                                             From="1" To="1.06" Duration="0:0:0.1"/>
+                                             From="1" To="1.08" Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <BounceEase Bounces="1"  Bounciness="2" EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
                         </Storyboard>
                         <Storyboard x:Key="FocusedOff">
                             <DoubleAnimation Storyboard.TargetName="ScaleTransform"
@@ -37,10 +45,10 @@
                             <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" />
                         </Grid.RenderTransform>
                         <ContentPresenter />
-                        <Border CornerRadius="3" BorderThickness="3" BorderBrush="{DynamicResource ControlBackgroundBrush}"
-                                Margin="-3"/>
+                        <!--<Border CornerRadius="3" BorderThickness="3" BorderBrush="{DynamicResource ControlBackgroundBrush}"
+                                Margin="-3"/>-->
                         <Border x:Name="MainBorder" BorderThickness="5" BorderBrush="{DynamicResource SelectionBrush}"
-                                Margin="-5" Visibility="Collapsed" CornerRadius="3">
+                                Margin="-4" Visibility="Collapsed" CornerRadius="3">
                             <Border.Effect>
                                 <DropShadowEffect ShadowDepth="0" Opacity="1"
                                                   Color="{DynamicResource GlyphColor}"                                                  

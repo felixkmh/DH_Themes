@@ -206,8 +206,7 @@
                                     <ListBoxEx x:Name="PART_ListGameItems" Margin="0,0,0,0" Padding="0,0,0,0"
                                            Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="Transparent"
                                            Panel.ZIndex="100" Grid.Column="1"
-                                           KeyboardNavigation.DirectionalNavigation="Once" ClipToBounds="False"
-                                           >
+                                           KeyboardNavigation.DirectionalNavigation="Once" ClipToBounds="False">
                                     </ListBoxEx>
                                 </Grid>
                             </DockPanel>

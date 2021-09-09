@@ -43,6 +43,7 @@
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
     </Style>
 
+    <ImageBrush x:Key="ButtonDefaultBrush" ImageSource="{ThemeFile 'Images/noise/background3.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" Opacity="0.5"/>
     <ImageBrush x:Key="MainBackgourndBrush" ImageSource="{ThemeFile 'Images/noise/background0.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" Opacity="1"/>
     <ImageBrush x:Key="MainBackgourndBrushLight" ImageSource="{ThemeFile 'Images/noise/background2.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute"/>
 
@@ -87,6 +88,13 @@
 
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="CenterFadeBrush" StartPoint="0,1" EndPoint="0,0" >
+        <GradientStop Color="Black" Offset="0.0"/>
+        <GradientStop Color="Transparent" Offset="0.45"/>
+        <GradientStop Color="Transparent" Offset="0.55"/>
+        <GradientStop Color="Black" Offset="1"/>
+    </LinearGradientBrush>
+
     <BlurEffect x:Key="DefaultBlur" Radius="50" KernelType="Gaussian" RenderingBias="Performance"/>
     <DropShadowEffect x:Key="DefaultDropShadow" ShadowDepth="0" Color="Black" Opacity="0.75" RenderingBias="Performance" BlurRadius="20"/>
 
@@ -96,4 +104,9 @@
     <ImageBrush x:Key="RightDropShadowBrush" ImageSource="{ThemeFile 'Images/rightDropShadow.png'}"/>
 
     <ImageBrush x:Key="BackgroundImage" ImageSource="{ThemeFile 'Images/Background.png'}" TileMode="None" Stretch="Fill"/>
+
+    <!--Extra Metadata Path values start-->
+    <sys:Boolean x:Key="UseAbsoluteExtraMetadataPath">false</sys:Boolean>
+    <sys:String x:Key="ExtraMetadataPath">..\..\..\..</sys:String>
+    <!--region end-->
 </ResourceDictionary>

@@ -125,5 +125,6 @@
     </Style>
 
     <Style TargetType="ComboBoxEx" BasedOn="{StaticResource {x:Type ComboBox}}">
+        <Setter Property="Background" Value="{DynamicResource ButtonDefaultBrush}"/>
     </Style>
 </ResourceDictionary>
