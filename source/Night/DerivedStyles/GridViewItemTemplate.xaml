@@ -8,7 +8,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
-                    <Grid>
+                    <Grid Width="{Settings GridItemWidth}"
+                          Height="{Settings GridItemHeight}">
                         <Border x:Name="Mask" Background="Black" CornerRadius="{DynamicResource GridItemCornerRadius}"/>
                         <Border BorderThickness="0"  
                                 Background="Transparent"
@@ -66,39 +67,53 @@
                             </StackPanel>
                         </Border>
                         <!--<Popup x:Name="GridDetailsPopup" StaysOpen="True" Placement="Right" 
-                               IsOpen="{Binding RelativeSource={RelativeSource AncestorType={x:Type GameListItem}}, Path=IsMouseOver, Mode=OneWay}">
-                            <Grid Width="400" 
-                                  Effect="{DynamicResource DefaultDropShadow}"
-                                  Margin="{DynamicResource DropShadowThickness}"
-                                  Height="{Binding ActualHeight, ElementName=Mask}" 
-                                  Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type Popup}}, Path=IsOpen, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <Border Background="{DynamicResource BackgroundImage}"
-                                        CornerRadius="{DynamicResource GridItemCornerRadius}"
-                                        IsHitTestVisible="False"
-                                        Height="{Binding ActualHeight, ElementName=Mask}"
-                                        Width="400" >
-                                    <Grid>
-                                        <StackPanel>
-                                            <Image Stretch="UniformToFill"
-                                                   Source="{Binding BackgroundImage, Converter={StaticResource ImageStringToImageConverter}}"
-                                                   Height="{Binding ActualHeight, ElementName=Mask}"
-                                                   Width="400"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center">
-                                            </Image>
-                                            <StackPanel.OpacityMask>
-                                                <VisualBrush Visual="{Binding ElementName=PopupMask}"/>
-                                            </StackPanel.OpacityMask>
-                                        </StackPanel>
-                                        <Border x:Name="PopupMask" Background="{DynamicResource WindowBackgourndBrushLight}" CornerRadius="{DynamicResource GridItemCornerRadius}"/>
-                                        
-                                    </Grid>
-                                </Border>
-                                <StackPanel Margin="10">
-                                    <Label Content="{Binding DisplayName}"/>
-                                    <Label Content="{Binding Source.Name}"/>
-                                </StackPanel>
-                            </Grid>
+                               IsOpen="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsMouseOver, Mode=OneWay}">
+                            <ContentControl Width="400" 
+                                            Effect="{DynamicResource DefaultDropShadow}"
+                                            Margin="{DynamicResource DropShadowThickness}"
+                                            Height="{Binding ActualHeight, ElementName=Mask}"
+                                            IsHitTestVisible="False"
+                                            Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsMouseOver, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <ContentControl.Style>
+                                    <Style TargetType="ContentControl">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ContentControl">
+                                                    <Grid>
+                                                        <Border Background="{DynamicResource BackgroundImage}"
+                                                                CornerRadius="{DynamicResource GridItemCornerRadius}"
+                                                                IsHitTestVisible="False"
+                                                                Height="{Binding ActualHeight, ElementName=Mask}"
+                                                                Width="400" >
+                                                            <Grid>
+                                                                <StackPanel>
+                                                                    <Image Stretch="UniformToFill"
+                                                                            Source="{Binding BackgroundImage, Converter={StaticResource ImageStringToImageConverter}}"
+                                                                            Height="{Binding ActualHeight, ElementName=Mask}"
+                                                                            Width="400"
+                                                                            HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center">
+                                                                    </Image>
+                                                                    <StackPanel.OpacityMask>
+                                                                        <VisualBrush Visual="{Binding ElementName=PopupMask}"/>
+                                                                    </StackPanel.OpacityMask>
+                                                                </StackPanel>
+                                                                <Border x:Name="PopupMask" Background="{DynamicResource WindowBackgourndBrushLight}" CornerRadius="{DynamicResource GridItemCornerRadius}"/>
+
+                                                            </Grid>
+                                                        </Border>
+                                                        <StackPanel Margin="10">
+                                                            <Label Content="{Binding DisplayName}"/>
+                                                            <Label Content="{Binding Source.Name}"/>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
                         </Popup>-->
                     </Grid>
                     <ControlTemplate.Triggers>

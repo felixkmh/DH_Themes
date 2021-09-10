@@ -19,12 +19,14 @@
                         <Border x:Name="SelectionBorder" BorderThickness="3.5" Margin="-3" 
                                 BorderBrush="{DynamicResource GlyphBrush}"
                                 OpacityMask="{DynamicResource BottomFadingBrush}"
-                                Opacity="0" CornerRadius="{DynamicResource GridItemCornerRadius}"/>
+                                CornerRadius="{DynamicResource GridItemCornerRadius}"
+                                Visibility="Hidden"/>
                         <ContentPresenter/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Opacity" Value="0.75" TargetName="SelectionBorder"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectionBorder"/>
                             <Setter Property="Canvas.ZIndex" Value="90" />
                             <Trigger.EnterActions>
                                 <StopStoryboard BeginStoryboardName="Deselect"/>
@@ -73,7 +75,7 @@
                             </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Opacity" Value="1" TargetName="SelectionBorder"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectionBorder"/>
                             <Setter Property="Canvas.ZIndex" Value="89" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard x:Name="Select">

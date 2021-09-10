@@ -25,7 +25,8 @@
                                              ScrollViewer.PanningMode="VerticalOnly"
                                              ItemContainerStyle="{DynamicResource GridViewItemStyle}"
                                              DockPanel.Dock="Left"
-                                             BorderThickness="0">
+                                             BorderThickness="0"
+                                             Effect="{DynamicResource DefaultDropShadow}">
                                     <ExtendedListBox.ItemTemplate>
                                         <DataTemplate>
                                             <GameListItem Style="{StaticResource GridViewItemTemplate}" />

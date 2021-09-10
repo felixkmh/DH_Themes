@@ -19,7 +19,7 @@
     <CornerRadius x:Key="ControlCornerRadius">5</CornerRadius>
     <Thickness x:Key="SidebarItemPadding">8</Thickness>
     <Thickness x:Key="InputBorderThickness">0,0,0,2</Thickness>
-    <CornerRadius x:Key="GridItemCornerRadius">20</CornerRadius>
+    <CornerRadius x:Key="GridItemCornerRadius">10</CornerRadius>
 
     <Color x:Key="BlackColor">#FF000000</Color>
     <Color x:Key="WhiteColor">#FFFFFFFF</Color>
@@ -105,13 +105,14 @@
     <ImageBrush x:Key="DropShadowBrushLeft" ImageSource="{ThemeFile 'Images/leftDropShadow.png'}"/>
     <ImageBrush x:Key="DropShadowBrushTop" ImageSource="{ThemeFile 'Images/topDropShadow.png'}"/>
     <ImageBrush x:Key="DropShadowBrushBot" ImageSource="{ThemeFile 'Images/bottomDropShadow.png'}"/>
+    <ImageBrush x:Key="DropShadowBrush" ImageSource="{ThemeFile 'Images/dropShadow.png'}"/>
     
     <!-- Effects -->
     <sys:Double x:Key="HoverBackgroundOpacity">0.6</sys:Double>
     <DropShadowEffect x:Key="TextDropShadow" BlurRadius="4" ShadowDepth="0" Color="Black" RenderingBias="Quality" Opacity="0.55"/>
     <sys:Double x:Key="DropShadowRadius">22</sys:Double>
     <sys:Double x:Key="DropShadowRadiusNegative">-22</sys:Double>
-    <DropShadowEffect x:Key="DefaultDropShadow" BlurRadius="{DynamicResource DropShadowRadius}" ShadowDepth="0" Color="Black" RenderingBias="Quality" Opacity="0.55"/>
+    <DropShadowEffect x:Key="DefaultDropShadow" BlurRadius="{DynamicResource DropShadowRadius}" ShadowDepth="0" Color="Black" RenderingBias="Performance" Opacity="0.55"/>
     <Thickness x:Key="DropShadowThickness" 
                Left="{StaticResource DropShadowRadius}" 
                Top="{StaticResource DropShadowRadius}" 
