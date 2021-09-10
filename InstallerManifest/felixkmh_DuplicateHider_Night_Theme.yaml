@@ -29,3 +29,9 @@ Packages:
     Changelog:
       - 'rounded corners on tooltips'
       - 'fixed source icons not fading out when game is uninstalled'
+  - Version: 1.5
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-09-10
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.5.0/felixkmh_DuplicateHider_Night_Theme_1_5.pthm
+    Changelog:      
+      - 'added drop shadow to grid on grid items'
