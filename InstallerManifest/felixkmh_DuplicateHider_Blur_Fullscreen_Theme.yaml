@@ -10,3 +10,9 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.1.0/felixkmh_DuplicateHider_Blur_Fullscreen_Theme_1_1.pthm
     Changelog:
       - 'show game title if no cover image exists'
+  - Version: 1.2
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-09-09
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.2.0/felixkmh_DuplicateHider_Blur_Fullscreen_Theme_1_2.pthm
+    Changelog:
+      - 'support for extra media tool''s video trailers in details view'
