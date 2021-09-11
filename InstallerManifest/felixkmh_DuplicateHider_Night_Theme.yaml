@@ -35,3 +35,9 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.5.0/felixkmh_DuplicateHider_Night_Theme_1_5.pthm
     Changelog:      
       - 'added drop shadow to grid on grid items'
+  - Version: 1.6
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-09-11
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.6.0/felixkmh_DuplicateHider_Night_Theme_1_6.pthm
+    Changelog:      
+      - 'customized progressbar to fit the rest of the theme'
