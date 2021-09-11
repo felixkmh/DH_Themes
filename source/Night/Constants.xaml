@@ -58,7 +58,7 @@
     <ImageBrush x:Key="PopupBackgroundBrush" ImageSource="{ThemeFile 'Images/noise/background0.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" RenderOptions.CachingHint="Cache"/>
 
     <ImageBrush x:Key="PlayButtonBackgroundBrush" ImageSource="{ThemeFile 'Images/noise/highlight1.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" Opacity="0.85" RenderOptions.CachingHint="Cache"/>
-    
+    <ImageBrush x:Key="ProgressbarBrush" ImageSource="{ThemeFile 'Images/progressbar.png'}" Stretch="UniformToFill"/>
     <SolidColorBrush x:Key="PositiveRatingBrush" Color="#78ffa0" />
     <SolidColorBrush x:Key="NegativeRatingBrush" Color="#ff6b6b" />
     <SolidColorBrush x:Key="MixedRatingBrush" Color="#fffca1" />

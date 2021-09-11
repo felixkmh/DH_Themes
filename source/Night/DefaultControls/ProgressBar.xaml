@@ -8,7 +8,7 @@
 
     <Style TargetType="{x:Type ProgressBar}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Foreground" Value="{DynamicResource WindowBackgourndBrushHighlight}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ProgressbarBrush}"/>
         <Setter Property="Background" Value="{DynamicResource NormalBrushDark}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}"/>
         <Setter Property="Template">
@@ -17,21 +17,30 @@
                     <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{DynamicResource NormalBorderBrush}"
                             CornerRadius="{DynamicResource ControlCornerRadius}">
                         <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                            <Rectangle Fill="{TemplateBinding Background}" RadiusX="5" RadiusY="5"/>
+                            <Rectangle Fill="{TemplateBinding Background}" RadiusX="5" RadiusY="5" x:Name="BarBackground"/>
                             <Rectangle Name="PART_Track" Margin="0" RadiusX="5" RadiusY="5"/>
                             <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                                 <Grid>
-                                    <Rectangle Fill="{TemplateBinding Foreground}" RadiusX="5" RadiusY="5"/>
-                                    <Grid x:Name="Animation" Visibility="Hidden">
-                                        <Rectangle Fill="{TemplateBinding Background}" Margin="0,0,50,0">
-                                            <Rectangle.RenderTransform>
+                                    <Rectangle Fill="{x:Null}" Margin="0,0,40,0" x:Name="Placeholder"/>
+                                    <Rectangle Fill="{TemplateBinding Foreground}" RadiusX="5" RadiusY="5" x:Name="Fill"/>
+                                    <Grid  x:Name="Animation" Visibility="Hidden">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Rectangle Fill="{x:Null}" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=Placeholder}">
+                                            <Rectangle.LayoutTransform>
                                                 <ScaleTransform x:Name="HiderPreTransform" ScaleX="0"/>
-                                            </Rectangle.RenderTransform>
+                                            </Rectangle.LayoutTransform>
                                         </Rectangle>
-                                        <Rectangle Fill="{TemplateBinding Background}" RenderTransformOrigin="1, 0" Margin="50,0,0,0">
-                                            <Rectangle.RenderTransform>
-                                                <ScaleTransform x:Name="HiderPostTransform" ScaleX="1" />
-                                            </Rectangle.RenderTransform>
+                                        <Border Background="{TemplateBinding Foreground}" Grid.Column="1"
+                                                   CornerRadius="5"></Border>
+                                        <Rectangle Fill="{x:Null}" HorizontalAlignment="Right" Width="{Binding ActualWidth, ElementName=Placeholder}"
+                                                   RenderTransformOrigin="1, 0" Grid.Column="3">
+                                            <Rectangle.LayoutTransform>
+                                                <ScaleTransform x:Name="HiderPostTransform" ScaleX="1"/>
+                                            </Rectangle.LayoutTransform>
                                         </Rectangle>
                                     </Grid>
                                 </Grid>
@@ -41,13 +50,34 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsIndeterminate" Value="True">
                             <Setter TargetName="Animation" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Fill" Property="Visibility" Value="Hidden" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard RepeatBehavior="Forever">
-                                        <DoubleAnimation Storyboard.TargetName="HiderPreTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                                         To="1" Duration="0:00:2" AutoReverse="True"/>
+                                        <DoubleAnimation BeginTime="0:0:0.3"  Storyboard.TargetName="HiderPreTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                                                         From="0" To="1" Duration="0:00:1.7">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
                                         <DoubleAnimation Storyboard.TargetName="HiderPostTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                                         To="0" Duration="0:00:2" AutoReverse="True"/>
+                                                         From="1" To="0" Duration="0:00:2" >
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation BeginTime="0:0:2"  Storyboard.TargetName="HiderPreTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                                                         From="1" To="0" Duration="0:00:2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation BeginTime="0:0:2.3" Storyboard.TargetName="HiderPostTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                                                         From="0" To="1" Duration="0:00:1.7" >
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
