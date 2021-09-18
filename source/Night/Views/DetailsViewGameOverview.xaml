@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    mc:Ignorable="d">
+                    mc:Ignorable="d"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <Style TargetType="{x:Type DetailsViewGameOverview}">
         <Setter Property="Template">
@@ -83,18 +84,34 @@
                                             Opacity="0.9" CornerRadius="5,5,0,0">
                                     </Border>
 
+                                    <Grid Margin="0,20,0,5" MaxWidth="1024" Grid.Row="0" Panel.ZIndex="20" Grid.RowSpan="2"
+                                          Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <Border Visibility="{Binding ElementName=ExtraMetadataLoader_LogoLoaderControl, Path=IsVisible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                                HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                            <Image Name="PART_ImageCover" MaxWidth="220"
+                                                Height="{Settings GameDetailsCoverHeight}"
+                                                StretchDirection="Both" Stretch="Uniform"
+                                                RenderOptions.BitmapScalingMode="Fant" 
+                                                Effect="{DynamicResource DefaultDropShadow}" RenderTransformOrigin="1.0,0.6">
+                                                <Image.RenderTransform>
+                                                    <ScaleTransform x:Name="CoverTransform"/>
+                                                </Image.RenderTransform>
+                                            </Image>
+                                        </Border>
+                                        <ContentControl x:Name="Logo" Visibility="{PluginStatus Plugin=ExtraMetadataLoader_705fdbca-e1fc-4004-b839-1d040b8b4429, Status=Installed}">
+                                            <Border Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableLogos, TargetNullValue={x:Static Visibility.Collapsed}, Mode=OneWay}"
+                                                                HorizontalAlignment="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoHorizontalAlignment, TargetNullValue={x:Static HorizontalAlignment.Right}}"
+                                                                VerticalAlignment="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoVerticalAlignment, TargetNullValue={x:Static VerticalAlignment.Bottom}}"
+                                                                MaxHeight="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoMaxHeight, TargetNullValue={x:Static sys:Double.PositiveInfinity}}"
+                                                                MaxWidth="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoMaxWidth, TargetNullValue={x:Static sys:Double.PositiveInfinity}}">
+                                                <ContentControl x:Name="ExtraMetadataLoader_LogoLoaderControl" 
+                                                                            Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable, TargetNullValue={x:Static Visibility.Collapsed}}"/>
+                                            </Border>
+                                        </ContentControl>
+                                    </Grid>
+
                                     <DockPanel Margin="0,20,0,5" MaxWidth="1024" Grid.Row="1" Panel.ZIndex="1" x:Name="TitlePanel"
                                            Background="Transparent">
-                                        <Image Name="PART_ImageCover" VerticalAlignment="Bottom" Panel.ZIndex="20" MaxWidth="220"
-                                            DockPanel.Dock="Right"
-                                            Height="{Settings GameDetailsCoverHeight}"
-                                            StretchDirection="Both" Stretch="Uniform"
-                                            RenderOptions.BitmapScalingMode="Fant" 
-                                            Effect="{DynamicResource DefaultDropShadow}" RenderTransformOrigin="1.0,0.6">
-                                            <Image.RenderTransform>
-                                                <ScaleTransform x:Name="CoverTransform"/>
-                                            </Image.RenderTransform>
-                                        </Image>
                                         <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
                                             <DockPanel>
                                                 <!--<Image Name="PART_ImageIcon" MaxHeight="48" MaxWidth="48"
