@@ -41,7 +41,7 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.6.0/felixkmh_DuplicateHider_Night_Theme_1_6.pthm
     Changelog:      
       - 'customized progressbar to fit the rest of the theme'
-  - Version: 1.6
+  - Version: 1.7
     RequiredApiVersion: 2.0.0
     ReleaseDate: 2021-09-21
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.7.0/felixkmh_DuplicateHider_Night_Theme_1_7.pthm
