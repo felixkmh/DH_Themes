@@ -85,7 +85,7 @@
                                     </Border>
 
                                     <Grid Margin="0,20,0,5" MaxWidth="1024" Grid.Row="0" Panel.ZIndex="20" Grid.RowSpan="2"
-                                          Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                          Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                         <Border Visibility="{Binding ElementName=ExtraMetadataLoader_LogoLoaderControl, Path=IsVisible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Bottom">
                                             <Image Name="PART_ImageCover" MaxWidth="220"
@@ -157,6 +157,7 @@
                                                 <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}"/>
                                                 <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray"/>
                                                 <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}" Background="Transparent" Padding="0"/>
+                                                
                                             </StackPanel>
                                         </StackPanel>
                                     </DockPanel>
@@ -259,22 +260,26 @@
                                             </GridEx>
                                         </StackPanel>
 
-                                        <StackPanel DockPanel.Dock="Right" Margin="10,0,2,0">
-                                            <StackPanel Name="PART_ElemNotes">
-                                                <TextBlock Text="{DynamicResource LOCNotesLabel}" Margin="0,15,0,5"
+                                        <TabControl>
+                                            <TabItem Header="{DynamicResource LOCGameDescriptionTitle}" x:Name="DescriptionTab">
+                                                <StackPanel DockPanel.Dock="Right" Margin="10,0,2,0">
+                                                    <ContentControl x:Name="SuccessStory_PluginCompactList" 
+                                                                    Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, TargetNullValue={x:Static Visibility.Collapsed}, Mode=OneWay}"/>
+                                                    <StackPanel Name="PART_ElemNotes">
+                                                        <TextBlock Text="{DynamicResource LOCNotesLabel}" Margin="0,15,0,5"
                                                        Style="{DynamicResource BaseTextBlockStyle}" />
-                                                <Separator Background="{DynamicResource PanelSeparatorBrush}" />
-                                                <TextBox Name="PART_TextNotes" IsReadOnly="True"
+                                                        <Separator Background="{DynamicResource PanelSeparatorBrush}" />
+                                                        <TextBox Name="PART_TextNotes" IsReadOnly="True"
                                                      BorderThickness="0"
                                                      AcceptsReturn="True" TextWrapping="Wrap"
                                                      Margin="-1,5,-1,5" Padding="5"/>
-                                            </StackPanel>
+                                                    </StackPanel>
 
-                                            <StackPanel Name="PART_ElemDescription">
-                                                <!--<TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,5"
+                                                    <StackPanel Name="PART_ElemDescription">
+                                                        <!--<TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,5"
                                                     Style="{DynamicResource BaseTextBlockStyle}" />-->
-                                                <Separator Background="{DynamicResource PanelSeparatorBrush}" />
-                                                <HtmlTextView Name="PART_HtmlDescription"
+                                                        <Separator Background="{DynamicResource PanelSeparatorBrush}" />
+                                                        <HtmlTextView Name="PART_HtmlDescription"
                                                         Margin="0,5,0,5"
                                                         HtmlFontSize="{DynamicResource FontSize}"
                                                         HtmlFontFamily="{DynamicResource FontFamily}"
@@ -282,8 +287,24 @@
                                                         LinkForeground="{DynamicResource GlyphColor}"                                      
                                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                         ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
-                                            </StackPanel>
-                                        </StackPanel>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </TabItem>
+                                            <TabItem Tag="{PluginSettings Plugin=SuccessStory, Path=HasData, Mode=OneWay}">
+                                                <TabItem.Style>
+                                                    <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="Tag" Value="{StaticResource True}">
+                                                                <Setter Property="Header" Value="{DynamicResource LOCSuccessStoryAchievements}"/>
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TabItem.Style>
+                                                <ContentControl x:Name="SuccessStory_PluginList" MinHeight="500" VerticalAlignment="Top"/>
+                                            </TabItem>
+                                        </TabControl>
                                     </DockPanel>
                                 </Grid>
                             </Grid>
