@@ -98,12 +98,15 @@
                                                 </Image.RenderTransform>
                                             </Image>
                                         </Border>
-                                        <ContentControl x:Name="Logo" Visibility="{PluginStatus Plugin=ExtraMetadataLoader_705fdbca-e1fc-4004-b839-1d040b8b4429, Status=Installed}">
+                                        <ContentControl x:Name="Logo" 
+                                                        Visibility="{PluginStatus Plugin=ExtraMetadataLoader_705fdbca-e1fc-4004-b839-1d040b8b4429, Status=Installed}"
+                                                        Margin="0,0,0,55">
                                             <Border Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableLogos, TargetNullValue={x:Static Visibility.Collapsed}, Mode=OneWay}"
                                                                 HorizontalAlignment="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoHorizontalAlignment, TargetNullValue={x:Static HorizontalAlignment.Right}}"
                                                                 VerticalAlignment="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoVerticalAlignment, TargetNullValue={x:Static VerticalAlignment.Bottom}}"
                                                                 MaxHeight="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoMaxHeight, TargetNullValue={x:Static sys:Double.PositiveInfinity}}"
-                                                                MaxWidth="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoMaxWidth, TargetNullValue={x:Static sys:Double.PositiveInfinity}}">
+                                                                MaxWidth="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoMaxWidth, TargetNullValue={x:Static sys:Double.PositiveInfinity}}"
+                                                    x:Name="LogoBorder">
                                                 <ContentControl x:Name="ExtraMetadataLoader_LogoLoaderControl" 
                                                                             Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable, TargetNullValue={x:Static Visibility.Collapsed}}"/>
                                             </Border>
@@ -122,7 +125,8 @@
                                                         Text="{Binding Game.DisplayName}" DockPanel.Dock="Left"
                                                         FontSize="{DynamicResource FontSizeLargest}" Margin="0,0,10,0" TextWrapping="Wrap"
                                                         VerticalAlignment="Center"
-                                                        Foreground="{DynamicResource TextBrush}" Effect="{DynamicResource TextDropShadow}">
+                                                        Foreground="{DynamicResource TextBrush}" Effect="{DynamicResource TextDropShadow}"
+                                                           x:Name="TitleText">
 
                                                 </TextBlock>
                                             </DockPanel>
@@ -311,6 +315,14 @@
                         </ScrollViewer>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="HorizontalAlignment" Value="{x:Static HorizontalAlignment.Left}" SourceName="LogoBorder"/>
+                                <Condition Property="VerticalAlignment" Value="{x:Static VerticalAlignment.Bottom}" SourceName="LogoBorder"/>
+                                <Condition Property="IsVisible" Value="True" SourceName="LogoBorder"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Hidden" TargetName="TitleText"/>
+                        </MultiTrigger>
                         <Trigger Property="IsMouseOver" SourceName="PART_ImageCover" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
