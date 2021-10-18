@@ -48,3 +48,9 @@ Packages:
     Changelog:   
       - 'support for achievements list in game description in details view using SuccessStory extension'
       - 'support for logos in details view using ExtraMetaDataLoader extension'
+  - Version: 1.8
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-09-21
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.8.0/felixkmh_DuplicateHider_Night_Theme_1_8.pthm
+    Changelog:         
+      - 'ExtraMetaData-Loader Logo improvements'
