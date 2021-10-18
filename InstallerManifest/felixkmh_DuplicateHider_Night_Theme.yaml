@@ -54,3 +54,10 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.8.0/felixkmh_DuplicateHider_Night_Theme_1_8.pthm
     Changelog:         
       - 'ExtraMetaData-Loader Logo improvements'
+  - Version: 1.9
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-10-18
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.9.0/felixkmh_DuplicateHider_Night_Theme_1_9.pthm
+    Changelog:     
+      - added support for ThemeModifier extension
+      - improved performance in Grid View
