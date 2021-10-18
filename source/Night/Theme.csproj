@@ -36,13 +36,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Playnite">
-      <HintPath>..\..\..\Playnite.dll</HintPath>
+      <HintPath>..\..\..\..\..\Local\Playnite\Playnite.dll</HintPath>
     </Reference>
     <Reference Include="Playnite.SDK">
-      <HintPath>..\..\..\Playnite.SDK.dll</HintPath>
+      <HintPath>..\..\..\..\..\Local\Playnite\Playnite.SDK.dll</HintPath>
     </Reference>
     <Reference Include="Playnite.DesktopApp">
-      <HintPath>..\..\..\Playnite.DesktopApp.exe</HintPath>
+      <HintPath>..\..\..\..\..\Local\Playnite\Playnite.DesktopApp.exe</HintPath>
     </Reference>
     <Reference Include="HtmlRenderer">
       <SpecificVersion>False</SpecificVersion>
@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="theme.yaml" />
+    <None Include="thememodifier.yaml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

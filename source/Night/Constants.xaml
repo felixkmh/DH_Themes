@@ -5,7 +5,12 @@
     <sys:Int32 x:Key="DuplicateHider_MaxNumberOfIcons">4</sys:Int32>
     <sys:Int32 x:Key="DuplicateHider_MaxNumberOfIcons1">8</sys:Int32>
     <sys:Int32 x:Key="DuplicateHider_MaxNumberOfIcons2">8</sys:Int32>
-    
+
+    <Visibility x:Key="TitleVisibility">Visible</Visibility>
+    <sys:Double x:Key="DetailsViewImageHeight">300</sys:Double>
+    <Visibility x:Key="TopSourceSelectorVisibility">Visible</Visibility>
+    <sys:Double x:Key="DetailsViewMaxContentWidth">1024</sys:Double>
+
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
     <sys:Double x:Key="FontSize">14</sys:Double>
     <sys:Double x:Key="FontSizeLarge">15</sys:Double>
@@ -111,8 +116,8 @@
     <sys:Double x:Key="HoverBackgroundOpacity">0.6</sys:Double>
     <DropShadowEffect x:Key="TextDropShadow" BlurRadius="4" ShadowDepth="0" Color="Black" RenderingBias="Quality" Opacity="0.55"/>
     <sys:Double x:Key="DropShadowRadius">22</sys:Double>
-    <sys:Double x:Key="DropShadowRadiusNegative">-22</sys:Double>
-    <DropShadowEffect x:Key="DefaultDropShadow" BlurRadius="{DynamicResource DropShadowRadius}" ShadowDepth="0" Color="Black" RenderingBias="Quality" Opacity="0.575"/>
+    <sys:Double x:Key="DropShadowOpacity">0.6</sys:Double>
+    <DropShadowEffect x:Key="DefaultDropShadow" BlurRadius="{DynamicResource DropShadowRadius}" ShadowDepth="0" Color="Black" RenderingBias="Quality" Opacity="{DynamicResource DropShadowOpacity}"/>
     <Thickness x:Key="DropShadowThickness" 
                Left="{StaticResource DropShadowRadius}" 
                Top="{StaticResource DropShadowRadius}" 

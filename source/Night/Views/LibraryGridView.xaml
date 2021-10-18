@@ -26,7 +26,10 @@
                                              ItemContainerStyle="{DynamicResource GridViewItemStyle}"
                                              DockPanel.Dock="Left"
                                              BorderThickness="0"
-                                             Effect="{DynamicResource DefaultDropShadow}">
+                                             >
+                                    <ExtendedListBox.Effect>
+                                        <DropShadowEffect BlurRadius="14" ShadowDepth="0" Color="Black" RenderingBias="Performance" Opacity="0.70"/>
+                                    </ExtendedListBox.Effect>
                                     <ExtendedListBox.ItemTemplate>
                                         <DataTemplate>
                                             <GameListItem Style="{StaticResource GridViewItemTemplate}" />

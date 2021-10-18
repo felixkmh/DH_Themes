@@ -10,6 +10,26 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DetailsViewGameOverview}">
                     <Grid>
+                        <Image Stretch="UniformToFill" x:Name="TopBackgroundBlurred"
+                                           Source="{Binding Game.DisplayBackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
+                                           Margin="0,0,0,-145" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=BackgroundMask}"
+                               HorizontalAlignment="Center" StretchDirection="Both">
+                            <Image.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=BackgroundMask}" AutoLayoutContent="False" TileMode="None">
+                                    <VisualBrush.Transform>
+                                        <TransformGroup>
+                                            <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
+                                            <ScaleTransform ScaleY="-1"/>
+                                            <TranslateTransform Y="{Binding ActualHeight, ElementName=BackgroundMask}"/>
+                                        </TransformGroup>
+                                    </VisualBrush.Transform>
+                                </VisualBrush>
+                            </Image.OpacityMask>
+                            <Image.Effect>
+                                <BlurEffect Radius="5" KernelType="Gaussian"/>
+                            </Image.Effect>
+                        </Image>
+                        
                         <Image Stretch="UniformToFill" x:Name="TopBackground"
                                            Source="{Binding Game.DisplayBackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
                                            Margin="0,0,0,-145" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=BackgroundMask}"
@@ -26,11 +46,13 @@
                                 </VisualBrush>
                             </Image.OpacityMask>
                         </Image>
+
                         <ContentControl x:Name="DuplicateHider_ContentControl1" Panel.ZIndex="1"
                                             VerticalAlignment="Top" 
                                             HorizontalAlignment="Center" 
                                             Margin="0,10,0,0" 
-                                            Tag="{DynamicResource DuplicateHider_ContentControlHeader_Style}"/>
+                                            Tag="{DynamicResource DuplicateHider_ContentControlHeader_Style}"
+                                        Visibility="{DynamicResource TopSourceSelectorVisibility}"/>
                         <ScrollViewer HorizontalScrollBarVisibility="Disabled" x:Name="ScrollViewer"
                                   VerticalScrollBarVisibility="Auto"
                                   Style="{DynamicResource DetailsScrollViewer}"
@@ -68,6 +90,14 @@
                                         <Border.RenderTransform>
                                             <TranslateTransform Y="-5000"/>
                                         </Border.RenderTransform>
+                                        <!--<Border.OpacityMask>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,50" MappingMode="Absolute">
+                                                <LinearGradientBrush.GradientStops>
+                                                    <GradientStop Color="Transparent" Offset="0.9"/>
+                                                    <GradientStop Color="Black" Offset="1"/>
+                                                </LinearGradientBrush.GradientStops>
+                                            </LinearGradientBrush>
+                                        </Border.OpacityMask>-->
                                     </Border>
 
                                     <Border Background="{DynamicResource DropShadowBrushLeft}"
@@ -80,11 +110,24 @@
                                             Margin="-20,0,-20,50" Opacity="0.65" Grid.RowSpan="2" VerticalAlignment="Bottom" Height="50">
                                     </Border>-->
 
+                                    <!--<Border Grid.Row="1" Margin="-20,0,-20,0" Height="50" VerticalAlignment="Bottom"
+                                            CornerRadius="5,5,0,0">
+                                        <Border.Background>
+                                            <VisualBrush TileMode="None" Visual="{Binding ElementName=TopBackgroundBlurred}" Stretch="None" AlignmentY="Bottom" AutoLayoutContent="False" >
+                                                <VisualBrush.Transform>
+                                                    <TransformGroup>
+                                                        <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
+                                                    </TransformGroup>
+                                                </VisualBrush.Transform>
+                                            </VisualBrush>
+                                        </Border.Background>
+                                    </Border>-->
+
                                     <Border Grid.Row="1" Background="{DynamicResource WindowBackgourndBrushBright}" Margin="-20,0,-20,0" Height="50" VerticalAlignment="Bottom"
-                                            Opacity="0.9" CornerRadius="5,5,0,0">
+                                            Opacity="0.7" CornerRadius="5,5,0,0">
                                     </Border>
 
-                                    <Grid Margin="0,20,0,5" MaxWidth="1024" Grid.Row="0" Panel.ZIndex="20" Grid.RowSpan="2"
+                                    <Grid Margin="0,20,0,5" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Row="0" Panel.ZIndex="20" Grid.RowSpan="2"
                                           Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                         <Border Visibility="{Binding ElementName=ExtraMetadataLoader_LogoLoaderControl, Path=IsVisible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Bottom">
@@ -113,7 +156,9 @@
                                         </ContentControl>
                                     </Grid>
 
-                                    <DockPanel Margin="0,20,0,5" MaxWidth="1024" Grid.Row="1" Panel.ZIndex="1" x:Name="TitlePanel"
+                                    <Border IsHitTestVisible="False" Background="{x:Null}" Grid.Row="1" Height="{DynamicResource DetailsViewImageHeight}"/>
+
+                                    <DockPanel Margin="0,20,0,5" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Row="1" Panel.ZIndex="1" x:Name="TitlePanel"
                                            Background="Transparent">
                                         <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
                                             <DockPanel>
@@ -126,8 +171,8 @@
                                                         FontSize="{DynamicResource FontSizeLargest}" Margin="0,0,10,0" TextWrapping="Wrap"
                                                         VerticalAlignment="Center"
                                                         Foreground="{DynamicResource TextBrush}" Effect="{DynamicResource TextDropShadow}"
-                                                           x:Name="TitleText">
-
+                                                        x:Name="TitleText"
+                                                        Visibility="{DynamicResource TitleVisibility}">
                                                 </TextBlock>
                                             </DockPanel>
                                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -169,7 +214,7 @@
                                     <Border Grid.Row="2" Background="{DynamicResource WindowBackgourndBrushLight}" Margin="-20,0,-20,0">
                                     </Border>
 
-                                    <DockPanel MaxWidth="1024" Grid.Row="2">
+                                    <DockPanel MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Row="2">
                                         <StackPanel DockPanel.Dock="Left" Width="300"
                                                 Margin="2,0,0,0"
                                                     >
