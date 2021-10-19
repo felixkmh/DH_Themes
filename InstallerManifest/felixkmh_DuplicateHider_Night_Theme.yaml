@@ -73,3 +73,12 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.1.0/felixkmh_DuplicateHider_Night_Theme_2_1.pthm
     Changelog:   
       - fixed slider thumb being too narrow
+  - Version: 2.2
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-10-19
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.2.0/felixkmh_DuplicateHider_Night_Theme_2_2.pthm
+    Changelog:  
+      - fixed text on popups and menus being blurry
+      - added some subtle animations
+      - added support for HowLongToBeat progress indicator in Details View
+      - changed texture for expanders so they are easier to distingiush from selected items
