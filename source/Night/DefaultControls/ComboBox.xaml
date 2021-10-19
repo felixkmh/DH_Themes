@@ -46,7 +46,8 @@
                                     <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                         Effect="{DynamicResource DefaultDropShadow}"
-                                        Margin="{DynamicResource DropShadowThickness}">
+                                        Margin="{DynamicResource DropShadowThickness}"
+                                        UseLayoutRounding="True">
                                         <Border BorderBrush="{DynamicResource PopupBorderBrush}"
                                             BorderThickness="{DynamicResource PopupBorderThickness}"
                                             Background="{DynamicResource PopupBackgroundBrush}"

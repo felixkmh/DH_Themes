@@ -57,7 +57,8 @@
                                 Effect="{DynamicResource DefaultDropShadow}"
                                 Margin="{DynamicResource DropShadowThickness}"
                                 Width="{Binding ActualWidth, ElementName=MainToggle}"
-                                CornerRadius="{DynamicResource ControlCornerRadius}">
+                                CornerRadius="{DynamicResource ControlCornerRadius}"
+                                UseLayoutRounding="True">
                             <ItemsControl x:Name="PART_ItemsPanel" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                         </Border>
                     </Popup>

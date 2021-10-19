@@ -18,7 +18,11 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"                            
                             CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}"
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Border.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1" x:Name="BorderScale"/>
+                        </Border.RenderTransform>
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
@@ -27,6 +31,52 @@
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
                         </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1" To="1.025"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         />
+                                        <DoubleAnimation Duration="0:0:0.1" To="1.025"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         />
+                                        <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard AutoReverse="True" FillBehavior="Stop">
+                                        <DoubleAnimation Duration="0:0:0.1" To="0.975" From="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         />
+                                        <DoubleAnimation Duration="0:0:0.1" To="0.975" From="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

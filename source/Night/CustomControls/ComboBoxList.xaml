@@ -51,7 +51,8 @@
                                 CornerRadius="{DynamicResource ControlCornerRadius}"
                                 Effect="{DynamicResource DefaultDropShadow}" 
                                 Margin="{DynamicResource DropShadowThickness}"
-                                MinWidth="{Binding ActualWidth, ElementName=Root}">
+                                MinWidth="{Binding ActualWidth, ElementName=Root}"
+                                UseLayoutRounding="True">
                             <ItemsControl x:Name="PART_ItemsPanel" />
                         </Border>
                     </Popup>

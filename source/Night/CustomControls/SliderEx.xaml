@@ -17,7 +17,7 @@
 
     <Style TargetType="{x:Type SliderEx}" BasedOn="{StaticResource {x:Type Slider}}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrushBrightest}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -30,12 +30,17 @@
                         </Grid.RowDefinitions>
                         <TickBar x:Name="TopTick" Visibility="Collapsed" Height="4" Placement="Top"
                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  Fill="{DynamicResource GlyphBrush}" />
-                        <Border x:Name="Border" Grid.Row="1" Margin="0" Height="6" CornerRadius="{DynamicResource 0}"
+                        <Border x:Name="Border" Grid.Row="1" Margin="0" Height="6"
                                 Background="{TemplateBinding Background}" BorderBrush="{DynamicResource NormalBorderBrush}"
-                                BorderThickness="{DynamicResource ControlBorderThickness}" />
+                                BorderThickness="{DynamicResource ControlBorderThickness}" 
+                                CornerRadius="{DynamicResource ControlCornerRadius}"/>
                         <Track Grid.Row="1" x:Name="PART_Track">
                             <Track.Thumb>
-                                <Thumb Width="25" />
+                                <Thumb Width="25" RenderTransformOrigin="0.5,0.5" x:Name="SliderThumb">
+                                    <Thumb.RenderTransform>
+                                        <ScaleTransform ScaleX="1" ScaleY="1" x:Name="BorderScale"/>
+                                    </Thumb.RenderTransform>
+                                </Thumb>
                             </Track.Thumb>
                             <Track.DecreaseRepeatButton>
                                 <RepeatButton Style="{StaticResource SliderExTrackButton}"
@@ -50,6 +55,36 @@
                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Fill="{TemplateBinding Foreground}" />
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" SourceName="SliderThumb" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1" To="1.025"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         />
+                                        <DoubleAnimation Duration="0:0:0.1" To="1.025"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         />
+                                        <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="PART_Track" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_Track}" />
                         </Trigger>

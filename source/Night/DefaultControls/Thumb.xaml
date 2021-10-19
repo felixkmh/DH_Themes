@@ -15,12 +15,45 @@
                         <Rectangle x:Name="HoverRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                    Width="Auto" Height="Auto" RadiusX="3" RadiusY="4"
                                    Stroke="{x:Null}" Margin="4.5,1,4.5,1" MinHeight="10"
-                                   Fill="{TemplateBinding Background}" />
+                                   Fill="{TemplateBinding Background}"
+                                   RenderTransformOrigin="0.5,0.5">
+                            <Rectangle.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" x:Name="BorderScale"/>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True" />
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
+                            <!--<Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1" To="1.01"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         />
+                                        <DoubleAnimation Duration="0:0:0.1" To="1.01"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         />
+                                        <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>-->
                         </Trigger>
                         <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource AncestorType=Track}}" Value="True">
                             <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />

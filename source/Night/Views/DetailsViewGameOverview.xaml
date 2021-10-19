@@ -80,7 +80,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-
+                                
                                     <!--<Image Stretch="UniformToFill"
                                            Source="{Binding Game.DisplayBackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
                                            Margin="-20,0,-20,-145" VerticalAlignment="Top"/>-->
@@ -127,23 +127,34 @@
                                             Opacity="0.7" CornerRadius="5,5,0,0">
                                     </Border>
 
-                                    <Grid Margin="0,20,0,5" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Row="0" Panel.ZIndex="20" Grid.RowSpan="2"
-                                          Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                        <Border Visibility="{Binding ElementName=ExtraMetadataLoader_LogoLoaderControl, Path=IsVisible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                    <Grid Grid.Row="0" Grid.RowSpan="2" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}"
+                                          Panel.ZIndex="20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"
+                                                              MaxWidth="{Binding ElementName=GameDetailsDockPanel, Path=ActualWidth}"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Grid Margin="0,20,0,5" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Column="1" Panel.ZIndex="20" 
+                                          Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                                            <Border Visibility="{Binding ElementName=ExtraMetadataLoader_LogoLoaderControl, Path=IsVisible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                                            <Image Name="PART_ImageCover" MaxWidth="220"
-                                                Height="{Settings GameDetailsCoverHeight}"
-                                                StretchDirection="Both" Stretch="Uniform"
-                                                RenderOptions.BitmapScalingMode="Fant" 
-                                                Effect="{DynamicResource DefaultDropShadow}" RenderTransformOrigin="1.0,0.6">
-                                                <Image.RenderTransform>
-                                                    <ScaleTransform x:Name="CoverTransform"/>
-                                                </Image.RenderTransform>
-                                            </Image>
-                                        </Border>
+                                                <Image Name="PART_ImageCover" MaxWidth="220"
+                                                       Height="{Settings GameDetailsCoverHeight}"
+                                                       VerticalAlignment="Bottom"
+                                                       StretchDirection="Both" Stretch="Uniform"
+                                                       RenderOptions.BitmapScalingMode="Fant" 
+                                                       Effect="{DynamicResource DefaultDropShadow}" RenderTransformOrigin="1.0,0.6">
+                                                    <Image.RenderTransform>
+                                                        <ScaleTransform x:Name="CoverTransform"/>
+                                                    </Image.RenderTransform>
+                                                </Image>
+                                            </Border>
+                                        </Grid>
+
                                         <ContentControl x:Name="Logo" 
                                                         Visibility="{PluginStatus Plugin=ExtraMetadataLoader_705fdbca-e1fc-4004-b839-1d040b8b4429, Status=Installed}"
-                                                        Margin="0,0,0,55">
+                                                        Margin="0,0,0,55" Grid.ColumnSpan="2" Grid.Column="0">
                                             <Border Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableLogos, TargetNullValue={x:Static Visibility.Collapsed}, Mode=OneWay}"
                                                                 HorizontalAlignment="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoHorizontalAlignment, TargetNullValue={x:Static HorizontalAlignment.Right}}"
                                                                 VerticalAlignment="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoVerticalAlignment, TargetNullValue={x:Static VerticalAlignment.Bottom}}"
@@ -154,68 +165,86 @@
                                                                             Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable, TargetNullValue={x:Static Visibility.Collapsed}}"/>
                                             </Border>
                                         </ContentControl>
-                                    </Grid>
 
-                                    <DockPanel Margin="0,20,0,5" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Row="1" Panel.ZIndex="1" x:Name="TitlePanel"
-                                           Background="Transparent">
-                                        <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
-                                            <DockPanel>
-                                                <!--<Image Name="PART_ImageIcon" MaxHeight="48" MaxWidth="48"
+                                        <DockPanel Margin="0,20,0,5" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Column="0" Panel.ZIndex="1" 
+                                                   x:Name="TitlePanel"
+                                                   Background="Transparent">
+                                            <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
+                                                <DockPanel>
+                                                    <Image Name="PART_ImageIcon" MaxHeight="48" MaxWidth="48"
                                                     DockPanel.Dock="Left" Margin="0,0,10,0"
                                                     VerticalAlignment="Center"
-                                                    RenderOptions.BitmapScalingMode="Fant" />-->
-                                                <TextBlock FontFamily="{DynamicResource FontFamily}"
+                                                    RenderOptions.BitmapScalingMode="Fant" />
+                                                    <TextBlock FontFamily="{DynamicResource FontFamily}"
                                                         Text="{Binding Game.DisplayName}" DockPanel.Dock="Left"
                                                         FontSize="{DynamicResource FontSizeLargest}" Margin="0,0,10,0" TextWrapping="Wrap"
                                                         VerticalAlignment="Center"
                                                         Foreground="{DynamicResource TextBrush}" Effect="{DynamicResource TextDropShadow}"
                                                         x:Name="TitleText"
                                                         Visibility="{DynamicResource TitleVisibility}">
-                                                </TextBlock>
-                                            </DockPanel>
-                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
-                                                    Orientation="Horizontal" Margin="0,15,0,0" Background="Transparent">
-                                                <StackPanel x:Name="PlayButtonStack" Background="Transparent" Orientation="Horizontal"
+                                                    </TextBlock>
+                                                </DockPanel>
+                                                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,15,0,0" Background="Transparent" LastChildFill="True">
+                                                    <StackPanel x:Name="PlayButtonStack" Background="Transparent" Orientation="Horizontal"
                                                             >
-                                                    <Button Name="PART_ButtonPlayAction"
+                                                        <Button Name="PART_ButtonPlayAction"
                                                                 Width="150" Height="40" Style="{DynamicResource PlayButton}" Panel.ZIndex="2" Margin="0,0,0,0"/>
-                                                    <Button Name="PART_ButtonContextAction" 
+                                                        <Button Name="PART_ButtonContextAction" 
                                                                 Width="150" Height="40" Panel.ZIndex="2"/>
-                                                    <ContentControl Background="Transparent" Panel.ZIndex="1"
+                                                        <ContentControl Background="Transparent" Panel.ZIndex="1"
                                                             x:Name="DuplicateHider_ContentControl2" 
                                                             Tag="{DynamicResource DuplicateHider_PlayButtonExt}">
-                                                        <ContentControl.LayoutTransform>
-                                                            <ScaleTransform x:Name="PlayExtButtonScale" ScaleX="0"/>
-                                                        </ContentControl.LayoutTransform>
-                                                    </ContentControl>
-                                                </StackPanel>
-                                                <Button Name="PART_ButtonMoreActions"
+                                                            <ContentControl.LayoutTransform>
+                                                                <ScaleTransform x:Name="PlayExtButtonScale" ScaleX="0"/>
+                                                            </ContentControl.LayoutTransform>
+                                                        </ContentControl>
+                                                    </StackPanel>
+                                                    <Button Name="PART_ButtonMoreActions"
                                                         
                                                     Content="..."
                                                     Width="{Binding ActualWidth, ElementName=PART_ButtonEditGame, Mode=OneWay}" Height="40" Margin="10,0,0,0" />
-                                                <Button x:Name="PART_ButtonEditGame"
+                                                    <Button x:Name="PART_ButtonEditGame"
                                                         
                                                     Margin="10,0,0,0" Height="40" Focusable="False"
                                                     Content="&#xeded;" FontFamily="{DynamicResource FontIcoFont}">
-                                                </Button>
-                                                <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray"/>
-                                                <TextBlock Name="PART_TextLastActivity"  VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}"/>
-                                                <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray" />
-                                                <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}"/>
-                                                <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray"/>
-                                                <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}" Background="Transparent" Padding="0"/>
-                                                
+                                                    </Button>
+                                                    <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray"/>
+                                                    <TextBlock Name="PART_TextLastActivity"  VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}"/>
+                                                    <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray" />
+                                                    <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}"/>
+                                                    <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray"/>
+                                                    <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}" Background="Transparent" Padding="0"/>
+                                                    <ContentControl x:Name="HowLongToBeat_PluginProgressBar" MaxHeight="40" MinHeight="35" VerticalAlignment="Center" DockPanel.Dock="Right" Margin="10,0,20,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right"
+                                                                    MaxWidth="380">
+                                                        <ContentControl.OpacityMask>
+                                                            <VisualBrush AutoLayoutContent="True" Stretch="None" AlignmentX="Left" AlignmentY="Top">
+                                                                <VisualBrush.Visual>
+                                                                    <Border Background="Black" CornerRadius="{DynamicResource ControlCornerRadius}" x:Name="HLTBMask"
+                                                                            Width="{Binding ElementName=HowLongToBeat_PluginProgressBar, Path=ActualWidth, TargetNullValue=0, Mode=OneWay}"
+                                                                            Height="{Binding ElementName=HowLongToBeat_PluginProgressBar, Path=ActualHeight, TargetNullValue=0, Mode=OneWay}"
+                                                                            Margin="{Binding ElementName=HowLongToBeat_PluginProgressBar, Path=Margin, TargetNullValue=0, Mode=OneWay}"/>
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </ContentControl.OpacityMask>
+                                                        <ContentControl.Resources>
+                                                            <Style TargetType="{x:Type StackPanel}">
+                                                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                                                            </Style>
+                                                        </ContentControl.Resources>
+                                                    </ContentControl>
+                                                </DockPanel>
                                             </StackPanel>
-                                        </StackPanel>
-                                    </DockPanel>
+                                        </DockPanel>
+                                    </Grid>
+                                    
+                                    
 
                                     <Border Grid.Row="2" Background="{DynamicResource WindowBackgourndBrushLight}" Margin="-20,0,-20,0">
                                     </Border>
 
-                                    <DockPanel MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Row="2">
+                                    <DockPanel MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Row="2" x:Name="GameDetailsDockPanel">
                                         <StackPanel DockPanel.Dock="Left" Width="300"
-                                                Margin="2,0,0,0"
-                                                    >
+                                                Margin="2,0,0,0">
                                             <StackPanel.Resources>
                                                 <Style TargetType="ItemsControl">
                                                     <Setter Property="VerticalAlignment" Value="Center" />
@@ -356,6 +385,7 @@
                                 </Grid>
                             </Grid>
                         </ScrollViewer>
+                        <Border Visibility="Hidden" Tag="{DynamicResource EnableCoverZoom}" x:Name="EnableCoverZoomProxy"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
@@ -366,8 +396,12 @@
                             </MultiTrigger.Conditions>
                             <Setter Property="Visibility" Value="Hidden" TargetName="TitleText"/>
                         </MultiTrigger>
-                        <Trigger Property="IsMouseOver" SourceName="PART_ImageCover" Value="True">
-                            <Trigger.EnterActions>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=PART_ImageCover, Mode=OneWay, Path=IsMouseOver}" Value="True"/>
+                                <Condition Binding="{Binding ElementName=EnableCoverZoomProxy, Mode=OneWay, Path=Tag}" Value="{StaticResource True}"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Duration="0:0:0.2" To="2.5"
@@ -386,8 +420,8 @@
                                         </DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
+                            </MultiDataTrigger.EnterActions>
+                            <MultiDataTrigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Duration="0:0:0.2" To="1"
@@ -406,8 +440,9 @@
                                         </DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </Trigger.ExitActions>
-                        </Trigger>
+                            </MultiDataTrigger.ExitActions>
+                        </MultiDataTrigger>
+                 
                         <Trigger Property="IsMouseOver" SourceName="PlayButtonStack" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>

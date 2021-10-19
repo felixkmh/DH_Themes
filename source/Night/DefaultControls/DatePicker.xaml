@@ -165,6 +165,7 @@
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
         <Setter Property="Effect" Value="{DynamicResource DefaultDropShadow}"/>
         <Setter Property="Margin" Value="{DynamicResource DropShadowThickness}"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Calendar">

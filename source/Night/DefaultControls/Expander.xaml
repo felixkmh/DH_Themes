@@ -23,7 +23,11 @@
                                        VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Style="{DynamicResource BaseTextBlockStyle}"
                                        Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" Margin="5,0,5,0"
-                                       Grid.Column="0" TextAlignment="Center" />
+                                       Grid.Column="0" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform x:Name="IconRotation" Angle="0"/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
                             <TextBlock Text="&#xea99;" x:Name="ExpandedIcon" FontFamily="{StaticResource FontIcoFont}"
                                        VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Style="{DynamicResource BaseTextBlockStyle}"
@@ -36,8 +40,32 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Visibility" TargetName="ExpandedIcon" Value="Visible" />
-                            <Setter Property="Visibility" TargetName="CollapsedIcon" Value="Collapsed" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="IconRotation" To="90" Duration="0:0:0.15"
+                                                         Storyboard.TargetProperty="Angle">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="IconRotation" To="0" Duration="0:0:0.15"
+                                                         Storyboard.TargetProperty="Angle">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                            <!--<Setter Property="Visibility" TargetName="ExpandedIcon" Value="Visible" />
+                            <Setter Property="Visibility" TargetName="CollapsedIcon" Value="Collapsed" />-->
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Opacity" Value="0.75" />
@@ -91,7 +119,7 @@
     </Style>
 
     <Style TargetType="{x:Type Expander}">
-        <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrushHighlight}" />
+        <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrushHighlightHover}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -101,7 +129,7 @@
                 <ControlTemplate TargetType="{x:Type Expander}">
                     <DockPanel>
                         <Grid DockPanel.Dock="Top">
-                            <Border Background="{TemplateBinding Background}" OpacityMask="{DynamicResource LeftFadingBrush}" CornerRadius="{DynamicResource ControlCornerRadius}"/>
+                            <Border Background="{TemplateBinding Background}" OpacityMask="{DynamicResource LeftFadingBrush}" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="1"/>
                             <ToggleButton BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                                           Style="{DynamicResource ExpanderDownHeaderStyle}"
                                           Padding="{TemplateBinding Padding}"

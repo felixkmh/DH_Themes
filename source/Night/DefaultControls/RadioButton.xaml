@@ -22,10 +22,18 @@
                                     <Ellipse x:Name="BulletBorder" Width="18" Height="18"
                                             Stroke="{DynamicResource NormalBorderBrush}"
                                             StrokeThickness="{DynamicResource EllipseBorderThickness}" 
-                                             Fill="{DynamicResource ButtonDefaultBrush}"/>
-                                    <Viewbox x:Name="CheckIcon" Visibility="Collapsed" >
+                                             Fill="{DynamicResource ButtonDefaultBrush}"
+                                             RenderTransformOrigin="0.5,0.5">
+                                        <Ellipse.RenderTransform>
+                                            <ScaleTransform ScaleX="1" ScaleY="1" x:Name="BulletBorderScale"/>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                    <Viewbox x:Name="CheckIcon" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                                         <TextBlock Text="h" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
                                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <Viewbox.RenderTransform>
+                                            <ScaleTransform ScaleX="0" ScaleY="0" x:Name="CheckIconScale"/>
+                                        </Viewbox.RenderTransform>
                                     </Viewbox>
                                 </Grid>
                             </Border>
@@ -34,9 +42,40 @@
                             <ContentPresenter RecognizesAccessKey="True" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         </Border>
                     </BulletDecorator>
+                    <ControlTemplate.Resources>
+                        <QuadraticEase x:Key="EasingFunction" EasingMode="EaseInOut"/>
+                    </ControlTemplate.Resources>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Visibility" Value="Visible" TargetName="CheckIcon" />
+                            <!--<Setter Property="Visibility" Value="Visible" TargetName="CheckIcon" />-->
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.2" To="1"
+                                                         Storyboard.TargetName="CheckIconScale"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         EasingFunction="{StaticResource EasingFunction}"/>
+                                        <DoubleAnimation Duration="0:0:0.2" To="1"
+                                                         Storyboard.TargetName="CheckIconScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         EasingFunction="{StaticResource EasingFunction}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.2" To="0"
+                                                         Storyboard.TargetName="CheckIconScale"
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         EasingFunction="{StaticResource EasingFunction}"/>
+                                        <DoubleAnimation Duration="0:0:0.2" To="0"
+                                                         Storyboard.TargetName="CheckIconScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         EasingFunction="{StaticResource EasingFunction}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Stroke" Value="{DynamicResource GlyphBrush}" TargetName="BulletBorder" />
@@ -46,6 +85,22 @@
                             <Setter Property="Stroke" Value="{DynamicResource GlyphBrush}" TargetName="BulletBorder" />
                             <Setter Property="Fill" Value="{DynamicResource ButtonSelectedBrush}" TargetName="BulletBorder" />
                         </Trigger>
+                        <EventTrigger RoutedEvent="Click">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard AutoReverse="True">
+                                        <DoubleAnimation Duration="0:0:0.125" To="1.12"
+                                                             Storyboard.TargetName="BulletBorderScale"
+                                                             Storyboard.TargetProperty="ScaleX" 
+                                                             EasingFunction="{StaticResource EasingFunction}"/>
+                                        <DoubleAnimation Duration="0:0:0.125" To="1.12"
+                                                             Storyboard.TargetName="BulletBorderScale"
+                                                             Storyboard.TargetProperty="ScaleY"
+                                                             EasingFunction="{StaticResource EasingFunction}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

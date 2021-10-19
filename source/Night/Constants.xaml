@@ -10,6 +10,7 @@
     <sys:Double x:Key="DetailsViewImageHeight">300</sys:Double>
     <Visibility x:Key="TopSourceSelectorVisibility">Visible</Visibility>
     <sys:Double x:Key="DetailsViewMaxContentWidth">1024</sys:Double>
+    <sys:Boolean x:Key="EnableCoverZoom">False</sys:Boolean>
 
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
     <sys:Double x:Key="FontSize">14</sys:Double>
@@ -116,7 +117,7 @@
     <sys:Double x:Key="HoverBackgroundOpacity">0.6</sys:Double>
     <DropShadowEffect x:Key="TextDropShadow" BlurRadius="4" ShadowDepth="0" Color="Black" RenderingBias="Quality" Opacity="0.55"/>
     <sys:Double x:Key="DropShadowRadius">22</sys:Double>
-    <sys:Double x:Key="DropShadowOpacity">0.6</sys:Double>
+    <sys:Double x:Key="DropShadowOpacity">0.75</sys:Double>
     <DropShadowEffect x:Key="DefaultDropShadow" BlurRadius="{DynamicResource DropShadowRadius}" ShadowDepth="0" Color="Black" RenderingBias="Quality" Opacity="{DynamicResource DropShadowOpacity}"/>
     <Thickness x:Key="DropShadowThickness" 
                Left="{StaticResource DropShadowRadius}" 

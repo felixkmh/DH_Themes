@@ -8,10 +8,12 @@
         <Setter Property="BorderThickness" Value="{DynamicResource PopupBorderThickness}" />
         <Setter Property="Effect" Value="{DynamicResource DefaultDropShadow}"/>
         <Setter Property="Margin" Value="{DynamicResource DropShadowThickness}"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameMenu}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
                             Grid.IsSharedSizeScope="True" CornerRadius="{DynamicResource ControlCornerRadius}">

@@ -5,6 +5,7 @@
                     mc:Ignorable="d">
 
     <Style x:Key="GridViewItemTemplate" TargetType="{x:Type GameListItem}">
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">

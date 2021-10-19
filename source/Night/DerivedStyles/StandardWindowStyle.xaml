@@ -5,6 +5,7 @@
     <Style x:Key="WindowDesignStyle" TargetType="WindowBase">
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+        <Setter Property="WindowStyle" Value="SingleBorderWindow"/>
     </Style>
 
     <Style x:Key="StandardWindowStyle" TargetType="WindowBase">
