@@ -67,3 +67,9 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.0.0/felixkmh_DuplicateHider_Night_Theme_2_0.pthm
     Changelog:   
       - some adjustments for P9 stable
+  - Version: 2.1
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-10-19
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.1.0/felixkmh_DuplicateHider_Night_Theme_2_1.pthm
+    Changelog:   
+      - fixed slider thump being too narrow
