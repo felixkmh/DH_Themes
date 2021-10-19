@@ -82,3 +82,4 @@ Packages:
       - added some subtle animations
       - added support for HowLongToBeat progress indicator in Details View
       - changed texture for expanders so they are easier to distingiush from selected items
+      - added option to disable the cover image animation to ThemeModifier
