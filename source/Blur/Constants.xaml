@@ -106,7 +106,7 @@
     <ImageBrush x:Key="BackgroundImage" ImageSource="{ThemeFile 'Images/Background.png'}" TileMode="None" Stretch="Fill"/>
 
     <!--Extra Metadata Path values start-->
-    <sys:Boolean x:Key="UseAbsoluteExtraMetadataPath">false</sys:Boolean>
-    <sys:String x:Key="ExtraMetadataPath">..\..\..\..</sys:String>
+    <sys:Boolean x:Key="UseAbsoluteExtraMetadataPath">true</sys:Boolean>
+    <sys:String x:Key="ExtraMetadataPath">C:\Users\Felix\AppData\Roaming\Playnite</sys:String>
     <!--region end-->
 </ResourceDictionary>

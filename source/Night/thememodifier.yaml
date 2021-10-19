@@ -2,5 +2,4 @@
   - DuplicateHider_MaxNumberOfIcons(1,10): Maximum number of icons for the SourceSelector
   - TitleVisibility: Visibility of the game title in Details View
   - TopSourceSelectorVisibility: Visibility of the SourceSelector on top of the background image
-  - DetailsViewImageHeight(0,600): Height of the background image in Details View
   - DetailsViewMaxContentWidth(600, 2000): Maximum width of the game content in Details View

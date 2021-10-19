@@ -156,8 +156,6 @@
                                         </ContentControl>
                                     </Grid>
 
-                                    <Border IsHitTestVisible="False" Background="{x:Null}" Grid.Row="1" Height="{DynamicResource DetailsViewImageHeight}"/>
-
                                     <DockPanel Margin="0,20,0,5" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Row="1" Panel.ZIndex="1" x:Name="TitlePanel"
                                            Background="Transparent">
                                         <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
