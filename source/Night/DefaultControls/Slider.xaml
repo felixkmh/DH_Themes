@@ -40,7 +40,7 @@
                                 BorderThickness="{DynamicResource ControlBorderThickness}" />
                         <Track Grid.Row="1" x:Name="PART_Track" Height="{TemplateBinding Height}">
                             <Track.Thumb>
-                                <Thumb Width="10" />
+                                <Thumb Width="30" />
                             </Track.Thumb>
                             <Track.DecreaseRepeatButton>
                                 <RepeatButton Style="{StaticResource SliderTrackButton}"
