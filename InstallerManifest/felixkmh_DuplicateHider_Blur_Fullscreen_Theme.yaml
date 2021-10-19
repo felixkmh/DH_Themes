@@ -16,3 +16,9 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v1.2.0/felixkmh_DuplicateHider_Blur_Fullscreen_Theme_1_2.pthm
     Changelog:
       - 'support for extra media tool''s video trailers in details view'
+  - Version: 2.0
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-10-19
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.0.0/felixkmh_DuplicateHider_Blur_Fullscreen_Theme_2_0.pthm
+    Changelog:
+      - some adjustments for P9 stable
