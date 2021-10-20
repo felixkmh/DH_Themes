@@ -83,3 +83,11 @@ Packages:
       - added support for HowLongToBeat progress indicator in Details View
       - changed texture for expanders so they are easier to distingiush from selected items
       - added option to disable the cover image animation to ThemeModifier
+  - Version: 2.3
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-10-20
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.3.0/felixkmh_DuplicateHider_Night_Theme_2_3.pthm
+    Changelog:  
+      - added option to enable more performant texture based drop shadow in grid view (enabled by default)
+      - improved performance overall
+      - fixed names not being displayed on grid items even if option for it is enabled
