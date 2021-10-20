@@ -11,6 +11,8 @@
     <Visibility x:Key="TopSourceSelectorVisibility">Visible</Visibility>
     <sys:Double x:Key="DetailsViewMaxContentWidth">1024</sys:Double>
     <sys:Boolean x:Key="EnableCoverZoom">False</sys:Boolean>
+    <sys:Boolean x:Key="UseFakeShadowInGridView">True</sys:Boolean>
+    <sys:Double x:Key="DropShadowOpacityGrid">1</sys:Double>
 
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
     <sys:Double x:Key="FontSize">14</sys:Double>
@@ -84,6 +86,7 @@
     <ImageBrush x:Key="WindowBackgourndBrushOpaque" ImageSource="{ThemeFile 'Images/noise/background0.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.CachingHint="Cache"/>
     <ImageBrush x:Key="WindowBackgourndBrushLightOpaque" ImageSource="{ThemeFile 'Images/noise/background1.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" Opacity="1" RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.CachingHint="Cache"/>
     <ImageBrush x:Key="WindowBackgourndBrushLight" ImageSource="{ThemeFile 'Images/noise/background0.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" Opacity="0.7" RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.CachingHint="Cache"/>
+    <ImageBrush x:Key="WindowBackgourndBrushLightTransparent" ImageSource="{ThemeFile 'Images/noise/background0.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" Opacity="0.476" RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.CachingHint="Cache"/>
     <ImageBrush x:Key="WindowBackgourndBrushBright" ImageSource="{ThemeFile 'Images/noise/background1.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" Opacity="0.85" RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.CachingHint="Cache"/>
     <ImageBrush x:Key="WindowBackgourndBrushBrighter" ImageSource="{ThemeFile 'Images/noise/background2.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" Opacity="0.8" RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.CachingHint="Cache"/>
     <ImageBrush x:Key="WindowBackgourndBrushBrightest" ImageSource="{ThemeFile 'Images/noise/background3.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" Opacity="0.8" RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.CachingHint="Cache"/>
@@ -112,13 +115,14 @@
     <ImageBrush x:Key="DropShadowBrushTop" ImageSource="{ThemeFile 'Images/topDropShadow.png'}"/>
     <ImageBrush x:Key="DropShadowBrushBot" ImageSource="{ThemeFile 'Images/bottomDropShadow.png'}"/>
     <ImageBrush x:Key="DropShadowBrush" ImageSource="{ThemeFile 'Images/dropShadow.png'}"/>
-    
+    <ImageBrush x:Key="DropShadowGridItemBrush" ImageSource="{ThemeFile 'Images/dropShadowGridItem.png'}" RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.CachingHint="Cache"/>
+
     <!-- Effects -->
     <sys:Double x:Key="HoverBackgroundOpacity">0.6</sys:Double>
     <DropShadowEffect x:Key="TextDropShadow" BlurRadius="4" ShadowDepth="0" Color="Black" RenderingBias="Quality" Opacity="0.55"/>
     <sys:Double x:Key="DropShadowRadius">22</sys:Double>
     <sys:Double x:Key="DropShadowOpacity">0.75</sys:Double>
-    <DropShadowEffect x:Key="DefaultDropShadow" BlurRadius="{DynamicResource DropShadowRadius}" ShadowDepth="0" Color="Black" RenderingBias="Quality" Opacity="{DynamicResource DropShadowOpacity}"/>
+    <DropShadowEffect x:Key="DefaultDropShadow" BlurRadius="{DynamicResource DropShadowRadius}" ShadowDepth="0" Color="Black" RenderingBias="Performance" Opacity="{DynamicResource DropShadowOpacity}"/>
     <Thickness x:Key="DropShadowThickness" 
                Left="{StaticResource DropShadowRadius}" 
                Top="{StaticResource DropShadowRadius}" 

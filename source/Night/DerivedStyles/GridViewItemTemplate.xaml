@@ -19,53 +19,64 @@
                             <Border.OpacityMask>
                                 <VisualBrush Visual="{Binding ElementName=Mask}"/>
                             </Border.OpacityMask>
-                            <StackPanel Name="PART_PanelHost"
-                                        d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}">
-                                <Grid Width="{Settings GridItemWidth}"
-                                  Height="{Settings GridItemHeight}">
-                                    <Image Name="PART_ImageCover"
+                            <Grid Width="{Settings GridItemWidth}"
+                                  Height="{Settings GridItemHeight}"
+                                  d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
+                                  Name="PART_PanelHost">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image Name="PART_ImageCover"
                                            RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           Stretch="{Settings CoverArtStretch}" />
-                                    <Border Background="#99000000" x:Name="TextGameName" Visibility="Hidden">
-                                        <TextBlock Text="{Binding DisplayName}"
-                                               TextWrapping="Wrap"
-                                               Style="{StaticResource BaseTextBlockStyle}"
-                                               TextTrimming="CharacterEllipsis" TextAlignment="Center"
-                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <Border OpacityMask="{DynamicResource BottomFadingBrush}"
+                                           Stretch="{Settings CoverArtStretch}" 
+                                           Grid.RowSpan="2"/>
+                                <TextBlock Text="{Binding DisplayName}"
+                                            x:Name="TextGameName" Visibility="Hidden"
+                                            TextWrapping="Wrap"
+                                            Style="{StaticResource BaseTextBlockStyle}"
+                                            TextTrimming="CharacterEllipsis" TextAlignment="Center"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Grid.RowSpan="2"/>
+                                <Border OpacityMask="{DynamicResource BottomFadingBrush}"
                                             Background="{DynamicResource WindowBackgourndBrushHighlight}" 
                                             x:Name="BorderMouseOver" Visibility="Hidden" 
-                                            Opacity="0.5"/>
-                                    <Border Background="{DynamicResource WindowBackgourndBrushLight}" 
+                                            Opacity="0.5"
+                                            Grid.RowSpan="2"/>
+                                <Border Background="{DynamicResource WindowBackgourndBrushLight}" 
                                             x:Name="DarkenBorder" Visibility="Hidden"  Opacity="0.9"
-                                            />
-                                    <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
-                                        <Border CornerRadius="8" Background="{DynamicResource WindowBackgourndBrushLight}" Opacity="0.65"/>
-                                        <ContentControl x:Name="DuplicateHider_SourceSelector1" RenderOptions.BitmapScalingMode="Fant" Visibility="Visible" MaxHeight="25"/>
-                                    </Grid>
-                                    <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center"
-                                             Name="GameControls"  Visibility="Hidden">
-                                        <StackPanel Orientation="Horizontal" Effect="{DynamicResource TextDropShadow}">
-                                            <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
+                                            Grid.RowSpan="2"/>
+                                <Border CornerRadius="8" 
+                                            Background="{DynamicResource WindowBackgourndBrushLightTransparent}" 
+                                            HorizontalAlignment="Right" 
+                                            VerticalAlignment="Bottom" Margin="5"
+                                            Grid.Row="0">
+                                    <ContentControl x:Name="DuplicateHider_SourceSelector1" RenderOptions.BitmapScalingMode="Fant" Visibility="Visible" MaxHeight="25"/>
+                                </Border>
+                                <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center"
+                                             Name="GameControls"  Visibility="Hidden"
+                                             Grid.RowSpan="2">
+                                    <StackPanel Orientation="Horizontal" Effect="{DynamicResource TextDropShadow}">
+                                        <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
                                                     Margin="20,0,2,0" VerticalAlignment="Center"
                                                     Content="&#xec74;" FontFamily="{StaticResource FontIcoFont}" />
-                                            <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
+                                        <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
                                                     Margin="2,0,20,0" VerticalAlignment="Center"
                                                     Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
-                                        </StackPanel>
-                                    </Viewbox>
-                                </Grid>
+                                    </StackPanel>
+                                </Viewbox>
                                 <TextBlock Text="{Binding DisplayName}" x:Name="LowerText"
-                                       Style="{DynamicResource BaseTextBlockStyle}"                                                                   
-                                       TextAlignment="Center" TextTrimming="CharacterEllipsis"
-                                       VerticalAlignment="Center"
-                                       Padding="10,5,10,5" Grid.Row="1" Grid.Column="0"
-                                       Width="{Settings GridItemWidth}" 
-                                       Visibility="{Settings ShowNamesUnderCovers}"
-                                       Background="{DynamicResource WindowBackgourndBrushLight}"/>
-                            </StackPanel>
+                                               Grid.Row="1"
+                                           Style="{DynamicResource BaseTextBlockStyle}"                                                                   
+                                           TextAlignment="Center"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Bottom"
+                                           Padding="10,5,10,5"
+                                           Width="{Settings GridItemWidth}" 
+                                           Visibility="{Settings ShowNamesUnderCovers}"
+                                           Background="{DynamicResource WindowBackgourndBrushLight}"/>
+                            </Grid>
                         </Border>
                         <!--<Popup x:Name="GridDetailsPopup" StaysOpen="True" Placement="Right" 
                                IsOpen="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsMouseOver, Mode=OneWay}">
@@ -173,7 +184,7 @@
                 <ControlTemplate>
                     <Grid>
                         <Grid.ToolTip>
-                            <TextBlock Text="{Binding DisplayString}"/>
+                            <TextBlock Text="{Binding DisplayString, Mode=OneWay}"/>
                         </Grid.ToolTip>
                         <Border x:Name="IconBackground" CornerRadius="8" Background="{DynamicResource WindowBackgourndBrushHighlightHover}" Opacity="1" Visibility="Hidden">
                         </Border>

@@ -27,9 +27,6 @@
                                              DockPanel.Dock="Left"
                                              BorderThickness="0"
                                              >
-                                    <ExtendedListBox.Effect>
-                                        <DropShadowEffect BlurRadius="14" ShadowDepth="0" Color="Black" RenderingBias="Performance" Opacity="0.70"/>
-                                    </ExtendedListBox.Effect>
                                     <ExtendedListBox.ItemTemplate>
                                         <DataTemplate>
                                             <GameListItem Style="{StaticResource GridViewItemTemplate}" />
@@ -59,8 +56,17 @@
                                 </StackPanel>
                             </Grid>
                         </DockPanel>
+                        <Canvas Visibility="Collapsed" Tag="{DynamicResource UseFakeShadowInGridView}" x:Name="ShadowSwitchProxy"/>
                     </Grid>
-                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Tag" Value="{StaticResource False}" SourceName="ShadowSwitchProxy">
+                            <Setter Property="Effect" TargetName="PART_ListGames">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="14" ShadowDepth="0" Color="Black" RenderingBias="Performance" Opacity="0.70"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

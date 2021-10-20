@@ -27,8 +27,8 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
-        <Setter Property="Effect" Value="{DynamicResource DefaultDropShadow}"/>
-        <Setter Property="Margin" Value="{DynamicResource DropShadowThickness}"/>
+        <!--<Setter Property="Effect" Value="{DynamicResource DefaultDropShadow}"/>
+        <Setter Property="Margin" Value="{DynamicResource DropShadowThickness}"/>-->
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
