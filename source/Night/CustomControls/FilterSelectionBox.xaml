@@ -39,6 +39,7 @@
                                     ContentTemplate="{DynamicResource ClearTextIconTemplate}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="Cursor" Value="Hand"/>
                                 <Setter Property="Visibility" Value="Collapsed" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsMouseOver, ElementName=Root}" Value="True">
