@@ -46,10 +46,19 @@
                             <Border.OpacityMask>
                                 <VisualBrush AutoLayoutContent="True" TileMode="None" AlignmentY="Bottom" AlignmentX="Center" Stretch="None">
                                     <VisualBrush.Visual>
-                                        <Border Height="{Binding ElementName=HeaderBorder, Path=ActualHeight}" Background="Black"
+                                        <Border Height="{Binding ElementName=HeaderBorder, Path=ActualHeight}"
                                                 Width="{Binding ElementName=HeaderBorder, Path=ActualWidth}"
                                                 CornerRadius="{Binding ElementName=HeaderBorder, Path=CornerRadius, Mode=OneWay}"
-                                                x:Name="HeaderMask"/>
+                                                x:Name="HeaderMask">
+                                            <Border.Background>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                    <LinearGradientBrush.GradientStops>
+                                                        <GradientStop Color="#CAFFFFFF"/>
+                                                        <GradientStop Color="Black" Offset="0.4"/>
+                                                    </LinearGradientBrush.GradientStops>
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
                                     </VisualBrush.Visual>
                                     <VisualBrush.Transform>
                                         <TransformGroup>
@@ -73,7 +82,7 @@
                                                Margin="-20" VerticalAlignment="Center"
                                    HorizontalAlignment="Center" StretchDirection="Both">
                                 <Image.Effect>
-                                    <BlurEffect Radius="40" KernelType="Gaussian"/>
+                                    <BlurEffect Radius="35" KernelType="Gaussian" RenderingBias="Performance"/>
                                 </Image.Effect>
                             </Image>
                         </Border>
@@ -124,14 +133,14 @@
                                     </Border>
 
                                     <Border Background="{DynamicResource DropShadowBrushLeft}"
-                                            Margin="-20,0,0,50" Opacity="0.3" Grid.RowSpan="2" HorizontalAlignment="Left" Width="50">
+                                            Margin="-20,0,0,50" Opacity="0.35" Grid.RowSpan="2" HorizontalAlignment="Left" Width="45">
                                     </Border>
                                     <Border Background="{DynamicResource DropShadowBrushRight}" 
-                                            Margin="0,0,-20,50" Opacity="0.3" Grid.RowSpan="2" HorizontalAlignment="Right" Width="50">
+                                            Margin="0,0,-20,50" Opacity="0.35" Grid.RowSpan="2" HorizontalAlignment="Right" Width="45">
                                     </Border>
-                                    <!--<Border Background="{DynamicResource DropShadowBrushBot}" 
-                                            Margin="-20,0,-20,50" Opacity="0.65" Grid.RowSpan="2" VerticalAlignment="Bottom" Height="50">
-                                    </Border>-->
+                                    <Border Background="{DynamicResource DropShadowBrushBot}" 
+                                            Margin="-20,0,-20,50" Opacity="0.4" Grid.RowSpan="2" VerticalAlignment="Bottom" Height="50">
+                                    </Border>
 
                                     <!--<Border Grid.Row="1" Margin="-20,0,-20,0" Height="50" VerticalAlignment="Bottom"
                                             CornerRadius="5,5,0,0">
@@ -147,7 +156,7 @@
                                     </Border>-->
 
                                     <Border Grid.Row="1" Background="{DynamicResource WindowBackgourndBrushBright}" Margin="-20,0,-20,0" Height="50" VerticalAlignment="Bottom"
-                                            Opacity="0.9" CornerRadius="0" x:Name="HeaderBorder">
+                                            Opacity="0.92" CornerRadius="0" x:Name="HeaderBorder">
                                     </Border>
 
                                     <Grid Grid.Row="0" Grid.RowSpan="2" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}"
@@ -237,7 +246,7 @@
                                                     <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}"/>
                                                     <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray"/>
                                                     <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}" Background="Transparent" Padding="0"/>
-                                                    <ContentControl x:Name="HowLongToBeat_PluginProgressBar" MaxHeight="40" MinHeight="35" VerticalAlignment="Center" DockPanel.Dock="Right" Margin="10,0,20,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right"
+                                                    <ContentControl x:Name="HowLongToBeat_PluginProgressBar" MaxHeight="40" MinHeight="30" VerticalAlignment="Center" DockPanel.Dock="Right" Margin="10,0,20,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right"
                                                                     MaxWidth="380">
                                                         <ContentControl.OpacityMask>
                                                             <VisualBrush AutoLayoutContent="True" Stretch="None" AlignmentX="Left" AlignmentY="Top">
@@ -633,6 +642,9 @@
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </DataTrigger.ExitActions>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsCurrent}" Value="False">
+                                            <Setter Property="Cursor" Value="Hand"/>
                                         </DataTrigger>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <!--  MouseOver glow effect.  -->

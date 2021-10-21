@@ -35,6 +35,9 @@
                 <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
             </DataTrigger>
+            <DataTrigger Binding="{Binding Selected}" Value="False">
+                <Setter Property="Cursor" Value="Hand"/>
+            </DataTrigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{DynamicResource HoverBrush}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />

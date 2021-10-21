@@ -11,11 +11,14 @@
                 <ControlTemplate TargetType="{x:Type GameListItem}">
                     <Grid Width="{Settings GridItemWidth}"
                           Height="{Settings GridItemHeight}">
-                        <Border x:Name="Mask" Background="Black" CornerRadius="{DynamicResource GridItemCornerRadius}"/>
+                        <Border x:Name="Mask" Background="Black" CornerRadius="{DynamicResource GridItemCornerRadius}"
+                                Width="{Settings GridItemWidth}"
+                                Height="{Settings GridItemHeight}"/>
                         <Border BorderThickness="0"  
                                 Background="Transparent"
                                 x:Name="OutsideBorder" CornerRadius="{DynamicResource GridItemCornerRadius}"
-                                >
+                                Width="{Settings GridItemWidth}"
+                                Height="{Settings GridItemHeight}">
                             <Border.OpacityMask>
                                 <VisualBrush Visual="{Binding ElementName=Mask}"/>
                             </Border.OpacityMask>
@@ -31,7 +34,9 @@
                                            RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"
                                            Stretch="{Settings CoverArtStretch}" 
-                                           Grid.RowSpan="2"/>
+                                           Grid.RowSpan="2"
+                                           Width="{Settings GridItemWidth}"
+                                           Height="{Settings GridItemHeight}"/>
                                 <TextBlock Text="{Binding DisplayName}"
                                             x:Name="TextGameName" Visibility="Hidden"
                                             TextWrapping="Wrap"
@@ -43,10 +48,14 @@
                                             Background="{DynamicResource WindowBackgourndBrushHighlight}" 
                                             x:Name="BorderMouseOver" Visibility="Hidden" 
                                             Opacity="0.5"
-                                            Grid.RowSpan="2"/>
+                                            Grid.RowSpan="2"
+                                            Width="{Settings GridItemWidth}"
+                                            Height="{Settings GridItemHeight}"/>
                                 <Border Background="{DynamicResource WindowBackgourndBrushLight}" 
                                             x:Name="DarkenBorder" Visibility="Hidden"  Opacity="0.9"
-                                            Grid.RowSpan="2"/>
+                                            Grid.RowSpan="2"
+                                            Width="{Settings GridItemWidth}"
+                                            Height="{Settings GridItemHeight}"/>
                                 <Border CornerRadius="8" 
                                             Background="{DynamicResource WindowBackgourndBrushLightTransparent}" 
                                             HorizontalAlignment="Right" 
@@ -166,7 +175,7 @@
                 x:Key="glowEffect"
                 BlurRadius="8"
                 Opacity="1"
-                RenderingBias="Quality"
+                RenderingBias="Performance"
                 ShadowDepth="0"
                 Color="{DynamicResource GlyphColor}" />
         </Style.Resources>

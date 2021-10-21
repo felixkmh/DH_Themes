@@ -89,6 +89,7 @@
 
     <Style x:Key="DuplicateHider_PlayButtonExt" TargetType="{x:Type ContentControl}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -141,7 +142,8 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <!--  StackPanel containing icon and source name of a game.  -->
-                                                <Grid Background="Transparent" x:Name="_Item" HorizontalAlignment="Stretch">
+                                                <Grid Background="Transparent" x:Name="_Item" HorizontalAlignment="Stretch"
+                                                      Cursor="Hand">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto"/>
                                                         <ColumnDefinition Width="*"/>
