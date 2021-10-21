@@ -94,6 +94,7 @@
     </Style>
 
     <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Template">

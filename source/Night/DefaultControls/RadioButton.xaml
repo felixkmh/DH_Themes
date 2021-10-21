@@ -7,6 +7,7 @@
                     mc:Ignorable="d">
 
     <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
