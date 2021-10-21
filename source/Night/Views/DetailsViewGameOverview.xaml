@@ -9,43 +9,74 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DetailsViewGameOverview}">
-                    <Grid>
-                        <Image Stretch="UniformToFill" x:Name="TopBackgroundBlurred"
-                                           Source="{Binding Game.DisplayBackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
-                                           Margin="0,0,0,-145" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=BackgroundMask}"
-                               HorizontalAlignment="Center" StretchDirection="Both">
-                            <Image.OpacityMask>
+                    <Grid ClipToBounds="True">
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=BackgroundMask}"
+                                Margin="0,0,0,0">
+                            <Border.OpacityMask>
                                 <VisualBrush Visual="{Binding ElementName=BackgroundMask}" AutoLayoutContent="False" TileMode="None">
                                     <VisualBrush.Transform>
                                         <TransformGroup>
+                                            <ScaleTransform ScaleY="-2"/>
+                                            <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
+                                            <ScaleTransform ScaleY="-0.5"/>
                                             <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
                                             <ScaleTransform ScaleY="-1"/>
                                             <TranslateTransform Y="{Binding ActualHeight, ElementName=BackgroundMask}"/>
+                                            <TranslateTransform Y="-20"/>
                                         </TransformGroup>
                                     </VisualBrush.Transform>
                                 </VisualBrush>
-                            </Image.OpacityMask>
-                            <Image.Effect>
-                                <BlurEffect Radius="5" KernelType="Gaussian"/>
-                            </Image.Effect>
-                        </Image>
+                            </Border.OpacityMask>
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-2"/>
+                                    <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
+                                    <ScaleTransform ScaleY="-0.5"/>
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                            <Image Stretch="UniformToFill" x:Name="TopBackground"
+                                               Source="{Binding Game.DisplayBackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
+                                               Margin="-20" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" StretchDirection="Both">
+                            </Image>
+                        </Border>
                         
-                        <Image Stretch="UniformToFill" x:Name="TopBackground"
-                                           Source="{Binding Game.DisplayBackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
-                                           Margin="0,0,0,-145" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=BackgroundMask}"
-                               HorizontalAlignment="Center" StretchDirection="Both">
-                            <Image.OpacityMask>
-                                <VisualBrush Visual="{Binding ElementName=BackgroundMask}" AutoLayoutContent="False" TileMode="None">
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=BackgroundMask}"
+                                Margin="0,0,0,0" Visibility="Visible">
+                            <Border.OpacityMask>
+                                <VisualBrush AutoLayoutContent="True" TileMode="None" AlignmentY="Bottom" AlignmentX="Center" Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <Border Height="{Binding ElementName=HeaderBorder, Path=ActualHeight}" Background="Black"
+                                                Width="{Binding ElementName=HeaderBorder, Path=ActualWidth}"
+                                                CornerRadius="{Binding ElementName=HeaderBorder, Path=CornerRadius, Mode=OneWay}"
+                                                x:Name="HeaderMask"/>
+                                    </VisualBrush.Visual>
                                     <VisualBrush.Transform>
                                         <TransformGroup>
+                                            <ScaleTransform ScaleY="-2"/>
                                             <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
-                                            <ScaleTransform ScaleY="-1"/>
-                                            <TranslateTransform Y="{Binding ActualHeight, ElementName=BackgroundMask}"/>
+                                            <ScaleTransform ScaleY="-0.5"/>
+                                            <TranslateTransform Y="-20"/>
                                         </TransformGroup>
                                     </VisualBrush.Transform>
                                 </VisualBrush>
-                            </Image.OpacityMask>
-                        </Image>
+                            </Border.OpacityMask>
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-2"/>
+                                    <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
+                                    <ScaleTransform ScaleY="-0.5"/>
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                            <Image Stretch="UniformToFill" x:Name="TopBackgroundBlurred"
+                                               Source="{Binding Game.DisplayBackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
+                                               Margin="-20" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" StretchDirection="Both">
+                                <Image.Effect>
+                                    <BlurEffect Radius="40" KernelType="Gaussian"/>
+                                </Image.Effect>
+                            </Image>
+                        </Border>
 
                         <ContentControl x:Name="DuplicateHider_ContentControl1" Panel.ZIndex="1"
                                             VerticalAlignment="Top" 
@@ -85,19 +116,11 @@
                                            Source="{Binding Game.DisplayBackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
                                            Margin="-20,0,-20,-145" VerticalAlignment="Top"/>-->
 
-                                    <Border Background="{DynamicResource ButtonOpaqueBrush}" x:Name="BackgroundMask"
-                                            Margin="-20,0,-20,50" Opacity="1" Grid.RowSpan="2" CornerRadius="0">
+                                    <Border Background="Black" x:Name="BackgroundMask"
+                                            Margin="-20,0,-20,0" Opacity="1" Grid.RowSpan="2" CornerRadius="0">
                                         <Border.RenderTransform>
-                                            <TranslateTransform Y="-5000"/>
+                                            <TranslateTransform Y="-3000"/>
                                         </Border.RenderTransform>
-                                        <!--<Border.OpacityMask>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,50" MappingMode="Absolute">
-                                                <LinearGradientBrush.GradientStops>
-                                                    <GradientStop Color="Transparent" Offset="0.9"/>
-                                                    <GradientStop Color="Black" Offset="1"/>
-                                                </LinearGradientBrush.GradientStops>
-                                            </LinearGradientBrush>
-                                        </Border.OpacityMask>-->
                                     </Border>
 
                                     <Border Background="{DynamicResource DropShadowBrushLeft}"
@@ -124,7 +147,7 @@
                                     </Border>-->
 
                                     <Border Grid.Row="1" Background="{DynamicResource WindowBackgourndBrushBright}" Margin="-20,0,-20,0" Height="50" VerticalAlignment="Bottom"
-                                            Opacity="0.7" CornerRadius="5,5,0,0">
+                                            Opacity="0.9" CornerRadius="0" x:Name="HeaderBorder">
                                     </Border>
 
                                     <Grid Grid.Row="0" Grid.RowSpan="2" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}"
