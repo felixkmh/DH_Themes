@@ -92,10 +92,10 @@ Packages:
       - improved performance overall
       - fixed names not being displayed on grid items even if option for it is enabled
 - Version: 2.4
-    RequiredApiVersion: 2.0.0
-    ReleaseDate: 2021-10-21
-    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.4.0/felixkmh_DuplicateHider_Night_Theme_2_4.pthm
-    Changelog:  
-      - 'added Hand curser to some elements (simeonradivoev)'
-      - added scrolling effect on background image in Details View
-      - added blur effect on bar over background image
+  RequiredApiVersion: 2.0.0
+  ReleaseDate: 2021-10-21
+  PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.4.0/felixkmh_DuplicateHider_Night_Theme_2_4.pthm
+  Changelog:  
+    - 'added "Hand" curser to some elements (simeonradivoev)'
+    - added scrolling effect on background image in Details View
+    - added blur effect on bar over background image
