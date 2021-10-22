@@ -15,33 +15,33 @@
                         <Grid.RenderTransform>
                             <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1"/>
                         </Grid.RenderTransform>
-                        <Border x:Name="FakeShadowBorder"
-                                Background="{x:Null}" ClipToBounds="False" 
+                        <Border Background="{DynamicResource DropShadowGridItemBrush}" ClipToBounds="False" 
                                 Tag="{DynamicResource UseFakeShadowInGridView}"
-                                Opacity="{DynamicResource DropShadowOpacityGrid}">
+                                Opacity="{DynamicResource DropShadowOpacityGrid}"
+                                IsHitTestVisible="False"
+                                Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Tag, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                         </Border>
-                        <Grid Background="Transparent"
-                                  Margin="{Settings ItemSpacingMargin}"
-                                  x:Name="ItemGrid"
-                                  RenderTransformOrigin="0.5,0.5">
+                        <Grid Margin="{Settings ItemSpacingMargin}"
+                              x:Name="ItemGrid"
+                              Width="{Settings GridItemWidth}"
+                              Height="{Settings GridItemHeight}">
                             <Border x:Name="SelectionBorder" BorderThickness="3.5" Margin="-3" 
                                         BorderBrush="{DynamicResource GlyphBrush}"
                                         OpacityMask="{DynamicResource BottomFadingBrush}"
                                         CornerRadius="{DynamicResource GridItemCornerRadius}"
-                                        Visibility="Hidden"/>
-                            <ContentPresenter/>
+                                        Visibility="Collapsed"/>
+                            <ContentPresenter Width="{Settings GridItemWidth}"
+                                              Height="{Settings GridItemHeight}">
+                            </ContentPresenter>
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="Tag" Value="{StaticResource True}" SourceName="FakeShadowBorder">
-                            <Setter Property="Background" Value="{DynamicResource DropShadowGridItemBrush}" TargetName="FakeShadowBorder"/>
-                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Opacity" Value="0.75" TargetName="SelectionBorder"/>
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectionBorder"/>
                             <Setter Property="Canvas.ZIndex" Value="90" />
                             <Trigger.EnterActions>
-                                <StopStoryboard BeginStoryboardName="Deselect"/>
+                                <!--<StopStoryboard BeginStoryboardName="Deselect"/>-->
                                 <BeginStoryboard x:Name="MouseEnter">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
@@ -111,7 +111,7 @@
                                 <StopStoryboard BeginStoryboardName="Select"/>
                                 <StopStoryboard BeginStoryboardName="MouseExit"/>
                                 <BeginStoryboard x:Name="Deselect">
-                                    <Storyboard>
+                                    <Storyboard FillBehavior="Stop">
                                         <DoubleAnimation Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
                                                          Storyboard.TargetName="ScaleTransform"
                                                          Duration="0:0:0.4"

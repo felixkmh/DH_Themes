@@ -6,136 +6,87 @@
 
     <Style x:Key="GridViewItemTemplate" TargetType="{x:Type GameListItem}">
         <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
                     <Grid Width="{Settings GridItemWidth}"
-                          Height="{Settings GridItemHeight}">
-                        <Border x:Name="Mask" Background="Black" CornerRadius="{DynamicResource GridItemCornerRadius}"
-                                Width="{Settings GridItemWidth}"
-                                Height="{Settings GridItemHeight}"/>
-                        <Border BorderThickness="0"  
-                                Background="Transparent"
-                                x:Name="OutsideBorder" CornerRadius="{DynamicResource GridItemCornerRadius}"
-                                Width="{Settings GridItemWidth}"
-                                Height="{Settings GridItemHeight}">
-                            <Border.OpacityMask>
-                                <VisualBrush Visual="{Binding ElementName=Mask}"/>
-                            </Border.OpacityMask>
-                            <Grid Width="{Settings GridItemWidth}"
-                                  Height="{Settings GridItemHeight}"
-                                  d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
-                                  Name="PART_PanelHost">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Image Name="PART_ImageCover"
-                                           RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           Stretch="{Settings CoverArtStretch}" 
-                                           Grid.RowSpan="2"
-                                           Width="{Settings GridItemWidth}"
-                                           Height="{Settings GridItemHeight}"/>
-                                <TextBlock Text="{Binding DisplayName}"
-                                            x:Name="TextGameName" Visibility="Hidden"
-                                            TextWrapping="Wrap"
-                                            Style="{StaticResource BaseTextBlockStyle}"
-                                            TextTrimming="CharacterEllipsis" TextAlignment="Center"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                                            Grid.RowSpan="2"/>
-                                <Border OpacityMask="{DynamicResource BottomFadingBrush}"
-                                            Background="{DynamicResource WindowBackgourndBrushHighlight}" 
-                                            x:Name="BorderMouseOver" Visibility="Hidden" 
-                                            Opacity="0.5"
-                                            Grid.RowSpan="2"
-                                            Width="{Settings GridItemWidth}"
-                                            Height="{Settings GridItemHeight}"/>
-                                <Border Background="{DynamicResource WindowBackgourndBrushLight}" 
-                                            x:Name="DarkenBorder" Visibility="Hidden"  Opacity="0.9"
-                                            Grid.RowSpan="2"
-                                            Width="{Settings GridItemWidth}"
-                                            Height="{Settings GridItemHeight}"/>
-                                <Border CornerRadius="8" 
-                                            Background="{DynamicResource WindowBackgourndBrushLightTransparent}" 
-                                            HorizontalAlignment="Right" 
-                                            VerticalAlignment="Bottom" Margin="5"
-                                            Grid.Row="0">
-                                    <ContentControl x:Name="DuplicateHider_SourceSelector1" RenderOptions.BitmapScalingMode="Fant" Visibility="Visible" MaxHeight="25"/>
-                                </Border>
-                                <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center"
-                                             Name="GameControls"  Visibility="Hidden"
-                                             Grid.RowSpan="2">
-                                    <StackPanel Orientation="Horizontal" Effect="{DynamicResource TextDropShadow}">
-                                        <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
-                                                    Margin="20,0,2,0" VerticalAlignment="Center"
-                                                    Content="&#xec74;" FontFamily="{StaticResource FontIcoFont}" />
-                                        <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
-                                                    Margin="2,0,20,0" VerticalAlignment="Center"
-                                                    Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
-                                    </StackPanel>
-                                </Viewbox>
-                                <TextBlock Text="{Binding DisplayName}" x:Name="LowerText"
-                                               Grid.Row="1"
-                                           Style="{DynamicResource BaseTextBlockStyle}"                                                                   
-                                           TextAlignment="Center"
-                                           TextWrapping="Wrap"
-                                           VerticalAlignment="Bottom"
-                                           Padding="10,5,10,5"
-                                           Width="{Settings GridItemWidth}" 
-                                           Visibility="{Settings ShowNamesUnderCovers}"
-                                           Background="{DynamicResource WindowBackgourndBrushLight}"/>
-                            </Grid>
+                          Height="{Settings GridItemHeight}"
+                          d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
+                          Name="PART_PanelHost">
+                        <Grid.OpacityMask>
+                            <VisualBrush Stretch="None" AutoLayoutContent="True">
+                                <VisualBrush.Visual>
+                                    <Border Background="Black" CornerRadius="{DynamicResource GridItemCornerRadius}"
+                                                Width="{Settings GridItemWidth}"
+                                                Height="{Settings GridItemHeight}"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Grid.OpacityMask>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Name="PART_ImageCover"
+                                        RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Stretch="{Settings CoverArtStretch}" 
+                                        Grid.RowSpan="2"
+                                        Width="{Settings GridItemWidth}"
+                                        Height="{Settings GridItemHeight}"/>
+                        <TextBlock Text="{Binding DisplayName}"
+                                        x:Name="TextGameName" Visibility="Collapsed"
+                                        TextWrapping="Wrap"
+                                        Style="{StaticResource BaseTextBlockStyle}"
+                                        TextTrimming="CharacterEllipsis" TextAlignment="Center"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Grid.RowSpan="2"/>
+                        <Border OpacityMask="{DynamicResource BottomFadingBrush}"
+                                        Background="{DynamicResource WindowBackgourndBrushHighlight}" 
+                                        x:Name="BorderMouseOver" Visibility="Collapsed" 
+                                        Opacity="0.5"
+                                        Grid.RowSpan="2"
+                                        Width="{Settings GridItemWidth}"
+                                        Height="{Settings GridItemHeight}"/>
+                        <Border Background="{DynamicResource WindowBackgourndBrushLight}" 
+                                        x:Name="DarkenBorder" Visibility="Collapsed"
+                                        Grid.RowSpan="2"
+                                        Width="{Settings GridItemWidth}"
+                                        Height="{Settings GridItemHeight}"/>
+                        <Border CornerRadius="8" 
+                                        Background="{DynamicResource WindowBackgourndBrushLightTransparent}" 
+                                        HorizontalAlignment="Right" 
+                                        VerticalAlignment="Bottom" Margin="5"
+                                        Grid.Row="0">
+                            <ContentControl x:Name="DuplicateHider_SourceSelector1" RenderOptions.BitmapScalingMode="Fant" Visibility="Visible" MaxHeight="25"/>
                         </Border>
-                        <!--<Popup x:Name="GridDetailsPopup" StaysOpen="True" Placement="Right" 
-                               IsOpen="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsMouseOver, Mode=OneWay}">
-                            <ContentControl Width="400" 
-                                            Effect="{DynamicResource DefaultDropShadow}"
-                                            Margin="{DynamicResource DropShadowThickness}"
-                                            Height="{Binding ActualHeight, ElementName=Mask}"
-                                            IsHitTestVisible="False"
-                                            Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsMouseOver, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <ContentControl.Style>
-                                    <Style TargetType="ContentControl">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="ContentControl">
-                                                    <Grid>
-                                                        <Border Background="{DynamicResource BackgroundImage}"
-                                                                CornerRadius="{DynamicResource GridItemCornerRadius}"
-                                                                IsHitTestVisible="False"
-                                                                Height="{Binding ActualHeight, ElementName=Mask}"
-                                                                Width="400" >
-                                                            <Grid>
-                                                                <StackPanel>
-                                                                    <Image Stretch="UniformToFill"
-                                                                            Source="{Binding BackgroundImage, Converter={StaticResource ImageStringToImageConverter}}"
-                                                                            Height="{Binding ActualHeight, ElementName=Mask}"
-                                                                            Width="400"
-                                                                            HorizontalAlignment="Center"
-                                                                            VerticalAlignment="Center">
-                                                                    </Image>
-                                                                    <StackPanel.OpacityMask>
-                                                                        <VisualBrush Visual="{Binding ElementName=PopupMask}"/>
-                                                                    </StackPanel.OpacityMask>
-                                                                </StackPanel>
-                                                                <Border x:Name="PopupMask" Background="{DynamicResource WindowBackgourndBrushLight}" CornerRadius="{DynamicResource GridItemCornerRadius}"/>
-
-                                                            </Grid>
-                                                        </Border>
-                                                        <StackPanel Margin="10">
-                                                            <Label Content="{Binding DisplayName}"/>
-                                                            <Label Content="{Binding Source.Name}"/>
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ContentControl.Style>
-                            </ContentControl>
-                        </Popup>-->
+                        <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center"
+                                            Name="GameControls"  Visibility="Collapsed"
+                                            Grid.RowSpan="2"
+                                            MaxWidth="{Settings GridItemWidth}"
+                                            MaxHeight="{Settings GridItemHeight}">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel.Effect>
+                                    <DropShadowEffect BlurRadius="8" Color="Black" RenderingBias="Performance" ShadowDepth="0" Opacity="0.9"/>
+                                </StackPanel.Effect>
+                                <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
+                                                Margin="20,0,2,0" VerticalAlignment="Center"
+                                                Content="&#xec74;" FontFamily="{StaticResource FontIcoFont}" />
+                                <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
+                                                Margin="2,0,20,0" VerticalAlignment="Center"
+                                                Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
+                            </StackPanel>
+                        </Viewbox>
+                        <TextBlock      Text="{Binding DisplayName}" x:Name="LowerText"
+                                        Grid.Row="1"
+                                        Style="{DynamicResource BaseTextBlockStyle}"                                                                   
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap"
+                                        VerticalAlignment="Bottom"
+                                        Padding="10,5,10,5"
+                                        Width="{Settings GridItemWidth}" 
+                                        Visibility="{Settings ShowNamesUnderCovers}"
+                                        Background="{DynamicResource WindowBackgourndBrushLight}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsInstalled}" Value="False">
@@ -187,7 +138,6 @@
         <Setter Property="BorderThickness" Value="0,0,0,0" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="ClipToBounds" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -195,7 +145,7 @@
                         <Grid.ToolTip>
                             <TextBlock Text="{Binding DisplayString, Mode=OneWay}"/>
                         </Grid.ToolTip>
-                        <Border x:Name="IconBackground" CornerRadius="8" Background="{DynamicResource WindowBackgourndBrushHighlightHover}" Opacity="1" Visibility="Hidden">
+                        <Border x:Name="IconBackground" CornerRadius="8" Background="{DynamicResource WindowBackgourndBrushHighlightHover}" Opacity="1" Visibility="Collapsed">
                         </Border>
                         <Image Source="{Binding Icon}" RenderOptions.BitmapScalingMode="Fant" Margin="3" 
                                Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}"/>
