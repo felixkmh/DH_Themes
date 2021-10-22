@@ -32,8 +32,7 @@
                                         HorizontalAlignment="Center" VerticalAlignment="Center"
                                         Stretch="{Settings CoverArtStretch}" 
                                         Grid.RowSpan="2"
-                                        Width="{Settings GridItemWidth}"
-                                        Height="{Settings GridItemHeight}"/>
+                                        />
                         <TextBlock Text="{Binding DisplayName}"
                                         x:Name="TextGameName" Visibility="Collapsed"
                                         TextWrapping="Wrap"
