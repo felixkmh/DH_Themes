@@ -101,7 +101,7 @@ Packages:
       - added blur effect on bar over background image
   - Version: 2.5
     RequiredApiVersion: 2.0.0
-    ReleaseDate: 2021-10-21
+    ReleaseDate: 2021-10-28
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.5.0/felixkmh_DuplicateHider_Night_Theme_2_5.pthm
     Changelog:  
       - blurred background image now extends below description when scrolling
