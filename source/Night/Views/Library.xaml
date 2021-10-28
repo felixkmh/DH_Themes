@@ -26,7 +26,8 @@
                                    HorizontalAlignment="Center" VerticalAlignment="Top" />
 
                         <TopPanel DockPanel.Dock="Top" Grid.Row="0" 
-                                  Background="{DynamicResource WindowBackgourndBrushLight}"/>
+                                  Background="{DynamicResource WindowBackgourndBrushLight}"
+                                  />
                         
                         <DockPanel Grid.Row="1">
                             <FilterPanel x:Name="PART_FilterPanel"

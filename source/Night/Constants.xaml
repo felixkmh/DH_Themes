@@ -13,6 +13,8 @@
     <sys:Boolean x:Key="EnableCoverZoom">False</sys:Boolean>
     <sys:Boolean x:Key="UseFakeShadowInGridView">True</sys:Boolean>
     <sys:Double x:Key="DropShadowOpacityGrid">1</sys:Double>
+    <sys:Double x:Key="PlaybuttonBarOpacity">0.8</sys:Double>
+    <sys:Double x:Key="BackgroundOverlayOpacity">1</sys:Double>
 
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
     <sys:Double x:Key="FontSize">14</sys:Double>
