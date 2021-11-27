@@ -105,3 +105,10 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.5.0/felixkmh_DuplicateHider_Night_Theme_2_5.pthm
     Changelog:  
       - blurred background image now extends below description when scrolling
+  - Version: 2.6
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-11-27
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.6.0/felixkmh_DuplicateHider_Night_Theme_2_6.pthm
+    Changelog:       
+      - game covers are only hidden if a logo is available and it is positioned on the bottom right
+      - updated for Playnite 9.7 (namely adding a search box to some comboboxes)
