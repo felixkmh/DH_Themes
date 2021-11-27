@@ -30,6 +30,7 @@
     <Thickness x:Key="SidebarItemPadding">8</Thickness>
     <Thickness x:Key="InputBorderThickness">0,0,0,2</Thickness>
     <CornerRadius x:Key="GridItemCornerRadius">10</CornerRadius>
+    <CornerRadius x:Key="InputCornerRadius">5</CornerRadius>
 
     <Color x:Key="BlackColor">#FF000000</Color>
     <Color x:Key="WhiteColor">#FFFFFFFF</Color>

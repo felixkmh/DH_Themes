@@ -11,7 +11,7 @@
                 <ControlTemplate TargetType="{x:Type DetailsViewGameOverview}">
                     <Grid ClipToBounds="True">
                         <Border HorizontalAlignment="Center" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=BackgroundMask}"
-                                Margin="0,0,0,0" Visibility="Visible">
+                                Margin="0,0,0,0" Visibility="Visible" x:Name="OuterBorderBlurred">
                             <!--<Border.OpacityMask>
                                 <VisualBrush AutoLayoutContent="True" TileMode="None" AlignmentY="Bottom" AlignmentX="Center" Stretch="None">
                                     <VisualBrush.Visual>
@@ -42,17 +42,20 @@
                             <Border.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="-2"/>
-                                    <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
+                                    <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}" x:Name="OffsetTransformBlurred"/>
                                     <ScaleTransform ScaleY="-0.5"/>
                                 </TransformGroup>
                             </Border.RenderTransform>
                             <Border Margin="-20">
+                                <Border.CacheMode>
+                                    <BitmapCache RenderAtScale="0.5"/>
+                                </Border.CacheMode>
                                 <Image Stretch="UniformToFill" x:Name="TopBackgroundBlurred"
                                                    Source="{Binding Game.DisplayBackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
                                                    VerticalAlignment="Center"
                                        HorizontalAlignment="Center" StretchDirection="Both">
                                     <Image.Effect>
-                                        <BlurEffect Radius="35" KernelType="Gaussian" RenderingBias="Performance"/>
+                                        <BlurEffect Radius="40" KernelType="Gaussian" RenderingBias="Performance"/>
                                     </Image.Effect>
                                 </Image>
                                 <Border.OpacityMask>
@@ -60,11 +63,11 @@
                                         <VisualBrush.Visual>
                                             <StackPanel VerticalAlignment="Bottom">
                                                 <StackPanel Background="{DynamicResource TopFadingBrush}">
-                                                    <Border 
+                                                    <Border x:Name="InnerBorderBlurred"
                                                             Height="{Binding ElementName=ScrollViewer, Path=VerticalOffset}"
                                                             Width="{Binding ElementName=BackgroundMask, Path=ActualWidth}">
                                                     </Border>
-                                                    <Border Height="50"
+                                                    <Border Height="50" x:Name="PlaceholderBorderBlurred"
                                                             Width="{Binding ElementName=HeaderBorder, Path=ActualWidth}"/>
                                                 </StackPanel>
                                                 <Border Height="20" Background="Transparent"
@@ -77,17 +80,17 @@
                         </Border>
 
                         <Border HorizontalAlignment="Center" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=BackgroundMask}"
-                                Margin="0,0,0,0">
+                                Margin="0,0,0,0" x:Name="OuterBorderImage">
                             <Border.OpacityMask>
                                 <VisualBrush Visual="{Binding ElementName=BackgroundMask}" AutoLayoutContent="False" TileMode="None">
                                     <VisualBrush.Transform>
                                         <TransformGroup>
                                             <ScaleTransform ScaleY="-2"/>
-                                            <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
+                                            <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}" x:Name="OffsetTransform2"/>
                                             <ScaleTransform ScaleY="-0.5"/>
-                                            <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
+                                            <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}" x:Name="OffsetTransform3"/>
                                             <ScaleTransform ScaleY="-1"/>
-                                            <TranslateTransform Y="{Binding ActualHeight, ElementName=BackgroundMask}"/>
+                                            <TranslateTransform Y="{Binding ActualHeight, ElementName=BackgroundMask}" x:Name="OffsetTransform4"/>
                                             <TranslateTransform Y="-20"/>
                                             <TranslateTransform Y="-50"/>
                                         </TransformGroup>
@@ -97,7 +100,7 @@
                             <Border.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="-2"/>
-                                    <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
+                                    <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}" x:Name="OffsetTransform5"/>
                                     <ScaleTransform ScaleY="-0.5"/>
                                 </TransformGroup>
                             </Border.RenderTransform>
@@ -189,8 +192,9 @@
                                         </Grid.ColumnDefinitions>
                                         
                                         <Grid Margin="0,20,0,5" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Column="1" Panel.ZIndex="20" 
-                                          Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
-                                            <Border Visibility="{Binding ElementName=ExtraMetadataLoader_LogoLoaderControl, Path=IsVisible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                          Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                                              x:Name="GameCoverGrid">
+                                            <Border Visibility="Visible"
                                                 HorizontalAlignment="Right" VerticalAlignment="Bottom">
                                                 <Image Name="PART_ImageCover" MaxWidth="220"
                                                        Height="{Settings GameDetailsCoverHeight}"
@@ -313,7 +317,18 @@
 
 
                                             <Separator Background="{DynamicResource PanelSeparatorBrush}" />
-
+                                            <!--<Image Name="PART_ImageCover" MaxWidth="220"
+                                                       Height="{Settings GameDetailsCoverHeight}"
+                                                       VerticalAlignment="Bottom"
+                                                       StretchDirection="Both" Stretch="Uniform"
+                                                       RenderOptions.BitmapScalingMode="Fant" 
+                                                       Effect="{DynamicResource DefaultDropShadow}" RenderTransformOrigin="0.2,0"
+                                                       Panel.ZIndex="9001"
+                                                   HorizontalAlignment="Left">
+                                                <Image.RenderTransform>
+                                                    <ScaleTransform x:Name="CoverTransform"/>
+                                                </Image.RenderTransform>
+                                            </Image>-->
                                             <GridEx Margin="0,5,0,10"
                                                 ColumnCount="2" StarColumns="1"
                                                 RowCount="21" AutoLayoutColumns="2">
@@ -448,6 +463,14 @@
                                 <Condition Property="IsVisible" Value="True" SourceName="LogoBorder"/>
                             </MultiTrigger.Conditions>
                             <Setter Property="Visibility" Value="Hidden" TargetName="TitleText"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="HorizontalAlignment" Value="{x:Static HorizontalAlignment.Right}" SourceName="LogoBorder"/>
+                                <Condition Property="VerticalAlignment" Value="{x:Static VerticalAlignment.Bottom}" SourceName="LogoBorder"/>
+                                <Condition Property="IsVisible" Value="True" SourceName="LogoBorder"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Hidden" TargetName="GameCoverGrid"/>
                         </MultiTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>

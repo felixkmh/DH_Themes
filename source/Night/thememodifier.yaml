@@ -1,6 +1,6 @@
 ﻿Constants:
   - Global
-  - DuplicateHider_MaxNumberOfIcons(1,10): Maximum number of icons for the SourceSelector
+  - DuplicateHider_MaxNumberOfIcons(0,10): Maximum number of icons for the SourceSelector
   - Details View
   - TitleVisibility: Visibility of the game title
   - TopSourceSelectorVisibility: Visibility of the SourceSelector on top of the background image
