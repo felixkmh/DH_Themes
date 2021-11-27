@@ -219,7 +219,7 @@
                                                                 MaxWidth="{PluginSettings Plugin=ExtraMetadataLoader, Path=LogoMaxWidth, TargetNullValue={x:Static sys:Double.PositiveInfinity}}"
                                                     x:Name="LogoBorder">
                                                 <ContentControl x:Name="ExtraMetadataLoader_LogoLoaderControl" 
-                                                                            Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable, TargetNullValue={x:Static Visibility.Collapsed}}"/>
+                                                                            Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable, TargetNullValue={x:Static Visibility.Collapsed}, FallbackValue={x:Static Visibility.Collapsed}}"/>
                                             </Border>
                                         </ContentControl>
 
@@ -460,7 +460,7 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="HorizontalAlignment" Value="{x:Static HorizontalAlignment.Left}" SourceName="LogoBorder"/>
                                 <Condition Property="VerticalAlignment" Value="{x:Static VerticalAlignment.Bottom}" SourceName="LogoBorder"/>
-                                <Condition Property="IsVisible" Value="True" SourceName="LogoBorder"/>
+                                <Condition Property="IsVisible" Value="True" SourceName="ExtraMetadataLoader_LogoLoaderControl"/>
                             </MultiTrigger.Conditions>
                             <Setter Property="Visibility" Value="Hidden" TargetName="TitleText"/>
                         </MultiTrigger>
@@ -468,7 +468,7 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="HorizontalAlignment" Value="{x:Static HorizontalAlignment.Right}" SourceName="LogoBorder"/>
                                 <Condition Property="VerticalAlignment" Value="{x:Static VerticalAlignment.Bottom}" SourceName="LogoBorder"/>
-                                <Condition Property="IsVisible" Value="True" SourceName="LogoBorder"/>
+                                <Condition Property="IsVisible" Value="True" SourceName="ExtraMetadataLoader_LogoLoaderControl"/>
                             </MultiTrigger.Conditions>
                             <Setter Property="Visibility" Value="Hidden" TargetName="GameCoverGrid"/>
                         </MultiTrigger>
