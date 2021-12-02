@@ -470,7 +470,7 @@
                                 <Condition Property="VerticalAlignment" Value="{x:Static VerticalAlignment.Bottom}" SourceName="LogoBorder"/>
                                 <Condition Property="IsVisible" Value="True" SourceName="ExtraMetadataLoader_LogoLoaderControl"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Visibility" Value="Hidden" TargetName="GameCoverGrid"/>
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="GameCoverGrid"/>
                         </MultiTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>

@@ -11,19 +11,21 @@
         <Setter Property="BorderThickness" Value="3,0,0,0" />
         <Setter Property="Width" Value="44" />
         <Setter Property="Height" Value="44" />
+        <Setter Property="ClipToBounds" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type SidebarItem}">
-                    <Grid>
+                    <Grid ClipToBounds="False">
                         <ProgressBar x:Name="PART_ProgressStatus"
                                      BorderThickness="0" Background="Transparent"
                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         <Border Background="{TemplateBinding Background}"
                                 Padding="{Binding IconPadding}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                BorderBrush="{TemplateBinding BorderBrush}">
-                            <Viewbox>
-                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                ClipToBounds="False">
+                            <Viewbox ClipToBounds="False">
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClipToBounds="False"/>
                             </Viewbox>
                         </Border>
                     </Grid>
