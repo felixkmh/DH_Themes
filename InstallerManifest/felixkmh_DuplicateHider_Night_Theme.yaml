@@ -112,3 +112,9 @@ Packages:
     Changelog:       
       - game covers are only hidden if a logo is available and it is positioned on the bottom right
       - updated for Playnite 9.7 (namely adding a search box to some comboboxes)
+  - Version: 2.7
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2021-12-02
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.7.0/felixkmh_DuplicateHider_Night_Theme_2_7.pthm
+    Changelog:    
+      - fixed cover image still taking up space when hidden
