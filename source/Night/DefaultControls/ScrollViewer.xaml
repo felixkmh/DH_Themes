@@ -26,10 +26,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
-                    <Track x:Name="PART_Track" Orientation="Vertical" IsDirectionReversed="True"
-                           Width="17">
+                    <Track x:Name="PART_Track" Orientation="Vertical" IsDirectionReversed="True" Margin="0"
+                           Width="7">
                         <Track.Resources>
-                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">42</sys:Double>
+                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">20</sys:Double>
                         </Track.Resources>
                         <Track.Thumb>
                             <Thumb />

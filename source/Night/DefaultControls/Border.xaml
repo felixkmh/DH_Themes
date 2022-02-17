@@ -9,4 +9,19 @@
     <Style TargetType="Border">
         <Setter Property="SnapsToDevicePixels" Value="True" />
     </Style>
+
+    <Style x:Key="PanelBorder" TargetType="Border">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Background" Value="{DynamicResource TransparentPanelBrush}"/>
+        <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}"/>
+        <Setter Property="Padding" Value="9"/>
+        <Setter Property="Margin" Value="0,2,0,6"/>
+        <Setter Property="Tag" Value="{DynamicResource ShowPanels}"/>
+        <Style.Triggers>
+            <Trigger Property="Tag" Value="{StaticResource False}">
+                <Setter Property="Background" Value="{x:Null}"/>
+                <Setter Property="Padding" Value="2"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

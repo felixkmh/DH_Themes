@@ -15,6 +15,7 @@
     <sys:Double x:Key="DropShadowOpacityGrid">1</sys:Double>
     <sys:Double x:Key="PlaybuttonBarOpacity">0.8</sys:Double>
     <sys:Double x:Key="BackgroundOverlayOpacity">1</sys:Double>
+    <sys:Boolean x:Key="ShowPanels">True</sys:Boolean>
 
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
     <sys:Double x:Key="FontSize">14</sys:Double>
@@ -49,6 +50,9 @@
     <Color x:Key="GridItemBackgroundColor">#292929</Color>
     <Color x:Key="PanelSeparatorColor">#00000000</Color>
     <Color x:Key="TransparentColor">#00000000</Color>
+    <Color x:Key="TransparentPanelColor">#0AFFFFFF</Color>
+    <Color x:Key="TransparentButtonColor">#19FFFFFF</Color>
+    <Color x:Key="TransparentPlayButtonColor">#4F00CCCC</Color>
 
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
@@ -67,6 +71,9 @@
     <ImageBrush x:Key="GridItemBackgroundBrush" ImageSource="{ThemeFile 'Images/noise/background0.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" RenderOptions.CachingHint="Cache"/>
     <SolidColorBrush x:Key="PanelSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
     <ImageBrush x:Key="PopupBackgroundBrush" ImageSource="{ThemeFile 'Images/noise/background0.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" RenderOptions.CachingHint="Cache"/>
+    <SolidColorBrush x:Key="TransparentPanelBrush" Color="{DynamicResource TransparentPanelColor}"/>
+    <SolidColorBrush x:Key="TransparentButtonBrush" Color="{DynamicResource TransparentButtonColor}"/>
+    <SolidColorBrush x:Key="TransparentPlayButtonBrush" Color="{DynamicResource TransparentPlayButtonColor}"/>
 
     <ImageBrush x:Key="PlayButtonBackgroundBrush" ImageSource="{ThemeFile 'Images/noise/highlight1.png'}" TileMode="Tile" Viewport="0,0,100,100" ViewportUnits="Absolute" Opacity="0.85" RenderOptions.CachingHint="Cache"/>
     <ImageBrush x:Key="ProgressbarBrush" ImageSource="{ThemeFile 'Images/progressbar.png'}" Stretch="UniformToFill"/>

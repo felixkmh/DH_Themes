@@ -12,33 +12,6 @@
                     <Grid ClipToBounds="True">
                         <Border HorizontalAlignment="Center" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=BackgroundMask}"
                                 Margin="0,0,0,0" Visibility="Visible" x:Name="OuterBorderBlurred">
-                            <!--<Border.OpacityMask>
-                                <VisualBrush AutoLayoutContent="True" TileMode="None" AlignmentY="Bottom" AlignmentX="Center" Stretch="None">
-                                    <VisualBrush.Visual>
-                                        <Border Height="{Binding ElementName=HeaderBorder, Path=ActualHeight}"
-                                                Width="{Binding ElementName=HeaderBorder, Path=ActualWidth}"
-                                                CornerRadius="{Binding ElementName=HeaderBorder, Path=CornerRadius, Mode=OneWay}"
-                                                x:Name="HeaderMask">
-                                            <Border.Background>
-                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                                    <LinearGradientBrush.GradientStops>
-                                                        <GradientStop Color="#CAFFFFFF"/>
-                                                        <GradientStop Color="Black" Offset="0.4"/>
-                                                    </LinearGradientBrush.GradientStops>
-                                                </LinearGradientBrush>
-                                            </Border.Background>
-                                        </Border>
-                                    </VisualBrush.Visual>
-                                    <VisualBrush.Transform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleY="-2"/>
-                                            <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
-                                            <ScaleTransform ScaleY="-0.5"/>
-                                            <TranslateTransform Y="-20"/>
-                                        </TransformGroup>
-                                    </VisualBrush.Transform>
-                                </VisualBrush>
-                            </Border.OpacityMask>-->
                             <Border.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="-2"/>
@@ -124,31 +97,12 @@
                                   d:DesignHeight="1280"
                                   d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}">
                             <Grid Background="Transparent" x:Name="MainGrid">
-                                <!--<FadeImage x:Name="PART_ImageBackground" Stretch="Uniform" Visibility="Hidden"
-                                       HorizontalAlignment="Center" VerticalAlignment="Top">
-                                    <FadeImage.ImageOpacityMask>
-                                        <RadialGradientBrush GradientOrigin="0.5,0" Center="0.5,0" RadiusX="2" RadiusY="0.9" x:Name="FadeMask">
-                                            <RadialGradientBrush.GradientStops>
-                                                <GradientStop Color="Black" Offset="0.3" />
-                                                <GradientStop Color="Transparent" Offset="1" />
-                                            </RadialGradientBrush.GradientStops>
-                                        </RadialGradientBrush>
-                                    </FadeImage.ImageOpacityMask>
-                                </FadeImage>-->
-
-
-
                                 <Grid HorizontalAlignment="Stretch" Margin="20,0,20,0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="{Settings CalculatedGameDetailsIndentation}"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                
-                                    <!--<Image Stretch="UniformToFill"
-                                           Source="{Binding Game.DisplayBackgroundImage, Converter={StaticResource ImageStringToImageConverter}}" 
-                                           Margin="-20,0,-20,-145" VerticalAlignment="Top"/>-->
-
                                     <Border Background="Black" x:Name="BackgroundMask"
                                             Margin="-20,0,-20,0" Opacity="1" Grid.RowSpan="2" CornerRadius="0">
                                         <Border.RenderTransform>
@@ -165,19 +119,6 @@
                                     <Border Background="{DynamicResource DropShadowBrushBot}" 
                                             Margin="-20,0,-20,50" Opacity="0.4" Grid.RowSpan="2" VerticalAlignment="Bottom" Height="50">
                                     </Border>
-
-                                    <!--<Border Grid.Row="1" Margin="-20,0,-20,0" Height="50" VerticalAlignment="Bottom"
-                                            CornerRadius="5,5,0,0">
-                                        <Border.Background>
-                                            <VisualBrush TileMode="None" Visual="{Binding ElementName=TopBackgroundBlurred}" Stretch="None" AlignmentY="Bottom" AutoLayoutContent="False" >
-                                                <VisualBrush.Transform>
-                                                    <TransformGroup>
-                                                        <TranslateTransform Y="{Binding ElementName=ScrollViewer, Path=ContentVerticalOffset}"/>
-                                                    </TransformGroup>
-                                                </VisualBrush.Transform>
-                                            </VisualBrush>
-                                        </Border.Background>
-                                    </Border>-->
 
                                     <Border Grid.Row="1" Background="{DynamicResource WindowBackgourndBrushBright}" Margin="-20,0,-20,0" Height="50" VerticalAlignment="Bottom"
                                             Opacity="{DynamicResource PlaybuttonBarOpacity}" CornerRadius="0" x:Name="HeaderBorder">
@@ -246,7 +187,7 @@
                                                             >
                                                         <Button Name="PART_ButtonPlayAction"
                                                                 Width="150" Height="40" Style="{DynamicResource PlayButton}" Panel.ZIndex="2" Margin="0,0,0,0"/>
-                                                        <Button Name="PART_ButtonContextAction" 
+                                                        <Button Name="PART_ButtonContextAction" Style="{DynamicResource ContextActionButton}"
                                                                 Width="150" Height="40" Panel.ZIndex="2"/>
                                                         <ContentControl Background="Transparent" Panel.ZIndex="1"
                                                             x:Name="DuplicateHider_ContentControl2" 
@@ -257,13 +198,14 @@
                                                         </ContentControl>
                                                     </StackPanel>
                                                     <Button Name="PART_ButtonMoreActions"
-                                                        
+                                                        Style="{DynamicResource ContextActionButton}"
                                                     Content="..."
                                                     Width="{Binding ActualWidth, ElementName=PART_ButtonEditGame, Mode=OneWay}" Height="40" Margin="10,0,0,0" />
                                                     <Button x:Name="PART_ButtonEditGame"
                                                         
                                                     Margin="10,0,0,0" Height="40" Focusable="False"
-                                                    Content="&#xeded;" FontFamily="{DynamicResource FontIcoFont}">
+                                                    Content="&#xeded;" FontFamily="{DynamicResource FontIcoFont}"
+                                                            Style="{DynamicResource ContextActionButton}">
                                                     </Button>
                                                     <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" VerticalAlignment="Center" Margin="10,0,5,0" Foreground="LightGray"/>
                                                     <TextBlock Name="PART_TextLastActivity"  VerticalAlignment="Center" Margin="1,0,5,0" Foreground="{DynamicResource WindowBackgourndBrushHighlight}"/>
@@ -316,20 +258,18 @@
 
 
 
-                                            <Separator Background="{DynamicResource PanelSeparatorBrush}" />
-                                            <!--<Image Name="PART_ImageCover" MaxWidth="220"
-                                                       Height="{Settings GameDetailsCoverHeight}"
-                                                       VerticalAlignment="Bottom"
-                                                       StretchDirection="Both" Stretch="Uniform"
-                                                       RenderOptions.BitmapScalingMode="Fant" 
-                                                       Effect="{DynamicResource DefaultDropShadow}" RenderTransformOrigin="0.2,0"
-                                                       Panel.ZIndex="9001"
-                                                   HorizontalAlignment="Left">
-                                                <Image.RenderTransform>
-                                                    <ScaleTransform x:Name="CoverTransform"/>
-                                                </Image.RenderTransform>
-                                            </Image>-->
-                                            <GridEx Margin="0,5,0,10"
+                                            <!--<Separator Background="{DynamicResource PanelSeparatorBrush}" />-->
+                                            <!--<Border Style="{DynamicResource PanelBorder}" Margin="0,0,7,0" Padding="7,0,0,0"
+                                                    Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, FallbackValue={x:Static Visibility.Collapsed}, Mode=OneWay}">
+                                                <DockPanel>
+                                                    <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Locked}" DockPanel.Dock="Right"/>
+                                                    <TextBlock Text="/" DockPanel.Dock="Right"/>
+                                                    <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked}" DockPanel.Dock="Right"/>
+                                                    <TextBlock Text="{DynamicResource LOCSuccessStoryAchievements}" DockPanel.Dock="Left"/>
+                                                </DockPanel>
+                                            </Border>-->
+                                            <Border Style="{DynamicResource PanelBorder}" Margin="0,7,7,0" Padding="7,0,0,0">
+                                                <GridEx Margin="0,5,0,10"
                                                 ColumnCount="2" StarColumns="1"
                                                 RowCount="21" AutoLayoutColumns="2">
                                                 <Grid.Resources>
@@ -344,7 +284,7 @@
 
                                                 <!--<Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" />
                                                 <TextBlock Name="PART_TextCompletionStatus" VerticalAlignment="Center" />-->
-
+                                                
                                                 <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
                                                 <Button Name="PART_ButtonLibrary" VerticalAlignment="Center" />
 
@@ -402,13 +342,16 @@
                                                 <Label Name="PART_ElemLinks" Content="{DynamicResource LOCLinksLabel}" />
                                                 <ItemsControl Name="PART_ItemsLinks" />
                                             </GridEx>
+                                            </Border>
                                         </StackPanel>
 
                                         <TabControl>
                                             <TabItem Header="{DynamicResource LOCGameDescriptionTitle}" x:Name="DescriptionTab">
-                                                <StackPanel DockPanel.Dock="Right" Margin="10,0,2,0">
-                                                    <ContentControl x:Name="SuccessStory_PluginCompactList" 
-                                                                    Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, TargetNullValue={x:Static Visibility.Collapsed}, Mode=OneWay}"/>
+                                                <StackPanel DockPanel.Dock="Right" Margin="2,0,2,0">
+                                                    <Border Style="{DynamicResource PanelBorder}" Padding="4,4,4,0"
+                                                            Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, FallbackValue={x:Static Visibility.Collapsed}, Mode=OneWay}">
+                                                        <ContentControl x:Name="SuccessStory_PluginCompactList"/>
+                                                    </Border>
                                                     <StackPanel Name="PART_ElemNotes">
                                                         <TextBlock Text="{DynamicResource LOCNotesLabel}" Margin="0,15,0,5"
                                                        Style="{DynamicResource BaseTextBlockStyle}" />
@@ -418,35 +361,209 @@
                                                      AcceptsReturn="True" TextWrapping="Wrap"
                                                      Margin="-1,5,-1,5" Padding="5"/>
                                                     </StackPanel>
-
-                                                    <StackPanel Name="PART_ElemDescription">
-                                                        <!--<TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,5"
-                                                    Style="{DynamicResource BaseTextBlockStyle}" />-->
-                                                        <Separator Background="{DynamicResource PanelSeparatorBrush}" />
-                                                        <HtmlTextView Name="PART_HtmlDescription"
-                                                        Margin="0,5,0,5"
-                                                        HtmlFontSize="{DynamicResource FontSize}"
-                                                        HtmlFontFamily="{DynamicResource FontFamily}"
-                                                        HtmlForeground="{DynamicResource TextColor}"
-                                                        LinkForeground="{DynamicResource GlyphColor}"                                      
-                                                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                        ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
-                                                    </StackPanel>
+                                                    <Border Style="{DynamicResource PanelBorder}" Padding="7,7,2,7"
+                                                            Visibility="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, Mode=OneWay, FallbackValue={x:Static Visibility.Collapsed}}">
+                                                        <ContentControl x:Name="NewsViewer_NewsViewerControl" ClipToBounds="True"/>
+                                                    </Border>
+                                                    <Border Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableVideoPlayer, FallbackValue={x:Static Visibility.Collapsed}}">
+                                                        <Border Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsAnyVideoAvailable, FallbackValue={x:Static Visibility.Collapsed}}">
+                                                            <Border Style="{DynamicResource PanelBorder}">
+                                                                <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl">
+                                                                    <ContentControl.Resources>
+                                                                        <Style x:Key="SliderThump" TargetType="{x:Type Thumb}">
+                                                                            <Setter Property="Background" Value="{DynamicResource NormalBrush}" />
+                                                                            <Setter Property="Template">
+                                                                                <Setter.Value>
+                                                                                    <ControlTemplate TargetType="{x:Type Thumb}">
+                                                                                        <Grid>
+                                                                                            <Rectangle x:Name="HoverRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                                                                           Width="Auto" Height="Auto" RadiusX="3" RadiusY="3"
+                                                                                                           Stroke="{x:Null}" Margin="1,1,1,1" MinHeight="10"
+                                                                                                           Fill="{TemplateBinding Background}"
+                                                                                                           RenderTransformOrigin="0.5,0.5">
+                                                                                                <Rectangle.RenderTransform>
+                                                                                                    <ScaleTransform ScaleX="1" ScaleY="1" x:Name="BorderScale"/>
+                                                                                                </Rectangle.RenderTransform>
+                                                                                            </Rectangle>
+                                                                                        </Grid>
+                                                                                        <ControlTemplate.Triggers>
+                                                                                            <Trigger Property="IsFocused" Value="True" />
+                                                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                                                <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
+                                                                                                <Trigger.EnterActions>
+                                                                                                    <BeginStoryboard>
+                                                                                                        <Storyboard>
+                                                                                                            <DoubleAnimation Duration="0:0:0.1" To="1.01"
+                                                                                                                                 Storyboard.TargetName="BorderScale"
+                                                                                                                                 Storyboard.TargetProperty="ScaleX"
+                                                                                                                                 />
+                                                                                                            <DoubleAnimation Duration="0:0:0.1" To="1.01"
+                                                                                                                                 Storyboard.TargetName="BorderScale"
+                                                                                                                                 Storyboard.TargetProperty="ScaleY"
+                                                                                                                                 />
+                                                                                                        </Storyboard>
+                                                                                                    </BeginStoryboard>
+                                                                                                </Trigger.EnterActions>
+                                                                                                <Trigger.ExitActions>
+                                                                                                    <BeginStoryboard>
+                                                                                                        <Storyboard>
+                                                                                                            <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                                                                                                 Storyboard.TargetName="BorderScale"
+                                                                                                                                 Storyboard.TargetProperty="ScaleX" 
+                                                                                                                                 />
+                                                                                                            <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                                                                                                 Storyboard.TargetName="BorderScale"
+                                                                                                                                 Storyboard.TargetProperty="ScaleY"
+                                                                                                                                 />
+                                                                                                        </Storyboard>
+                                                                                                    </BeginStoryboard>
+                                                                                                </Trigger.ExitActions>
+                                                                                            </Trigger>
+                                                                                            <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource AncestorType=Track}}" Value="True">
+                                                                                                <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
+                                                                                            </DataTrigger>
+                                                                                        </ControlTemplate.Triggers>
+                                                                                    </ControlTemplate>
+                                                                                </Setter.Value>
+                                                                            </Setter>
+                                                                        </Style>
+                                                                        <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource BaseStyle}">
+                                                                            <Setter Property="SnapsToDevicePixels" Value="True" />
+                                                                            <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrushBrightest}" />
+                                                                            <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
+                                                                            <Setter Property="Template">
+                                                                                <Setter.Value>
+                                                                                    <ControlTemplate TargetType="{x:Type Slider}">
+                                                                                        <Grid x:Name="GridRoot">
+                                                                                            <Grid.RowDefinitions>
+                                                                                                <RowDefinition Height="Auto" />
+                                                                                                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                                                                                                <RowDefinition Height="Auto" />
+                                                                                            </Grid.RowDefinitions>
+                                                                                            <TickBar x:Name="TopTick" Visibility="Collapsed" Height="4" Placement="Top"
+                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  Fill="{DynamicResource GlyphBrush}" />
+                                                                                            <Border x:Name="Border" Grid.Row="1" Margin="0" Height="6" CornerRadius="{DynamicResource ControlCornerRadius}"
+                                        Background="{TemplateBinding Background}" BorderBrush="{DynamicResource NormalBorderBrush}"
+                                        BorderThickness="{DynamicResource ControlBorderThickness}" Opacity="0.5"/>
+                                                                                            <Track Grid.Row="1" x:Name="PART_Track" Height="{TemplateBinding Height}"
+                                       Effect="{DynamicResource TextDropShadow}"
+                                       UseLayoutRounding="True">
+                                                                                                <Track.Thumb>
+                                                                                                    <Thumb Width="10" RenderTransformOrigin="0.5,0.5" x:Name="SliderThumb"
+                                               Style="{DynamicResource SliderThump}">
+                                                                                                        <Thumb.RenderTransform>
+                                                                                                            <ScaleTransform ScaleX="1" ScaleY="1" x:Name="BorderScale"/>
+                                                                                                        </Thumb.RenderTransform>
+                                                                                                    </Thumb>
+                                                                                                </Track.Thumb>
+                                                                                                <Track.DecreaseRepeatButton>
+                                                                                                    <RepeatButton Style="{StaticResource SliderTrackButton}"
+                                                      Command="Slider.DecreaseLarge" />
+                                                                                                </Track.DecreaseRepeatButton>
+                                                                                                <Track.IncreaseRepeatButton>
+                                                                                                    <RepeatButton Style="{StaticResource SliderTrackButton}"
+                                                      Command="Slider.IncreaseLarge" />
+                                                                                                </Track.IncreaseRepeatButton>
+                                                                                            </Track>
+                                                                                            <TickBar x:Name="BottomTick" Visibility="Collapsed" Grid.Row="2" Height="4" Placement="Bottom"
+                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Fill="{TemplateBinding Foreground}" />
+                                                                                        </Grid>
+                                                                                        <ControlTemplate.Triggers>
+                                                                                            <Trigger Property="IsMouseOver" SourceName="SliderThumb" Value="True">
+                                                                                                <Trigger.EnterActions>
+                                                                                                    <BeginStoryboard>
+                                                                                                        <Storyboard>
+                                                                                                            <DoubleAnimation Duration="0:0:0.1" To="1.025"
+                                                                 Storyboard.TargetName="BorderScale"
+                                                                 Storyboard.TargetProperty="ScaleX"
+                                                                 />
+                                                                                                            <DoubleAnimation Duration="0:0:0.1" To="1.025"
+                                                                 Storyboard.TargetName="BorderScale"
+                                                                 Storyboard.TargetProperty="ScaleY"
+                                                                 />
+                                                                                                        </Storyboard>
+                                                                                                    </BeginStoryboard>
+                                                                                                </Trigger.EnterActions>
+                                                                                                <Trigger.ExitActions>
+                                                                                                    <BeginStoryboard>
+                                                                                                        <Storyboard>
+                                                                                                            <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                                 Storyboard.TargetName="BorderScale"
+                                                                 Storyboard.TargetProperty="ScaleX" 
+                                                                 />
+                                                                                                            <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                                 Storyboard.TargetName="BorderScale"
+                                                                 Storyboard.TargetProperty="ScaleY"
+                                                                 />
+                                                                                                        </Storyboard>
+                                                                                                    </BeginStoryboard>
+                                                                                                </Trigger.ExitActions>
+                                                                                            </Trigger>
+                                                                                            <Trigger Property="IsFocused" Value="True">
+                                                                                                <Setter TargetName="PART_Track" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_Track}" />
+                                                                                            </Trigger>
+                                                                                            <Trigger Property="TickPlacement" Value="TopLeft">
+                                                                                                <Setter Property="Visibility" Value="Visible" TargetName="TopTick" />
+                                                                                            </Trigger>
+                                                                                            <Trigger Property="TickPlacement" Value="BottomRight">
+                                                                                                <Setter Property="Visibility" Value="Visible" TargetName="BottomTick" />
+                                                                                            </Trigger>
+                                                                                            <Trigger Property="TickPlacement" Value="Both">
+                                                                                                <Setter Property="Visibility" Value="Visible" TargetName="TopTick" />
+                                                                                                <Setter Property="Visibility" Value="Visible" TargetName="BottomTick" />
+                                                                                            </Trigger>
+                                                                                            <Trigger Property="Orientation" Value="Vertical">
+                                                                                                <Setter Property="LayoutTransform" TargetName="GridRoot">
+                                                                                                    <Setter.Value>
+                                                                                                        <RotateTransform Angle="-90" />
+                                                                                                    </Setter.Value>
+                                                                                                </Setter>
+                                                                                                <Setter TargetName="PART_Track" Property="Orientation" Value="Horizontal" />
+                                                                                            </Trigger>
+                                                                                        </ControlTemplate.Triggers>
+                                                                                    </ControlTemplate>
+                                                                                </Setter.Value>
+                                                                            </Setter>
+                                                                        </Style>
+                                                                    </ContentControl.Resources>
+                                                                </ContentControl>
+                                                            </Border>
+                                                        </Border>
+                                                    </Border>
+                                                    <Border Style="{DynamicResource PanelBorder}">
+                                                        <StackPanel Name="PART_ElemDescription">
+                                                            <!--<TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,5"
+                                                        Style="{DynamicResource BaseTextBlockStyle}" />-->
+                                                            <Separator Background="{DynamicResource PanelSeparatorBrush}" />
+                                                            <HtmlTextView Name="PART_HtmlDescription"
+                                                            Margin="0,5,0,5"
+                                                            HtmlFontSize="{DynamicResource FontSize}"
+                                                            HtmlFontFamily="{DynamicResource FontFamily}"
+                                                            HtmlForeground="{DynamicResource TextColor}"
+                                                            LinkForeground="{DynamicResource GlyphColor}"                                      
+                                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                            ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                                        </StackPanel>
+                                                    </Border>
                                                 </StackPanel>
                                             </TabItem>
-                                            <TabItem Tag="{PluginSettings Plugin=SuccessStory, Path=HasData, Mode=OneWay}">
-                                                <TabItem.Style>
-                                                    <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
-                                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                                        <Style.Triggers>
-                                                            <Trigger Property="Tag" Value="{StaticResource True}">
-                                                                <Setter Property="Header" Value="{DynamicResource LOCSuccessStoryAchievements}"/>
-                                                                <Setter Property="Visibility" Value="Visible"/>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TabItem.Style>
-                                                <ContentControl x:Name="SuccessStory_PluginList" MinHeight="500" VerticalAlignment="Top"/>
+                                            <TabItem Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, Mode=OneWay, FallbackValue={x:Static Visibility.Collapsed}}">
+                                                <TabItem.Header>
+                                                    <Grid>
+                                                        <!--<ProgressBar Minimum="0" Maximum="100" Value="{PluginSettings Plugin=SuccessStory, Path=Percent}"/>-->
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{DynamicResource LOCSuccessStoryAchievements}"/>
+                                                            <TextBlock Text=" ("/>
+                                                            <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked, Mode=OneWay, FallbackValue=''}"/>
+                                                            <TextBlock Text="/"/>
+                                                            <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total, Mode=OneWay, FallbackValue=''}"/>
+                                                            <TextBlock Text=")"/>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </TabItem.Header>
+                                                <Border Style="{DynamicResource PanelBorder}">
+                                                    <ContentControl x:Name="SuccessStory_PluginList" MinHeight="600" VerticalAlignment="Top"/>
+                                                </Border>
                                             </TabItem>
                                         </TabControl>
                                     </DockPanel>

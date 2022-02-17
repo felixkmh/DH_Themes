@@ -3,8 +3,8 @@
 
     <Style x:Key="PlayButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Background" Value="{DynamicResource ProgressbarBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+        <Setter Property="Background" Value="{DynamicResource TransparentPlayButtonBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="Padding" Value="10,5,10,5" />
@@ -19,7 +19,93 @@
                             <Border.RenderTransform>
                                 <ScaleTransform ScaleX="1" ScaleY="1" x:Name="BorderScale"/>
                             </Border.RenderTransform>
-                            <Border Visibility="Hidden" x:Name="HighlightBorder" Background="White" Opacity="0.25" CornerRadius="{DynamicResource ControlCornerRadius}"/>
+                            <Border Visibility="Hidden" x:Name="HighlightBorder" Background="White" Opacity="0.15" CornerRadius="{DynamicResource ControlCornerRadius}"/>
+                        </Border>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="True" />
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="Grid" Value="0.5" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="HighlightBorder"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1" To="1.025"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         />
+                                        <DoubleAnimation Duration="0:0:0.1" To="1.025"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         />
+                                        <DoubleAnimation Duration="0:0:0.1" To="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard AutoReverse="True" FillBehavior="Stop">
+                                        <DoubleAnimation Duration="0:0:0.1" To="0.975" From="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         />
+                                        <DoubleAnimation Duration="0:0:0.1" To="0.975" From="1"
+                                                         Storyboard.TargetName="BorderScale"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TextBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ContextActionButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Background" Value="{DynamicResource TransparentButtonBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="Padding" Value="10,5,10,5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="Grid">
+                        <Border x:Name="DefaultBorder" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"  Background="{TemplateBinding Background}"
+                                Opacity="1" CornerRadius="{DynamicResource ControlCornerRadius}"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" x:Name="BorderScale"/>
+                            </Border.RenderTransform>
+                            <Border Visibility="Hidden" x:Name="HighlightBorder" Background="White" Opacity="0.15" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                         </Border>
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" />
                     </Grid>
@@ -94,17 +180,20 @@
             <Setter.Value>
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical" Visibility="{Binding MoreThanOneCopy, Converter={StaticResource BooleanToVisibilityConverter}}" Width="38">
-                        <Border Background="{DynamicResource WindowBackgourndBrushLight}" x:Name="ButtonBorder"
-                                BorderThickness="{DynamicResource ControlBorderThickness}" CornerRadius="0,5,5,0" Margin="-5,0,0,0" Width="38">
-                            <ToggleButton 
-                                x:Name="Toggler" 
-                                Style="{DynamicResource ExpanderDownHeaderStyle2}" 
-                                Height="40" Width="30" BorderThickness="{DynamicResource ControlBorderThickness}"
-                                Background="Transparent"
-                                HorizontalContentAlignment="Right"
-                                >
-                            </ToggleButton>
-                        </Border>
+                        <Grid>
+                            <Border Background="{DynamicResource TransparentButtonBrush}" x:Name="ButtonBorder"
+                                    BorderThickness="{DynamicResource ControlBorderThickness}" CornerRadius="0,5,5,0" Margin="-5,0,0,0" Width="38">
+                                    <ToggleButton 
+                                        x:Name="Toggler" 
+                                        Style="{DynamicResource ExpanderDownHeaderStyle2}" 
+                                        Height="40" Width="30" BorderThickness="{DynamicResource ControlBorderThickness}"
+                                        Background="Transparent"
+                                        HorizontalContentAlignment="Right"
+                                        >
+                                    </ToggleButton>
+                            </Border>
+                            <Border Visibility="Hidden" x:Name="HighlightBorder" Background="White" Opacity="0.15" CornerRadius="0,5,5,0" Margin="-5,0,0,0" Width="38" IsHitTestVisible="False"/>
+                        </Grid>
                         <Popup x:Name="PlayOptions" Width="Auto"
                                IsOpen="{Binding IsChecked, ElementName=Toggler, Delay=150}"
                                Placement="Bottom" PlacementTarget="{Binding ElementName=ButtonBorder}"
@@ -201,7 +290,10 @@
                     </StackPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonBorder">
-                            <Setter Property="Background" TargetName="ButtonBorder" Value="{DynamicResource WindowBackgourndBrushBright}"/>
+                            <!--<Setter Property="Background" TargetName="ButtonBorder" Value="{DynamicResource WindowBackgourndBrushBright}"/>-->
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="HighlightBorder"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
