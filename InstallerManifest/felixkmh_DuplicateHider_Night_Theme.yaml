@@ -118,3 +118,12 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.7.0/felixkmh_DuplicateHider_Night_Theme_2_7.pthm
     Changelog:    
       - fixed cover image still taking up space when hidden
+  - Version: 2.8
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2022-02-17
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.8.0/felixkmh_DuplicateHider_Night_Theme_2_8.pthm
+    Changelog:   
+      - added support for trailers using the Extra Metadata Loader extension
+      - added support for the NewsViewer extension
+      - added panels in details view (can be disabled using ThemeModifier extension)
+      - some visual tweaks
