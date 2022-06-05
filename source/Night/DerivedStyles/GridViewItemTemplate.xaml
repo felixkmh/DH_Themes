@@ -33,6 +33,13 @@
                                         Stretch="{Settings CoverArtStretch}" 
                                         Grid.RowSpan="2"
                                         />
+                        <Image Name="PART_ImageCover2"
+                               RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Stretch="{Settings CoverArtStretch}" 
+                               Grid.RowSpan="2"
+                               Source="{Binding ElementName=DuplicateHider_SourceSelector1, Path=Content.Current.CoverImage, Converter={StaticResource ImageStringToImageConverter}, FallbackValue={x:Null}, TargetNullValue={x:Null}}"
+                        />
                         <TextBlock Text="{Binding DisplayName}"
                                         x:Name="TextGameName" Visibility="Collapsed"
                                         TextWrapping="Wrap"

@@ -182,13 +182,13 @@
         <Style.Triggers>
             <Trigger Property="Role" Value="TopLevelHeader">
                 <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}" />
-                <Setter Property="Grid.IsSharedSizeScope" Value="true" />
+                <Setter Property="Grid.IsSharedSizeScope" Value="true" />     
             </Trigger>
             <Trigger Property="Role" Value="TopLevelItem">
                 <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.TopLevelItemTemplateKey}}" />
             </Trigger>
             <Trigger Property="Role" Value="SubmenuHeader">
-                <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.SubmenuHeaderTemplateKey}}" />
+                <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.SubmenuHeaderTemplateKey}}" /> 
             </Trigger>
             <Trigger Property="Role" Value="SubmenuItem">
                 <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.SubmenuItemTemplateKey}}" />
