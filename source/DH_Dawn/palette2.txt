@@ -1,0 +1,25 @@
+/* Coolors Exported Palette - https://coolors.co/160f29-6d68b3-c4cad0-fcf7ff-ff3562 */
+
+/* CSV */
+160f29,6d68b3,c4cad0,fcf7ff,ff3562
+
+/* With # */
+#160f29, #6d68b3, #c4cad0, #fcf7ff, #ff3562
+
+/* Array */
+["160f29","6d68b3","c4cad0","fcf7ff","ff3562"]
+
+/* Object */
+{"Dark Purple":"160f29","Blue Violet Crayola":"6d68b3","Silver Sand":"c4cad0","Magnolia":"fcf7ff","Radical Red":"ff3562"}
+
+/* Extended Array */
+[{"name":"Dark Purple","hex":"160f29","rgb":[22,15,41],"cmyk":[46,63,0,84],"hsb":[256,63,16],"hsl":[256,46,11],"lab":[6,11,-16]},{"name":"Blue Violet Crayola","hex":"6d68b3","rgb":[109,104,179],"cmyk":[39,42,0,30],"hsb":[244,42,70],"hsl":[244,33,55],"lab":[48,21,-39]},{"name":"Silver Sand","hex":"c4cad0","rgb":[196,202,208],"cmyk":[6,3,0,18],"hsb":[210,6,82],"hsl":[210,11,79],"lab":[81,-1,-4]},{"name":"Magnolia","hex":"fcf7ff","rgb":[252,247,255],"cmyk":[1,3,0,0],"hsb":[278,3,100],"hsl":[278,100,98],"lab":[98,3,-3]},{"name":"Radical Red","hex":"ff3562","rgb":[255,53,98],"cmyk":[0,79,62,0],"hsb":[347,79,100],"hsl":[347,100,60],"lab":[57,75,25]}]
+
+/* XML */
+<palette>
+  <color name="Dark Purple" hex="160f29" r="22" g="15" b="41" />
+  <color name="Blue Violet Crayola" hex="6d68b3" r="109" g="104" b="179" />
+  <color name="Silver Sand" hex="c4cad0" r="196" g="202" b="208" />
+  <color name="Magnolia" hex="fcf7ff" r="252" g="247" b="255" />
+  <color name="Radical Red" hex="ff3562" r="255" g="53" b="98" />
+</palette>

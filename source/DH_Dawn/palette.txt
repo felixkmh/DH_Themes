@@ -1,0 +1,25 @@
+/* Coolors Exported Palette - https://coolors.co/272635-a2a2a4-cecece-e8e9f3-b9e8f3 */
+
+/* CSV */
+272635,a2a2a4,cecece,e8e9f3,b9e8f3
+
+/* With # */
+#272635, #a2a2a4, #cecece, #e8e9f3, #b9e8f3
+
+/* Array */
+["272635","a2a2a4","cecece","e8e9f3","b9e8f3"]
+
+/* Object */
+{"Raisin Black":"272635","Quick Silver":"a2a2a4","Light Gray":"cecece","Ghost White":"e8e9f3","Blizzard Blue":"b9e8f3"}
+
+/* Extended Array */
+[{"name":"Raisin Black","hex":"272635","rgb":[39,38,53],"cmyk":[26,28,0,79],"hsb":[244,28,21],"hsl":[244,16,18],"lab":[16,5,-10]},{"name":"Quick Silver","hex":"a2a2a4","rgb":[162,162,164],"cmyk":[1,1,0,36],"hsb":[240,1,64],"hsl":[240,1,64],"lab":[67,0,-1]},{"name":"Light Gray","hex":"cecece","rgb":[206,206,206],"cmyk":[0,0,0,19],"hsb":[0,0,81],"hsl":[0,0,81],"lab":[83,0,0]},{"name":"Ghost White","hex":"e8e9f3","rgb":[232,233,243],"cmyk":[5,4,0,5],"hsb":[235,5,95],"hsl":[235,31,93],"lab":[93,1,-5]},{"name":"Blizzard Blue","hex":"b9e8f3","rgb":[185,232,243],"cmyk":[24,5,0,5],"hsb":[191,24,95],"hsl":[191,71,84],"lab":[89,-13,-10]}]
+
+/* XML */
+<palette>
+  <color name="Raisin Black" hex="272635" r="39" g="38" b="53" />
+  <color name="Quick Silver" hex="a2a2a4" r="162" g="162" b="164" />
+  <color name="Light Gray" hex="cecece" r="206" g="206" b="206" />
+  <color name="Ghost White" hex="e8e9f3" r="232" g="233" b="243" />
+  <color name="Blizzard Blue" hex="b9e8f3" r="185" g="232" b="243" />
+</palette>
