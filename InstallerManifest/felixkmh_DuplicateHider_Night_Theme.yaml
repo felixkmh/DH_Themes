@@ -127,3 +127,9 @@ Packages:
       - added support for the NewsViewer extension
       - added panels in details view (can be disabled using ThemeModifier extension)
       - some visual tweaks
+  - Version: 2.9
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2022-06-05
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.9.0/felixkmh_DuplicateHider_Night_Theme_2_9.pthm
+    Changelog:  
+      - selecting sources in grid view also changes the cover image
