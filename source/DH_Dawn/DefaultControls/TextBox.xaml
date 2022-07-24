@@ -12,9 +12,13 @@
         <Setter Property="AllowDrop" Value="True" />
         <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{DynamicResource UserEditableBoxColor}" Opacity="0.02"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource UserEditableBoxBrush}"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="Padding" Value="3" />
         <Setter Property="ContextMenu">
             <Setter.Value>
@@ -29,7 +33,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}" CornerRadius="{DynamicResource ControlCornerRadius}"
+                            CornerRadius="5" Background="{TemplateBinding Background}"
                             Style="{DynamicResource HighlightBorder}" BorderBrush="{TemplateBinding BorderBrush}">
                         <ScrollViewer x:Name="PART_ContentHost"
                                       VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"

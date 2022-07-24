@@ -9,24 +9,54 @@
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
-        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Padding" Value="10,5,10,5" />
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"                            
-                            CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}"
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="Pulse">
+                            <DoubleAnimation Storyboard.TargetName="BorderScale"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="1.05" Duration="0:0:0.13"
+                                             AutoReverse="True"
+                                             FillBehavior="Stop"/>
+                            <DoubleAnimation Storyboard.TargetName="BorderScale"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="1.05" Duration="0:0:0.13"
+                                             AutoReverse="True"
+                                             FillBehavior="Stop"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid>
+                        <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"                            
+                                CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform x:Name="BorderScale" CenterX="0.5" CenterY="0.5"/>
+                            </Border.RenderTransform>
+                        </Border>
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
-                    </Border>
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
+                                            />
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
                         </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                            <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

@@ -68,7 +68,8 @@
                             BorderThickness="{DynamicResource PopupBorderThickness}"
                             BorderBrush="{DynamicResource PopupBorderBrush}"
                             CornerRadius="{DynamicResource ControlCornerRadius}"
-                            Margin="15" Effect="{DynamicResource PopupDropShadow}">
+                            Margin="15" Effect="{DynamicResource PopupDropShadow}"
+                            MinWidth="{Binding ActualWidth, ElementName=MainToggle}">
                         <ItemsControl x:Name="PART_ItemsPanel" />
                     </Border>
                 </Popup>

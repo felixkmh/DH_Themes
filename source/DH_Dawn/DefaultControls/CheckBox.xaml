@@ -10,17 +10,35 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
-        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="Pulse">
+                            <DoubleAnimation Storyboard.TargetName="BulletBorder"
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="1.12" Duration="0:0:0.13"
+                                                         AutoReverse="True"
+                                             FillBehavior="Stop"/>
+                            <DoubleAnimation Storyboard.TargetName="BulletBorder"
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                         To="1.12" Duration="0:0:0.13"
+                                                         AutoReverse="True"
+                                             FillBehavior="Stop"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
                     <Border Background="{TemplateBinding Background}"
                             Padding="{TemplateBinding Padding}">
                         <StackPanel Orientation="Horizontal">
                             <Border x:Name="BulletBorder" CornerRadius="6"
                                     BorderThickness="{TemplateBinding BorderThickness}" Background="{DynamicResource UserEditableBoxBrush}"
-                                    BorderBrush="{TemplateBinding BorderBrush}">
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Border.RenderTransform>
+                                    <ScaleTransform/>
+                                </Border.RenderTransform>
                                 <Grid Width="18" Height="18" Background="Transparent">
                                     <Viewbox x:Name="CheckIcon" Visibility="Collapsed" Margin="2">
                                         <TextBlock Text="&#xF00E;" FontFamily="{StaticResource FontIcoFont}" Foreground="{DynamicResource GlyphBrush}"
@@ -45,9 +63,21 @@
                         </MultiTrigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="CheckIcon" />
+                            <!--<Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                            </Trigger.ExitActions>-->
                         </Trigger>
+                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                            <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                        </EventTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="BulletBorder" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                            </Trigger.EnterActions>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="BulletBorder" />

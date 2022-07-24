@@ -2,6 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
+    <!--ThemeModifier-->
+    <VerticalAlignment x:Key="ButtonStackVerticalAlignment">Top</VerticalAlignment>
+    
+    <!--DuplicateHider-->
+    <sys:Boolean x:Key="EnableFloatingSourceSelector">True</sys:Boolean>
+    
+    <!--EML-->
+    <sys:Boolean x:Key="ShowTrailerInBackground">True</sys:Boolean>
+    
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
     <sys:Double x:Key="FontSize">14</sys:Double>
     <sys:Double x:Key="FontSizeLarge">15</sys:Double>
@@ -46,7 +55,7 @@
     <SolidColorBrush x:Key="TextBrushDark" Color="{DynamicResource TextColorDark}" />
     <SolidColorBrush x:Key="NormalBrush" Color="{DynamicResource MainColor}" />
     <SolidColorBrush x:Key="NormalBrushDark" Color="{DynamicResource MainColorDark}" />
-    <SolidColorBrush x:Key="NormalBorderBrush" Color="#5555CDFF" />
+    <SolidColorBrush x:Key="NormalBorderBrush" Color="#99363636" />
     <!--<SolidColorBrush x:Key="HoverBrush" Color="{DynamicResource HighlightGlyphColor}" />-->
     <LinearGradientBrush x:Key="HoverBrush" StartPoint="0,0.2" EndPoint="0.8,1">
         <GradientStop Color="{DynamicResource HighlightGlyphColor}"/>
@@ -79,11 +88,13 @@
         <GradientStop Color="#002C3A67" Offset="0.7"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="WindowBackgourndBrush" StartPoint="0.5,-0.2" EndPoint="0.4,1" >
-        <GradientStop Color="#202b4d" Offset="0"/>
-        <GradientStop Color="{DynamicResource MainColorDark}" Offset="0.4"/>
+    <LinearGradientBrush x:Key="WindowBackgourndBrush" StartPoint="0.2,0.2" EndPoint="0.4,1" >
+        <GradientStop Color="{DynamicResource MainColorDark}" Offset="0.5"/>
+        <GradientStop Color="#373642" Offset="1"/>
     </LinearGradientBrush>
 
-    <DropShadowEffect x:Key="PopupDropShadow" BlurRadius="15" ShadowDepth="0" Color="Black" RenderingBias="Performance" Opacity="0.8"/>
+    <DropShadowEffect x:Key="PopupDropShadow" BlurRadius="16" ShadowDepth="2" Direction="-90" Color="Black" RenderingBias="Performance" Opacity="0.75"/>
 
+    <sys:Double x:Key="Zero">0</sys:Double>
+    
 </ResourceDictionary>

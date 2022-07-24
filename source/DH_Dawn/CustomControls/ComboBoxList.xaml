@@ -126,7 +126,11 @@
                        MaxHeight="300" MinWidth="{Binding ActualWidth, ElementName=MainToggle}">
                     <Border Background="{DynamicResource PopupBackgroundBrush}"
                             BorderThickness="{DynamicResource PopupBorderThickness}"
-                            BorderBrush="{DynamicResource PopupBorderBrush}">
+                            BorderBrush="{DynamicResource PopupBorderBrush}"
+                            CornerRadius="{DynamicResource ControlCornerRadius}"
+                            Margin="15"
+                            MinWidth="{Binding ActualWidth, ElementName=MainToggle}"
+                            Effect="{StaticResource PopupDropShadow}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
