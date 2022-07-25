@@ -40,10 +40,12 @@
                                 <ScaleTransform x:Name="BorderScale" CenterX="0.5" CenterY="0.5"/>
                             </Border.RenderTransform>
                         </Border>
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
-                                            />
+                        <Border Padding="{TemplateBinding Padding}" Margin="2">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                RecognizesAccessKey="True" 
+                                                />
+                        </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">

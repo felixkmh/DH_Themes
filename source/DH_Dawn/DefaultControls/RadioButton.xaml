@@ -8,20 +8,40 @@
 
     <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource UserEditableBoxBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="Pulse">
+                            <DoubleAnimation Storyboard.TargetName="BulletBorder"
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="1.12" Duration="0:0:0.13"
+                                                         AutoReverse="True"
+                                             FillBehavior="Stop"/>
+                            <DoubleAnimation Storyboard.TargetName="BulletBorder"
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                         To="1.12" Duration="0:0:0.13"
+                                                         AutoReverse="True"
+                                             FillBehavior="Stop"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
                     <BulletDecorator>
                         <BulletDecorator.Bullet>
                             <Border Background="Transparent">
                                 <Grid Width="18" Height="18">
                                     <Ellipse x:Name="BulletBorder" Width="18" Height="18"
-                                            Stroke="{DynamicResource NormalBorderBrush}"
-                                            StrokeThickness="{DynamicResource EllipseBorderThickness}" />
+                                            Stroke="{TemplateBinding BorderBrush}"
+                                            Fill="{TemplateBinding Background}"
+                                            StrokeThickness="{DynamicResource EllipseBorderThickness}"
+                                            RenderTransformOrigin="0.5,0.5">
+                                        <Ellipse.RenderTransform>
+                                            <ScaleTransform/>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
                                     <Viewbox x:Name="CheckIcon" Visibility="Collapsed" >
                                         <TextBlock Text="h" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
                                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -29,16 +49,25 @@
                                 </Grid>
                             </Border>
                         </BulletDecorator.Bullet>
-                        <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <Border Padding="{TemplateBinding Padding}">
                             <ContentPresenter RecognizesAccessKey="True" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         </Border>
                     </BulletDecorator>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="CheckIcon" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                            </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Stroke" Value="{DynamicResource GlyphBrush}" TargetName="BulletBorder" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                            </Trigger.EnterActions>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Stroke" Value="{DynamicResource GlyphBrush}" TargetName="BulletBorder" />

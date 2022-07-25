@@ -48,6 +48,8 @@
     <Color x:Key="WindowPanelSeparatorColor">#3355CDFF</Color>
     <Color x:Key="DataChangeNotifColor">#ffa500</Color>
 
+    <SolidColorBrush x:Key="TogglableBrush" Color="{DynamicResource UserEditableBoxColor}" Opacity="0.08" />
+    <SolidColorBrush x:Key="TextBoxBrush" Color="{DynamicResource UserEditableBoxColor}" Opacity="0.005"/>
     <SolidColorBrush x:Key="UserEditableBoxBrush" Color="{DynamicResource UserEditableBoxColor}" Opacity="0.25"/>
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />

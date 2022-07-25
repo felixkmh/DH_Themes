@@ -16,7 +16,8 @@
                 <ControlTemplate TargetType="CalendarItem">
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="{DynamicResource ControlCornerRadius}">
                         <DockPanel Name="PART_Root" LastChildFill="True" >
                             <Button x:Name="PART_PreviousButton" DockPanel.Dock="Left"
                                     FontWeight="Bold" FontFamily="Marlett" Padding="4,2,4,2"
@@ -160,6 +161,12 @@
         <Setter Property="CalendarDayButtonStyle" Value="{DynamicResource CalendarDayButtonStyle}"/>
         <Setter Property="CalendarButtonStyle" Value="{DynamicResource CalendarButtonStyle}"/>
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
+        <Setter Property="Margin" Value="15"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="16" ShadowDepth="2" Direction="-90" Color="Black" RenderingBias="Performance" Opacity="0.75"/>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Calendar">
@@ -180,20 +187,22 @@
         <Setter Property="TextBlock.Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="TextBlock.Background" Value="{DynamicResource ControlBackgroundBrush}" />
         <Setter Property="CalendarStyle" Value="{StaticResource CalendarStyle}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
-        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource UserEditableBoxBrush}" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="Padding" Value="3" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DatePicker">
                     <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{DynamicResource TextBoxBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{DynamicResource ControlCornerRadius}"
                             Padding="{TemplateBinding Padding}">
                         <DockPanel>
                             <Popup x:Name="PART_Popup" StaysOpen="False"
                                    AllowsTransparency="True" Placement="Bottom"
-                                   PlacementTarget="{Binding ElementName=PART_TextBox}" />
+                                   PlacementTarget="{Binding ElementName=PART_TextBox}" 
+                                   />
                             <ToggleButton x:Name="PART_Button" DockPanel.Dock="Right" Content="🗓"
                                           BorderThickness="0" Padding="5,0,5,0"
                                           IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>

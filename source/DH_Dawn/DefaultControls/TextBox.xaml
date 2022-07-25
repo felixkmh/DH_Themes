@@ -12,11 +12,7 @@
         <Setter Property="AllowDrop" Value="True" />
         <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource UserEditableBoxColor}" Opacity="0.02"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="{DynamicResource TextBoxBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource UserEditableBoxBrush}"/>
         <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="Padding" Value="3" />

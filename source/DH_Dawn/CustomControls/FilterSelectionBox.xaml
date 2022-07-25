@@ -3,10 +3,11 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <ControlTemplate x:Key="FilterSelectionBoxTemplate" TargetType="{x:Type FilterSelectionBoxBase}">
-        <Border BorderThickness="{DynamicResource ControlBorderThickness}"
-                CornerRadius="{DynamicResource ControlCornerRadius}"
+        <Border BorderThickness="0,0,0,1"
+                CornerRadius="5"
                 Style="{DynamicResource HighlightBorder}"
                 Background="{TemplateBinding Background}"
+                BorderBrush="{DynamicResource UserEditableBoxBrush}"
                 x:Name="Root">
             <Grid>
                 <DockPanel>
@@ -40,7 +41,8 @@
                     </ToggleButton.Style>
                 </ToggleButton>
                 <TextBox x:Name="PART_TextFilterInput" BorderThickness="0"
-                         VerticalAlignment="Center" Margin="1,0,30,0"/>
+                         VerticalAlignment="Center" Margin="1,0,30,0"
+                         />
                 <Button x:Name="PART_ButtonClearFilter"
                         Margin="0,0,20,0" FontSize="18"
                         Background="Transparent" HorizontalAlignment="Right"
@@ -53,7 +55,6 @@
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding IsMouseOver, ElementName=Root}" Value="True"/>
-                                        <Condition Binding="{Binding Text, ElementName=PART_TextFilterInput, Converter={StaticResource StringNullOrEmptyToBoolConverter}}" Value="{StaticResource True}"/>
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Visibility" Value="Visible" />
                                 </MultiDataTrigger>
@@ -75,6 +76,11 @@
                 </Popup>
             </Grid>
         </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" TargetName="Root" Value="{DynamicResource GlyphBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style x:Key="FilterSelectionBoxItemStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">

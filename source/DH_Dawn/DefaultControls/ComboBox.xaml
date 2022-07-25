@@ -10,13 +10,15 @@
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBrush}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />        
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1" />        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
                     <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}"
-                            Style="{DynamicResource HighlightBorder}">
+                            Style="{DynamicResource HighlightBorder}"
+                            Background="{DynamicResource TogglableBrush}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
                         <Grid>
                             <ToggleButton x:Name="ToggleButton" Focusable="False" ClickMode="Press" Margin="0,0,2,0"
                                           IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
@@ -60,6 +62,9 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
                         </Trigger>
