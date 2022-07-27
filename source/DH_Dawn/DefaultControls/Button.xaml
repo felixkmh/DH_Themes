@@ -30,16 +30,34 @@
                                              AutoReverse="True"
                                              FillBehavior="Stop"/>
                         </Storyboard>
+                        <Storyboard x:Key="Enter">
+                            <DoubleAnimation Storyboard.TargetName="Border"
+                                             Storyboard.TargetProperty="RadiusX"
+                                             To="14" Duration="0:0:0.13"/>
+                            <DoubleAnimation Storyboard.TargetName="Border"
+                                             Storyboard.TargetProperty="RadiusY"
+                                             To="14" Duration="0:0:0.13"/>
+                        </Storyboard>
+                        <Storyboard x:Key="Leave">
+                            <DoubleAnimation Storyboard.TargetName="Border"
+                                             Storyboard.TargetProperty="RadiusX"
+                                             To="9" Duration="0:0:0.13"/>
+                            <DoubleAnimation Storyboard.TargetName="Border"
+                                             Storyboard.TargetProperty="RadiusY"
+                                             To="9" Duration="0:0:0.13"/>
+                        </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid>
-                        <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"                            
-                                CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
+                        <Border x:Name="Proxy" BorderThickness="{TemplateBinding BorderThickness}"/>
+                        <Rectangle x:Name="Border" StrokeThickness="{Binding ElementName=Proxy, Path=BorderThickness.Top}" Fill="{TemplateBinding Background}"                            
+                                RadiusX="{DynamicResource ControlCornerRadiusSingle}"
+                                RadiusY="{DynamicResource ControlCornerRadiusSingle}" 
+                                Stroke="{TemplateBinding BorderBrush}"
                                 RenderTransformOrigin="0.5,0.5">
-                            <Border.RenderTransform>
+                            <Rectangle.RenderTransform>
                                 <ScaleTransform x:Name="BorderScale" CenterX="0.5" CenterY="0.5"/>
-                            </Border.RenderTransform>
-                        </Border>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
                         <Border Padding="{TemplateBinding Padding}" Margin="2">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -49,12 +67,15 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                                <BeginStoryboard Storyboard="{StaticResource Enter}"/>
                             </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource Leave}"/>
+                            </Trigger.ExitActions>
                         </Trigger>
                         <EventTrigger RoutedEvent="PreviewMouseUp">
                             <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
