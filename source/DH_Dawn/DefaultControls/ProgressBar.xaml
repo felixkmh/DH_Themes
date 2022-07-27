@@ -20,7 +20,17 @@
                             <Rectangle Fill="{TemplateBinding Background}" />
                             <Rectangle Name="PART_Track" Margin="0" />
                             <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                <Grid>
+                                <Grid x:Name="IndicatorGrid">
+                                    <Grid.OpacityMask>
+                                        <VisualBrush AutoLayoutContent="True">
+                                            <VisualBrush.Visual>
+                                                <Border
+                                                    Width="{Binding ActualWidth, ElementName=IndicatorGrid, FallbackValue={StaticResource Zero}}"
+                                                    Height="{Binding ActualHeight, ElementName=IndicatorGrid, FallbackValue={StaticResource Zero}}"
+                                                    Background="Black" CornerRadius="{DynamicResource ControlCornerRadius}"/>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Grid.OpacityMask>
                                     <Rectangle Fill="{TemplateBinding Foreground}" />
                                     <Grid x:Name="Animation" Visibility="Hidden">
                                         <Rectangle Fill="{TemplateBinding Background}" Margin="0,0,50,0">
