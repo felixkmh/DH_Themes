@@ -22,7 +22,7 @@
     <Thickness x:Key="PopupBorderThickness">1</Thickness>
     <Thickness x:Key="ControlBorderThickness">0</Thickness>
     <sys:Double x:Key="EllipseBorderThickness">1</sys:Double>
-    <sys:Double x:Key="ControlCornerRadiusSingle">10</sys:Double>
+    <sys:Double x:Key="ControlCornerRadiusSingle">9</sys:Double>
     <CornerRadius x:Key="ControlCornerRadius" 
                   TopLeft="{StaticResource ControlCornerRadiusSingle}"
                   TopRight="{StaticResource ControlCornerRadiusSingle}"
