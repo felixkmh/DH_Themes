@@ -1,5 +1,6 @@
 Constants:
-	- Details View
-	- ButtonStackVerticalAlignment
-	- EnableFloatingSourceSelector
-	- ShowTrailerInBackground
+    - Details View
+    - ButtonStackVerticalAlignment
+    - EnableFloatingSourceSelector
+    - ShowTrailerInBackground
+    - ShowBackgroundTrailerControls

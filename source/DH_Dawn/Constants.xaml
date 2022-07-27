@@ -10,6 +10,7 @@
     
     <!--EML-->
     <sys:Boolean x:Key="ShowTrailerInBackground">True</sys:Boolean>
+    <sys:Boolean x:Key="ShowBackgroundTrailerControls">True</sys:Boolean>
     
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
     <sys:Double x:Key="FontSize">14</sys:Double>
@@ -50,7 +51,7 @@
 
     <SolidColorBrush x:Key="TogglableBrush" Color="{DynamicResource UserEditableBoxColor}" Opacity="0.08" />
     <SolidColorBrush x:Key="TextBoxBrush" Color="{DynamicResource UserEditableBoxColor}" Opacity="0.005"/>
-    <SolidColorBrush x:Key="UserEditableBoxBrush" Color="{DynamicResource UserEditableBoxColor}" Opacity="0.25"/>
+    <SolidColorBrush x:Key="UserEditableBoxBrush" Color="{DynamicResource UserEditableBoxColor}" Opacity="0.28"/>
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
     <SolidColorBrush x:Key="TextBrushDarker" Color="{DynamicResource TextColorDarker}" />
@@ -98,5 +99,6 @@
     <DropShadowEffect x:Key="PopupDropShadow" BlurRadius="16" ShadowDepth="2" Direction="-90" Color="Black" RenderingBias="Performance" Opacity="0.75"/>
 
     <sys:Double x:Key="Zero">0</sys:Double>
+    <ElasticEase x:Key="FlyOutEase" Oscillations="1"/>
     
 </ResourceDictionary>

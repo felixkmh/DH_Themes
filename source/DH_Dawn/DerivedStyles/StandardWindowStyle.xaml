@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
+
     <Style x:Key="WindowDesignStyle" TargetType="WindowBase">
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
@@ -12,10 +13,11 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+        <Setter Property="WindowStyle" Value="SingleBorderWindow"/>
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
-                <WindowChrome CaptionHeight="25" CornerRadius="0" ResizeBorderThickness="4"
-                              NonClientFrameEdges ="None" UseAeroCaptionButtons="False" GlassFrameThickness="1"/>
+                <WindowChrome CaptionHeight="25" ResizeBorderThickness="4"
+                              NonClientFrameEdges ="None" UseAeroCaptionButtons="False" GlassFrameThickness="0.5"/>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">

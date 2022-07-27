@@ -129,6 +129,7 @@
         <Setter Property="Background" Value="{DynamicResource NormalBrushDark}" />
         <Setter Property="Width" Value="800" />
         <Setter Property="SizeToContent" Value="Height" />
+        <Setter Property="ShowInTaskbar" Value="False" />
     </Style>
 
     <ControlTemplate x:Key="SearchWindowFilterNotification" TargetType="ContentControl">
