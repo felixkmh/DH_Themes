@@ -1002,7 +1002,7 @@
                                         Style="{StaticResource FloatButtonStyle}"
                                         Visibility="{PluginSettings Plugin=GameActivity, Path=HasData, FallbackValue={x:Static Visibility.Collapsed}}">
                                     <StackPanel Orientation="Horizontal">
-                                        <Viewbox MaxWidth="25" MaxHeight="25">
+                                        <Viewbox MaxHeight="25">
                                             <ContentControl x:Name="GameActivity_PluginButton">
                                                 <ContentControl.Resources>
                                                     <Style TargetType="Button">
@@ -1037,7 +1037,7 @@
                                         Style="{StaticResource FloatButtonStyle}"
                                         >
                                     <StackPanel Orientation="Horizontal">
-                                        <Viewbox MaxWidth="25" MaxHeight="25">
+                                        <Viewbox MaxHeight="25">
                                             <ContentControl x:Name="HowLongToBeat_PluginButton">
                                                 <ContentControl.Resources>
                                                     <Style TargetType="Button">
