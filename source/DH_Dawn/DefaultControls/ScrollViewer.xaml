@@ -27,12 +27,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
                     <Track x:Name="PART_Track" Orientation="Vertical" IsDirectionReversed="True"
-                           Width="17">
+                           Width="12" RenderTransformOrigin="0.5,0.5">
                         <Track.Resources>
                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">42</sys:Double>
                         </Track.Resources>
                         <Track.Thumb>
-                            <Thumb Width="8" />
+                            <Thumb Width="6" />
                         </Track.Thumb>
                         <Track.DecreaseRepeatButton>
                             <RepeatButton x:Name="UpButton" Style="{DynamicResource ScrollBarTrackButton}"
