@@ -85,6 +85,20 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <Trigger Property="Name" Value="PART_PluginButton">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="Transparent">
+                                <Viewbox Margin="{TemplateBinding Padding}">
+                                    <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
@@ -94,5 +108,5 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
             </Trigger>
         </Style.Triggers>
-    </Style>                  
+    </Style>
 </ResourceDictionary>

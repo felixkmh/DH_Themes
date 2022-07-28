@@ -3,8 +3,11 @@
 
     <ControlTemplate x:Key="NumericBoxTemplate" TargetType="{x:Type TextBox}">
         <Border x:Name="Border" Padding="3"
-                Background="{TemplateBinding Background}"
-                Style="{DynamicResource HighlightBorder}">
+                Background="{DynamicResource TextBoxBrush}"
+                Style="{DynamicResource HighlightBorder}"
+                BorderThickness="0,0,0,1"
+                CornerRadius="5"
+                BorderBrush="{DynamicResource UserEditableBoxBrush}">
             <ScrollViewer x:Name="PART_ContentHost"
                           VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
                           HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"/>
@@ -12,6 +15,9 @@
         <ControlTemplate.Triggers>
             <Trigger Property="IsFocused" Value="True">
                 <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource HoverBrush}" TargetName="Border" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

@@ -6,10 +6,12 @@
                     xmlns:m="clr-namespace:Playnite;assembly=Playnite.SDK"
                     mc:Ignorable="d">
 
-    <Style x:Key="RatingBorder" TargetType="ContentControl">
+    <Style x:Key="UserRatingProgressBar" TargetType="ProgressBar">
+        <Setter Property="Minimum" Value="0"/>
+        <Setter Property="Maximum" Value="100"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
+                <ControlTemplate TargetType="ProgressBar">
                     <ControlTemplate.Resources>
                         <sys:Double x:Key="HalfWidth">8</sys:Double>
                         <sys:Double x:Key="Width">16</sys:Double>
@@ -26,100 +28,66 @@
                             <TextBlock.OpacityMask>
                                 <VisualBrush AutoLayoutContent="True" Stretch="Fill" AlignmentX="Left">
                                     <VisualBrush.Visual>
-                                        <StackPanel Orientation="Horizontal" Height="{DynamicResource Height}">
-                                            <Border x:Name="_1Star" Background="Transparent" Width="{DynamicResource HalfWidth}"/>
-                                            <Border x:Name="_2Star" Background="Transparent" Width="{DynamicResource HalfWidth}"/>
-                                            <Border x:Name="_3Star" Background="Transparent" Width="{DynamicResource HalfWidth}"/>
-                                            <Border x:Name="_4Star" Background="Transparent" Width="{DynamicResource HalfWidth}"/>
-                                            <Border x:Name="_5Star" Background="Transparent" Width="{DynamicResource HalfWidth}"/>
-                                            <Border x:Name="_6Star" Background="Transparent" Width="{DynamicResource HalfWidth}"/>
-                                            <Border x:Name="_7Star" Background="Transparent" Width="{DynamicResource HalfWidth}"/>
-                                            <Border x:Name="_8Star" Background="Transparent" Width="{DynamicResource HalfWidth}"/>
-                                            <Border x:Name="_9Star" Background="Transparent" Width="{DynamicResource HalfWidth}"/>
-                                            <Border x:Name="_10Star" Background="Transparent" Width="{DynamicResource HalfWidth}"/>
+                                        <StackPanel Orientation="Horizontal" Height="{DynamicResource Height}"
+                                                    Background="Transparent">
+                                            <ProgressBar x:Name="Mask" Background="Transparent" Width="80" Minimum="{TemplateBinding Minimum}" Maximum="{TemplateBinding Maximum}" Value="{TemplateBinding Value}" Height="{DynamicResource Height}">
+                                                <ProgressBar.Style>
+                                                    <Style TargetType="ProgressBar"/>
+                                                </ProgressBar.Style>
+                                            </ProgressBar>
+                                        </StackPanel>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </TextBlock.OpacityMask>
+                        </TextBlock>
+                        <Slider Height="{DynamicResource Height}" Width="80" Minimum="0" Maximum="100"
+                                Value="{Binding Game.Game.UserScore, TargetNullValue={StaticResource Zero}}"
+                                HorizontalAlignment="Left" IsMoveToPointEnabled="True"
+                                Opacity="0"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RatingProgressBar" TargetType="ProgressBar">
+        <Setter Property="Minimum" Value="0"/>
+        <Setter Property="Maximum" Value="100"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ProgressBar">
+                    <ControlTemplate.Resources>
+                        <sys:Double x:Key="HalfWidth">8</sys:Double>
+                        <sys:Double x:Key="Width">16</sys:Double>
+                        <sys:Double x:Key="Height">16</sys:Double>
+                        <sys:String x:Key="_10StarString">&#xF000;&#xF000;&#xF000;&#xF000;&#xF000;</sys:String>
+                    </ControlTemplate.Resources>
+                    <Grid>
+                        <TextBlock Text="{StaticResource _10StarString}" Height="{DynamicResource Height}" FontFamily="{StaticResource FontIcoFont}"
+                                   FontSize="{DynamicResource Height}"
+                                   Foreground="White" Opacity="0.3"/>
+                        <TextBlock Text="{StaticResource _10StarString}" Height="{DynamicResource Height}" FontFamily="{StaticResource FontIcoFont}"
+                                   FontSize="{DynamicResource Height}"
+                                   Foreground="White">
+                            <TextBlock.OpacityMask>
+                                <VisualBrush AutoLayoutContent="True" Stretch="Fill" AlignmentX="Left">
+                                    <VisualBrush.Visual>
+                                        <StackPanel Orientation="Horizontal" Height="{DynamicResource Height}"
+                                                    Background="Transparent">
+                                            <ProgressBar x:Name="Mask" Background="Transparent" Width="80" Minimum="{TemplateBinding Minimum}" Maximum="{TemplateBinding Maximum}" Value="{TemplateBinding Value}" Height="{DynamicResource Height}">
+                                                <ProgressBar.Style>
+                                                    <Style TargetType="ProgressBar"/>
+                                                </ProgressBar.Style>
+                                            </ProgressBar>
                                         </StackPanel>
                                     </VisualBrush.Visual>
                                 </VisualBrush>
                             </TextBlock.OpacityMask>
                         </TextBlock>
                     </Grid>
-                    <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding .}" Value="{x:Static ScoreGroup.O0x}">
-                            <Setter Property="Background" TargetName="_1Star" Value="Black"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding .}" Value="{x:Static ScoreGroup.O1x}">
-                            <Setter Property="Background" TargetName="_1Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_2Star" Value="Black"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding .}" Value="{x:Static ScoreGroup.O2x}">
-                            <Setter Property="Background" TargetName="_1Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_2Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_3Star" Value="Black"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding .}" Value="{x:Static ScoreGroup.O3x}">
-                            <Setter Property="Background" TargetName="_1Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_2Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_3Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_4Star" Value="Black"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding .}" Value="{x:Static ScoreGroup.O4x}">
-                            <Setter Property="Background" TargetName="_1Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_2Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_3Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_4Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_5Star" Value="Black"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding .}" Value="{x:Static ScoreGroup.O5x}">
-                            <Setter Property="Background" TargetName="_1Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_2Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_3Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_4Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_5Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_6Star" Value="Black"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding .}" Value="{x:Static ScoreGroup.O6x}">
-                            <Setter Property="Background" TargetName="_1Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_2Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_3Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_4Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_5Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_6Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_7Star" Value="Black"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding .}" Value="{x:Static ScoreGroup.O7x}">
-                            <Setter Property="Background" TargetName="_1Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_2Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_3Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_4Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_5Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_6Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_7Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_8Star" Value="Black"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding .}" Value="{x:Static ScoreGroup.O8x}">
-                            <Setter Property="Background" TargetName="_1Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_2Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_3Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_4Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_5Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_6Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_7Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_8Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_9Star" Value="Black"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding .}" Value="{x:Static ScoreGroup.O9x}">
-                            <Setter Property="Background" TargetName="_1Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_2Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_3Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_4Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_5Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_6Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_7Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_8Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_9Star" Value="Black"/>
-                            <Setter Property="Background" TargetName="_10Star" Value="Black"/>
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -544,6 +512,7 @@
                 <ScaleTransform ScaleX="0"/>
             </Setter.Value>
         </Setter>
+        <Setter Property="Tag" Value="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, FallbackValue={StaticResource False}}"
         <Style.Triggers>
             <Trigger Property="Tag" Value="{StaticResource True}">
                 <Trigger.EnterActions>
@@ -720,10 +689,10 @@
                                                         </Trigger>
                                                         <MultiDataTrigger>
                                                             <MultiDataTrigger.Conditions>
-                                                                <Condition Binding="{Binding Game.IsInstalling}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsRunning}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsLaunching}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsUninstalling}" Value="False"/>
+                                                                <Condition Binding="{Binding IsInstalling}" Value="False"/>
+                                                                <Condition Binding="{Binding IsRunning}" Value="False"/>
+                                                                <Condition Binding="{Binding IsLaunching}" Value="False"/>
+                                                                <Condition Binding="{Binding IsUninstalling}" Value="False"/>
                                                             </MultiDataTrigger.Conditions>
                                                             <Setter Property="Tag" Value="{StaticResource False}"/>
                                                         </MultiDataTrigger>
@@ -846,10 +815,10 @@
                                                         </Trigger>
                                                         <MultiDataTrigger>
                                                             <MultiDataTrigger.Conditions>
-                                                                <Condition Binding="{Binding Game.IsInstalling}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsRunning}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsLaunching}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsUninstalling}" Value="False"/>
+                                                                <Condition Binding="{Binding IsInstalling}" Value="False"/>
+                                                                <Condition Binding="{Binding IsRunning}" Value="False"/>
+                                                                <Condition Binding="{Binding IsLaunching}" Value="False"/>
+                                                                <Condition Binding="{Binding IsUninstalling}" Value="False"/>
                                                             </MultiDataTrigger.Conditions>
                                                             <Setter Property="Tag" Value="{StaticResource False}"/>
                                                         </MultiDataTrigger>
@@ -995,32 +964,69 @@
                                         Padding="5"
                                         Style="{StaticResource FloatButtonStyle}"
                                         Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, FallbackValue={x:Static Visibility.Collapsed}}">
-                                    <Viewbox>
-                                        <ContentControl x:Name="SuccessStory_PluginButton">
-                                            <ContentControl.Resources>
-                                                <Style TargetType="Button">
-                                                    <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
-                                                    <Setter Property="Template">
-                                                        <Setter.Value>
-                                                            <ControlTemplate TargetType="Button">
-                                                                <ContentPresenter/>
-                                                            </ControlTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </ContentControl.Resources>
-                                        </ContentControl>
-                                    </Viewbox>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox>
+                                            <ContentControl x:Name="SuccessStory_PluginButton">
+                                                <ContentControl.Resources>
+                                                    <Style TargetType="Button">
+                                                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <ContentPresenter/>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </ContentControl.Resources>
+                                            </ContentControl>
+                                        </Viewbox>
+                                        <Border Padding="5,0,0,0"
+                                                Style="{StaticResource ExpandingElement}">
+                                            <StackPanel Margin="5,0,0,0"
+                                                        Orientation="Horizontal"
+                                                        Background="Transparent"
+                                                        VerticalAlignment="Center">
+                                                <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked}"/>
+                                                <TextBlock Text="/"/>
+                                                <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total}"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
                                 </Button>
                             </Border>
 
                             <Border Visibility="{PluginSettings Plugin=GameActivity, Path=EnableIntegrationButton, FallbackValue={x:Static Visibility.Collapsed}}">
                                 <Button HorizontalAlignment="Left" Height="40" Margin="0,6,0,0"
-                                        Padding="5"
+                                        Padding="1,4"
                                         Style="{StaticResource FloatButtonStyle}"
                                         Visibility="{PluginSettings Plugin=GameActivity, Path=HasData, FallbackValue={x:Static Visibility.Collapsed}}">
-                                    <Viewbox>
-                                        <ContentControl x:Name="GameActivity_PluginButton">
+
+                                    <ContentControl x:Name="GameActivity_PluginButton" HorizontalAlignment="Right">
+                                        <ContentControl.Resources>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <ContentPresenter/>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ContentControl.Resources>
+                                        </ContentControl>
+                                    
+                                </Button>
+                            </Border>
+
+                            <Border Visibility="{PluginSettings Plugin=HowLongToBeat, Path=EnableIntegrationButton, FallbackValue={x:Static Visibility.Collapsed}}">
+                                <Button HorizontalAlignment="Left" Height="40" Margin="0,6,0,0"
+                                        Padding="1,4"
+                                        Style="{StaticResource FloatButtonStyle}"
+                                        Visibility="{PluginSettings Plugin=HowLongToBeat, Path=HasData, FallbackValue={x:Static Visibility.Collapsed}}">
+                                    
+                                        <ContentControl x:Name="HowLongToBeat_PluginButton" HorizontalAlignment="Right">
                                             <ContentControl.Resources>
                                                 <Style TargetType="Button">
                                                     <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -1034,7 +1040,7 @@
                                                 </Style>
                                             </ContentControl.Resources>
                                         </ContentControl>
-                                    </Viewbox>
+                                    
                                 </Button>
                             </Border>
 
@@ -1049,7 +1055,7 @@
                                 </ContentControl.Resources>
                             </ContentControl>-->
 
-                            <ContentControl x:Name="HowLongToBeat_PluginButton"
+                            <!--<ContentControl x:Name="HowLongToBeat_PluginButton"
                                             Visibility="{PluginSettings Plugin=HowLongToBeat, Path=EnableIntegrationButton, FallbackValue={x:Static Visibility.Collapsed}}">
                                 <ContentControl.Resources>
                                     <Style TargetType="Button" BasedOn="{StaticResource FloatButtonStyle}">
@@ -1080,7 +1086,7 @@
                                         <Setter Property="Margin" Value="0,6,0,0"/>
                                     </Style>
                                 </ContentControl.Resources>
-                            </ContentControl>
+                            </ContentControl>-->
                         </StackPanel>
 
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Top"
@@ -1097,6 +1103,7 @@
 		                                    HorizontalAlignment="Center" VerticalAlignment="Top"
                                             Visibility="{PluginSettings Plugin=BackgroundChanger, Path=HasDataBackground, FallbackValue={x:Static Visibility.Collapsed}}"/>
 
+                            <ContentControl x:Name="ImageFillProxy" Tag="{DynamicResource FillBackgroundImage}"/>
                             <FadeImage x:Name="PART_ImageBackground" Stretch="Uniform"
                                        HorizontalAlignment="Center" VerticalAlignment="Top"
                                        Visibility="{Binding ElementName=BackgroundChanger_PluginBackgroundImage, Path=IsVisible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
@@ -1193,9 +1200,11 @@
                                                         <DropShadowEffect ShadowDepth="3" RenderingBias="Quality"/>
                                                     </TextBlock.Effect>
                                                 </TextBlock>
-                                                <ContentControl Style="{StaticResource RatingBorder}" DockPanel.Dock="Right" VerticalAlignment="Center"
-                                                                Visibility="{Binding DataContext.UserScoreVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DockPanel}}"
-                                                                DataContext="{Binding Game.UserScoreGroup}"/>
+                                                <ProgressBar Style="{StaticResource UserRatingProgressBar}" DockPanel.Dock="Right" VerticalAlignment="Center"
+                                                            Visibility="{Binding UserScoreVisibility}"
+                                                            Value="{Binding Game.Game.UserScore, TargetNullValue={StaticResource Zero}}"
+                                                            ToolTip="{Binding Game.UserScore}"
+                                                              />
                                             </DockPanel>
                                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
                                                     Orientation="Horizontal" Margin="0,15,0,0">
@@ -1333,6 +1342,9 @@
                         </ScrollViewer>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, ElementName=ImageFillProxy}" Value="{StaticResource True}">
+                            <Setter TargetName="PART_ImageBackground" Property="Stretch" Value="UniformToFill"/>
+                        </DataTrigger>
                         <DataTrigger Binding="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.PlaybackTimeProgress, FallbackValue={x:Null}}" Value="00:00">
                             <Setter TargetName="TrailerPauseButton" Property="Command" Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.VideoPauseCommand, FallbackValue={x:Null}}"/>
                             <Setter TargetName="TrailerPlayButton" Property="Command" Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.VideoPlayCommand, FallbackValue={x:Null}}"/>

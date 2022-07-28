@@ -2,5 +2,6 @@ Constants:
     - Details View
     - ButtonStackVerticalAlignment
     - EnableFloatingSourceSelector
+    - ShowDuplicateHiderInDetailsList
     - ShowTrailerInBackground
     - ShowBackgroundTrailerControls

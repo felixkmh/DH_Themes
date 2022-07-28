@@ -4,9 +4,12 @@
 
     <!--ThemeModifier-->
     <VerticalAlignment x:Key="ButtonStackVerticalAlignment">Top</VerticalAlignment>
+    <sys:Boolean x:Key="EnableDetailsListTranslation">False</sys:Boolean>
+    <sys:Boolean x:Key="FillBackgroundImage">False</sys:Boolean>
     
     <!--DuplicateHider-->
     <sys:Boolean x:Key="EnableFloatingSourceSelector">True</sys:Boolean>
+    <sys:Boolean x:Key="ShowDuplicateHiderInDetailsList">True</sys:Boolean>
     
     <!--EML-->
     <sys:Boolean x:Key="ShowTrailerInBackground">True</sys:Boolean>
@@ -62,7 +65,7 @@
     <!--<SolidColorBrush x:Key="HoverBrush" Color="{DynamicResource HighlightGlyphColor}" />-->
     <LinearGradientBrush x:Key="HoverBrush" StartPoint="0,0.2" EndPoint="0.8,1">
         <GradientStop Color="{DynamicResource HighlightGlyphColor}"/>
-        <GradientStop Color="{DynamicResource GlyphColor}" Offset="1"/>
+        <GradientStop Color="{DynamicResource GlyphColor}" Offset="0.6"/>
     </LinearGradientBrush>
     <!--<SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource GlyphColor}" />-->
     <LinearGradientBrush x:Key="GlyphBrush" StartPoint="0,0" EndPoint="1,1">
