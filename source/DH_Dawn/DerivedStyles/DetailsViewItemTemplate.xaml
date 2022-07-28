@@ -110,30 +110,36 @@
                     <!--Fade effect. Remove or comment out <ControlTemplate.Triggers> section to deactivate animation.-->
                     <!--Check DuplicateHider_SourceSelector Visibility if animation is removed.-->
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding IsInstalling}" Value="True">
+                        <DataTrigger Binding="{Binding Game.IsInstalling}" Value="True">
                             <Setter Property="Visibility" TargetName="LoadingBorder" Value="Visible"/>
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard x:Name="Installing" Storyboard="{StaticResource LoadingAnimation}"/>
                             </DataTrigger.EnterActions>
                             <DataTrigger.ExitActions>
                                 <StopStoryboard BeginStoryboardName="Installing"/>
+                                <StopStoryboard BeginStoryboardName="UnInstalling"/>
+                                <StopStoryboard BeginStoryboardName="Launching"/>
                             </DataTrigger.ExitActions>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding IsUninstalling}" Value="True">
+                        <DataTrigger Binding="{Binding Game.IsUninstalling}" Value="True">
                             <Setter Property="Visibility" TargetName="LoadingBorder" Value="Visible"/>
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard x:Name="UnInstalling" Storyboard="{StaticResource LoadingAnimation}"/>
                             </DataTrigger.EnterActions>
                             <DataTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="Installing"/>
                                 <StopStoryboard BeginStoryboardName="UnInstalling"/>
+                                <StopStoryboard BeginStoryboardName="Launching"/>
                             </DataTrigger.ExitActions>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding IsLaunching}" Value="True">
+                        <DataTrigger Binding="{Binding Game.IsLaunching}" Value="True">
                             <Setter Property="Visibility" TargetName="LoadingBorder" Value="Visible"/>
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard x:Name="Launching" Storyboard="{StaticResource LoadingAnimation}"/>
                             </DataTrigger.EnterActions>
                             <DataTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="Installing"/>
+                                <StopStoryboard BeginStoryboardName="UnInstalling"/>
                                 <StopStoryboard BeginStoryboardName="Launching"/>
                             </DataTrigger.ExitActions>
                         </DataTrigger>
