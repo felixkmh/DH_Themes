@@ -3,6 +3,7 @@ Constants:
     - FillBackgroundImage
     - ButtonStackVerticalAlignment
     - FloatButtonsMargin(0,200)
+    - EnableFloatingRating
     - EnableFloatingSourceSelector
     - ShowDuplicateHiderInDetailsList
     - ShowTrailerInBackground

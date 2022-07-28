@@ -8,6 +8,9 @@
     <sys:Boolean x:Key="FillBackgroundImage">False</sys:Boolean>
     <sys:Double x:Key="FloatButtonsMargin">40</sys:Double>
     
+    <!--ThemeExtras-->
+    <sys:Boolean x:Key="EnableFloatingRating">True</sys:Boolean>
+    
     <!--DuplicateHider-->
     <sys:Boolean x:Key="EnableFloatingSourceSelector">True</sys:Boolean>
     <sys:Boolean x:Key="ShowDuplicateHiderInDetailsList">True</sys:Boolean>

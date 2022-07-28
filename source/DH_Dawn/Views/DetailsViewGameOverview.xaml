@@ -209,7 +209,7 @@
             <QuadraticEase x:Key="FlyoutEase" EasingMode="EaseOut"/>
         </Style.Resources>
         <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+        <!--<Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>-->
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -512,7 +512,7 @@
                 <ScaleTransform ScaleX="0"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="Tag" Value="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, FallbackValue={StaticResource False}}"/>
+        <Setter Property="Tag" Value="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, FallbackValue={StaticResource False}}"/>
         <Style.Triggers>
             <Trigger Property="Tag" Value="{StaticResource True}">
                 <Trigger.EnterActions>
@@ -861,6 +861,29 @@
                                             HorizontalAlignment="Left"
                                             Visibility="{Binding Tag, ElementName=EnableFloatingSourceSelectorProxy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
+                            <Border x:Name="EnableFloatingRatingProxy" Tag="{DynamicResource EnableFloatingRating}"
+                                    Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <ContentControl Style="{StaticResource FloatContentControlStyle}"
+                                        Margin="0,6,0,0"
+                                        HorizontalAlignment="Left"
+                                        Height="40"
+                                        Padding="5"
+                                        Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Width="30" TextAlignment="Center" Text="{Binding Game.UserScore, TargetNullValue='-'}" Style="{DynamicResource TextBlockGameScore}"
+                                                   Tag="{Binding Game.UserScoreRating}"
+                                                   FontSize="{DynamicResource FontSizeLarge}"
+                                                   FontWeight="SemiBold"/>
+                                        <Border Padding="5,0"  Style="{StaticResource ExpandingElement}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <ContentControl x:Name="ThemeExtras_UserRating1"/>
+                                                <Button Padding="5,0" Margin="5,0,0,0" Content="Reset" Command="{PluginSettings Plugin=ThemeExtras, Path=ResetUserScoreCommand, FallbackValue={x:Null}}"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                </ContentControl>
+                            </Border>
+                            
                             <Border Tag="{DynamicResource ShowBackgroundTrailerControls}"
                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Border x:Name="VideoControls" 
@@ -987,9 +1010,9 @@
                                                     <StackPanel Orientation="Horizontal"
                                                             Background="Transparent"
                                                             VerticalAlignment="Center">
-                                                        <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue={StaticResource Zero}}"/>
+                                                        <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue='-'}"/>
                                                         <TextBlock Text=" / "/>
-                                                        <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue={StaticResource Zero}}"/>
+                                                        <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue='-'}"/>
                                                     </StackPanel>
                                                 </StackPanel>
                                             </Border>
@@ -1150,7 +1173,7 @@
                                             Visibility="{Binding Tag, ElementName=ShowTrailerProxy, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <ContentControl.OpacityMask>
                                         <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                            <GradientStop Color="Black" Offset="0.6"/>
+                                            <GradientStop Color="Black" Offset="0.75"/>
                                             <GradientStop Color="Transparent" Offset="0.95"/>
                                         </LinearGradientBrush>
                                     </ContentControl.OpacityMask>
@@ -1225,11 +1248,16 @@
                                                         <DropShadowEffect ShadowDepth="3" RenderingBias="Quality"/>
                                                     </TextBlock.Effect>
                                                 </TextBlock>
-                                                <ProgressBar Style="{StaticResource UserRatingProgressBar}" DockPanel.Dock="Right" VerticalAlignment="Center"
-                                                            Visibility="{Binding UserScoreVisibility}"
-                                                            Value="{Binding Game.Game.UserScore, TargetNullValue={StaticResource Zero}}"
-                                                            ToolTip="{Binding Game.UserScore}"
-                                                              />
+                                                <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center">
+                                                    <StackPanel.Resources>
+                                                        <sys:Double x:Key="FontSizeLarge">16</sys:Double>
+                                                    </StackPanel.Resources>
+                                                    <ContentControl x:Name="ThemeExtras_UserRating"
+                                                                Visibility="{Binding UserScoreVisibility}">
+                                                    </ContentControl>
+                                                    <ContentControl x:Name="ThemeExtras_CriticRating" Visibility="{Binding CriticScoreVisibility}"/>
+                                                    <ContentControl x:Name="ThemeExtras_CommunityRating" Visibility="{Binding CriticScoreVisibility}"/>
+                                                </StackPanel>
                                             </DockPanel>
                                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
                                                     Orientation="Horizontal" Margin="0,15,0,0">
