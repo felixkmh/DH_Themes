@@ -983,13 +983,23 @@
                                         </Viewbox>
                                         <Border Padding="5,0"
                                                 Style="{StaticResource ExpandingElement}">
-                                            <StackPanel Margin="5,0,0,0"
-                                                        Orientation="Horizontal"
-                                                        Background="Transparent"
-                                                        VerticalAlignment="Center">
-                                                <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked}"/>
-                                                <TextBlock Text="/"/>
-                                                <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total}"/>
+                                            <StackPanel Margin="5,0,0,0">
+                                                <StackPanel Orientation="Horizontal"
+                                                            Background="Transparent"
+                                                            VerticalAlignment="Center">
+                                                    <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue={StaticResource Zero}}"/>
+                                                    <TextBlock Text=" / "/>
+                                                    <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue={StaticResource Zero}}"/>
+                                                </StackPanel>
+                                                <ProgressBar Margin="0,1,0,0" Minimum="0" Maximum="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue={StaticResource Zero}}"
+                                                             Value="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue={StaticResource Zero}}"
+                                                             VerticalAlignment="Bottom" Height="5"
+                                                             Background="{DynamicResource UserEditableBoxBrush}">
+                                                    <ProgressBar.Resources>
+                                                        <CornerRadius x:Key="ControlCornerRadius">2</CornerRadius>
+                                                        <sys:Double x:Key="ControlCornerRadiusSingle">2</sys:Double>
+                                                    </ProgressBar.Resources>
+                                                </ProgressBar>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
