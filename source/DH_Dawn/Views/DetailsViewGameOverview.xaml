@@ -512,7 +512,7 @@
                 <ScaleTransform ScaleX="0"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="Tag" Value="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, FallbackValue={StaticResource False}}"
+        <Setter Property="Tag" Value="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, FallbackValue={StaticResource False}}"/>
         <Style.Triggers>
             <Trigger Property="Tag" Value="{StaticResource True}">
                 <Trigger.EnterActions>
@@ -981,7 +981,7 @@
                                                 </ContentControl.Resources>
                                             </ContentControl>
                                         </Viewbox>
-                                        <Border Padding="5,0,0,0"
+                                        <Border Padding="5,0"
                                                 Style="{StaticResource ExpandingElement}">
                                             <StackPanel Margin="5,0,0,0"
                                                         Orientation="Horizontal"
@@ -998,49 +998,90 @@
 
                             <Border Visibility="{PluginSettings Plugin=GameActivity, Path=EnableIntegrationButton, FallbackValue={x:Static Visibility.Collapsed}}">
                                 <Button HorizontalAlignment="Left" Height="40" Margin="0,6,0,0"
-                                        Padding="1,4"
+                                        Padding="5"
                                         Style="{StaticResource FloatButtonStyle}"
                                         Visibility="{PluginSettings Plugin=GameActivity, Path=HasData, FallbackValue={x:Static Visibility.Collapsed}}">
-
-                                    <ContentControl x:Name="GameActivity_PluginButton" HorizontalAlignment="Right">
-                                        <ContentControl.Resources>
-                                            <Style TargetType="Button">
-                                                <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate TargetType="Button">
-                                                            <ContentPresenter/>
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style>
-                                        </ContentControl.Resources>
-                                        </ContentControl>
-                                    
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox MaxWidth="25" MaxHeight="25">
+                                            <ContentControl x:Name="GameActivity_PluginButton">
+                                                <ContentControl.Resources>
+                                                    <Style TargetType="Button">
+                                                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <ContentPresenter/>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </ContentControl.Resources>
+                                            </ContentControl>
+                                        </Viewbox>
+                                        <Border Padding="0,0"
+                                                Style="{StaticResource ExpandingElement}">
+                                            <StackPanel Margin="5,0,0,0"
+                                                        Orientation="Horizontal"
+                                                        Background="Transparent"
+                                                        VerticalAlignment="Center">
+                                                <TextBlock Text="{PluginSettings Plugin=GameActivity, Path=LastDateSession}"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
                                 </Button>
                             </Border>
 
                             <Border Visibility="{PluginSettings Plugin=HowLongToBeat, Path=EnableIntegrationButton, FallbackValue={x:Static Visibility.Collapsed}}">
                                 <Button HorizontalAlignment="Left" Height="40" Margin="0,6,0,0"
-                                        Padding="1,4"
+                                        Padding="5"
                                         Style="{StaticResource FloatButtonStyle}"
-                                        Visibility="{PluginSettings Plugin=HowLongToBeat, Path=HasData, FallbackValue={x:Static Visibility.Collapsed}}">
-                                    
-                                        <ContentControl x:Name="HowLongToBeat_PluginButton" HorizontalAlignment="Right">
-                                            <ContentControl.Resources>
-                                                <Style TargetType="Button">
-                                                    <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
-                                                    <Setter Property="Template">
-                                                        <Setter.Value>
-                                                            <ControlTemplate TargetType="Button">
-                                                                <ContentPresenter/>
-                                                            </ControlTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </ContentControl.Resources>
-                                        </ContentControl>
-                                    
+                                        >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox MaxWidth="25" MaxHeight="25">
+                                            <ContentControl x:Name="HowLongToBeat_PluginButton">
+                                                <ContentControl.Resources>
+                                                    <Style TargetType="Button">
+                                                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <ContentPresenter/>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </ContentControl.Resources>
+                                            </ContentControl>
+                                        </Viewbox>
+                                        <Border Padding="5,0"
+                                                Style="{StaticResource ExpandingElement}"
+                                                Visibility="{PluginSettings Plugin=HowLongToBeat, Path=HasData, FallbackValue={x:Static Visibility.Collapsed}}">
+                                            <Viewbox>
+                                                <StackPanel Margin="0,0,0,0"
+                                                            Orientation="Horizontal"
+                                                            Background="Transparent"
+                                                            VerticalAlignment="Center">
+                                                    <TextBlock TextAlignment="Center" Margin="1,0">
+                                                        <Run Text="{DynamicResource LOCHowLongToBeatMainStory}"/>
+                                                        <LineBreak/>
+                                                        <Run Text="{PluginSettings Plugin=HowLongToBeat, Path=MainStoryFormat, FallbackValue=''}"/>
+                                                    </TextBlock>
+                                                    <Border Background="White" Width="1" Margin="4,2" Opacity="0.5" UseLayoutRounding="True" SnapsToDevicePixels="True"/>
+                                                    <TextBlock TextAlignment="Center" Margin="1,0">
+                                                        <Run Text="{DynamicResource LOCHowLongToBeatMainExtra}"/>
+                                                        <LineBreak/>
+                                                        <Run Text="{PluginSettings Plugin=HowLongToBeat, Path=MainExtraFormat, FallbackValue=''}"/>
+                                                    </TextBlock>
+                                                    <Border Background="White" Width="1" Margin="4,2" Opacity="0.5" UseLayoutRounding="True" SnapsToDevicePixels="True"/>
+                                                    <TextBlock TextAlignment="Center" Margin="1,0">
+                                                        <Run Text="{DynamicResource LOCHowLongToBeatCompletionist}"/>
+                                                        <LineBreak/>
+                                                        <Run Text="{PluginSettings Plugin=HowLongToBeat, Path=CompletionistFormat, FallbackValue=''}"/>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </Viewbox>
+                                        </Border>
+                                    </StackPanel>
                                 </Button>
                             </Border>
 
