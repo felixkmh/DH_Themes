@@ -9,7 +9,7 @@
     <Style TargetType="{x:Type ProgressBar}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource HoverBrush}"/>
-        <Setter Property="Background" Value="{DynamicResource NormalBrushDark}"/>
+        <Setter Property="Background" Value="{DynamicResource UserEditableBoxBrush}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -17,15 +17,13 @@
                     <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{DynamicResource GlyphBrush}"
                             CornerRadius="{DynamicResource ControlCornerRadius}">
                         <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                            <Rectangle RadiusX="{DynamicResource ControlCornerRadiusSingle}"
-                                       RadiusY="{DynamicResource ControlCornerRadiusSingle}"
-                                       Fill="{TemplateBinding Background}" />
-                            <Rectangle Name="PART_Track" Margin="0" 
-                                       RadiusX="{DynamicResource ControlCornerRadiusSingle}"
-                                       RadiusY="{DynamicResource ControlCornerRadiusSingle}"/>
+                            <Border CornerRadius="{DynamicResource ControlCornerRadius}"
+                                    Background="{TemplateBinding Background}" />
+                            <Border Name="PART_Track" Margin="0" 
+                                    CornerRadius="{DynamicResource ControlCornerRadius}"/>
                             <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                                 <Grid x:Name="IndicatorGrid">
-                                    <Grid.OpacityMask>
+                                    <!--<Grid.OpacityMask>
                                         <VisualBrush AutoLayoutContent="True">
                                             <VisualBrush.Visual>
                                                 <Border
@@ -34,8 +32,8 @@
                                                     Background="Black" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                                             </VisualBrush.Visual>
                                         </VisualBrush>
-                                    </Grid.OpacityMask>
-                                    <Rectangle Fill="{TemplateBinding Foreground}" />
+                                    </Grid.OpacityMask>-->
+                                    <Border Background="{TemplateBinding Foreground}" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                                     <Grid x:Name="Animation" Visibility="Hidden">
                                         <Rectangle Fill="Transparent" Margin="0,0,50,0">
                                             <Rectangle.RenderTransform>

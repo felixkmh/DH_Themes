@@ -540,10 +540,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DetailsViewGameOverview}">
                     <Grid ClipToBounds="True">
-                        <StackPanel Margin="0,40" VerticalAlignment="{DynamicResource ButtonStackVerticalAlignment}" HorizontalAlignment="Left"
+                        <StackPanel Margin="0,0" VerticalAlignment="{DynamicResource ButtonStackVerticalAlignment}" HorizontalAlignment="Left"
                                         Panel.ZIndex="100"
                                     Visibility="{Binding Game, FallbackValue={x:Static Visibility.Collapsed}, Converter={StaticResource InvertedObjectEqualityToVisibilityConverter}, ConverterParameter={x:Null}}"
                                     Effect="{DynamicResource PopupDropShadow}">
+                            <Border Width="0" Height="{DynamicResource FloatButtonsMargin}"/>
                             <Button HorizontalAlignment="Left" Height="50"
                                     Cursor="Hand"
                                     Visibility="{Binding Game.IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -864,7 +865,7 @@
                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Border x:Name="VideoControls" 
                                         Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsAnyVideoAvailable, FallbackValue={x:Static Visibility.Collapsed}}">
-                                    
+
                                     <ContentControl HorizontalAlignment="Left" Height="40" Margin="0,6,0,0"
                                         Padding="0"
                                         Style="{StaticResource FloatContentControlStyle}">
@@ -947,62 +948,53 @@
                                     </ContentControl>
                                 </Border>
                             </Border>
-                            
-                            <!--<ContentControl x:Name="SuccessStory_PluginButton"
-                                            Visibility="{PluginSettings Plugin=SuccessStory, Path=EnableIntegrationButton, FallbackValue={x:Static Visibility.Collapsed}}">
-                                <ContentControl.Resources>
-                                    <Style TargetType="Button" BasedOn="{StaticResource FloatButtonStyle}">
-                                        <Setter Property="Padding" Value="5"/>
-                                        <Setter Property="Height" Value="40"/>
-                                        <Setter Property="Margin" Value="0,6,0,0"/>
-                                    </Style>
-                                </ContentControl.Resources>
-                            </ContentControl>-->
 
                             <Border Visibility="{PluginSettings Plugin=SuccessStory, Path=EnableIntegrationButton, FallbackValue={x:Static Visibility.Collapsed}}">
                                 <Button HorizontalAlignment="Left" Height="40" Margin="0,6,0,0"
-                                        Padding="5"
+                                        Padding="0"
                                         Style="{StaticResource FloatButtonStyle}"
                                         Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, FallbackValue={x:Static Visibility.Collapsed}}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Viewbox>
-                                            <ContentControl x:Name="SuccessStory_PluginButton">
-                                                <ContentControl.Resources>
-                                                    <Style TargetType="Button">
-                                                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
-                                                        <Setter Property="Template">
-                                                            <Setter.Value>
-                                                                <ControlTemplate TargetType="Button">
-                                                                    <ContentPresenter/>
-                                                                </ControlTemplate>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                    </Style>
-                                                </ContentControl.Resources>
-                                            </ContentControl>
-                                        </Viewbox>
-                                        <Border Padding="5,0"
+                                    <Grid>
+                                        <ProgressBar Margin="-6,0,4,1" Minimum="0" Maximum="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue={StaticResource Zero}}"
+                                                            Value="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue={StaticResource Zero}}"
+                                                            VerticalAlignment="Bottom" Height="2"
+                                                            Background="{DynamicResource UserEditableBoxBrush}">
+                                            <ProgressBar.Resources>
+                                                <CornerRadius x:Key="ControlCornerRadius">1</CornerRadius>
+                                                <sys:Double x:Key="ControlCornerRadiusSingle">1</sys:Double>
+                                            </ProgressBar.Resources>
+                                        </ProgressBar>
+                                        <StackPanel Orientation="Horizontal" Margin="5">
+                                            <Viewbox>
+                                                <ContentControl x:Name="SuccessStory_PluginButton" Padding="5">
+                                                    <ContentControl.Resources>
+                                                        <Style TargetType="Button">
+                                                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="Button">
+                                                                        <ContentPresenter/>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </ContentControl.Resources>
+                                                </ContentControl>
+                                            </Viewbox>
+                                            <Border Padding="5,0"
                                                 Style="{StaticResource ExpandingElement}">
-                                            <StackPanel Margin="5,0,0,0">
-                                                <StackPanel Orientation="Horizontal"
+                                                <StackPanel Margin="5,0,0,0" VerticalAlignment="Center">
+                                                    <StackPanel Orientation="Horizontal"
                                                             Background="Transparent"
                                                             VerticalAlignment="Center">
-                                                    <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue={StaticResource Zero}}"/>
-                                                    <TextBlock Text=" / "/>
-                                                    <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue={StaticResource Zero}}"/>
+                                                        <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue={StaticResource Zero}}"/>
+                                                        <TextBlock Text=" / "/>
+                                                        <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue={StaticResource Zero}}"/>
+                                                    </StackPanel>
                                                 </StackPanel>
-                                                <ProgressBar Margin="0,1,0,0" Minimum="0" Maximum="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue={StaticResource Zero}}"
-                                                             Value="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue={StaticResource Zero}}"
-                                                             VerticalAlignment="Bottom" Height="5"
-                                                             Background="{DynamicResource UserEditableBoxBrush}">
-                                                    <ProgressBar.Resources>
-                                                        <CornerRadius x:Key="ControlCornerRadius">2</CornerRadius>
-                                                        <sys:Double x:Key="ControlCornerRadiusSingle">2</sys:Double>
-                                                    </ProgressBar.Resources>
-                                                </ProgressBar>
-                                            </StackPanel>
-                                        </Border>
-                                    </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                    </Grid>
                                 </Button>
                             </Border>
 
@@ -1095,29 +1087,7 @@
                                 </Button>
                             </Border>
 
-                            <!--<ContentControl x:Name="GameActivity_PluginButton"
-                                            Visibility="{PluginSettings Plugin=GameActivity, Path=EnableIntegrationButton, FallbackValue={x:Static Visibility.Collapsed}}">
-                                <ContentControl.Resources>
-                                    <Style TargetType="Button" BasedOn="{StaticResource FloatButtonStyle}">
-                                        <Setter Property="Padding" Value="5"/>
-                                        <Setter Property="Height" Value="40"/>
-                                        <Setter Property="Margin" Value="0,6,0,0"/>
-                                    </Style>
-                                </ContentControl.Resources>
-                            </ContentControl>-->
-
-                            <!--<ContentControl x:Name="HowLongToBeat_PluginButton"
-                                            Visibility="{PluginSettings Plugin=HowLongToBeat, Path=EnableIntegrationButton, FallbackValue={x:Static Visibility.Collapsed}}">
-                                <ContentControl.Resources>
-                                    <Style TargetType="Button" BasedOn="{StaticResource FloatButtonStyle}">
-                                        <Setter Property="Padding" Value="5"/>
-                                        <Setter Property="Height" Value="40"/>
-                                        <Setter Property="Margin" Value="0,6,0,0"/>
-                                    </Style>
-                                </ContentControl.Resources>
-                            </ContentControl>
-
-                            <ContentControl x:Name="ScreenshotsVisualizer_PluginButton"
+                            <!--<ContentControl x:Name="ScreenshotsVisualizer_PluginButton"
                                             Visibility="{PluginSettings Plugin=ScreenshotsVisualizer, Path=EnableIntegrationButton, FallbackValue={x:Static Visibility.Collapsed}}">
                                 <ContentControl.Resources>
                                     <Style TargetType="Button" BasedOn="{StaticResource FloatButtonStyle}">
@@ -1138,6 +1108,8 @@
                                     </Style>
                                 </ContentControl.Resources>
                             </ContentControl>-->
+
+                            <Border Width="0" Height="{DynamicResource FloatButtonsMargin}"/>
                         </StackPanel>
 
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Top"
