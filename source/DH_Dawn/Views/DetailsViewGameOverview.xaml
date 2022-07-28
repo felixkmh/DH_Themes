@@ -586,6 +586,7 @@
                                             <CubicEase x:Key="Ease" EasingMode="EaseInOut"/>
                                             <QuadraticEase x:Key="FlyoutEase" EasingMode="EaseOut"/>
                                         </Style.Resources>
+                                        <Setter Property="Tag" Value="{StaticResource True}"/>
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="Button">
@@ -671,16 +672,31 @@
                                                                 </BeginStoryboard>
                                                             </Trigger.ExitActions>
                                                         </Trigger>
-                                                        <MultiDataTrigger>
-                                                            <MultiDataTrigger.Conditions>
-                                                                <Condition Binding="{Binding Game.IsInstalled}" Value="True"/>
-                                                                <Condition Binding="{Binding Game.IsInstalling}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsRunning}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsLaunching}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsUninstalling}" Value="False"/>
-                                                            </MultiDataTrigger.Conditions>
-                                                            <MultiDataTrigger.EnterActions>
-                                                                <BeginStoryboard>
+                                                        <Trigger Property="Tag" Value="{StaticResource True}">
+                                                            <Trigger.EnterActions>
+                                                                <StopStoryboard BeginStoryboardName="Collapse"/>
+                                                                <BeginStoryboard x:Name="Expand">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetName="ContextScaleTransform"
+                                                                                         Storyboard.TargetProperty="ScaleX"
+                                                                                         To="1" Duration="0:0:0.5"
+                                                                                         EasingFunction="{StaticResource Ease}"/>
+                                                                        <DoubleAnimation Storyboard.TargetName="IconScaleTransform"
+                                                                                         Storyboard.TargetProperty="ScaleX"
+                                                                                         To="0" Duration="0:0:0.5"
+                                                                                         EasingFunction="{StaticResource Ease}"/>
+                                                                        <DoubleAnimation Storyboard.TargetName="ContextText"
+                                                                                         Storyboard.TargetProperty="Opacity"
+                                                                                         To="1" Duration="0:0:0.3"/>
+                                                                        <DoubleAnimation Storyboard.TargetName="IconBox"
+                                                                                         Storyboard.TargetProperty="Opacity"
+                                                                                         To="0" Duration="0:0:0.3"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <StopStoryboard BeginStoryboardName="Expand"/>
+                                                                <BeginStoryboard x:Name="Collapse">
                                                                     <Storyboard>
                                                                         <DoubleAnimation Storyboard.TargetName="ContextScaleTransform"
                                                                                          Storyboard.TargetProperty="ScaleX"
@@ -700,27 +716,16 @@
                                                                                          />
                                                                     </Storyboard>
                                                                 </BeginStoryboard>
-                                                            </MultiDataTrigger.EnterActions>
-                                                            <MultiDataTrigger.ExitActions>
-                                                                <BeginStoryboard>
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetName="ContextScaleTransform"
-                                                                                         Storyboard.TargetProperty="ScaleX"
-                                                                                         To="1" Duration="0:0:0.5"
-                                                                                         EasingFunction="{StaticResource Ease}"/>
-                                                                        <DoubleAnimation Storyboard.TargetName="IconScaleTransform"
-                                                                                         Storyboard.TargetProperty="ScaleX"
-                                                                                         To="0" Duration="0:0:0.5"
-                                                                                         EasingFunction="{StaticResource Ease}"/>
-                                                                        <DoubleAnimation Storyboard.TargetName="ContextText"
-                                                                                         Storyboard.TargetProperty="Opacity"
-                                                                                         To="1" Duration="0:0:0.3"/>
-                                                                        <DoubleAnimation Storyboard.TargetName="IconBox"
-                                                                                         Storyboard.TargetProperty="Opacity"
-                                                                                         To="0" Duration="0:0:0.3"/>
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </MultiDataTrigger.ExitActions>
+                                                            </Trigger.ExitActions>
+                                                        </Trigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding Game.IsInstalling}" Value="False"/>
+                                                                <Condition Binding="{Binding Game.IsRunning}" Value="False"/>
+                                                                <Condition Binding="{Binding Game.IsLaunching}" Value="False"/>
+                                                                <Condition Binding="{Binding Game.IsUninstalling}" Value="False"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="Tag" Value="{StaticResource False}"/>
                                                         </MultiDataTrigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
@@ -740,6 +745,7 @@
                                             <CubicEase x:Key="Ease" EasingMode="EaseInOut"/>
                                             <QuadraticEase x:Key="FlyoutEase" EasingMode="EaseOut"/>
                                         </Style.Resources>
+                                        <Setter Property="Tag" Value="{StaticResource True}"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
                                         <Setter Property="Template">
                                             <Setter.Value>
@@ -794,15 +800,28 @@
                                                                 </BeginStoryboard>
                                                             </Trigger.ExitActions>
                                                         </Trigger>
-                                                        <MultiDataTrigger>
-                                                            <MultiDataTrigger.Conditions>
-                                                                <Condition Binding="{Binding Game.IsInstalled}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsInstalling}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsRunning}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsLaunching}" Value="False"/>
-                                                                <Condition Binding="{Binding Game.IsUninstalling}" Value="False"/>
-                                                            </MultiDataTrigger.Conditions>
-                                                            <MultiDataTrigger.EnterActions>
+                                                        <Trigger Property="Tag" Value="{StaticResource True}">
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetName="ContextScaleTransform"
+                                                                                         Storyboard.TargetProperty="ScaleX"
+                                                                                         To="1" Duration="0:0:0.5"
+                                                                                         EasingFunction="{StaticResource Ease}"/>
+                                                                        <DoubleAnimation Storyboard.TargetName="IconScaleTransform"
+                                                                                         Storyboard.TargetProperty="ScaleX"
+                                                                                         To="0" Duration="0:0:0.5"
+                                                                                         EasingFunction="{StaticResource Ease}"/>
+                                                                        <DoubleAnimation Storyboard.TargetName="ContextText"
+                                                                                         Storyboard.TargetProperty="Opacity"
+                                                                                         To="1" Duration="0:0:0.3"/>
+                                                                        <DoubleAnimation Storyboard.TargetName="IconBox"
+                                                                                         Storyboard.TargetProperty="Opacity"
+                                                                                         To="0" Duration="0:0:0.3"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
                                                                 <BeginStoryboard>
                                                                     <Storyboard>
                                                                         <DoubleAnimation Storyboard.TargetName="ContextScaleTransform"
@@ -823,27 +842,16 @@
                                                                                          />
                                                                     </Storyboard>
                                                                 </BeginStoryboard>
-                                                            </MultiDataTrigger.EnterActions>
-                                                            <MultiDataTrigger.ExitActions>
-                                                                <BeginStoryboard>
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetName="ContextScaleTransform"
-                                                                                         Storyboard.TargetProperty="ScaleX"
-                                                                                         To="1" Duration="0:0:0.5"
-                                                                                         EasingFunction="{StaticResource Ease}"/>
-                                                                        <DoubleAnimation Storyboard.TargetName="IconScaleTransform"
-                                                                                         Storyboard.TargetProperty="ScaleX"
-                                                                                         To="0" Duration="0:0:0.5"
-                                                                                         EasingFunction="{StaticResource Ease}"/>
-                                                                        <DoubleAnimation Storyboard.TargetName="ContextText"
-                                                                                         Storyboard.TargetProperty="Opacity"
-                                                                                         To="1" Duration="0:0:0.3"/>
-                                                                        <DoubleAnimation Storyboard.TargetName="IconBox"
-                                                                                         Storyboard.TargetProperty="Opacity"
-                                                                                         To="0" Duration="0:0:0.3"/>
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </MultiDataTrigger.ExitActions>
+                                                            </Trigger.ExitActions>
+                                                        </Trigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding Game.IsInstalling}" Value="False"/>
+                                                                <Condition Binding="{Binding Game.IsRunning}" Value="False"/>
+                                                                <Condition Binding="{Binding Game.IsLaunching}" Value="False"/>
+                                                                <Condition Binding="{Binding Game.IsUninstalling}" Value="False"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="Tag" Value="{StaticResource False}"/>
                                                         </MultiDataTrigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
