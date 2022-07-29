@@ -1,13 +1,14 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    >
 
     <!--ThemeModifier-->
     <VerticalAlignment x:Key="ButtonStackVerticalAlignment">Top</VerticalAlignment>
     <sys:Boolean x:Key="EnableDetailsListTranslation">False</sys:Boolean>
     <sys:Boolean x:Key="FillBackgroundImage">False</sys:Boolean>
     <sys:Double x:Key="FloatButtonsMargin">40</sys:Double>
-    
+
     <!--ThemeExtras-->
     <sys:Boolean x:Key="EnableFloatingRating">True</sys:Boolean>
     

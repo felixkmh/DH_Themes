@@ -130,7 +130,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsCurrent}" Value="False"/>
-                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Value="{StaticResource True}"/>
+                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}, FallbackValue={StaticResource False}}" Value="{StaticResource True}"/>
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Margin" Value="3"/>
                 <Setter Property="LayoutTransform">
@@ -319,6 +319,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">
+                    <ControlTemplate.Resources>
+                        <sys:TimeSpan x:Key="FlyInDelay">0:0:0.15</sys:TimeSpan>
+                        <sys:TimeSpan x:Key="FlyOutDelay">0:0:0.5</sys:TimeSpan>
+                    </ControlTemplate.Resources>
                     <Button HorizontalAlignment="Left" 
                             Height="40" 
                             Margin="0,6,0,0"
@@ -417,14 +421,15 @@
                                                                         </BeginStoryboard>
                                                                     </Trigger.ExitActions>
                                                                 </Trigger>
-                                                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Value="True">
+                                                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentControl}, FallbackValue={StaticResource False}}" Value="{StaticResource True}">
                                                                     <DataTrigger.EnterActions>
                                                                         <StopStoryboard BeginStoryboardName="FlyOut"/>
                                                                         <BeginStoryboard x:Name="FlyIn">
                                                                             <Storyboard>
                                                                                 <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                                                                 To="0,0,0,0" Duration="0:0:0.5"
-                                                                                                EasingFunction="{StaticResource FlyOutEase}"/>
+                                                                                                EasingFunction="{StaticResource FlyOutEase}"
+                                                                                                BeginTime="{StaticResource FlyInDelay}"/>
                                                                             </Storyboard>
                                                                         </BeginStoryboard>
                                                                     </DataTrigger.EnterActions>
@@ -434,7 +439,7 @@
                                                                             <Storyboard>
                                                                                 <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                                                                 To="-28,0,0,0" Duration="0:0:0.2"
-                                                                                                BeginTime="0:0:0.5"/>
+                                                                                                BeginTime="{StaticResource FlyOutDelay}"/>
                                                                             </Storyboard>
                                                                         </BeginStoryboard>
                                                                     </DataTrigger.ExitActions>
@@ -443,6 +448,11 @@
                                                         </Style>
                                                     </Button.Style>
                                                 </Button>
+                                                <DataTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType=ContentControl}}" Value="{StaticResource True}">
+                                                        
+                                                    </DataTrigger>
+                                                </DataTemplate.Triggers>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
@@ -470,13 +480,13 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="OtherIcons"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="1" Duration="0:0:0.2"/>
+                                                         To="1" Duration="0:0:0.2" BeginTime="{StaticResource FlyInDelay}"/>
                                         <DoubleAnimation Storyboard.TargetName="Separator"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="1" Duration="0:0:0.2"/>
+                                                         To="1" Duration="0:0:0.2" BeginTime="{StaticResource FlyInDelay}"/>
                                         <DoubleAnimation Storyboard.TargetName="Separator"
                                                          Storyboard.TargetProperty="LayoutTransform.ScaleX"
-                                                         To="1" Duration="0:0:0.2"/>
+                                                         To="1" Duration="0:0:0.2" BeginTime="{StaticResource FlyInDelay}"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
@@ -485,13 +495,13 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="OtherIcons"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="0" Duration="0:0:0.2" BeginTime="0:0:0.5"/>
+                                                         To="0" Duration="0:0:0.2" BeginTime="{StaticResource FlyOutDelay}"/>
                                         <DoubleAnimation Storyboard.TargetName="Separator"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="0" Duration="0:0:0.2" BeginTime="0:0:0.5"/>
+                                                         To="0" Duration="0:0:0.2" BeginTime="{StaticResource FlyOutDelay}"/>
                                         <DoubleAnimation Storyboard.TargetName="Separator"
                                                          Storyboard.TargetProperty="LayoutTransform.ScaleX"
-                                                         To="0" Duration="0:0:0.2" BeginTime="0:0:0.5"/>
+                                                         To="0" Duration="0:0:0.2" BeginTime="{StaticResource FlyOutDelay}"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
@@ -506,6 +516,8 @@
     <Style x:Key="ExpandingElement" TargetType="FrameworkElement">
         <Style.Resources>
             <ElasticEase x:Key="FlyOutEase" Oscillations="1"/>
+            <sys:TimeSpan x:Key="FlyInDelay">0:0:0.15</sys:TimeSpan>
+            <sys:TimeSpan x:Key="FlyOutDelay">0:0:0.5</sys:TimeSpan>
         </Style.Resources>
         <Setter Property="LayoutTransform">
             <Setter.Value>
@@ -519,7 +531,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
-                                             To="1" Duration="0:0:0.5" EasingFunction="{StaticResource FlyOutEase}"/>
+                                             To="1" Duration="0:0:0.5" BeginTime="{StaticResource FlyInDelay}" EasingFunction="{StaticResource FlyOutEase}"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.EnterActions>
@@ -527,7 +539,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
-                                             To="0" Duration="0:0:0.2" BeginTime="0:0:0.5"/>
+                                             To="0" Duration="0:0:0.2" BeginTime="{StaticResource FlyOutDelay}"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.ExitActions>
@@ -869,21 +881,71 @@
                                         Height="40"
                                         Padding="5"
                                         Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <TextBlock Width="30" TextAlignment="Center" Text="{Binding Game.UserScore, TargetNullValue='-'}" Style="{DynamicResource TextBlockGameScore}"
-                                                   Tag="{Binding Game.UserScoreRating}"
-                                                   FontSize="{DynamicResource FontSizeLarge}"
-                                                   FontWeight="SemiBold"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid>
+                                            <Viewbox Visibility="{Binding Game.UserScoreGroup, Converter={StaticResource ObjectEqualityToVisibilityConverter}, ConverterParameter={x:Static ScoreGroup.None}}">
+                                                <TextBlock Text="&#xF000;" FontFamily="{StaticResource FontIcoFont}" HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center" Foreground="LightGray" Opacity="0.4"
+                                                           Padding="0" Margin="0"/>
+                                            </Viewbox>
+                                            <TextBlock Width="30" TextAlignment="Center" Text="{Binding Game.UserScore, TargetNullValue='-'}"  Style="{DynamicResource TextBlockGameScore}"
+                                                       Tag="{Binding Game.UserScoreRating}"
+                                                       FontSize="{DynamicResource FontSizeLarge}"
+                                                       FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        </Grid>
                                         <Border Padding="5,0"  Style="{StaticResource ExpandingElement}">
                                             <StackPanel Orientation="Horizontal">
-                                                <ContentControl x:Name="ThemeExtras_UserRating1"/>
-                                                <Button Padding="5,0" Margin="5,0,0,0" Content="Reset" Command="{PluginSettings Plugin=ThemeExtras, Path=ResetUserScoreCommand, FallbackValue={x:Null}}"/>
+                                                <ContentControl x:Name="ThemeExtras_UserRating1" VerticalAlignment="Center"/>
+                                                <!--<Button Padding="5,0" Margin="5,0,0,0" Content="Open Log" Command="{PluginSettings Plugin=ThemeExtras, Path=Commands.OpenPlayniteLogCommand}"/>
+                                                <TextBox MinWidth="10" Text="{PluginSettings Plugin=ThemeExtras, Path=Game.Notes, FallbackValue={x:Static sys:String.Empty}, Mode=TwoWay}"/>-->
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
                                 </ContentControl>
                             </Border>
-                            
+
+                            <ContentControl Style="{DynamicResource FloatContentControlStyle}"
+                                            Margin="0,6,0,0"
+                                            HorizontalAlignment="Left"
+                                            Height="40"
+                                            Padding="5"
+                                            Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}">
+                                <CheckBox IsChecked="{PluginSettings Plugin=ThemeExtras, Path=Game.Hidden, Mode=TwoWay}">
+                                    <CheckBox.Template>
+                                        <ControlTemplate TargetType="CheckBox">
+                                            <Viewbox>
+                                                <Grid>
+                                                    <TextBlock Text="&#xEF24;" FontFamily="{StaticResource FontIcoFont}" 
+                                                               Visibility="{TemplateBinding IsChecked, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                                                    <TextBlock Text="&#xEF22;" FontFamily="{StaticResource FontIcoFont}" 
+                                                               Visibility="{TemplateBinding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                </Grid>
+                                            </Viewbox>
+                                        </ControlTemplate>
+                                    </CheckBox.Template>
+                                </CheckBox>
+                            </ContentControl>
+
+                            <ContentControl Style="{DynamicResource FloatContentControlStyle}"
+                                            Margin="0,6,0,0"
+                                            HorizontalAlignment="Left"
+                                            Height="40"
+                                            Padding="5"
+                                            Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}">
+                                <CheckBox IsChecked="{PluginSettings Plugin=ThemeExtras, Path=Game.Favorite, Mode=TwoWay}">
+                                    <CheckBox.Template>
+                                        <ControlTemplate TargetType="CheckBox">
+                                            <Viewbox>
+                                                <Grid>
+                                                    <TextBlock Text="&#xF000;" FontFamily="{StaticResource FontIcoFont}" 
+                                                               Opacity="{TemplateBinding IsChecked, Converter={StaticResource OpacityBoolConverter}}"/>
+                                                </Grid>
+                                            </Viewbox>
+                                        </ControlTemplate>
+                                    </CheckBox.Template>
+                                </CheckBox>
+                            </ContentControl>
+
                             <Border Tag="{DynamicResource ShowBackgroundTrailerControls}"
                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Border x:Name="VideoControls" 

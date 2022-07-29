@@ -1,6 +1,6 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <Style x:Key="TextBlockGameScore" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
         <Style.Triggers>
             <Trigger Property="Tag" Value="{x:Static ScoreRating.Positive}">
