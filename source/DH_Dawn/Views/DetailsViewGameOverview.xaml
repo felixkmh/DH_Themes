@@ -910,7 +910,7 @@
                                             Height="40"
                                             Padding="5"
                                             Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}">
-                                <CheckBox IsChecked="{PluginSettings Plugin=ThemeExtras, Path=Game.Hidden, Mode=TwoWay}">
+                                <CheckBox IsChecked="{PluginSettings Plugin=ThemeExtras, Path=Game.Hidden, Mode=TwoWay, FallbackValue={StaticResource False}}">
                                     <CheckBox.Template>
                                         <ControlTemplate TargetType="CheckBox">
                                             <Viewbox>
@@ -932,7 +932,7 @@
                                             Height="40"
                                             Padding="5"
                                             Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}">
-                                <CheckBox IsChecked="{PluginSettings Plugin=ThemeExtras, Path=Game.Favorite, Mode=TwoWay}">
+                                <CheckBox IsChecked="{PluginSettings Plugin=ThemeExtras, Path=Game.Favorite, Mode=TwoWay, FallbackValue={StaticResource False}}">
                                     <CheckBox.Template>
                                         <ControlTemplate TargetType="CheckBox">
                                             <Viewbox>
@@ -1006,7 +1006,8 @@
                                                             </CheckBox.Template>
                                                         </CheckBox>
                                                     </Viewbox>
-                                                    <Slider Margin="5,0,0,0" VerticalAlignment="Center" Width="100" HorizontalAlignment="Center"
+                                                    <Slider x:Name="VolumeSlider"
+                                                        Margin="5,0,0,0" VerticalAlignment="Center" Width="100" HorizontalAlignment="Center"
                                                 IsMoveToPointEnabled="True" 
                                                 IsSnapToTickEnabled="False" 
                                                 Minimum="0.0" Maximum="1.0" TickFrequency="0.1" SmallChange="0.1" LargeChange="0.2"
