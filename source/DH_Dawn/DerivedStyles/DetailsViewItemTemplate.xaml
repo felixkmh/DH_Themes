@@ -90,21 +90,32 @@
                                 </TextBlock>
                             </DockPanel>
                         </Border>
-                        <Border BorderThickness="0,0,0,1.5" BorderBrush="{DynamicResource GlyphBrush}"
-                                x:Name="LoadingBorder" Visibility="Collapsed">
+                        <Border VerticalAlignment="Bottom">
                             <Border.OpacityMask>
-                                <LinearGradientBrush x:Name="Gradient" StartPoint="0,0" EndPoint="1,0" Opacity="0.9">
-                                    <GradientStop x:Name="Pre1" Color="#00ff4500" Offset="-2"/>
-                                    <GradientStop x:Name="Pre2" Color="OrangeRed" Offset="-1.5"/>
-                                    <GradientStop x:Name="Pre3" Color="#00ff4500" Offset="-1"/>
-                                    <GradientStop x:Name="Color1" Color="#00ff4500" Offset="-1"/>
-                                    <GradientStop x:Name="Color2" Color="OrangeRed" Offset="-0.5"/>
-                                    <GradientStop x:Name="Color3" Color="#00ff4500" Offset="0"/>
-                                    <GradientStop x:Name="Post1" Color="#00ff4500" Offset="0"/>
-                                    <GradientStop x:Name="Post2" Color="OrangeRed" Offset="0.5"/>
-                                    <GradientStop x:Name="Post3" Color="#00ff4500" Offset="1"/>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="Transparent"/>
+                                    <GradientStop Color="Black" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.OpacityMask>
+                            <Border BorderThickness="0,0,0,1.5" 
+                                    VerticalAlignment="Bottom" 
+                                    BorderBrush="{DynamicResource GlyphBrush}" 
+                                    Height="4" Background="{DynamicResource GlyphBrush}"
+                                    x:Name="LoadingBorder" Visibility="Collapsed">
+                                <Border.OpacityMask>
+                                    <LinearGradientBrush x:Name="Gradient" StartPoint="0,0" EndPoint="1,0" Opacity="0.9">
+                                        <GradientStop x:Name="Pre1" Color="#00ff4500" Offset="-2"/>
+                                        <GradientStop x:Name="Pre2" Color="OrangeRed" Offset="-1.5"/>
+                                        <GradientStop x:Name="Pre3" Color="#00ff4500" Offset="-1"/>
+                                        <GradientStop x:Name="Color1" Color="#00ff4500" Offset="-1"/>
+                                        <GradientStop x:Name="Color2" Color="OrangeRed" Offset="-0.5"/>
+                                        <GradientStop x:Name="Color3" Color="#00ff4500" Offset="0"/>
+                                        <GradientStop x:Name="Post1" Color="#00ff4500" Offset="0"/>
+                                        <GradientStop x:Name="Post2" Color="OrangeRed" Offset="0.5"/>
+                                        <GradientStop x:Name="Post3" Color="#00ff4500" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.OpacityMask>
+                            </Border>
                         </Border>
                     </Grid>
                     <!--Fade effect. Remove or comment out <ControlTemplate.Triggers> section to deactivate animation.-->
