@@ -958,7 +958,21 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="ContentControl">
-                                                    <ComboBox ItemsSource="{Binding CompletionStatusOptions}" SelectedItem="{Binding Value}"/>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Grid>
+                                                            <Viewbox>
+                                                                <TextBlock Text="&#xEF4E;" FontFamily="{StaticResource FontIcoFont}" 
+                                                                           Style="{StaticResource BaseTextBlockStyle}" HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Padding="0" Margin="0"/>
+                                                            </Viewbox>
+                                                        </Grid>
+                                                        <Border Padding="5,0"  Style="{StaticResource ExpandingElement}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <ComboBox ItemsSource="{Binding CompletionStatusOptions}" SelectedItem="{Binding Value}"/>
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </StackPanel>
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -1249,7 +1263,7 @@
                                             Visibility="{PluginSettings Plugin=BackgroundChanger, Path=HasDataBackground, FallbackValue={x:Static Visibility.Collapsed}}"/>
                             
                             <Border x:Name="ShowTrailerProxy" Tag="{DynamicResource ShowTrailerInBackground}" Visibility="Collapsed"/>
-                            <Border Visibility="{Binding IsChecked, ElementName=BackgroundTrailerCheckBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            <Grid Visibility="{Binding IsChecked, ElementName=BackgroundTrailerCheckBox, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     VerticalAlignment="Top">
                                 <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound" VerticalAlignment="Top"
                                             Opacity="0"
@@ -1285,7 +1299,7 @@
                                         </Style>
                                     </ContentControl.Style>
                                 </ContentControl>
-                            </Border>
+                            </Grid>
                             
                         </Grid>
 
@@ -1296,7 +1310,8 @@
                                   d:DesignWidth="1280"
                                   d:DesignHeight="1280"
                                   d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}"
-                                  x:Name="PART_ScrollViewHost">
+                                  x:Name="PART_ScrollViewHost"
+                                  Background="{x:Null}">
                             <Grid>
 
                                 <Grid HorizontalAlignment="Stretch" Margin="20,0,20,0">
@@ -1305,9 +1320,38 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0" Focusable="False" Grid.RowSpan="2" Visibility="{Binding IsVisible, ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, FallbackValue={x:Static Visibility.Collapsed}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Button Focusable="False"
+                                    Background="Transparent"
+                                                        x:Name="TrailerPauseButton2"
+                                                    Command="{Binding ElementName=TrailerPauseButton, Path=Command, FallbackValue={x:Null}}"
+                                                    Visibility="{Binding ElementName=TrailerPlayButton2, Path=IsEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="Transparent"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button Focusable="False"
+                                    Background="Transparent"
+                                                    x:Name="TrailerPlayButton2"
+                                                    Command="{Binding ElementName=TrailerPlayButton, Path=Command, FallbackValue={x:Null}}"
+                                                    Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="Transparent">
+                                                        <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100">
+                                                            <TextBlock Text="&#xEC74;" FontFamily="{StaticResource FontIcoFont}" Foreground="{DynamicResource TextBrush}"/>
+                                                        </Viewbox>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </Grid>
                                     
                                     <DockPanel Margin="0,20,0,15" MaxWidth="1024" Grid.Row="1"
-                                           Background="Transparent">
+                                           Background="{x:Null}">
                                         <Border VerticalAlignment="Bottom"
                                             DockPanel.Dock="Right">
                                             <Image Name="PART_ImageCover" 
@@ -1349,6 +1393,7 @@
                                     </DockPanel>
 
                                     <ContentControl x:Name="ExtraMetadataLoader_LogoLoaderControl" Grid.RowSpan="2"
+                                                    IsHitTestVisible="False"
                                                     Margin="20"
                                                     Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable, FallbackValue={x:Static Visibility.Collapsed}}"/>
 
