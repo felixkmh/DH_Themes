@@ -6,7 +6,7 @@
     <!--ThemeModifier-->
     <VerticalAlignment x:Key="ButtonStackVerticalAlignment">Top</VerticalAlignment>
     <sys:Boolean x:Key="EnableDetailsListTranslation">False</sys:Boolean>
-    <sys:Boolean x:Key="FillBackgroundImage">False</sys:Boolean>
+    <sys:Boolean x:Key="FillBackgroundImage">True</sys:Boolean>
     <sys:Double x:Key="FloatButtonsMargin">40</sys:Double>
 
     <!--ThemeExtras-->

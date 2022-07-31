@@ -946,6 +946,26 @@
                                 </CheckBox>
                             </ContentControl>
 
+                            <ContentControl Style="{DynamicResource FloatContentControlStyle}"
+                                            Margin="0,6,0,0"
+                                            HorizontalAlignment="Left"
+                                            Height="40"
+                                            Padding="5"
+                                            x:Name="ThemeExtras_SettableCompletionStatus"
+                                            Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}">
+                                <ContentControl.Resources>
+                                    <Style TargetType="UserControl">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ContentControl">
+                                                    <ComboBox ItemsSource="{Binding CompletionStatusOptions}" SelectedItem="{Binding Value}"/>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ContentControl.Resources>
+                            </ContentControl>
+
                             <Border Tag="{DynamicResource ShowBackgroundTrailerControls}"
                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Border x:Name="VideoControls" 
