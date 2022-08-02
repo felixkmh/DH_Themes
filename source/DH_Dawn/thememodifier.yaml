@@ -8,3 +8,5 @@ Constants:
     - ShowDuplicateHiderInDetailsList
     - ShowTrailerInBackground
     - ShowBackgroundTrailerControls
+    - FadeOutDetailsHeaderWhenVideoPlays
+    - DetailsMaxDimmerOpacity

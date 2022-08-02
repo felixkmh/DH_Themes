@@ -8,6 +8,8 @@
     <sys:Boolean x:Key="EnableDetailsListTranslation">False</sys:Boolean>
     <sys:Boolean x:Key="FillBackgroundImage">True</sys:Boolean>
     <sys:Double x:Key="FloatButtonsMargin">40</sys:Double>
+    <sys:Double x:Key="DetailsMaxDimmerOpacity">0.5</sys:Double>
+    <SolidColorBrush x:Key="DetailsDimmerColor" Color="Black"/>
 
     <!--ThemeExtras-->
     <sys:Boolean x:Key="EnableFloatingRating">True</sys:Boolean>
@@ -19,7 +21,9 @@
     <!--EML-->
     <sys:Boolean x:Key="ShowTrailerInBackground">True</sys:Boolean>
     <sys:Boolean x:Key="ShowBackgroundTrailerControls">True</sys:Boolean>
+    <sys:Boolean x:Key="FadeOutDetailsHeaderWhenVideoPlays">True</sys:Boolean>
     
+
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
     <sys:Double x:Key="FontSize">14</sys:Double>
     <sys:Double x:Key="FontSizeLarge">15</sys:Double>
