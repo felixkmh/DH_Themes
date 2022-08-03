@@ -1,4 +1,6 @@
 ﻿ThemeId: felixkmh_DesktopTheme_DH_Dawn
+PersistentPaths:
+    - Images/Banners
 Recommendations:
     - AddonName: DuplicateHider
       AddonId: felixkmh_DuplicateHider_Plugin
