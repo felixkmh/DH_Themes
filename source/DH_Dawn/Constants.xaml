@@ -113,6 +113,7 @@
     <DropShadowEffect x:Key="PopupDropShadow" BlurRadius="16" ShadowDepth="2" Direction="-90" Color="Black" RenderingBias="Performance" Opacity="0.75"/>
 
     <sys:Double x:Key="Zero">0</sys:Double>
+    <sys:Double x:Key="OneD">1</sys:Double>
     <ElasticEase x:Key="FlyOutEase" Oscillations="1"/>
 
     <ScaleTransform x:Key="UniformScaleTransform" ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}"/>

@@ -461,6 +461,7 @@
             <ElasticEase x:Key="FlyOutEase" Oscillations="1"/>
             <sys:TimeSpan x:Key="FlyInDelay">0:0:0.15</sys:TimeSpan>
             <sys:TimeSpan x:Key="FlyOutDelay">0:0:0.5</sys:TimeSpan>
+            <sys:Double x:Key="OneD">1</sys:Double>
         </Style.Resources>
         <Setter Property="LayoutTransform">
             <Setter.Value>
@@ -471,8 +472,8 @@
         <Style.Triggers>
             <Trigger Property="Tag" Value="{StaticResource True}">
                 <Trigger.EnterActions>
-                    <!--<StopStoryboard BeginStoryboardName="FocusOut"/>-->
-                    <BeginStoryboard>
+                    <!--<StopStoryboard BeginStoryboardName="FlyOutDelayed"/>-->
+                    <BeginStoryboard x:Name="FlyIn">
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
                                              To="1" Duration="0:0:0.3" BeginTime="{StaticResource FlyInDelay}" EasingFunction="{StaticResource FlyOutEase}"/>
@@ -480,7 +481,7 @@
                     </BeginStoryboard>
                 </Trigger.EnterActions>
                 <Trigger.ExitActions>
-                    <BeginStoryboard>
+                    <BeginStoryboard x:Name="FlyOut">
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
                                              To="0" Duration="0:0:0.15" BeginTime="{StaticResource FlyOutDelay}"/>
@@ -488,24 +489,23 @@
                     </BeginStoryboard>
                 </Trigger.ExitActions>
             </Trigger>
-            <!--<Trigger Property="IsKeyboardFocusWithin" Value="True">
-                <Trigger.EnterActions>
-                    <BeginStoryboard x:Name="FocusIn">
+            <!--<MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="{StaticResource False}"/>
+                    <Condition Binding="{Binding LayoutTransform.ScaleX, RelativeSource={RelativeSource Self}}" Value="{StaticResource OneD}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.EnterActions>
+                    <StopStoryboard BeginStoryboardName="FlyIn"/>
+                    <StopStoryboard BeginStoryboardName="FlyOutInstant"/>
+                    <BeginStoryboard x:Name="FlyOutDelayed">
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
-                                             To="1" Duration="0:0:0.5" BeginTime="{StaticResource FlyInDelay}" EasingFunction="{StaticResource FlyOutEase}"/>
+                                             To="0" Duration="0:0:0.15" BeginTime="{StaticResource FlyOutDelay}"
+                                             />
                         </Storyboard>
                     </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <BeginStoryboard x:Name="FocusOut">
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
-                                             To="0" Duration="0:0:0.2" BeginTime="{StaticResource FlyOutDelay}"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.ExitActions>
-            </Trigger>-->
+                </MultiDataTrigger.EnterActions>
+            </MultiDataTrigger>-->
         </Style.Triggers>
     </Style>
 
@@ -518,12 +518,12 @@
                         <TextBlock x:Name="PlatformIdText" Visibility="Collapsed" Text="{ThemeFileBinding Game.Platforms[0].SpecificationId, PathFormat='Images/Banners/PlatformSpecId/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
                         <Image x:Name="SpecIdImage" RenderOptions.BitmapScalingMode="Fant"
                                    Visibility="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"
-                                   Source="{Binding Text, ElementName=PlatformIdText, Converter={StaticResource ImageStringToImageConverter}, FallbackValue={x:Null}}"/>
+                                   Source="{Binding Text, ElementName=PlatformIdText, Converter={StaticResource ImageStringToImageConverterCached}, FallbackValue={x:Null}}"/>
 
                         <TextBlock x:Name="PlatformNameText" Visibility="Collapsed" Text="{ThemeFileBinding Game.Platforms[0].Name, PathFormat='Images/Banners/PlatformName/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
                         <Image x:Name="PlatformNameImage"
                                    RenderOptions.BitmapScalingMode="Fant"
-                                   Source="{Binding Text, ElementName=PlatformNameText, Converter={StaticResource ImageStringToImageConverter}, FallbackValue={x:Null}}">
+                                   Source="{Binding Text, ElementName=PlatformNameText, Converter={StaticResource ImageStringToImageConverterCached}, FallbackValue={x:Null}}">
                             <Image.Style>
                                 <Style TargetType="Image">
                                     <Setter Property="Visibility" Value="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
@@ -556,7 +556,7 @@
             </ContentControl>
             <TextBlock x:Name="PluginIdText" Visibility="Collapsed" Text="{ThemeFileBinding Game.PluginId, PathFormat='Images/Banners/PluginId/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
             <Image x:Name="PluginIdImage" RenderOptions.BitmapScalingMode="Fant"
-                    Source="{Binding Text, ElementName=PluginIdText, Converter={StaticResource ImageStringToImageConverter}, FallbackValue={x:Null}}">
+                    Source="{Binding Text, ElementName=PluginIdText, Converter={StaticResource ImageStringToImageConverterCached}, FallbackValue={x:Null}}">
                 <Image.Style>
                     <Style TargetType="Image">
                         <Setter Property="Visibility" Value="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
