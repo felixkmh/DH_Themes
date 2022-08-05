@@ -13,3 +13,7 @@ Recommendations:
 PersistentPaths:
 - Images/Banners
 - Images/Icons
+BannerBySpecIdPath: Images/Banners/PlatformSpecId
+BannerByPlatformNamePath: Images/Banners/PlatformName
+BannersByPluginIdPath: Images/Banners/PluginId
+DefaultBannerPath: Images/Banners/UnknownLibrary.png
