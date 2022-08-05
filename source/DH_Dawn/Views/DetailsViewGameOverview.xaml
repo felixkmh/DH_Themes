@@ -1448,8 +1448,8 @@
                                         <DockPanel VerticalAlignment="Bottom"
                                             DockPanel.Dock="Right"
                                             Visibility="{Binding CoverVisibility}">
-                                            <ContentControl x:Name="CoverBanner"
-                                                            Template="{StaticResource BannerControl}" 
+                                            <ContentControl x:Name="ThemeExtras_Banner"
+                                                            RenderOptions.BitmapScalingMode="Fant"
                                                             Width="{Binding ActualWidth, ElementName=PART_ImageCover}"
                                                             Tag="{DynamicResource DetailsViewBannerOnCover}"
                                                             DockPanel.Dock="Bottom"
@@ -1627,7 +1627,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Tag, ElementName=PART_ImageCover}" Value="{StaticResource False}">
-                            <Setter Property="DockPanel.Dock" Value="Top" TargetName="CoverBanner"/>
+                            <Setter Property="DockPanel.Dock" Value="Top" TargetName="ThemeExtras_Banner"/>
                         </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
