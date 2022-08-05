@@ -257,63 +257,6 @@
         </Setter>
     </Style>
 
-    <Style x:Key="FloatButtonViewboxStyle" TargetType="Button">
-        <Style.Resources>
-            <CubicEase x:Key="Ease" EasingMode="EaseInOut"/>
-            <QuadraticEase x:Key="FlyoutEase" EasingMode="EaseOut"/>
-        </Style.Resources>
-        <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" BorderThickness="0,1,1,1" BorderBrush="{TemplateBinding BorderBrush}">
-                        <Border.CornerRadius>
-                            <CornerRadius BottomLeft="0" BottomRight="{StaticResource ControlCornerRadiusSingle}"
-                                                                              TopLeft="0" TopRight="{StaticResource ControlCornerRadiusSingle}"/>
-                        </Border.CornerRadius>
-                        <StackPanel Orientation="Horizontal">
-                            <Border x:Name="FillerBorder" Width="0"/>
-                            <Border Padding="{TemplateBinding Padding}" MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}">
-                                <Viewbox>
-                                    <ContentPresenter HorizontalAlignment="Center"/>
-                                </Viewbox>
-                            </Border>
-                        </StackPanel>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}"/>
-                            <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}"/>
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="FillerBorder"
-                                                                                         Storyboard.TargetProperty="Width"
-                                                                                         To="7" Duration="0:0:0.22"
-                                                                                         EasingFunction="{StaticResource FlyoutEase}"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="FillerBorder"
-                                                                                         Storyboard.TargetProperty="Width"
-                                                                                         To="0" Duration="0:0:0.22"
-                                                                                         EasingFunction="{StaticResource FlyoutEase}"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="DuplicateHider_FloatButtonStyle" TargetType="ContentControl">
         <Setter Property="ClipToBounds" Value="False"/>
         <Setter Property="Template">
@@ -427,7 +370,7 @@
                                                                         <BeginStoryboard x:Name="FlyIn">
                                                                             <Storyboard>
                                                                                 <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                                                                To="0,0,0,0" Duration="0:0:0.5"
+                                                                                                To="0,0,0,0" Duration="0:0:0.3"
                                                                                                 EasingFunction="{StaticResource FlyOutEase}"
                                                                                                 BeginTime="{StaticResource FlyInDelay}"/>
                                                                             </Storyboard>
@@ -438,7 +381,7 @@
                                                                         <BeginStoryboard x:Name="FlyOut">
                                                                             <Storyboard>
                                                                                 <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                                                                To="-28,0,0,0" Duration="0:0:0.2"
+                                                                                                To="-28,0,0,0" Duration="0:0:0.15"
                                                                                                 BeginTime="{StaticResource FlyOutDelay}"/>
                                                                             </Storyboard>
                                                                         </BeginStoryboard>
@@ -532,7 +475,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
-                                             To="1" Duration="0:0:0.5" BeginTime="{StaticResource FlyInDelay}" EasingFunction="{StaticResource FlyOutEase}"/>
+                                             To="1" Duration="0:0:0.3" BeginTime="{StaticResource FlyInDelay}" EasingFunction="{StaticResource FlyOutEase}"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.EnterActions>
@@ -540,7 +483,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
-                                             To="0" Duration="0:0:0.2" BeginTime="{StaticResource FlyOutDelay}"/>
+                                             To="0" Duration="0:0:0.15" BeginTime="{StaticResource FlyOutDelay}"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.ExitActions>
@@ -565,6 +508,73 @@
             </Trigger>-->
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="BannerStyle" TargetType="ContentControl">
+        <Setter Property="Tag" Value="{StaticResource True}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Grid>
+                        <TextBlock x:Name="PlatformIdText" Visibility="Collapsed" Text="{ThemeFileBinding Game.Platforms[0].SpecificationId, PathFormat='Images/Banners/PlatformSpecId/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
+                        <Image x:Name="SpecIdImage" RenderOptions.BitmapScalingMode="Fant"
+                                   Visibility="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"
+                                   Source="{Binding Text, ElementName=PlatformIdText, Converter={StaticResource ImageStringToImageConverter}, FallbackValue={x:Null}}"/>
+
+                        <TextBlock x:Name="PlatformNameText" Visibility="Collapsed" Text="{ThemeFileBinding Game.Platforms[0].Name, PathFormat='Images/Banners/PlatformName/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
+                        <Image x:Name="PlatformNameImage"
+                                   RenderOptions.BitmapScalingMode="Fant"
+                                   Source="{Binding Text, ElementName=PlatformNameText, Converter={StaticResource ImageStringToImageConverter}, FallbackValue={x:Null}}">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Visibility" Value="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsVisible, ElementName=SpecIdImage}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsVisible, ElementName=PlatformNameImage}" Value="False"/>
+                                <Condition Binding="{Binding IsVisible, ElementName=SpecIdImage}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Tag" Value="{StaticResource False}"/>
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <ControlTemplate x:Key="BannerControl" TargetType="ContentControl">
+        <Grid>
+            <ContentControl x:Name="PlatformImage">
+            </ContentControl>
+            <TextBlock x:Name="PluginIdText" Visibility="Collapsed" Text="{ThemeFileBinding Game.PluginId, PathFormat='Images/Banners/PluginId/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
+            <Image x:Name="PluginIdImage" RenderOptions.BitmapScalingMode="Fant"
+                    Source="{Binding Text, ElementName=PluginIdText, Converter={StaticResource ImageStringToImageConverter}, FallbackValue={x:Null}}">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Visibility" Value="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Tag, ElementName=PlatformImage}" Value="{StaticResource True}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Game.Platforms, Converter={StaticResource ICollectionNullOrEmptyToVisibilityConverter}}" Value="{x:Static Visibility.Visible}">
+                <Setter Property="Style" TargetName="PlatformImage" Value="{StaticResource BannerStyle}"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 
     <Storyboard x:Key="ZoomFadeOut">
         <DoubleAnimation Storyboard.TargetProperty="Opacity"
@@ -1026,11 +1036,13 @@
                             <Border Tag="{DynamicResource ShowBackgroundTrailerControls}"
                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Border x:Name="VideoControls" 
-                                        Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsAnyVideoAvailable, FallbackValue={x:Static Visibility.Collapsed}}">
+                                        Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable, FallbackValue={x:Static Visibility.Collapsed}}">
 
                                     <ContentControl HorizontalAlignment="Left" Height="40" Margin="0,6,0,0"
-                                        Padding="0"
-                                        Style="{StaticResource FloatContentControlStyle}">
+                                                    Tag="{DynamicResource ShowTrailerInBackground}"
+                                                    Padding="0"
+                                                    Style="{StaticResource FloatContentControlStyle}"
+                                                    Visibility="{Binding Tag, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <Grid>
                                             <!--<ProgressBar Minimum="0" 
                                                          Maximum="10"
@@ -1354,7 +1366,7 @@
                                     UseLayoutRounding="False" SnapsToDevicePixels="False"
                                     VerticalAlignment="Top">
                                 <Border.LayoutTransform>
-                                    <ScaleTransform ScaleY="0.003"/>
+                                    <ScaleTransform ScaleY="0.002"/>
                                 </Border.LayoutTransform>
                             </Border>
                         </Border>
@@ -1369,23 +1381,19 @@
                                   Background="{x:Null}">
                             <Grid>
 
-                                <Grid HorizontalAlignment="Stretch" Margin="20,0,20,0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="{Settings CalculatedGameDetailsIndentation}"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-
-                                    <Grid Grid.Row="0" Focusable="False" Grid.RowSpan="2" 
+                                <ContentControl VerticalAlignment="Top"
+                                        Visibility="{Binding IsVisible,ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Grid Focusable="False" VerticalAlignment="Top" 
+                                          Height="{Binding ActualHeight, ElementName=OnScreenButtonsSizeProxy}"
                                           x:Name="OnScreenButtons"
                                           Effect="{StaticResource PopupDropShadow}"
                                           Visibility="{PluginSettings IsAnyVideoAvailable, Plugin=ExtraMetadataLoader, FallbackValue={x:Static Visibility.Collapsed}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <Button Focusable="False" Cursor="Arrow"
-                                                RenderTransformOrigin="0.5,0.5" RenderTransform="{StaticResource UniformScaleTransform}"
-                                    Background="Transparent"
-                                                        x:Name="TrailerPauseButton2"
-                                                    Command="{Binding ElementName=TrailerPauseButton, Path=Command, FallbackValue={x:Null}}"
-                                                    Visibility="{Binding ElementName=TrailerPlayButton2, Path=IsEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+                                                    RenderTransformOrigin="0.5,0.5" RenderTransform="{StaticResource UniformScaleTransform}"
+                                        Background="Transparent"
+                                                            x:Name="TrailerPauseButton2"
+                                                        Command="{Binding ElementName=TrailerPauseButton, Path=Command, FallbackValue={x:Null}}"
+                                                        Visibility="{Binding ElementName=TrailerPlayButton2, Path=IsEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
                                             <Button.Template>
                                                 <ControlTemplate TargetType="Button">
                                                     <Border Background="Transparent"/>
@@ -1393,16 +1401,16 @@
                                             </Button.Template>
                                         </Button>
                                         <Button Focusable="False" Cursor="Arrow"
-                                    Background="Transparent"
-                                                RenderTransformOrigin="0.5,0.5" RenderTransform="{StaticResource UniformScaleTransform}"
-                                                    x:Name="TrailerPlayButton2"
-                                                    Command="{Binding ElementName=TrailerPlayButton, Path=Command, FallbackValue={x:Null}}"
-                                                    Opacity="0"
-                                                    Tag="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}">
+                                        Background="Transparent"
+                                                    RenderTransformOrigin="0.5,0.5" RenderTransform="{StaticResource UniformScaleTransform}"
+                                                        x:Name="TrailerPlayButton2"
+                                                        Command="{Binding ElementName=TrailerPlayButton, Path=Command, FallbackValue={x:Null}}"
+                                                        Opacity="0"
+                                                        Tag="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}">
                                             <Button.Template>
                                                 <ControlTemplate TargetType="Button">
                                                     <Border Background="Transparent">
-                                                        <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="90">
+                                                        <Viewbox MaxWidth="100" MaxHeight="100">
                                                             <TextBlock Text="&#xEC74;" FontFamily="{StaticResource FontIcoFont}" Foreground="{DynamicResource TextBrush}"/>
                                                         </Viewbox>
                                                     </Border>
@@ -1423,18 +1431,37 @@
                                             </Button.Template>
                                         </Button>
                                     </Grid>
+                                </ContentControl>
+
+                                <Grid HorizontalAlignment="Stretch" Margin="20,0,20,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="{Settings CalculatedGameDetailsIndentation}"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <ContentControl Grid.RowSpan="2" x:Name="OnScreenButtonsSizeProxy"/>
 
                                     <DockPanel Margin="0,20,0,15" MaxWidth="1024" Grid.Row="1"
                                            Background="{x:Null}" x:Name="Header">
                                         <ContentControl x:Name="FadeOutDetailsHeaderWhenVideoPlaysProxy" Visibility="Collapsed" Tag="{DynamicResource FadeOutDetailsHeaderWhenVideoPlays}"/>
-                                        <Border VerticalAlignment="Bottom"
-                                            DockPanel.Dock="Right">
+                                        <DockPanel VerticalAlignment="Bottom"
+                                            DockPanel.Dock="Right"
+                                            Visibility="{Binding CoverVisibility}">
+                                            <ContentControl x:Name="CoverBanner"
+                                                            Template="{StaticResource BannerControl}" 
+                                                            Width="{Binding ActualWidth, ElementName=PART_ImageCover}"
+                                                            Tag="{DynamicResource DetailsViewBannerOnCover}"
+                                                            DockPanel.Dock="Bottom"
+                                                            Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                             <Image Name="PART_ImageCover" 
-                                            Height="{Settings GameDetailsCoverHeight}"
-                                            StretchDirection="Both" Stretch="Uniform"
-                                            RenderOptions.BitmapScalingMode="Fant" 
+                                                   DockPanel.Dock="Top"
+                                                   Height="{Settings GameDetailsCoverHeight}"
+                                                   StretchDirection="Both" Stretch="Uniform"
+                                                   RenderOptions.BitmapScalingMode="Fant" 
+                                                   Tag="{DynamicResource DetailsViewBannerOnCoverBelow}"
                                             />
-                                        </Border>
+                                        </DockPanel>
                                         <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
                                             <DockPanel>
                                                 <Image Name="PART_ImageIcon" MaxHeight="48" MaxWidth="48"
@@ -1468,6 +1495,7 @@
                                     </DockPanel>
 
                                     <ContentControl x:Name="ExtraMetadataLoader_LogoLoaderControl" Grid.RowSpan="2"
+                                                    MaxWidth="1024"
                                                     IsHitTestVisible="False"
                                                     Margin="20"
                                                     Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable, FallbackValue={x:Static Visibility.Collapsed}}"/>
@@ -1598,32 +1626,16 @@
                         </ScrollViewer>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <!--<EventTrigger RoutedEvent="PreviewMouseMove" SourceName="TrailerPauseButton2">
-                            <StopStoryboard BeginStoryboardName="HeaderFadeOut"/>
-                            <StopStoryboard BeginStoryboardName="HeaderFadeIn"/>
-                            <BeginStoryboard x:Name="HeaderFadeIn">
-                                <Storyboard FillBehavior="Stop">
-                                    <DoubleAnimation Storyboard.TargetName="Header" Storyboard.TargetProperty="Opacity"
-                                                        To="1" Duration="0:0:0.5"/>
-                                    <DoubleAnimation Storyboard.TargetName="ExtraMetadataLoader_LogoLoaderControl" Storyboard.TargetProperty="Opacity"
-                                                        To="1" Duration="0:0:0.5"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                            <BeginStoryboard x:Name="HeaderFadeOut">
-                                <Storyboard BeginTime="0:0:5">
-                                    <DoubleAnimation Storyboard.TargetName="Header" Storyboard.TargetProperty="Opacity"
-                                                        To="0" Duration="0:0:2"/>
-                                    <DoubleAnimation Storyboard.TargetName="ExtraMetadataLoader_LogoLoaderControl" Storyboard.TargetProperty="Opacity"
-                                                        To="0" Duration="0:0:2"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>-->
+                        <DataTrigger Binding="{Binding Tag, ElementName=PART_ImageCover}" Value="{StaticResource False}">
+                            <Setter Property="DockPanel.Dock" Value="Top" TargetName="CoverBanner"/>
+                        </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Tag, ElementName=FadeOutDetailsHeaderWhenVideoPlaysProxy}" Value="True"/>
                                 <Condition Binding="{Binding ElementName=PART_ScrollViewHost, Path=VerticalOffset}" Value="0"/>
                                 <Condition Binding="{Binding ElementName=TrailerPauseButton2, Path=IsVisible}" Value="True"/>
-                                <Condition Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsAnyVideoAvailable, FallbackValue={StaticResource False}}" Value="{StaticResource True}"/>
+                                <Condition Binding="{Binding IsVisible, ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound}" Value="True"/>
+                                <Condition Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable, FallbackValue={StaticResource False}}" Value="{StaticResource True}"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.EnterActions>
                                 <BeginStoryboard x:Name="HeaderFadeOut">
