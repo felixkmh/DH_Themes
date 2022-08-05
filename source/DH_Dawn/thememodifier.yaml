@@ -1,12 +1,15 @@
 Constants:
-    - Details View
-    - FillBackgroundImage
-    - ButtonStackVerticalAlignment
-    - FloatButtonsMargin(0,200)
-    - EnableFloatingRating
-    - EnableFloatingSourceSelector
-    - ShowDuplicateHiderInDetailsList
-    - ShowTrailerInBackground
-    - ShowBackgroundTrailerControls
-    - FadeOutDetailsHeaderWhenVideoPlays
-    - DetailsMaxDimmerOpacity
+- Details View
+- FillBackgroundImage
+- ButtonStackVerticalAlignment
+- FloatButtonsMargin(0,200)
+- EnableFloatingRating
+- EnableFloatingSourceSelector
+- ShowDuplicateHiderInDetailsList
+- ShowTrailerInBackground
+- ShowBackgroundTrailerControls
+- FadeOutDetailsHeaderWhenVideoPlays
+- DetailsMaxDimmerOpacity(0,1)
+- DetailsDimmerColor
+- DetailsViewBannerOnCover
+- DetailsViewBannerOnCoverBelow

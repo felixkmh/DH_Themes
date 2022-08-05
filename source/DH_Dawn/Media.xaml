@@ -49,4 +49,6 @@
 
     <BitmapImage x:Key="PowerShellIcon" UriSource="{ThemeFile 'Images/powershell.ico'}" popt:Freeze="True" />    
     <BitmapImage x:Key="CsharpIcon" UriSource="{ThemeFile 'Images/csharp.ico'}" popt:Freeze="True" />
+
+    <BitmapImage x:Key="FallbackBanner" CacheOption="OnLoad" UriSource="{ThemeFile 'Images/Banners/UnknownLibrary.png'}" popt:Freeze="True" />
 </ResourceDictionary>
