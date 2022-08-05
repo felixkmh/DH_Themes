@@ -154,7 +154,7 @@
                     <!--Check DuplicateHider_SourceSelector Visibility if animation is removed.-->
                     <ControlTemplate.Triggers>
                         <EventTrigger SourceName="ThemeExtras_SettableFavorite" RoutedEvent="PreviewMouseUp">
-                            <BeginStoryboard>
+                            <BeginStoryboard x:Name="Pulse">
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetName="ThemeExtras_SettableFavorite"
                                                         Storyboard.TargetProperty="RenderTransform.ScaleX"
@@ -178,6 +178,7 @@
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="Pulse"/>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="ImageIconContainer"
