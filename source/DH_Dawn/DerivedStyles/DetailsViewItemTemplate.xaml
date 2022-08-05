@@ -76,10 +76,42 @@
                                                                     RenderOptions.BitmapScalingMode="Fant"
                                                                     MaxHeight="24"/>
                                 </ContentControl>
-                                <Image Name="PART_ImageIcon"
-                                               Height="{Settings DetailsViewListIconSize}"
+                                <Grid DockPanel.Dock="Left" Margin="0,0,8,0"
+                                      Height="{Settings DetailsViewListIconSize}"
+                                      Width="{Binding Height, RelativeSource={RelativeSource Self}}">
+                                    <ContentControl x:Name="ImageIconContainer">
+                                        <Image Name="PART_ImageIcon"
+                                               Stretch="Fill"
                                                RenderOptions.BitmapScalingMode="Fant"
-                                               DockPanel.Dock="Left" Margin="0,0,8,0" />
+                                                />
+                                    </ContentControl>
+                                    <ContentControl x:Name="ThemeExtras_SettableFavorite" Opacity="0"
+                                                    RenderTransform="{StaticResource UniformScaleTransform}"
+                                                    RenderTransformOrigin="0.5,0.5">
+                                        <ContentControl.Resources>
+                                            <Style TargetType="UserControl">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="UserControl">
+                                                            <CheckBox IsChecked="{Binding Value}">
+                                                                <CheckBox.Template>
+                                                                    <ControlTemplate TargetType="CheckBox">
+                                                                        <Viewbox>
+                                                                            <Grid>
+                                                                                <TextBlock Text="&#xF000;" FontFamily="{StaticResource FontIcoFont}" 
+                                                               Opacity="{TemplateBinding IsChecked, Converter={StaticResource OpacityBoolConverter}}"/>
+                                                                            </Grid>
+                                                                        </Viewbox>
+                                                                    </ControlTemplate>
+                                                                </CheckBox.Template>
+                                                            </CheckBox>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ContentControl.Resources>
+                                    </ContentControl>
+                                </Grid>
                                 <TextBlock Text="&#xEC74;" FontFamily="{StaticResource FontIcoFont}" x:Name="PlayIndicator"
                                                    VerticalAlignment="Center" DockPanel.Dock="Left"
                                            Margin="0,0,3,0"
@@ -121,6 +153,43 @@
                     <!--Fade effect. Remove or comment out <ControlTemplate.Triggers> section to deactivate animation.-->
                     <!--Check DuplicateHider_SourceSelector Visibility if animation is removed.-->
                     <ControlTemplate.Triggers>
+                        <EventTrigger SourceName="ThemeExtras_SettableFavorite" RoutedEvent="PreviewMouseUp">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="ThemeExtras_SettableFavorite"
+                                                        Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                        To="1.12" Duration="0:0:0.13"
+                                                        AutoReverse="True"
+                                            FillBehavior="Stop"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsMouseOver" SourceName="ThemeExtras_SettableFavorite" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ImageIconContainer"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="ThemeExtras_SettableFavorite"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ImageIconContainer"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="ThemeExtras_SettableFavorite"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
                         <DataTrigger Binding="{Binding Game.IsInstalling}" Value="True">
                             <Setter Property="Visibility" TargetName="LoadingBorder" Value="Visible"/>
                             <DataTrigger.EnterActions>

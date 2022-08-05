@@ -19,17 +19,23 @@
                         <ElasticEase x:Key="FlyOutEase" Oscillations="1"/>
                     </ControlTemplate.Resources>
                     <Grid>
+                        <Ellipse Width="5" Height="5" HorizontalAlignment="Left" VerticalAlignment="Center" Fill="{DynamicResource GlyphBrush}"
+                                 x:Name="FavoriteCircle" Visibility="Collapsed" Margin="0"/>
                         <Border x:Name="SelectedRectangle" IsHitTestVisible="False" Visibility="Visible"
-                                                        BorderThickness="5,0,0,0" BorderBrush="{DynamicResource GlyphBrush}"
+                                HorizontalAlignment="Left" Width="5"
+                                BorderThickness="0,0,0,0" Background="{DynamicResource GlyphBrush}"
                                 Opacity="0"
+                                CornerRadius="0"
                                 RenderTransformOrigin="0,0.5">
                             <Border.RenderTransform>
                                 <ScaleTransform x:Name="SelectedScale" ScaleX="0"/>
                             </Border.RenderTransform>
                         </Border>
                         <Border x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Visible"
-                                                            Opacity="0" RenderTransformOrigin="0,0.5"
-                                                            BorderThickness="5,0,0,0" BorderBrush="{DynamicResource GlyphBrush}">
+                                Opacity="0" RenderTransformOrigin="0,0.5"
+                                Width="5" HorizontalAlignment="Left"
+                                BorderThickness="0,0,0,0" Background="{DynamicResource GlyphBrush}"
+                                CornerRadius="0,3,3,0">
                             <Border.RenderTransform>
                                 <ScaleTransform x:Name="HoverScale" ScaleX="0"/>
                             </Border.RenderTransform>
@@ -39,6 +45,9 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Favorite}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="FavoriteCircle"/>
+                        </DataTrigger>
                         <DataTrigger Binding="{Binding IsRunning}" Value="True">
                             <Setter Property="FontWeight" Value="Medium"/>
                         </DataTrigger>
