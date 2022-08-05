@@ -7,6 +7,7 @@
                     mc:Ignorable="d">
 
     <Style TargetType="{x:Type ContextMenu}">
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />

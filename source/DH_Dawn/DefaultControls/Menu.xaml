@@ -8,6 +8,8 @@
 
     <Style TargetType="{x:Type Separator}">
         <Setter Property="Background" Value="{DynamicResource GlyphBrush}" />
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Margin" Value="0,2,0,2" />
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Template">
@@ -34,6 +36,7 @@
 
     <Style TargetType="{x:Type Menu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
         <Setter Property="Template">
@@ -49,18 +52,27 @@
 
     <!-- TopLevelHeader -->
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
-        <Border x:Name="Border">
+        <Border x:Name="Border"
+                UseLayoutRounding="True" SnapsToDevicePixels="True"
+                CornerRadius="{DynamicResource ControlCornerRadius}">
             <Grid>
-                <Border x:Name="HoverBorder" Background="{DynamicResource HoverBrush}" Visibility="Collapsed"  />
+                <Border x:Name="HoverBorder" Background="{DynamicResource HoverBrush}" Visibility="Collapsed" 
+                        CornerRadius="{DynamicResource ControlCornerRadius}"/>
                 <TextBlock VerticalAlignment="Center" Padding="5" Style="{DynamicResource BaseTextBlockStyle}"
                            Foreground="{TemplateBinding Foreground}">
                     <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" />
                 </TextBlock>
-                <Popup Placement="Bottom" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
-                    <Border SnapsToDevicePixels="True" BorderBrush="{DynamicResource PopupBorderBrush}"
-                            Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="{DynamicResource PopupBorderThickness}">
+                <Popup Placement="Bottom" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False"
+                       UseLayoutRounding="True" SnapsToDevicePixels="True">
+                    <Grid Margin="15">
+                        <Border SnapsToDevicePixels="True" BorderBrush="{DynamicResource PopupBorderBrush}"
+                                Effect="{DynamicResource PopupDropShadow}"
+                                CornerRadius="{DynamicResource ControlCornerRadius}"
+                                Background="{DynamicResource PopupBackgroundBrush}" 
+                                BorderThickness="{DynamicResource PopupBorderThickness}">
+                        </Border>
                         <StackPanel Grid.IsSharedSizeScope="True" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
-                    </Border>
+                    </Grid>
                 </Popup>
             </Grid>
         </Border>
@@ -75,14 +87,16 @@
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelItemTemplateKey}" TargetType="{x:Type MenuItem}">
         <Border x:Name="Border" BorderBrush="{DynamicResource PopupBorderBrush}"
                 Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="{DynamicResource PopupBorderThickness}"
-                CornerRadius="{DynamicResource ControlCornerRadius}">
+                CornerRadius="{DynamicResource ControlCornerRadius}"
+                SnapsToDevicePixels="True" UseLayoutRounding="True">
             <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" />
         </Border>
     </ControlTemplate>
 
     <!-- SubmenuHeader -->
     <ControlTemplate x:Key="{x:Static MenuItem.SubmenuHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
-        <Grid Background="Transparent">
+        <Grid Background="Transparent"
+              UseLayoutRounding="True" SnapsToDevicePixels="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
                 <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" />
@@ -109,16 +123,19 @@
                 <TextBlock FontFamily="Marlett" Text="4" VerticalAlignment="Center" Style="{DynamicResource BaseTextBlockStyle}" />
             </Grid>
             <Popup IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Right"
-                   Focusable="False" AllowsTransparency="True">
-                <Border BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}"
-                        BorderThickness="{DynamicResource PopupBorderThickness}"
-                        CornerRadius="{DynamicResource ControlCornerRadius}"
-                        Effect="{DynamicResource PopupDropShadow}" Margin="15"
-                        UseLayoutRounding="True">
+                   Focusable="False" AllowsTransparency="True"
+                   UseLayoutRounding="True" SnapsToDevicePixels="True">
+                <Grid Margin="15">
+                    <Border BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}"
+                            BorderThickness="{DynamicResource PopupBorderThickness}"
+                            CornerRadius="{DynamicResource ControlCornerRadius}"
+                            Effect="{DynamicResource PopupDropShadow}"
+                            UseLayoutRounding="True" SnapsToDevicePixels="True">
+                    </Border>
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                         <StackPanel Grid.IsSharedSizeScope="True" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
                     </ScrollViewer>
-                </Border>
+                </Grid>
             </Popup>
         </Grid>
         <ControlTemplate.Triggers>
@@ -140,7 +157,8 @@
 
     <!-- SubmenuItem -->
     <ControlTemplate x:Key="{x:Static MenuItem.SubmenuItemTemplateKey}" TargetType="{x:Type MenuItem}">
-        <Border x:Name="HoverBorder" Background="{DynamicResource HoverBrush}" CornerRadius="{DynamicResource ControlCornerRadius}">
+        <Border x:Name="HoverBorder" Background="{DynamicResource HoverBrush}" CornerRadius="{DynamicResource ControlCornerRadius}"
+                UseLayoutRounding="True" SnapsToDevicePixels="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
@@ -184,6 +202,7 @@
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Style.Triggers>
             <Trigger Property="Role" Value="TopLevelHeader">
