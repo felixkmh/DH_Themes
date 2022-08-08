@@ -11,7 +11,6 @@
                     <Border BorderThickness="{Settings GridItemMargin}" BorderBrush="{DynamicResource GridItemBackgroundBrush}">
                         <StackPanel Name="PART_PanelHost"
                                     d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}">
-
                             <Grid Width="{Settings GridItemWidth}"
                               Height="{Settings GridItemHeight}">
                                 <Image Name="PART_ImageCover"
@@ -37,6 +36,7 @@
                                                 Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
                                     </StackPanel>
                                 </Viewbox>
+                                <ContentControl x:Name="ThemeExtras_Banner" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="Fant"/>
                                 <ContentControl 
                                             HorizontalAlignment="Right"
                                             x:Name="ThemeExtras_SettableFavorite"

@@ -11,7 +11,7 @@
     <sys:Double x:Key="DetailsMaxDimmerOpacity">0.5</sys:Double>
     <SolidColorBrush x:Key="DetailsDimmerColor" Color="Black"/>
     <sys:Boolean x:Key="DetailsViewBannerOnCover">True</sys:Boolean>
-    <sys:Boolean x:Key="DetailsViewBannerOnCoverBelow">False</sys:Boolean>
+    <sys:Boolean x:Key="DetailsViewBannerOnCoverBelow">True</sys:Boolean>
 
     <!--ThemeExtras-->
     <sys:Boolean x:Key="EnableFloatingRating">True</sys:Boolean>
@@ -109,6 +109,13 @@
         <GradientStop Color="{DynamicResource MainColorDark}" Offset="0.5"/>
         <GradientStop Color="#373642" Offset="1"/>
     </LinearGradientBrush>
+
+    <sys:Char x:Key="ThemeExtrasWebIcon_twitch.tv">&#xED79;</sys:Char>
+    <sys:Char x:Key="ThemeExtrasWebIcon_twitter.com">&#xED7A;</sys:Char>
+    <sys:Char x:Key="ThemeExtrasWebIcon_facebook.com">&#xED37;</sys:Char>
+    <sys:Char x:Key="ThemeExtrasWebIcon_steampowered.com">&#xE93E;</sys:Char>
+    <sys:Char x:Key="ThemeExtrasWebIcon_steamcommunity.com">&#xE93E;</sys:Char>
+    <sys:String x:Key="DefaultLinkIcon">&#xEF71;</sys:String>
 
     <DropShadowEffect x:Key="PopupDropShadow" BlurRadius="16" ShadowDepth="2" Direction="-90" Color="Black" RenderingBias="Performance" Opacity="0.75"/>
 
