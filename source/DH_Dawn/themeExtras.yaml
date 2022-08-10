@@ -18,4 +18,3 @@ BannersByPlatformNamePath: Images/Banners/PlatformName
 BannersByPluginIdPath: Images/Banners/PluginId
 DefaultBannerPath: Images/Banners/UnknownLibrary.png
 BannerDecodeHeight: 75
-WebsiteIconsPath: Images/WebIcons

@@ -6,490 +6,494 @@
                     xmlns:m="clr-namespace:Playnite;assembly=Playnite.SDK"
                     mc:Ignorable="d">
 
-    <Style x:Key="UserRatingProgressBar" TargetType="ProgressBar">
-        <Setter Property="Minimum" Value="0"/>
-        <Setter Property="Maximum" Value="100"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ProgressBar">
-                    <ControlTemplate.Resources>
-                        <sys:Double x:Key="HalfWidth">8</sys:Double>
-                        <sys:Double x:Key="Width">16</sys:Double>
-                        <sys:Double x:Key="Height">16</sys:Double>
-                        <sys:String x:Key="_10StarString">&#xF000;&#xF000;&#xF000;&#xF000;&#xF000;</sys:String>
-                    </ControlTemplate.Resources>
-                    <Grid>
-                        <TextBlock Text="{StaticResource _10StarString}" Height="{DynamicResource Height}" FontFamily="{StaticResource FontIcoFont}"
+
+
+    <Style TargetType="{x:Type DetailsViewGameOverview}">
+        <Style.Resources>
+            <Style x:Key="UserRatingProgressBar" TargetType="ProgressBar">
+                <Setter Property="Minimum" Value="0"/>
+                <Setter Property="Maximum" Value="100"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ProgressBar">
+                            <ControlTemplate.Resources>
+                                <sys:Double x:Key="HalfWidth">8</sys:Double>
+                                <sys:Double x:Key="Width">16</sys:Double>
+                                <sys:Double x:Key="Height">16</sys:Double>
+                                <sys:String x:Key="_10StarString">&#xF000;&#xF000;&#xF000;&#xF000;&#xF000;</sys:String>
+                            </ControlTemplate.Resources>
+                            <Grid>
+                                <TextBlock Text="{StaticResource _10StarString}" Height="{DynamicResource Height}" FontFamily="{StaticResource FontIcoFont}"
                                    FontSize="{DynamicResource Height}"
                                    Foreground="White" Opacity="0.3"/>
-                        <TextBlock Text="{StaticResource _10StarString}" Height="{DynamicResource Height}" FontFamily="{StaticResource FontIcoFont}"
+                                <TextBlock Text="{StaticResource _10StarString}" Height="{DynamicResource Height}" FontFamily="{StaticResource FontIcoFont}"
                                    FontSize="{DynamicResource Height}"
                                    Foreground="White">
-                            <TextBlock.OpacityMask>
-                                <VisualBrush AutoLayoutContent="True" Stretch="Fill" AlignmentX="Left">
-                                    <VisualBrush.Visual>
-                                        <StackPanel Orientation="Horizontal" Height="{DynamicResource Height}"
+                                    <TextBlock.OpacityMask>
+                                        <VisualBrush AutoLayoutContent="True" Stretch="Fill" AlignmentX="Left">
+                                            <VisualBrush.Visual>
+                                                <StackPanel Orientation="Horizontal" Height="{DynamicResource Height}"
                                                     Background="Transparent">
-                                            <ProgressBar x:Name="Mask" Background="Transparent" Width="80" Minimum="{TemplateBinding Minimum}" Maximum="{TemplateBinding Maximum}" Value="{TemplateBinding Value}" Height="{DynamicResource Height}">
-                                                <ProgressBar.Style>
-                                                    <Style TargetType="ProgressBar"/>
-                                                </ProgressBar.Style>
-                                            </ProgressBar>
-                                        </StackPanel>
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </TextBlock.OpacityMask>
-                        </TextBlock>
-                        <Slider Height="{DynamicResource Height}" Width="80" Minimum="0" Maximum="100"
+                                                    <ProgressBar x:Name="Mask" Background="Transparent" Width="80" Minimum="{TemplateBinding Minimum}" Maximum="{TemplateBinding Maximum}" Value="{TemplateBinding Value}" Height="{DynamicResource Height}">
+                                                        <ProgressBar.Style>
+                                                            <Style TargetType="ProgressBar"/>
+                                                        </ProgressBar.Style>
+                                                    </ProgressBar>
+                                                </StackPanel>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </TextBlock.OpacityMask>
+                                </TextBlock>
+                                <Slider Height="{DynamicResource Height}" Width="80" Minimum="0" Maximum="100"
                                 Value="{Binding Game.Game.UserScore, TargetNullValue={StaticResource Zero}}"
                                 HorizontalAlignment="Left" IsMoveToPointEnabled="True"
                                 Opacity="0"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                            </Grid>
+                            <ControlTemplate.Triggers>
 
-    <Style x:Key="RatingProgressBar" TargetType="ProgressBar">
-        <Setter Property="Minimum" Value="0"/>
-        <Setter Property="Maximum" Value="100"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ProgressBar">
-                    <ControlTemplate.Resources>
-                        <sys:Double x:Key="HalfWidth">8</sys:Double>
-                        <sys:Double x:Key="Width">16</sys:Double>
-                        <sys:Double x:Key="Height">16</sys:Double>
-                        <sys:String x:Key="_10StarString">&#xF000;&#xF000;&#xF000;&#xF000;&#xF000;</sys:String>
-                    </ControlTemplate.Resources>
-                    <Grid>
-                        <TextBlock Text="{StaticResource _10StarString}" Height="{DynamicResource Height}" FontFamily="{StaticResource FontIcoFont}"
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="RatingProgressBar" TargetType="ProgressBar">
+                <Setter Property="Minimum" Value="0"/>
+                <Setter Property="Maximum" Value="100"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ProgressBar">
+                            <ControlTemplate.Resources>
+                                <sys:Double x:Key="HalfWidth">8</sys:Double>
+                                <sys:Double x:Key="Width">16</sys:Double>
+                                <sys:Double x:Key="Height">16</sys:Double>
+                                <sys:String x:Key="_10StarString">&#xF000;&#xF000;&#xF000;&#xF000;&#xF000;</sys:String>
+                            </ControlTemplate.Resources>
+                            <Grid>
+                                <TextBlock Text="{StaticResource _10StarString}" Height="{DynamicResource Height}" FontFamily="{StaticResource FontIcoFont}"
                                    FontSize="{DynamicResource Height}"
                                    Foreground="White" Opacity="0.3"/>
-                        <TextBlock Text="{StaticResource _10StarString}" Height="{DynamicResource Height}" FontFamily="{StaticResource FontIcoFont}"
+                                <TextBlock Text="{StaticResource _10StarString}" Height="{DynamicResource Height}" FontFamily="{StaticResource FontIcoFont}"
                                    FontSize="{DynamicResource Height}"
                                    Foreground="White">
-                            <TextBlock.OpacityMask>
-                                <VisualBrush AutoLayoutContent="True" Stretch="Fill" AlignmentX="Left">
-                                    <VisualBrush.Visual>
-                                        <StackPanel Orientation="Horizontal" Height="{DynamicResource Height}"
+                                    <TextBlock.OpacityMask>
+                                        <VisualBrush AutoLayoutContent="True" Stretch="Fill" AlignmentX="Left">
+                                            <VisualBrush.Visual>
+                                                <StackPanel Orientation="Horizontal" Height="{DynamicResource Height}"
                                                     Background="Transparent">
-                                            <ProgressBar x:Name="Mask" Background="Transparent" Width="80" Minimum="{TemplateBinding Minimum}" Maximum="{TemplateBinding Maximum}" Value="{TemplateBinding Value}" Height="{DynamicResource Height}">
-                                                <ProgressBar.Style>
-                                                    <Style TargetType="ProgressBar"/>
-                                                </ProgressBar.Style>
-                                            </ProgressBar>
-                                        </StackPanel>
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </TextBlock.OpacityMask>
-                        </TextBlock>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                                                    <ProgressBar x:Name="Mask" Background="Transparent" Width="80" Minimum="{TemplateBinding Minimum}" Maximum="{TemplateBinding Maximum}" Value="{TemplateBinding Value}" Height="{DynamicResource Height}">
+                                                        <ProgressBar.Style>
+                                                            <Style TargetType="ProgressBar"/>
+                                                        </ProgressBar.Style>
+                                                    </ProgressBar>
+                                                </StackPanel>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </TextBlock.OpacityMask>
+                                </TextBlock>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-    <Style x:Key="DuplicateHider_IconContentControlStyle1" TargetType="ContentControl">
-        <Style.Resources>
-            <Storyboard x:Key="Expand">
-                <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
+            <Style x:Key="DuplicateHider_IconContentControlStyle1" TargetType="ContentControl">
+                <Style.Resources>
+                    <Storyboard x:Key="Expand">
+                        <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
                                  To="1" Duration="0:0:0.1"/>
-            </Storyboard>
-            <Storyboard x:Key="Collapse">
-                <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
+                    </Storyboard>
+                    <Storyboard x:Key="Collapse">
+                        <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
                                  To="0" Duration="0:0:0.1"/>
-            </Storyboard>
-        </Style.Resources>
-        <Setter Property="ToolTip">
-            <Setter.Value>
-                <TextBlock Text="{Binding DisplayString}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="LayoutTransform">
-            <Setter.Value>
-                <ScaleTransform ScaleX="0"/>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Game.IsInstalled}" Value="False">
-                <Setter Property="Opacity" Value="0.5"/>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding IsCurrent}" Value="{StaticResource True}">
-                <Setter Property="Margin" Value="3"/>
-                <Setter Property="LayoutTransform">
+                    </Storyboard>
+                </Style.Resources>
+                <Setter Property="ToolTip">
                     <Setter.Value>
-                        <ScaleTransform ScaleX="1"/>
+                        <TextBlock Text="{Binding DisplayString}"/>
                     </Setter.Value>
                 </Setter>
-            </DataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding IsCurrent}" Value="False"/>
-                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}, FallbackValue={StaticResource False}}" Value="{StaticResource True}"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Margin" Value="3"/>
+                <Setter Property="Margin" Value="0"/>
                 <Setter Property="LayoutTransform">
                     <Setter.Value>
-                        <ScaleTransform ScaleX="1"/>
+                        <ScaleTransform ScaleX="0"/>
                     </Setter.Value>
                 </Setter>
-                <!--<MultiDataTrigger.EnterActions>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Game.IsInstalled}" Value="False">
+                        <Setter Property="Opacity" Value="0.5"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsCurrent}" Value="{StaticResource True}">
+                        <Setter Property="Margin" Value="3"/>
+                        <Setter Property="LayoutTransform">
+                            <Setter.Value>
+                                <ScaleTransform ScaleX="1"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsCurrent}" Value="False"/>
+                            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}, FallbackValue={StaticResource False}}" Value="{StaticResource True}"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Margin" Value="3"/>
+                        <Setter Property="LayoutTransform">
+                            <Setter.Value>
+                                <ScaleTransform ScaleX="1"/>
+                            </Setter.Value>
+                        </Setter>
+                        <!--<MultiDataTrigger.EnterActions>
                     <BeginStoryboard Storyboard="{StaticResource Expand}"/>
                 </MultiDataTrigger.EnterActions>
                 <MultiDataTrigger.ExitActions>
                     <BeginStoryboard Storyboard="{StaticResource Collapse}"/>
                 </MultiDataTrigger.ExitActions>-->
-            </MultiDataTrigger>
-        </Style.Triggers>
-    </Style>
-    
-    <Style x:Key="FloatButtonStyle" TargetType="Button">
-        <Style.Resources>
-            <CubicEase x:Key="Ease" EasingMode="EaseInOut"/>
-            <QuadraticEase x:Key="FlyoutEase" EasingMode="EaseOut"/>
-        </Style.Resources>
-        <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" BorderThickness="0,1,1,1" BorderBrush="{TemplateBinding BorderBrush}">
-                        <Border.CornerRadius>
-                            <CornerRadius BottomLeft="0" BottomRight="{StaticResource ControlCornerRadiusSingle}"
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="FloatButtonStyle" TargetType="Button">
+                <Style.Resources>
+                    <CubicEase x:Key="Ease" EasingMode="EaseInOut"/>
+                    <QuadraticEase x:Key="FlyoutEase" EasingMode="EaseOut"/>
+                </Style.Resources>
+                <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="0,1,1,1" BorderBrush="{TemplateBinding BorderBrush}">
+                                <Border.CornerRadius>
+                                    <CornerRadius BottomLeft="0" BottomRight="{StaticResource ControlCornerRadiusSingle}"
                                                                               TopLeft="0" TopRight="{StaticResource ControlCornerRadiusSingle}"/>
-                        </Border.CornerRadius>
-                        <StackPanel Orientation="Horizontal">
-                            <Border x:Name="FillerBorder" Width="0"/>
-                            <Border Padding="{TemplateBinding Padding}" MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}">
-                                <ContentPresenter HorizontalAlignment="Center"/>
+                                </Border.CornerRadius>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border x:Name="FillerBorder" Width="0"/>
+                                    <Border Padding="{TemplateBinding Padding}" MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}">
+                                        <ContentPresenter HorizontalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
                             </Border>
-                        </StackPanel>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}"/>
-                            <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}"/>
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="FillerBorder"
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}"/>
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="FillerBorder"
                                                                                          Storyboard.TargetProperty="Width"
                                                                                          To="7" Duration="0:0:0.22"
                                                                                          EasingFunction="{StaticResource FlyoutEase}"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="FillerBorder"
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="FillerBorder"
                                                                                          Storyboard.TargetProperty="Width"
                                                                                          To="0" Duration="0:0:0.22"
                                                                                          EasingFunction="{StaticResource FlyoutEase}"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-    <Style x:Key="FloatContentControlStyle" TargetType="ContentControl">
-        <Style.Resources>
-            <CubicEase x:Key="Ease" EasingMode="EaseInOut"/>
-            <QuadraticEase x:Key="FlyoutEase" EasingMode="EaseOut"/>
-        </Style.Resources>
-        <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
-        <!--<Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>-->
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Border Background="{TemplateBinding Background}" BorderThickness="0,1,1,1" BorderBrush="{TemplateBinding BorderBrush}">
-                        <Border.CornerRadius>
-                            <CornerRadius BottomLeft="0" BottomRight="{StaticResource ControlCornerRadiusSingle}"
+            <Style x:Key="FloatContentControlStyle" TargetType="ContentControl">
+                <Style.Resources>
+                    <CubicEase x:Key="Ease" EasingMode="EaseInOut"/>
+                    <QuadraticEase x:Key="FlyoutEase" EasingMode="EaseOut"/>
+                </Style.Resources>
+                <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
+                <!--<Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>-->
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="0,1,1,1" BorderBrush="{TemplateBinding BorderBrush}">
+                                <Border.CornerRadius>
+                                    <CornerRadius BottomLeft="0" BottomRight="{StaticResource ControlCornerRadiusSingle}"
                                                                               TopLeft="0" TopRight="{StaticResource ControlCornerRadiusSingle}"/>
-                        </Border.CornerRadius>
-                        <StackPanel Orientation="Horizontal">
-                            <Border x:Name="FillerBorder" Width="0"/>
-                            <Border Padding="{TemplateBinding Padding}" MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentControl}}">
-                                <ContentPresenter HorizontalAlignment="Center"/>
+                                </Border.CornerRadius>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border x:Name="FillerBorder" Width="0"/>
+                                    <Border Padding="{TemplateBinding Padding}" MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentControl}}">
+                                        <ContentPresenter HorizontalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
                             </Border>
-                        </StackPanel>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}"/>
-                            <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}"/>
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="FillerBorder"
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}"/>
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="FillerBorder"
                                                                                          Storyboard.TargetProperty="Width"
                                                                                          To="7" Duration="0:0:0.22"
                                                                                          EasingFunction="{StaticResource FlyoutEase}"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="FillerBorder"
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="FillerBorder"
                                                                                          Storyboard.TargetProperty="Width"
                                                                                          To="0" Duration="0:0:0.22"
                                                                                          EasingFunction="{StaticResource FlyoutEase}"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-    <Style x:Key="DuplicateHider_FloatButtonStyle" TargetType="ContentControl">
-        <Setter Property="ClipToBounds" Value="False"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <ControlTemplate.Resources>
-                        <sys:TimeSpan x:Key="FlyInDelay">0:0:0.15</sys:TimeSpan>
-                        <sys:TimeSpan x:Key="FlyOutDelay">0:0:0.5</sys:TimeSpan>
-                    </ControlTemplate.Resources>
-                    <Button HorizontalAlignment="Left" 
+            <Style x:Key="DuplicateHider_FloatButtonStyle" TargetType="ContentControl">
+                <Setter Property="ClipToBounds" Value="False"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <ControlTemplate.Resources>
+                                <sys:TimeSpan x:Key="FlyInDelay">0:0:0.15</sys:TimeSpan>
+                                <sys:TimeSpan x:Key="FlyOutDelay">0:0:0.5</sys:TimeSpan>
+                            </ControlTemplate.Resources>
+                            <Button HorizontalAlignment="Left" 
                             Height="40" 
                             Margin="0,6,0,0"
                             Padding="4,7"
                             Style="{StaticResource FloatButtonStyle}"
                             x:Name="FloatButton"
                             ClipToBounds="False">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" ClipToBounds="False">
-                            <Image x:Name="CurrentIcon" Margin="4,2" Source="{Binding CurrentGame.Icon}" RenderOptions.BitmapScalingMode="Fant"
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" ClipToBounds="False">
+                                    <Image x:Name="CurrentIcon" Margin="4,2" Source="{Binding CurrentGame.Icon}" RenderOptions.BitmapScalingMode="Fant"
                                    Panel.ZIndex="100"
                                    SnapsToDevicePixels="True">
-                                <Image.ToolTip>
-                                    <TextBlock Text="{Binding CurrentGame.DisplayString}"/>
-                                </Image.ToolTip>
-                            </Image>
-                            <Border Visibility="{Binding MoreThanOneCopy, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        <Image.ToolTip>
+                                            <TextBlock Text="{Binding CurrentGame.DisplayString}"/>
+                                        </Image.ToolTip>
+                                    </Image>
+                                    <Border Visibility="{Binding MoreThanOneCopy, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     ClipToBounds="False">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border x:Name="Separator" Opacity="0">
-                                        <Border.LayoutTransform>
-                                            <ScaleTransform ScaleX="0"/>
-                                        </Border.LayoutTransform>
-                                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" VerticalAlignment="Stretch"/>
-                                    </Border>
-                                    <ItemsControl x:Name="OtherIcons" ItemsSource="{Binding Games}" Opacity="0" ClipToBounds="False">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal" ClipToBounds="False"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Button>
-                                                    <Button.Style>
-                                                        <Style TargetType="Button">
-                                                            <Setter Property="Command" Value="{Binding SelectCommand}"/>
-                                                            <Setter Property="Margin" Value="-28,0,0,0"/>
-                                                            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
-                                                            <Setter Property="ClipToBounds" Value="False"/>
-                                                            <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant"/>
-                                                            <Setter Property="RenderTransform">
-                                                                <Setter.Value>
-                                                                    <ScaleTransform x:Name="IconScale"/>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                            <Setter Property="ToolTip">
-                                                                <Setter.Value>
-                                                                    <TextBlock Text="{Binding DisplayString}"/>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                            <!--<Setter Property="Visibility" Value="{Binding IsCurrent, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>-->
-                                                            <Setter Property="Template">
-                                                                <Setter.Value>
-                                                                    <ControlTemplate TargetType="Button">
-                                                                        <Border x:Name="Border" ClipToBounds="False"
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border x:Name="Separator" Opacity="0">
+                                                <Border.LayoutTransform>
+                                                    <ScaleTransform ScaleX="0"/>
+                                                </Border.LayoutTransform>
+                                                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" VerticalAlignment="Stretch"/>
+                                            </Border>
+                                            <ItemsControl x:Name="OtherIcons" ItemsSource="{Binding Games}" Opacity="0" ClipToBounds="False">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Horizontal" ClipToBounds="False"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button>
+                                                            <Button.Style>
+                                                                <Style TargetType="Button">
+                                                                    <Setter Property="Command" Value="{Binding SelectCommand}"/>
+                                                                    <Setter Property="Margin" Value="-28,0,0,0"/>
+                                                                    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                                                    <Setter Property="ClipToBounds" Value="False"/>
+                                                                    <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant"/>
+                                                                    <Setter Property="RenderTransform">
+                                                                        <Setter.Value>
+                                                                            <ScaleTransform x:Name="IconScale"/>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                    <Setter Property="ToolTip">
+                                                                        <Setter.Value>
+                                                                            <TextBlock Text="{Binding DisplayString}"/>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                    <!--<Setter Property="Visibility" Value="{Binding IsCurrent, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>-->
+                                                                    <Setter Property="Template">
+                                                                        <Setter.Value>
+                                                                            <ControlTemplate TargetType="Button">
+                                                                                <Border x:Name="Border" ClipToBounds="False"
                                                                                 CornerRadius="5" Padding="3,3" Margin="2,0">
-                                                                            <Image x:Name="Icon" Source="{Binding Icon}" RenderOptions.BitmapScalingMode="Fant"
+                                                                                    <Image x:Name="Icon" Source="{Binding Icon}" RenderOptions.BitmapScalingMode="Fant"
                                                                                    ClipToBounds="False"
                                                                                    SnapsToDevicePixels="True"/>
-                                                                        </Border>
-                                                                        <ControlTemplate.Triggers>
-                                                                            <DataTrigger Binding="{Binding Game.IsInstalled}" Value="False">
-                                                                                <Setter Property="Opacity" Value="0.5" TargetName="Icon"/>
-                                                                            </DataTrigger>
-                                                                            <DataTrigger Binding="{Binding IsCurrent}" Value="True">
-                                                                                <Setter Property="Background" TargetName="Border" Value="{DynamicResource GlyphBrush}"/>
-                                                                            </DataTrigger>
-                                                                        </ControlTemplate.Triggers>
-                                                                    </ControlTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                            <Style.Triggers>
-                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                    <Trigger.EnterActions>
-                                                                        <BeginStoryboard>
-                                                                            <Storyboard>
-                                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                                                </Border>
+                                                                                <ControlTemplate.Triggers>
+                                                                                    <DataTrigger Binding="{Binding Game.IsInstalled}" Value="False">
+                                                                                        <Setter Property="Opacity" Value="0.5" TargetName="Icon"/>
+                                                                                    </DataTrigger>
+                                                                                    <DataTrigger Binding="{Binding IsCurrent}" Value="True">
+                                                                                        <Setter Property="Background" TargetName="Border" Value="{DynamicResource GlyphBrush}"/>
+                                                                                    </DataTrigger>
+                                                                                </ControlTemplate.Triggers>
+                                                                            </ControlTemplate>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Trigger.EnterActions>
+                                                                                <BeginStoryboard>
+                                                                                    <Storyboard>
+                                                                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
                                                                                                  To="1.13" Duration="0:0:0.1">
-                                                                                </DoubleAnimation>
-                                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                                                        </DoubleAnimation>
+                                                                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
                                                                                                  To="1.13" Duration="0:0:0.1">
-                                                                                </DoubleAnimation>
-                                                                            </Storyboard>
-                                                                        </BeginStoryboard>
-                                                                    </Trigger.EnterActions>
-                                                                    <Trigger.ExitActions>
-                                                                        <BeginStoryboard>
-                                                                            <Storyboard>
-                                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                                                        </DoubleAnimation>
+                                                                                    </Storyboard>
+                                                                                </BeginStoryboard>
+                                                                            </Trigger.EnterActions>
+                                                                            <Trigger.ExitActions>
+                                                                                <BeginStoryboard>
+                                                                                    <Storyboard>
+                                                                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
                                                                                                  To="1" Duration="0:0:0.1">
-                                                                                </DoubleAnimation>
-                                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                                                        </DoubleAnimation>
+                                                                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
                                                                                                  To="1" Duration="0:0:0.1">
-                                                                                </DoubleAnimation>
-                                                                            </Storyboard>
-                                                                        </BeginStoryboard>
-                                                                    </Trigger.ExitActions>
-                                                                </Trigger>
-                                                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentControl}, FallbackValue={StaticResource False}}" Value="{StaticResource True}">
-                                                                    <DataTrigger.EnterActions>
-                                                                        <StopStoryboard BeginStoryboardName="FlyOut"/>
-                                                                        <BeginStoryboard x:Name="FlyIn">
-                                                                            <Storyboard>
-                                                                                <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                                                        </DoubleAnimation>
+                                                                                    </Storyboard>
+                                                                                </BeginStoryboard>
+                                                                            </Trigger.ExitActions>
+                                                                        </Trigger>
+                                                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentControl}, FallbackValue={StaticResource False}}" Value="{StaticResource True}">
+                                                                            <DataTrigger.EnterActions>
+                                                                                <StopStoryboard BeginStoryboardName="FlyOut"/>
+                                                                                <BeginStoryboard x:Name="FlyIn">
+                                                                                    <Storyboard>
+                                                                                        <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                                                                 To="0,0,0,0" Duration="0:0:0.3"
                                                                                                 EasingFunction="{StaticResource FlyOutEase}"
                                                                                                 BeginTime="{StaticResource FlyInDelay}"/>
-                                                                            </Storyboard>
-                                                                        </BeginStoryboard>
-                                                                    </DataTrigger.EnterActions>
-                                                                    <DataTrigger.ExitActions>
-                                                                        <StopStoryboard BeginStoryboardName="FlyIn"/>
-                                                                        <BeginStoryboard x:Name="FlyOut">
-                                                                            <Storyboard>
-                                                                                <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                                                    </Storyboard>
+                                                                                </BeginStoryboard>
+                                                                            </DataTrigger.EnterActions>
+                                                                            <DataTrigger.ExitActions>
+                                                                                <StopStoryboard BeginStoryboardName="FlyIn"/>
+                                                                                <BeginStoryboard x:Name="FlyOut">
+                                                                                    <Storyboard>
+                                                                                        <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                                                                 To="-28,0,0,0" Duration="0:0:0.15"
                                                                                                 BeginTime="{StaticResource FlyOutDelay}"/>
-                                                                            </Storyboard>
-                                                                        </BeginStoryboard>
-                                                                    </DataTrigger.ExitActions>
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </Button.Style>
-                                                </Button>
-                                                <DataTemplate.Triggers>
-                                                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType=ContentControl}}" Value="{StaticResource True}">
-                                                        
-                                                    </DataTrigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
+                                                                                    </Storyboard>
+                                                                                </BeginStoryboard>
+                                                                            </DataTrigger.ExitActions>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Button.Style>
+                                                        </Button>
+                                                        <DataTemplate.Triggers>
+                                                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType=ContentControl}}" Value="{StaticResource True}">
+
+                                                            </DataTrigger>
+                                                        </DataTemplate.Triggers>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </Border>
                                 </StackPanel>
-                            </Border>
-                        </StackPanel>
-                    </Button>
-                    <ControlTemplate.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding MoreThanOneCopy}" Value="{StaticResource False}"/>
-                                <Condition Binding="{PluginSettings Plugin=DuplicateHider, Path=ShowSingleIcon}" Value="{StaticResource False}"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="FloatButton"/>
-                        </MultiDataTrigger>
-                        <DataTrigger Binding="{Binding CurrentGame.Game.IsInstalled}" Value="False">
-                            <Setter Property="Opacity" TargetName="CurrentIcon" Value="0.5"/>
-                        </DataTrigger>
-                        <Trigger Property="Opacity" SourceName="Separator" Value="0">
-                            <Setter Property="Visibility" TargetName="Separator" Value="Collapsed"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="OtherIcons"
+                            </Button>
+                            <ControlTemplate.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding MoreThanOneCopy}" Value="{StaticResource False}"/>
+                                        <Condition Binding="{PluginSettings Plugin=DuplicateHider, Path=ShowSingleIcon}" Value="{StaticResource False}"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="Collapsed" TargetName="FloatButton"/>
+                                </MultiDataTrigger>
+                                <DataTrigger Binding="{Binding CurrentGame.Game.IsInstalled}" Value="False">
+                                    <Setter Property="Opacity" TargetName="CurrentIcon" Value="0.5"/>
+                                </DataTrigger>
+                                <Trigger Property="Opacity" SourceName="Separator" Value="0">
+                                    <Setter Property="Visibility" TargetName="Separator" Value="Collapsed"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="OtherIcons"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1" Duration="0:0:0.2" BeginTime="{StaticResource FlyInDelay}"/>
-                                        <DoubleAnimation Storyboard.TargetName="Separator"
+                                                <DoubleAnimation Storyboard.TargetName="Separator"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1" Duration="0:0:0.2" BeginTime="{StaticResource FlyInDelay}"/>
-                                        <DoubleAnimation Storyboard.TargetName="Separator"
+                                                <DoubleAnimation Storyboard.TargetName="Separator"
                                                          Storyboard.TargetProperty="LayoutTransform.ScaleX"
                                                          To="1" Duration="0:0:0.2" BeginTime="{StaticResource FlyInDelay}"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="OtherIcons"
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="OtherIcons"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0" Duration="0:0:0.2" BeginTime="{StaticResource FlyOutDelay}"/>
-                                        <DoubleAnimation Storyboard.TargetName="Separator"
+                                                <DoubleAnimation Storyboard.TargetName="Separator"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0" Duration="0:0:0.2" BeginTime="{StaticResource FlyOutDelay}"/>
-                                        <DoubleAnimation Storyboard.TargetName="Separator"
+                                                <DoubleAnimation Storyboard.TargetName="Separator"
                                                          Storyboard.TargetProperty="LayoutTransform.ScaleX"
                                                          To="0" Duration="0:0:0.2" BeginTime="{StaticResource FlyOutDelay}"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
-                        </Trigger>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
 
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-    <Style x:Key="ExpandingElement" TargetType="FrameworkElement">
-        <Style.Resources>
-            <ElasticEase x:Key="FlyOutEase" Oscillations="1"/>
-            <sys:TimeSpan x:Key="FlyInDelay">0:0:0.15</sys:TimeSpan>
-            <sys:TimeSpan x:Key="FlyOutDelay">0:0:0.5</sys:TimeSpan>
-            <sys:Double x:Key="OneD">1</sys:Double>
-        </Style.Resources>
-        <Setter Property="LayoutTransform">
-            <Setter.Value>
-                <ScaleTransform ScaleX="0"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Tag" Value="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, FallbackValue={StaticResource False}}"/>
-        <Style.Triggers>
-            <Trigger Property="Tag" Value="{StaticResource True}">
-                <Trigger.EnterActions>
-                    <!--<StopStoryboard BeginStoryboardName="FlyOutDelayed"/>-->
-                    <BeginStoryboard x:Name="FlyIn" HandoffBehavior="SnapshotAndReplace">
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
+            <Style x:Key="ExpandingElement" TargetType="FrameworkElement">
+                <Style.Resources>
+                    <ElasticEase x:Key="FlyOutEase" Oscillations="1"/>
+                    <sys:TimeSpan x:Key="FlyInDelay">0:0:0.15</sys:TimeSpan>
+                    <sys:TimeSpan x:Key="FlyOutDelay">0:0:0.5</sys:TimeSpan>
+                    <sys:Double x:Key="OneD">1</sys:Double>
+                </Style.Resources>
+                <Setter Property="LayoutTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="0"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Tag" Value="{Binding IsMouseOver, RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, FallbackValue={StaticResource False}}"/>
+                <Style.Triggers>
+                    <Trigger Property="Tag" Value="{StaticResource True}">
+                        <Trigger.EnterActions>
+                            <!--<StopStoryboard BeginStoryboardName="FlyOutDelayed"/>-->
+                            <BeginStoryboard x:Name="FlyIn" HandoffBehavior="SnapshotAndReplace">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
                                              To="1" Duration="0:0:0.3" BeginTime="{StaticResource FlyInDelay}" EasingFunction="{StaticResource FlyOutEase}"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <BeginStoryboard x:Name="FlyOut" HandoffBehavior="SnapshotAndReplace">
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard x:Name="FlyOut" HandoffBehavior="SnapshotAndReplace">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleX"
                                              To="0" Duration="0:0:0.15" BeginTime="{StaticResource FlyOutDelay}"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.ExitActions>
-            </Trigger>
-            <!--<MultiDataTrigger>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                    <!--<MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="{StaticResource False}"/>
                     <Condition Binding="{Binding LayoutTransform.ScaleX, RelativeSource={RelativeSource Self}}" Value="{StaticResource OneD}"/>
@@ -504,95 +508,94 @@
                     </BeginStoryboard>
                 </MultiDataTrigger.EnterActions>
             </MultiDataTrigger>-->
-        </Style.Triggers>
-    </Style>
+                </Style.Triggers>
+            </Style>
 
-    <Style x:Key="BannerStyle" TargetType="ContentControl">
-        <Setter Property="Tag" Value="{StaticResource True}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Grid>
-                        <TextBlock x:Name="PlatformIdText" Visibility="Collapsed" Text="{ThemeFileBinding Game.Platforms[0].SpecificationId, PathFormat='Images/Banners/PlatformSpecId/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
-                        <Image x:Name="SpecIdImage" RenderOptions.BitmapScalingMode="Fant"
+            <Style x:Key="BannerStyle" TargetType="ContentControl">
+                <Setter Property="Tag" Value="{StaticResource True}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <Grid>
+                                <TextBlock x:Name="PlatformIdText" Visibility="Collapsed" Text="{ThemeFileBinding Game.Platforms[0].SpecificationId, PathFormat='Images/Banners/PlatformSpecId/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
+                                <Image x:Name="SpecIdImage" RenderOptions.BitmapScalingMode="Fant"
                                    Visibility="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"
                                    Source="{Binding Text, ElementName=PlatformIdText, Converter={StaticResource ImageStringToImageConverterCached}, FallbackValue={x:Null}}"/>
 
-                        <TextBlock x:Name="PlatformNameText" Visibility="Collapsed" Text="{ThemeFileBinding Game.Platforms[0].Name, PathFormat='Images/Banners/PlatformName/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
-                        <Image x:Name="PlatformNameImage"
+                                <TextBlock x:Name="PlatformNameText" Visibility="Collapsed" Text="{ThemeFileBinding Game.Platforms[0].Name, PathFormat='Images/Banners/PlatformName/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
+                                <Image x:Name="PlatformNameImage"
                                    RenderOptions.BitmapScalingMode="Fant"
                                    Source="{Binding Text, ElementName=PlatformNameText, Converter={StaticResource ImageStringToImageConverterCached}, FallbackValue={x:Null}}">
-                            <Image.Style>
-                                <Style TargetType="Image">
-                                    <Setter Property="Visibility" Value="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsVisible, ElementName=SpecIdImage}" Value="True">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Image.Style>
-                        </Image>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsVisible, ElementName=PlatformNameImage}" Value="False"/>
-                                <Condition Binding="{Binding IsVisible, ElementName=SpecIdImage}" Value="False"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Tag" Value="{StaticResource False}"/>
-                        </MultiDataTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
-    <ControlTemplate x:Key="BannerControl" TargetType="ContentControl">
-        <Grid>
-            <ContentControl x:Name="PlatformImage">
-            </ContentControl>
-            <TextBlock x:Name="PluginIdText" Visibility="Collapsed" Text="{ThemeFileBinding Game.PluginId, PathFormat='Images/Banners/PluginId/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
-            <Image x:Name="PluginIdImage" RenderOptions.BitmapScalingMode="Fant"
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Setter Property="Visibility" Value="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsVisible, ElementName=SpecIdImage}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsVisible, ElementName=PlatformNameImage}" Value="False"/>
+                                        <Condition Binding="{Binding IsVisible, ElementName=SpecIdImage}" Value="False"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Tag" Value="{StaticResource False}"/>
+                                </MultiDataTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <ControlTemplate x:Key="BannerControl" TargetType="ContentControl">
+                <Grid>
+                    <ContentControl x:Name="PlatformImage">
+                    </ContentControl>
+                    <TextBlock x:Name="PluginIdText" Visibility="Collapsed" Text="{ThemeFileBinding Game.PluginId, PathFormat='Images/Banners/PluginId/{0}.png', TargetNullValue={x:Null}, FallbackValue={x:Null}}"/>
+                    <Image x:Name="PluginIdImage" RenderOptions.BitmapScalingMode="Fant"
                     Source="{Binding Text, ElementName=PluginIdText, Converter={StaticResource ImageStringToImageConverterCached}, FallbackValue={x:Null}}">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Visibility" Value="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Tag, ElementName=PlatformImage}" Value="{StaticResource True}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
-        </Grid>
-        <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding Game.Platforms, Converter={StaticResource ICollectionNullOrEmptyToVisibilityConverter}}" Value="{x:Static Visibility.Visible}">
-                <Setter Property="Style" TargetName="PlatformImage" Value="{StaticResource BannerStyle}"/>
-            </DataTrigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Visibility" Value="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Tag, ElementName=PlatformImage}" Value="{StaticResource True}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Game.Platforms, Converter={StaticResource ICollectionNullOrEmptyToVisibilityConverter}}" Value="{x:Static Visibility.Visible}">
+                        <Setter Property="Style" TargetName="PlatformImage" Value="{StaticResource BannerStyle}"/>
+                    </DataTrigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
 
-    <Storyboard x:Key="ZoomFadeOut">
-        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+            <Storyboard x:Key="ZoomFadeOut">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
                          Duration="0:0:0.12" To="0"/>
-        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
                          Duration="0:0:0.12" To="1.15">
-        </DoubleAnimation>
-    </Storyboard>
+                </DoubleAnimation>
+            </Storyboard>
 
-    <Storyboard x:Key="ZoomFadeIn">
-        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+            <Storyboard x:Key="ZoomFadeIn">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
                          Duration="0:0:0.12" To="1"/>
-        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
                          Duration="0:0:0.12" To="1">
-        </DoubleAnimation>
-    </Storyboard>
+                </DoubleAnimation>
+            </Storyboard>
 
-    <ScaleTransform x:Key="UniformScaleTransform" ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}"/>
-
-    <Style TargetType="{x:Type DetailsViewGameOverview}">
+            <ScaleTransform x:Key="UniformScaleTransform" ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}"/>
+        </Style.Resources>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DetailsViewGameOverview}">
@@ -1012,7 +1015,8 @@
                                                            Padding="0" Margin="0"/>
                                                             </Viewbox>
                                                         </Grid>
-                                                        <Border Padding="5,0"  Style="{StaticResource ExpandingElement}">
+                                                        <Border Padding="5,0"  Style="{StaticResource ExpandingElement}"
+                                                                Background="Transparent" Tag="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=ContentControl, AncestorLevel=3}, Path=IsMouseOver}">
                                                             <StackPanel Orientation="Horizontal">
                                                                 <ComboBox ItemsSource="{Binding CompletionStatusOptions}" SelectedItem="{Binding Value}">
                                                                     <ComboBox.ItemTemplate>
@@ -1098,7 +1102,7 @@
                                                 IsMoveToPointEnabled="True" 
                                                 IsSnapToTickEnabled="False" 
                                                 Minimum="0.0" Maximum="1.0" TickFrequency="0.1" SmallChange="0.1" LargeChange="0.2"
-                                                Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.VideoPlayerVolume, Mode=OneWayToSource, FallbackValue={StaticResource Zero}}">
+                                                Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.VideoPlayerVolumeLinear, Mode=TwoWay, FallbackValue={StaticResource Zero}}">
                                                     </Slider>
                                                     <Border Background="White" Width="1" Margin="6,0" Opacity="0.5"/>
                                                     <CheckBox x:Name="BackgroundTrailerCheckBox" IsChecked="True">
@@ -1379,57 +1383,73 @@
                                   Background="{x:Null}">
                             <Grid>
 
-                                <ContentControl VerticalAlignment="Top"
-                                        Visibility="{Binding IsVisible,ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound,Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <Grid Focusable="False" VerticalAlignment="Top" 
-                                          Height="{Binding ActualHeight, ElementName=OnScreenButtonsSizeProxy}"
-                                          x:Name="OnScreenButtons"
-                                          Effect="{StaticResource PopupDropShadow}"
-                                          Visibility="{PluginSettings IsAnyVideoAvailable, Plugin=ExtraMetadataLoader, FallbackValue={x:Static Visibility.Collapsed}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <Button Focusable="False" Cursor="Arrow"
-                                                    RenderTransformOrigin="0.5,0.5" RenderTransform="{StaticResource UniformScaleTransform}"
-                                        Background="Transparent"
-                                                            x:Name="TrailerPauseButton2"
-                                                        Command="{Binding ElementName=TrailerPauseButton, Path=Command, FallbackValue={x:Null}}"
-                                                        Visibility="{Binding ElementName=TrailerPlayButton2, Path=IsEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border Background="Transparent"/>
-                                                </ControlTemplate>
-                                            </Button.Template>
-                                        </Button>
-                                        <Button Focusable="False" Cursor="Arrow"
-                                        Background="Transparent"
-                                                    RenderTransformOrigin="0.5,0.5" RenderTransform="{StaticResource UniformScaleTransform}"
-                                                        x:Name="TrailerPlayButton2"
-                                                        Command="{Binding ElementName=TrailerPlayButton, Path=Command, FallbackValue={x:Null}}"
-                                                        Opacity="0"
-                                                        Tag="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}">
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border Background="Transparent">
-                                                        <Viewbox MaxWidth="100" MaxHeight="100">
-                                                            <TextBlock Text="&#xEC74;" FontFamily="{StaticResource FontIcoFont}" Foreground="{DynamicResource TextBrush}"/>
-                                                        </Viewbox>
-                                                    </Border>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="Opacity" Value="0">
-                                                            <Setter Property="Visibility" Value="Hidden"/>
-                                                        </Trigger>
-                                                        <Trigger Property="Tag" Value="{StaticResource True}">
-                                                            <Trigger.EnterActions>
-                                                                <BeginStoryboard Storyboard="{StaticResource ZoomFadeIn}"/>
-                                                            </Trigger.EnterActions>
-                                                            <Trigger.ExitActions>
-                                                                <BeginStoryboard Storyboard="{StaticResource ZoomFadeOut}"/>
-                                                            </Trigger.ExitActions>
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Button.Template>
-                                        </Button>
-                                    </Grid>
-                                </ContentControl>
+                                <Border VerticalAlignment="Top"
+                                                Height="{Binding ActualHeight, ElementName=OnScreenButtonsSizeProxy}"
+                                                Background="Transparent">
+                                    <Border.ContextMenu>
+                                        <ContextMenu IsOpen="{PluginSettings Plugin=ThemeExtras, Path=Menus.IsOpen, Mode=OneWayToSource}">
+                                            <MenuItem Header="ExtraMetadataLoader" 
+                                                      Visibility="{PluginStatus Plugin=ExtraMetadataLoader_705fdbca-e1fc-4004-b839-1d040b8b4429, Path=IsInstalled}"
+                                                      ItemsSource="{PluginSettings Plugin=ThemeExtras, Path=Menus.EMLGameMenuItems, FallbackValue={x:Null}}"/>
+                                            <MenuItem Header="BackgroundChanger" 
+                                                      Visibility="{PluginStatus Plugin=playnite-backgroundchanger-plugin, Path=IsInstalled}"
+                                                      ItemsSource="{PluginSettings Plugin=ThemeExtras, Path=Menus.BackgroundChangerGameMenuItems, FallbackValue={x:Null}}"/>
+                                            <Separator/>
+                                            <MenuItem Header="{DynamicResource LOCOpenMetadataFolder}" 
+                                                                  Command="{PluginSettings Plugin=ThemeExtras, Path=Commands.OpenGameAssetFolderCommand,FallbackValue={x:Null}}"/>
+                                        </ContextMenu>
+                                    </Border.ContextMenu>
+                                    <ContentControl Visibility="{Binding IsVisible,ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Grid Focusable="False" VerticalAlignment="Top" 
+                                              Height="{Binding ActualHeight, ElementName=OnScreenButtonsSizeProxy}"
+                                              x:Name="OnScreenButtons"
+                                              Effect="{StaticResource PopupDropShadow}"
+                                              Visibility="{PluginSettings IsAnyVideoAvailable, Plugin=ExtraMetadataLoader, FallbackValue={x:Static Visibility.Collapsed}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Button Focusable="False" Cursor="Arrow"
+                                                        RenderTransformOrigin="0.5,0.5" RenderTransform="{StaticResource UniformScaleTransform}"
+                                            Background="Transparent"
+                                                                x:Name="TrailerPauseButton2"
+                                                            Command="{Binding ElementName=TrailerPauseButton, Path=Command, FallbackValue={x:Null}}"
+                                                            Visibility="{Binding ElementName=TrailerPlayButton2, Path=IsEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="Transparent"/>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Focusable="False" Cursor="Arrow"
+                                            Background="Transparent"
+                                                        RenderTransformOrigin="0.5,0.5" RenderTransform="{StaticResource UniformScaleTransform}"
+                                                            x:Name="TrailerPlayButton2"
+                                                            Command="{Binding ElementName=TrailerPlayButton, Path=Command, FallbackValue={x:Null}}"
+                                                            Opacity="0"
+                                                            Tag="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled}">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="Transparent">
+                                                            <Viewbox MaxWidth="100" MaxHeight="100">
+                                                                <TextBlock Text="&#xEC74;" FontFamily="{StaticResource FontIcoFont}" Foreground="{DynamicResource TextBrush}"/>
+                                                            </Viewbox>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="Opacity" Value="0">
+                                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                            </Trigger>
+                                                            <Trigger Property="Tag" Value="{StaticResource True}">
+                                                                <Trigger.EnterActions>
+                                                                    <BeginStoryboard Storyboard="{StaticResource ZoomFadeIn}"/>
+                                                                </Trigger.EnterActions>
+                                                                <Trigger.ExitActions>
+                                                                    <BeginStoryboard Storyboard="{StaticResource ZoomFadeOut}"/>
+                                                                </Trigger.ExitActions>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </Grid>
+                                    </ContentControl>
+                                </Border>
 
                                 <Grid HorizontalAlignment="Stretch" Margin="20,0,20,0">
                                     <Grid.RowDefinitions>

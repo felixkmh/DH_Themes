@@ -12,6 +12,9 @@
     <SolidColorBrush x:Key="DetailsDimmerColor" Color="Black"/>
     <sys:Boolean x:Key="DetailsViewBannerOnCover">True</sys:Boolean>
     <sys:Boolean x:Key="DetailsViewBannerOnCoverBelow">True</sys:Boolean>
+    <sys:Boolean x:Key="EnableFloatingFavoriteToggle">True</sys:Boolean>
+    <sys:Boolean x:Key="EnableFloatingHiddenToggle">True</sys:Boolean>
+    <sys:Boolean x:Key="EnableFloatingProgressSelector">True</sys:Boolean>
 
     <!--ThemeExtras-->
     <sys:Boolean x:Key="EnableFloatingRating">True</sys:Boolean>
@@ -110,13 +113,17 @@
         <GradientStop Color="#373642" Offset="1"/>
     </LinearGradientBrush>
 
-    <sys:Char x:Key="ThemeExtrasWebIcon_twitch.tv">&#xED79;</sys:Char>
+    <!--<sys:Char x:Key="ThemeExtrasWebIcon_twitch.tv">&#xED79;</sys:Char>
     <sys:Char x:Key="ThemeExtrasWebIcon_twitter.com">&#xED7A;</sys:Char>
     <sys:Char x:Key="ThemeExtrasWebIcon_facebook.com">&#xED37;</sys:Char>
     <sys:Char x:Key="ThemeExtrasWebIcon_steampowered.com">&#xE93E;</sys:Char>
     <sys:Char x:Key="ThemeExtrasWebIcon_steamcommunity.com">&#xE93E;</sys:Char>
+    <sys:Char x:Key="ThemeExtrasWebIcon_wikipedia.org">&#xE958;</sys:Char>
+    <sys:Char x:Key="ThemeExtrasWebIcon_reddit.com">&#xED62;</sys:Char>
+    <sys:Char x:Key="ThemeExtrasWebIcon_apple.com">&#xE8A7;</sys:Char>
+    <sys:Char x:Key="ThemeExtrasWebIcon_instagram.com">&#xE8A7;</sys:Char>
+    <sys:Char x:Key="ThemeExtrasWebIcon_youtube.com">&#xECBB;</sys:Char>-->
     <sys:String x:Key="DefaultLinkIcon">&#xEF71;</sys:String>
-
     <DropShadowEffect x:Key="PopupDropShadow" BlurRadius="16" ShadowDepth="2" Direction="-90" Color="Black" RenderingBias="Performance" Opacity="0.75"/>
 
     <sys:Double x:Key="Zero">0</sys:Double>
