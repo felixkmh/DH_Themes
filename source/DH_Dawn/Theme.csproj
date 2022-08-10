@@ -193,7 +193,6 @@
     <Content Include="Images\python.ico" />
     <Content Include="Images\reddit.png" />
     <Content Include="Images\twitter.png" />
-    <Content Include="Images\WebIcons\epicgames.com.ico" />
     <Content Include="LocSource.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
