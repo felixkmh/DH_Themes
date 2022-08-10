@@ -1048,14 +1048,14 @@
                                         <Grid>
                                             <!--<ProgressBar Minimum="0" 
                                                          Maximum="10"
-                                                         Tag="{Binding Content.PlaybackTimeProgress, Mode=OneWay, ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound}"
-                                                         Value="{Binding Content.Content.Children[0].Children[0].Position.TotalSeconds, Mode=OneWay, ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, UpdateSourceTrigger=Explicit}"
+                                                         Tag="{Binding Content.PlaybackTimeProgress, Mode=OneWay, ElementName=ExtraMetadataLoader_VideoLoaderControl}"
+                                                         Value="{Binding Content.Content.Children[0].Children[0].Position.TotalSeconds, Mode=OneWay, ElementName=ExtraMetadataLoader_VideoLoaderControl, UpdateSourceTrigger=Explicit}"
                                                          VerticalAlignment="Bottom"
                                                          Height="2" Background="Transparent"/>-->
                                             <StackPanel Orientation="Horizontal" Margin="10">
                                                 <Button HorizontalAlignment="Left" 
                                                         x:Name="TrailerPauseButton"
-                                                    Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.VideoPauseCommand, FallbackValue={x:Null}}"
+                                                    Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPauseCommand, FallbackValue={x:Null}}"
                                                     Visibility="{Binding ElementName=TrailerPlayButton, Path=IsEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
                                                     <Button.Template>
                                                         <ControlTemplate TargetType="Button">
@@ -1067,7 +1067,7 @@
                                                 </Button>
                                                 <Button HorizontalAlignment="Left" 
                                                     x:Name="TrailerPlayButton"
-                                                    Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.VideoPlayCommand, FallbackValue={x:Null}}"
+                                                    Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPlayCommand, FallbackValue={x:Null}}"
                                                     Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <Button.Template>
                                                         <ControlTemplate TargetType="Button">
@@ -1082,7 +1082,7 @@
                                                             Tag="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ContentControl}}">
                                                     <Border Background="White" Width="1" Margin="6,0" Opacity="0.5"/>
                                                     <Viewbox>
-                                                        <CheckBox IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.IsPlayerMuted, Mode=TwoWay, FallbackValue={StaticResource True}}">
+                                                        <CheckBox IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.IsPlayerMuted, Mode=TwoWay, FallbackValue={StaticResource True}}">
                                                             <CheckBox.Template>
                                                                 <ControlTemplate TargetType="CheckBox">
                                                                     <Border Background="Transparent">
@@ -1102,7 +1102,7 @@
                                                 IsMoveToPointEnabled="True" 
                                                 IsSnapToTickEnabled="False" 
                                                 Minimum="0.0" Maximum="1.0" TickFrequency="0.1" SmallChange="0.1" LargeChange="0.2"
-                                                Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.VideoPlayerVolumeLinear, Mode=TwoWay, FallbackValue={StaticResource Zero}}">
+                                                Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPlayerVolumeLinear, Mode=TwoWay, FallbackValue={StaticResource Zero}}">
                                                     </Slider>
                                                     <Border Background="White" Width="1" Margin="6,0" Opacity="0.5"/>
                                                     <CheckBox x:Name="BackgroundTrailerCheckBox" IsChecked="True">
@@ -1322,8 +1322,9 @@
                             <Border x:Name="ShowTrailerProxy" Tag="{DynamicResource ShowTrailerInBackground}" Visibility="Collapsed"/>
                             <Grid Visibility="{Binding IsChecked, ElementName=BackgroundTrailerCheckBox, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     VerticalAlignment="Top">
-                                <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound" VerticalAlignment="Top"
+                                <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl" VerticalAlignment="Top"
                                             Opacity="0"
+                                            IsHitTestVisible="False"
                                             Visibility="{Binding Tag, ElementName=ShowTrailerProxy, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <ContentControl.OpacityMask>
                                         <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -1387,7 +1388,9 @@
                                                 Height="{Binding ActualHeight, ElementName=OnScreenButtonsSizeProxy}"
                                                 Background="Transparent">
                                     <Border.ContextMenu>
-                                        <ContextMenu IsOpen="{PluginSettings Plugin=ThemeExtras, Path=Menus.IsOpen, Mode=OneWayToSource}">
+                                        <ContextMenu 
+                                            Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Path=IsInstalled}"
+                                            IsOpen="{PluginSettings Plugin=ThemeExtras, Path=Menus.IsOpen, Mode=OneWayToSource, FallbackValue={StaticResource False}}">
                                             <MenuItem Header="ExtraMetadataLoader" 
                                                       Visibility="{PluginStatus Plugin=ExtraMetadataLoader_705fdbca-e1fc-4004-b839-1d040b8b4429, Path=IsInstalled}"
                                                       ItemsSource="{PluginSettings Plugin=ThemeExtras, Path=Menus.EMLGameMenuItems, FallbackValue={x:Null}}"/>
@@ -1399,7 +1402,7 @@
                                                                   Command="{PluginSettings Plugin=ThemeExtras, Path=Commands.OpenGameAssetFolderCommand,FallbackValue={x:Null}}"/>
                                         </ContextMenu>
                                     </Border.ContextMenu>
-                                    <ContentControl Visibility="{Binding IsVisible,ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <ContentControl Visibility="{Binding IsVisible,ElementName=ExtraMetadataLoader_VideoLoaderControl,Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <Grid Focusable="False" VerticalAlignment="Top" 
                                               Height="{Binding ActualHeight, ElementName=OnScreenButtonsSizeProxy}"
                                               x:Name="OnScreenButtons"
@@ -1684,7 +1687,7 @@
                                 <Condition Binding="{Binding Tag, ElementName=FadeOutDetailsHeaderWhenVideoPlaysProxy}" Value="True"/>
                                 <Condition Binding="{Binding ElementName=PART_ScrollViewHost, Path=VerticalOffset}" Value="0"/>
                                 <Condition Binding="{Binding ElementName=TrailerPauseButton2, Path=IsVisible}" Value="True"/>
-                                <Condition Binding="{Binding IsVisible, ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound}" Value="True"/>
+                                <Condition Binding="{Binding IsVisible, ElementName=ExtraMetadataLoader_VideoLoaderControl}" Value="True"/>
                                 <Condition Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable, FallbackValue={StaticResource False}}" Value="{StaticResource True}"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.EnterActions>
@@ -1711,9 +1714,9 @@
                         <DataTrigger Binding="{Binding Tag, ElementName=ImageFillProxy}" Value="{StaticResource True}">
                             <Setter TargetName="PART_ImageBackground" Property="Stretch" Value="UniformToFill"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.PlaybackTimeProgress, FallbackValue={x:Null}}" Value="00:00">
-                            <Setter TargetName="TrailerPauseButton" Property="Command" Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.VideoPauseCommand, FallbackValue={x:Null}}"/>
-                            <Setter TargetName="TrailerPlayButton" Property="Command" Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound, Path=Content.VideoPlayCommand, FallbackValue={x:Null}}"/>
+                        <DataTrigger Binding="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.PlaybackTimeProgress, FallbackValue={x:Null}}" Value="00:00">
+                            <Setter TargetName="TrailerPauseButton" Property="Command" Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPauseCommand, FallbackValue={x:Null}}"/>
+                            <Setter TargetName="TrailerPlayButton" Property="Command" Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPlayCommand, FallbackValue={x:Null}}"/>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
