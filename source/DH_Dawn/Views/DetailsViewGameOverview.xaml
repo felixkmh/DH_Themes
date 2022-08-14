@@ -1502,11 +1502,9 @@
                                                     <StackPanel.Resources>
                                                         <sys:Double x:Key="FontSizeLarge">16</sys:Double>
                                                     </StackPanel.Resources>
-                                                    <ContentControl x:Name="ThemeExtras_UserRating"
-                                                                Visibility="{Binding UserScoreVisibility}">
-                                                    </ContentControl>
+                                                    <ContentControl x:Name="ThemeExtras_UserRating" Visibility="{Binding UserScoreVisibility}"/>
                                                     <ContentControl x:Name="ThemeExtras_CriticRating" Visibility="{Binding CriticScoreVisibility}"/>
-                                                    <ContentControl x:Name="ThemeExtras_CommunityRating" Visibility="{Binding CriticScoreVisibility}"/>
+                                                    <ContentControl x:Name="ThemeExtras_CommunityRating" Visibility="{Binding CommunityScoreVisibility}"/>
                                                 </StackPanel>
                                             </DockPanel>
                                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
