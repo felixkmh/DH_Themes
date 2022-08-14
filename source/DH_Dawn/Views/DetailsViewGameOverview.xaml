@@ -1619,7 +1619,8 @@
                                                                 <Setter.Value>
                                                                     <DataTemplate>
                                                                         <DockPanel Margin="5">
-                                                                            <Viewbox DockPanel.Dock="Left" Margin="0,0,5,0" Width="16" Height="16" RenderOptions.ClearTypeHint="Auto" RenderOptions.BitmapScalingMode="Fant">
+                                                                            <Viewbox DockPanel.Dock="Left" Margin="0,0,5,0" Width="18" Height="18" 
+                                                                                     RenderOptions.ClearTypeHint="Auto">
                                                                                 <ContentControl>
                                                                                     <ContentControl.Content>
                                                                                         <Binding Path="Icon">
