@@ -36,7 +36,10 @@
                                                 Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
                                     </StackPanel>
                                 </Viewbox>
-                                <ContentControl x:Name="ThemeExtras_Banner" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="Fant"/>
+                                <ContentControl x:Name="ThemeExtras_Banner" 
+                                                VerticalAlignment="Bottom" 
+                                                RenderOptions.BitmapScalingMode="Fant"
+                                                Padding="0" Margin="0"/>
                                 <ContentControl 
                                             HorizontalAlignment="Right"
                                             x:Name="ThemeExtras_SettableFavorite"

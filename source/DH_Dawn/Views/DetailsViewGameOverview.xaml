@@ -1505,6 +1505,21 @@
                                                     <ContentControl x:Name="ThemeExtras_UserRating" Visibility="{Binding UserScoreVisibility}"/>
                                                     <ContentControl x:Name="ThemeExtras_CriticRating" Visibility="{Binding CriticScoreVisibility}"/>
                                                     <ContentControl x:Name="ThemeExtras_CommunityRating" Visibility="{Binding CommunityScoreVisibility}"/>
+                                                    <ItemsControl ItemsSource="{PluginSettings Plugin=LibraryManagement, Path=DataList}" HorizontalAlignment="Left">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal"/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <DockPanel Margin="0,2" ToolTip="{Binding NameAssociated}">
+                                                                    <Image DockPanel.Dock="Left" Height="24" VerticalAlignment="Center" Width="24" 
+				                                                           Source="{Binding IconBitmapImage}" />
+                                                                </DockPanel>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
                                                 </StackPanel>
                                             </DockPanel>
                                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -1577,7 +1592,7 @@
                                                 <ItemsControl Name="PART_ItemsCategories" />
 
                                                 <Label Name="PART_ElemFeatures" Content="{DynamicResource LOCFeaturesLabel}" />
-                                                <ItemsControl Name="PART_ItemsFeatures" />
+                                                <ItemsControl Name="PART_ItemsFeatures"/>
 
                                                 <Label Name="PART_ElemTags" Content="{DynamicResource LOCTagsLabel}" />
                                                 <ItemsControl Name="PART_ItemsTags" />
@@ -1619,7 +1634,7 @@
                                                                         <DockPanel Margin="5">
                                                                             <Viewbox DockPanel.Dock="Left" Margin="0,0,5,0" Width="18" Height="18" 
                                                                                      RenderOptions.ClearTypeHint="Auto">
-                                                                                <ContentControl>
+                                                                                <ContentControl RenderOptions.BitmapScalingMode="HighQuality">
                                                                                     <ContentControl.Content>
                                                                                         <Binding Path="Icon">
                                                                                             <Binding.TargetNullValue>
