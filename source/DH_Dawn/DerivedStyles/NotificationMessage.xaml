@@ -18,8 +18,11 @@
                             <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DiscardButton" To="0" Duration="0:0:0.1"/>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Border Style="{StaticResource HighlightBorder}" Background="{DynamicResource ButtonBackgroundBrush}"
+                    <Border Style="{StaticResource HighlightBorder}"
                             d:DataContext="{x:Static DesignMainViewModel.DesignNotificationIntance}">
+                        <Border.Background>
+                            <SolidColorBrush Color="#0a0e1e" Opacity="0.5"/>
+                        </Border.Background>
                         <Grid>
                             <Grid x:Name="NotificationGrid" Background="Transparent">
                                 <TextBlock Text="{Binding Text}"
@@ -27,7 +30,6 @@
                                            Margin="6" TextWrapping="Wrap"
                                            MinHeight="38" 
                                            x:Name="NotificationTextBlock"/>
-
                             </Grid>
                             <Button HorizontalAlignment="Right" 
                                     Opacity="0"

@@ -24,14 +24,14 @@
                                     <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
                                                  Storyboard.TargetName="PART_Notifications">
                                         <SplineThicknessKeyFrame KeyTime="00:00:00" Value="-260,0,0,0" />
-                                        <SplineThicknessKeyFrame KeyTime="0:0:0.10" Value="0,0,0,0" />
+                                        <SplineThicknessKeyFrame KeyTime="0:0:0.15" Value="0,0,0,0" />
                                     </ThicknessAnimationUsingKeyFrames>
                                 </Storyboard>
                                 <Storyboard x:Key="VisibilityOff">
                                     <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
                                                  Storyboard.TargetName="PART_Notifications">
                                         <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0" />
-                                        <SplineThicknessKeyFrame KeyTime="0:0:0.10" Value="-260,0,0,0" />
+                                        <SplineThicknessKeyFrame KeyTime="0:0:0.15" Value="-260,0,0,0" />
                                     </ThicknessAnimationUsingKeyFrames>
                                 </Storyboard>
                             </Grid.Resources>

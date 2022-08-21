@@ -8,34 +8,76 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="NotificationPanel">
-                    <DockPanel Background="{DynamicResource PopupBackgroundBrush}"
-                               d:DesignWidth="260" d:DesignHeight="400"
-                               d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
-                        <DockPanel Margin="13,15,7,15" DockPanel.Dock="Top">
-                            <Button Name="PART_ButtonClose" Content="r" FontFamily="Marlett"
-                                    Style="{StaticResource SimpleButton}"
-                                    DockPanel.Dock="Right" Margin="0,0,5,0" />
-                            <Button Name="PART_ButtonDismissAll" DockPanel.Dock="Left"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource SimpleButton}"
-                                    Content="{DynamicResource LOCDismissAll}" />
+                    <Grid>
+                        <Border Background="{DynamicResource WindowBackgourndBrush}"
+                                    CornerRadius="0,15,15,0">
+                            <Border.CacheMode>
+                                <BitmapCache RenderAtScale="0.5">
+                                </BitmapCache>
+                            </Border.CacheMode>
+                            <Border x:Name="BlurBorder">
+                                <Border.Effect>
+                                    <BlurEffect Radius="60" RenderingBias="Performance" KernelType="Gaussian"/>
+                                </Border.Effect>
+                                <Border.Background>
+                                    <VisualBrush ViewboxUnits="Absolute" Opacity="0.7" AlignmentX="Left" AlignmentY="Top" Stretch="None" Visual="{Binding Children[0], RelativeSource={RelativeSource FindAncestor, AncestorType=Grid, AncestorLevel=2}}"/>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                        <DockPanel d:DesignWidth="260" d:DesignHeight="400"
+                                       d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
+                            <DockPanel Margin="13,15,7,15" DockPanel.Dock="Top">
+                                <Button Name="PART_ButtonClose" Content="r" FontFamily="Marlett"
+                                            Style="{StaticResource SimpleButton}"
+                                            DockPanel.Dock="Right" Margin="0,0,5,0" />
+                                <Button Name="PART_ButtonDismissAll" DockPanel.Dock="Left"
+                                            HorizontalAlignment="Left"
+                                            Style="{StaticResource SimpleButton}"
+                                            Content="{DynamicResource LOCDismissAll}" />
+                            </DockPanel>
+                            <ItemsControl Name="PART_ItemsMessages" DockPanel.Dock="Top" >
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{StaticResource NotificationMessage}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.Template>
+                                    <ControlTemplate>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                                          VerticalScrollBarVisibility="Auto">
+                                            <ItemsPresenter />
+                                        </ScrollViewer>
+                                    </ControlTemplate>
+                                </ItemsControl.Template>
+                            </ItemsControl>
                         </DockPanel>
-                        <ItemsControl Name="PART_ItemsMessages" DockPanel.Dock="Top" >
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Button Style="{StaticResource NotificationMessage}" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                            <ItemsControl.Template>
-                                <ControlTemplate>
-                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                                                  VerticalScrollBarVisibility="Auto">
-                                        <ItemsPresenter />
-                                    </ScrollViewer>
-                                </ControlTemplate>
-                            </ItemsControl.Template>
-                        </ItemsControl>
-                    </DockPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="AnimatedVisibility.Visibility" Value="Visible">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
+                                                 Storyboard.TargetName="BlurBorder">
+                                            <SplineThicknessKeyFrame KeyTime="00:00:00" Value="260,0,0,0" />
+                                            <SplineThicknessKeyFrame KeyTime="0:0:0.15" Value="0,0,0,0" />
+                                        </ThicknessAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
+                                                 Storyboard.TargetName="BlurBorder">
+                                            <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0" />
+                                            <SplineThicknessKeyFrame KeyTime="0:0:0.15" Value="260,0,0,0" />
+                                        </ThicknessAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
