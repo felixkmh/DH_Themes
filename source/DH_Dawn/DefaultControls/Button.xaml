@@ -58,7 +58,7 @@
                                 <ScaleTransform x:Name="BorderScale" CenterX="0.5" CenterY="0.5"/>
                             </Rectangle.RenderTransform>
                         </Rectangle>
-                        <Border Padding="{TemplateBinding Padding}" Margin="2">
+                        <Border Padding="{TemplateBinding Padding}" Margin="0">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                 RecognizesAccessKey="True" 

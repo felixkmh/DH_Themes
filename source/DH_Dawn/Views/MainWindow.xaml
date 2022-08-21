@@ -43,6 +43,7 @@
                                                 DockPanel.Dock="Top" />
                             </DockPanel>                            
                             <NotificationPanel x:Name="PART_Notifications"  
+                                               Effect="{DynamicResource PopupDropShadow}"
                                                WindowChrome.IsHitTestVisibleInChrome="True"
                                                Width="260"
                                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"

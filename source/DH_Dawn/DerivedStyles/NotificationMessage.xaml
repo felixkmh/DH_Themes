@@ -10,13 +10,58 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="FadeIn">
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DiscardButton" To="1" Duration="0:0:0.1"/>
+                        </Storyboard>
+                        <Storyboard x:Key="FadeOut">
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DiscardButton" To="0" Duration="0:0:0.1"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
                     <Border Style="{StaticResource HighlightBorder}" Background="{DynamicResource ButtonBackgroundBrush}"
                             d:DataContext="{x:Static DesignMainViewModel.DesignNotificationIntance}">
-                        <TextBlock Text="{Binding Text}"
-                                   Style="{DynamicResource BaseTextBlockStyle}"
-                                   Margin="6" TextWrapping="Wrap"
-                                   MinHeight="38" />
+                        <Grid>
+                            <Grid x:Name="NotificationGrid" Background="Transparent">
+                                <TextBlock Text="{Binding Text}"
+                                           Style="{DynamicResource BaseTextBlockStyle}"
+                                           Margin="6" TextWrapping="Wrap"
+                                           MinHeight="38" 
+                                           x:Name="NotificationTextBlock"/>
+
+                            </Grid>
+                            <Button HorizontalAlignment="Right" 
+                                    Opacity="0"
+                                    x:Name="DiscardButton"
+                                    Command="{PluginSettings Plugin=ThemeExtras, Path=Commands.DiscardNotificationCommand, FallbackValue={x:Null}}"
+                                    CommandParameter="{Binding}"
+                                    Content="&#xEC53;" Padding="3" FontFamily="{DynamicResource FontIcoFont}"
+                                    />
+                        </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                <Condition Binding="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}" Value="{StaticResource True}"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource FadeIn}"/>
+                            </MultiDataTrigger.EnterActions>
+                            <MultiDataTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource FadeOut}"/>
+                            </MultiDataTrigger.ExitActions>
+                            <Setter Property="OpacityMask" TargetName="NotificationGrid">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStopCollection>
+                                            <GradientStop Color="Black" Offset="0.85"/>
+                                            <GradientStop Color="Transparent" Offset="1"/>
+                                        </GradientStopCollection>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

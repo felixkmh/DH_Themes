@@ -38,7 +38,7 @@
                                 </Viewbox>
                                 <ContentControl x:Name="ThemeExtras_Banner" 
                                                 VerticalAlignment="Bottom" 
-                                                RenderOptions.BitmapScalingMode="Fant"
+                                                RenderOptions.BitmapScalingMode="HighQuality"
                                                 Padding="0" Margin="0"/>
                                 <ContentControl 
                                             HorizontalAlignment="Right"
