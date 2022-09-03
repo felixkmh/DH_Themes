@@ -299,7 +299,7 @@
                         <Grid.ToolTip>
                             <TextBlock Text="{Binding DisplayString}"/>
                         </Grid.ToolTip>
-                        <Border x:Name="IconBackground" CornerRadius="8" Background="{DynamicResource WindowBackgourndBrushHighlightHover}" Opacity="1" Visibility="Hidden">
+                        <Border x:Name="IconBackground" CornerRadius="8" Background="Transparent" Opacity="1" Visibility="Hidden">
                         </Border>
                         <StackPanel Orientation="Horizontal" Opacity="{Binding Game.IsInstalled, Converter={StaticResource OpacityBoolConverter}}">
                             <Image Source="{Binding Icon}" RenderOptions.BitmapScalingMode="Fant" Margin="3"/>

@@ -21,7 +21,7 @@
                     <Border Style="{StaticResource HighlightBorder}"
                             d:DataContext="{x:Static DesignMainViewModel.DesignNotificationIntance}">
                         <Border.Background>
-                            <SolidColorBrush Color="#0a0e1e" Opacity="0.5"/>
+                            <SolidColorBrush Color="#0a0e1e" Opacity="0.33"/>
                         </Border.Background>
                         <Grid>
                             <Grid x:Name="NotificationGrid" Background="Transparent">
@@ -34,8 +34,7 @@
                             <Button HorizontalAlignment="Right" 
                                     Opacity="0"
                                     x:Name="DiscardButton"
-                                    Command="{PluginSettings Plugin=ThemeExtras, Path=Commands.DiscardNotificationCommand, FallbackValue={x:Null}}"
-                                    CommandParameter="{Binding}"
+                                    Command="{Binding CloseCommand}"
                                     Content="&#xEC53;" Padding="3" FontFamily="{DynamicResource FontIcoFont}"
                                     />
                         </Grid>

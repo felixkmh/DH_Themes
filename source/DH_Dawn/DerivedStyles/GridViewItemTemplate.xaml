@@ -8,7 +8,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
-                    <Border BorderThickness="{Settings GridItemMargin}" BorderBrush="{DynamicResource GridItemBackgroundBrush}">
+                    <Border BorderBrush="{DynamicResource GridItemBackgroundBrush}" ClipToBounds="True">
                         <StackPanel Name="PART_PanelHost"
                                     d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}">
                             <Grid Width="{Settings GridItemWidth}"
@@ -36,15 +36,15 @@
                                                 Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
                                     </StackPanel>
                                 </Viewbox>
-                                <ContentControl x:Name="ThemeExtras_Banner" 
-                                                VerticalAlignment="Bottom" 
-                                                RenderOptions.BitmapScalingMode="HighQuality"
-                                                Padding="0" Margin="0"/>
                                 <ContentControl 
                                             HorizontalAlignment="Right"
                                             x:Name="ThemeExtras_SettableFavorite"
                                             VerticalAlignment="Top"
-                                            Margin="5">
+                                            Margin="5"
+                                    Visibility="Collapsed">
+                                    <ContentControl.Effect>
+                                        <DropShadowEffect BlurRadius="7" ShadowDepth="0" Opacity="0.5" RenderingBias="Quality"/>
+                                    </ContentControl.Effect>
                                     <ContentControl.Resources>
                                         <Style TargetType="UserControl">
                                             <Setter Property="Template">
@@ -66,14 +66,25 @@
                                         </Style>
                                     </ContentControl.Resources>
                                 </ContentControl>
-                            </Grid>
-                            <TextBlock Text="{Binding DisplayName}"
+
+                                <TextBlock Text="{Binding DisplayName}"
                                    Style="{DynamicResource BaseTextBlockStyle}"                                                                   
                                    TextAlignment="Center" TextTrimming="CharacterEllipsis"
-                                   VerticalAlignment="Center"
+                                           TextWrapping="Wrap"
+                                   VerticalAlignment="Bottom"
                                    Padding="2,5,2,5" Grid.Row="1" Grid.Column="0"
                                    Width="{Settings GridItemWidth}" 
-                                   Visibility="{Settings ShowNamesUnderCovers}" />
+                                   Visibility="{Settings ShowNamesUnderCovers}"
+                                           x:Name="BottomName">
+                                    <TextBlock.Background>
+                                        <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                    </TextBlock.Background>
+                                </TextBlock>
+                            </Grid>
+                            <ContentControl x:Name="ThemeExtras_Banner" 
+                                                VerticalAlignment="Bottom" 
+                                                RenderOptions.BitmapScalingMode="Fant"
+                                                Padding="0" Margin="0" Width="{Settings GridItemWidth}"/>
                         </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -93,11 +104,16 @@
                                 <Condition Binding="{Settings ShowNameEmptyCover}" Value="True" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible" TargetName="TextGameName"/>
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="BottomName"/>
                         </MultiDataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderMouseOver"/>
                             <Setter Property="Visibility" Value="Visible" TargetName="GameControls"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="ThemeExtras_SettableFavorite"/>
                         </Trigger>
+                        <DataTrigger Binding="{Binding Favorite}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="ThemeExtras_SettableFavorite"/>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

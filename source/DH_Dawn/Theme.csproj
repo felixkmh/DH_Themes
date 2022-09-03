@@ -35,12 +35,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Playnite">
-      <HintPath>..\..\..\p10\build\DEBUG\Playnite.dll</HintPath>
-    </Reference>
-    <Reference Include="Playnite.DesktopApp">
-      <HintPath>..\..\..\p10\build\DEBUG\Playnite.DesktopApp.exe</HintPath>
-    </Reference>
     <Reference Include="HtmlRenderer">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\HtmlRenderer.dll</HintPath>
@@ -53,8 +47,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\PhotoSauce.MagicScaler.dll</HintPath>
     </Reference>
+    <Reference Include="Playnite">
+      <HintPath>..\..\..\p10\build\Release\Playnite.dll</HintPath>
+    </Reference>
+    <Reference Include="Playnite.DesktopApp">
+      <HintPath>..\..\..\p10\build\Release\Playnite.DesktopApp.exe</HintPath>
+    </Reference>
     <Reference Include="Playnite.SDK">
-      <HintPath>..\..\..\p10\build\DEBUG\Playnite.SDK.dll</HintPath>
+      <HintPath>..\..\..\p10\build\Release\Playnite.SDK.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

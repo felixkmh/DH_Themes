@@ -1325,6 +1325,7 @@
                                 <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl" VerticalAlignment="Top"
                                             Opacity="0"
                                             IsHitTestVisible="False"
+                                            RenderOptions.BitmapScalingMode="Fant"
                                             Visibility="{Binding Tag, ElementName=ShowTrailerProxy, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <ContentControl.OpacityMask>
                                         <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -1468,20 +1469,40 @@
                                         <ContentControl x:Name="FadeOutDetailsHeaderWhenVideoPlaysProxy" Visibility="Collapsed" Tag="{DynamicResource FadeOutDetailsHeaderWhenVideoPlays}"/>
                                         <DockPanel VerticalAlignment="Bottom"
                                             DockPanel.Dock="Right"
-                                            Visibility="{Binding CoverVisibility}">
+                                            Visibility="{Binding CoverVisibility}"
+                                                   x:Name="CoverDockPanel">
+                                            <DockPanel.OpacityMask>
+                                                <VisualBrush>
+                                                    <VisualBrush.Visual>
+                                                        <Border x:Name="CoverMask" Background="Black"
+                                                                    Tag="{DynamicResource DetailsCoverCornerRadius}"
+                                                                    Height="{Binding ActualHeight, ElementName=CoverDockPanel}"
+                                                                    Width="{Binding ActualWidth, ElementName=CoverDockPanel}"
+                                                                    CornerRadius="{Binding Tag, ElementName=CoverMask}"/>
+                                                    </VisualBrush.Visual>
+                                                </VisualBrush>
+                                            </DockPanel.OpacityMask>
                                             <ContentControl x:Name="ThemeExtras_Banner"
                                                             RenderOptions.BitmapScalingMode="Fant"
                                                             Width="{Binding ActualWidth, ElementName=PART_ImageCover}"
                                                             Tag="{DynamicResource DetailsViewBannerOnCover}"
                                                             DockPanel.Dock="Bottom"
                                                             Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                            <Image Name="PART_ImageCover" 
-                                                   DockPanel.Dock="Top"
-                                                   Height="{Settings GameDetailsCoverHeight}"
-                                                   StretchDirection="Both" Stretch="Uniform"
-                                                   RenderOptions.BitmapScalingMode="Fant" 
-                                                   Tag="{DynamicResource DetailsViewBannerOnCoverBelow}"
-                                            />
+                                            <Grid DockPanel.Dock="Top"
+                                                  Tag="{DynamicResource DetailsViewBannerOnCoverBelow}"
+                                                  x:Name="CoverGrid">
+                                                <Image Name="PART_ImageCover" 
+                                                       Height="{Settings GameDetailsCoverHeight}"
+                                                       StretchDirection="Both" Stretch="Uniform"
+                                                       RenderOptions.BitmapScalingMode="Fant" 
+                                                       Visibility="{Binding IsVisible, ElementName=BackgroundChanger_PluginBackgroundImage, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                                />
+                                                <ContentControl x:Name="BackgroundChanger_PluginCoverImage"
+                                                                DockPanel.Dock="Right" VerticalAlignment="Bottom"
+                                                                Height="{Settings GameDetailsCoverHeight}" 
+                                                                RenderOptions.BitmapScalingMode="Fant"
+                                                                Visibility="{PluginSettings Plugin=BackgroundChanger, Path=HasDataCover, FallbackValue={x:Static Visibility.Collapsed}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                            </Grid>
                                         </DockPanel>
                                         <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
                                             <DockPanel>
@@ -1625,40 +1646,38 @@
                                                         Style="{DynamicResource TextBlockGameScore}" />
 
                                                 <Label Name="PART_ElemLinks" Content="{DynamicResource LOCLinksLabel}" />
-                                                <ContentControl x:Name="ThemeExtras_Links">
-                                                    <ContentControl.Resources>
-                                                        <Style TargetType="ItemsControl">
-                                                            <Setter Property="ItemTemplate">
-                                                                <Setter.Value>
-                                                                    <DataTemplate>
-                                                                        <DockPanel Margin="5">
-                                                                            <Viewbox DockPanel.Dock="Left" Margin="0,0,5,0" Width="18" Height="18" 
-                                                                                     RenderOptions.ClearTypeHint="Auto">
-                                                                                <ContentControl RenderOptions.BitmapScalingMode="HighQuality">
-                                                                                    <ContentControl.Content>
-                                                                                        <Binding Path="Icon">
-                                                                                            <Binding.TargetNullValue>
-                                                                                                <TextBlock Text="{StaticResource DefaultLinkIcon}" Style="{DynamicResource BaseTextBlockStyle}" FontFamily="{StaticResource FontIcoFont}"/>
-                                                                                            </Binding.TargetNullValue>
-                                                                                        </Binding>
-                                                                                    </ContentControl.Content>
-                                                                                </ContentControl>
-                                                                            </Viewbox>
-                                                                            <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
+                                                <ItemsControl ItemsSource="{Binding Game.Links}" Visibility="{Binding LinkVisibility}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="{x:Type Link}">
+                                                            <DockPanel Margin="0,5">
+                                                                <Viewbox DockPanel.Dock="Left" Margin="0,0,5,0" Width="18" Height="18" 
+                                                                                     RenderOptions.ClearTypeHint="Enabled" RenderOptions.BitmapScalingMode="Fant">
+                                                                    <ContentControl DockPanel.Dock="Left">
+                                                                        <ContentControl.Content>
+                                                                            <Binding Path="Url" IsAsync="True" Converter="{PluginConverter Plugin=ThemeExtras, Converter=UrlToIconConverter}">
+                                                                                <Binding.FallbackValue>
+                                                                                    <TextBlock Style="{StaticResource BaseTextBlockStyle}" FontFamily="{DynamicResource FontIcoFont}" Text="{StaticResource DefaultLinkIcon}"/>
+                                                                                </Binding.FallbackValue>
+                                                                            </Binding>
+                                                                        </ContentControl.Content>
+                                                                    </ContentControl>
+                                                                </Viewbox>
+                                                                <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
                                                                                        ToolTip="{Binding Url}">
-                                                                                <Hyperlink Command="{Binding OpenLinkCommand}">
-                                                                                    <Run Text="{Binding Name}"/>
-                                                                                </Hyperlink>    
-                                                                            </TextBlock>
-                                                                        </DockPanel>
-                                                                    </DataTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                        </Style>
-                                                    </ContentControl.Resources>
-                                                </ContentControl>
-
-
+                                                                    <Hyperlink Command="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.OpenLinkCommand}"
+                                                                               CommandParameter="{Binding}">
+                                                                        <Run Text="{Binding Name}"/>
+                                                                    </Hyperlink>
+                                                                </TextBlock>
+                                                            </DockPanel>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
                                             </GridEx>
                                         </StackPanel>
 
@@ -1693,7 +1712,7 @@
                         </ScrollViewer>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Tag, ElementName=PART_ImageCover}" Value="{StaticResource False}">
+                        <DataTrigger Binding="{Binding Tag, ElementName=CoverGrid}" Value="{StaticResource False}">
                             <Setter Property="DockPanel.Dock" Value="Top" TargetName="ThemeExtras_Banner"/>
                         </DataTrigger>
                         <MultiDataTrigger>

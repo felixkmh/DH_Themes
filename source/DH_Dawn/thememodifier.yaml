@@ -20,3 +20,6 @@ Constants:
 - ShowTrailerInBackground
 - FadeOutDetailsHeaderWhenVideoPlays
 - ShowDuplicateHiderInDetailsList
+#
+- Grid View - Common
+- GridItemCornerRadius(0,50)
