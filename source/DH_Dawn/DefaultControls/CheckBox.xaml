@@ -80,7 +80,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="BulletBorder" />
                             <Trigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource Pulse}"/>
+                                <BeginStoryboard x:Name="MouseEnterPulse" Storyboard="{StaticResource Pulse}"/>
                             </Trigger.EnterActions>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">

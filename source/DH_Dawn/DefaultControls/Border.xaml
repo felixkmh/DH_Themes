@@ -9,4 +9,62 @@
     <Style TargetType="Border">
         <Setter Property="SnapsToDevicePixels" Value="True" />
     </Style>
+
+    <Style x:Key="LoadingBorderStyle" TargetType="Border">
+        <Setter Property="OpacityMask">
+            <Setter.Value>
+                <LinearGradientBrush x:Name="Mask" StartPoint="0,0" EndPoint="1,0" Opacity="0.9">
+                    <GradientStop x:Name="Pre1" Color="#00ff4500" Offset="-2"/>
+                    <GradientStop x:Name="Pre2" Color="OrangeRed" Offset="-1.5"/>
+                    <GradientStop x:Name="Pre3" Color="#00ff4500" Offset="-1"/>
+                    <GradientStop x:Name="Color1" Color="#00ff4500" Offset="-1"/>
+                    <GradientStop x:Name="Color2" Color="OrangeRed" Offset="-0.5"/>
+                    <GradientStop x:Name="Color3" Color="#00ff4500" Offset="0"/>
+                    <GradientStop x:Name="Post1" Color="#00ff4500" Offset="0"/>
+                    <GradientStop x:Name="Post2" Color="OrangeRed" Offset="0.5"/>
+                    <GradientStop x:Name="Post3" Color="#00ff4500" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Tag" Value="Animating">
+                <Trigger.EnterActions>
+                    <BeginStoryboard x:Name="LoadingAnimation">
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[0].Offset"
+                                             From="-2.5" To="0.5" Duration="0:0:5"
+                                             />
+                            <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[1].Offset"
+                                             From="-2"  To="1" Duration="0:0:5"
+                                             />
+                            <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[2].Offset"
+                                             From="-1.5"  To="1.5" Duration="0:0:5"
+                                             />
+                            <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[3].Offset"
+                                             From="-1" To="2" Duration="0:0:5"
+                                             />
+                            <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[4].Offset"
+                                             From="-0.5"  To="2.5" Duration="0:0:5"
+                                             />
+                            <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[5].Offset"
+                                             From="0"  To="3" Duration="0:0:5"
+                                             />
+                            <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[6].Offset"
+                                             From="0.5" To="3.5" Duration="0:0:5"
+                                             />
+                            <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[7].Offset"
+                                             From="1"  To="4" Duration="0:0:5"
+                                             />
+                            <DoubleAnimation Storyboard.TargetProperty="OpacityMask.GradientStops[8].Offset"
+                                             From="1.5"  To="4.5" Duration="0:0:5"
+                                             />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StopStoryboard BeginStoryboardName="LoadingAnimation"/>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

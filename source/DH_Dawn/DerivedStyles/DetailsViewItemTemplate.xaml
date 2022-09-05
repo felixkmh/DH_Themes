@@ -178,7 +178,6 @@
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
-                                <StopStoryboard BeginStoryboardName="Pulse"/>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="ImageIconContainer"

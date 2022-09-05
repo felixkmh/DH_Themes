@@ -17,7 +17,7 @@
 
     <Style TargetType="{x:Type SliderEx}" BasedOn="{StaticResource {x:Type Slider}}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource UserEditableBoxBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -30,15 +30,20 @@
                         </Grid.RowDefinitions>
                         <TickBar x:Name="TopTick" Visibility="Collapsed" Height="4" Placement="Top"
                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  Fill="{DynamicResource GlyphBrush}" />
-                        <Border Grid.Row="1" Margin="1" Height="4" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                Background="{DynamicResource HighlightGlyphBrush}" 
+                        <Border Grid.Row="1" Margin="1" Height="5" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                CornerRadius="2.5"
+                                Background="{DynamicResource GlyphBrush}" 
                                 Width="{Binding ActualWidth, ElementName=ButtonDecrease}" />
-                        <Border x:Name="Border" Grid.Row="1" Margin="0" Height="6" CornerRadius="{DynamicResource ControlCornerRadius}"
+                        <Border x:Name="Border" Grid.Row="1" Margin="0" Height="5" CornerRadius="2.5"
                                 Background="{TemplateBinding Background}" BorderBrush="{DynamicResource NormalBorderBrush}"
                                 BorderThickness="{DynamicResource ControlBorderThickness}" />
                         <Track Grid.Row="1" x:Name="PART_Track">
                             <Track.Thumb>
-                                <Thumb Width="10" />
+                                <Thumb Width="10" Cursor="Hand">
+                                    <Thumb.Effect>
+                                        <DropShadowEffect RenderingBias="Performance" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
+                                    </Thumb.Effect>
+                                </Thumb>
                             </Track.Thumb>
                             <Track.DecreaseRepeatButton>
                                 <RepeatButton x:Name="ButtonDecrease"

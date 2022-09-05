@@ -8,7 +8,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
-                    <Border BorderBrush="{DynamicResource GridItemBackgroundBrush}" ClipToBounds="True">
+                    <Border BorderBrush="{DynamicResource GridItemBackgroundBrush}" ClipToBounds="True"
+                            >
                         <StackPanel Name="PART_PanelHost"
                                     d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}">
                             <Grid Width="{Settings GridItemWidth}"
@@ -43,7 +44,7 @@
                                             Margin="5"
                                     Visibility="Collapsed">
                                     <ContentControl.Effect>
-                                        <DropShadowEffect BlurRadius="7" ShadowDepth="0" Opacity="0.5" RenderingBias="Quality"/>
+                                        <DropShadowEffect BlurRadius="5" ShadowDepth="0" Opacity="0.5" RenderingBias="Quality"/>
                                     </ContentControl.Effect>
                                     <ContentControl.Resources>
                                         <Style TargetType="UserControl">
