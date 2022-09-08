@@ -10,10 +10,18 @@
                 <ControlTemplate TargetType="{x:Type GameListItem}">
                     <Border BorderBrush="{DynamicResource GridItemBackgroundBrush}" ClipToBounds="True"
                             >
-                        <StackPanel Name="PART_PanelHost"
-                                    d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}">
+                        <DockPanel Name="PART_PanelHost" LastChildFill="False"
+                                    d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
+                                   Tag="{DynamicResource GridViewBannerOnCoverBelow}">
+                            <ContentControl x:Name="ThemeExtras_Banner"  
+                                                RenderOptions.BitmapScalingMode="Fant"
+                                                Padding="0" Margin="0" Width="{Settings GridItemWidth}"
+                                            DockPanel.Dock="Bottom"
+                                            Tag="{DynamicResource GridViewBannerOnCover}"
+                                            Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <Grid Width="{Settings GridItemWidth}"
-                              Height="{Settings GridItemHeight}">
+                              Height="{Settings GridItemHeight}"
+                                  DockPanel.Dock="Top">
                                 <Image Name="PART_ImageCover"
                                    RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -82,13 +90,12 @@
                                     </TextBlock.Background>
                                 </TextBlock>
                             </Grid>
-                            <ContentControl x:Name="ThemeExtras_Banner" 
-                                                VerticalAlignment="Bottom" 
-                                                RenderOptions.BitmapScalingMode="Fant"
-                                                Padding="0" Margin="0" Width="{Settings GridItemWidth}"/>
-                        </StackPanel>
+                            </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_PanelHost" Property="Tag" Value="{StaticResource False}">
+                            <Setter TargetName="ThemeExtras_Banner" Property="DockPanel.Dock" Value="Top"/>
+                        </Trigger>
                         <DataTrigger Binding="{Binding IsInstalled}" Value="False">
                             <Setter Property="Content" Value="&#xef08;" TargetName="PART_ButtonPlay" />
                         </DataTrigger>

@@ -24,7 +24,8 @@
                                              ScrollViewer.PanningMode="VerticalOnly"
                                              ItemContainerStyle="{DynamicResource GridViewItemStyle}"
                                              DockPanel.Dock="Left"
-                                             BorderThickness="0">
+                                             BorderThickness="0"
+                                             Tag="{DynamicResource GridViewDropShadow}">
                                 <ExtendedListBox.ItemTemplate>
                                     <DataTemplate>
                                         <GameListItem Style="{StaticResource GridViewItemTemplate}" />
@@ -54,6 +55,15 @@
                             </StackPanel>
                         </Grid>
                     </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, ElementName=PART_ListGames}" Value="{StaticResource True}">
+                            <Setter Property="Effect" TargetName="PART_ListGames">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="15" RenderingBias="Performance" Opacity="0.5"/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -10,6 +10,7 @@
 
     <Style TargetType="{x:Type DetailsViewGameOverview}">
         <Style.Resources>
+            <TextBlock x:Key="DefaultLinkTextBlock" Style="{StaticResource BaseTextBlockStyle}" FontFamily="{DynamicResource FontIcoFont}" Text="{DynamicResource DefaultLinkIcon}"/>
             <Style x:Key="UserRatingProgressBar" TargetType="ProgressBar">
                 <Setter Property="Minimum" Value="0"/>
                 <Setter Property="Maximum" Value="100"/>
@@ -1657,15 +1658,9 @@
                                                             <DockPanel Margin="0,5">
                                                                 <Viewbox DockPanel.Dock="Left" Margin="0,0,5,0" Width="18" Height="18" 
                                                                                      RenderOptions.ClearTypeHint="Enabled" RenderOptions.BitmapScalingMode="Fant">
-                                                                    <ContentControl DockPanel.Dock="Left">
-                                                                        <ContentControl.Content>
-                                                                            <Binding Path="Url" IsAsync="True" Converter="{PluginConverter Plugin=ThemeExtras, Converter=UrlToIconConverter}">
-                                                                                <Binding.FallbackValue>
-                                                                                    <TextBlock Style="{StaticResource BaseTextBlockStyle}" FontFamily="{DynamicResource FontIcoFont}" Text="{StaticResource DefaultLinkIcon}"/>
-                                                                                </Binding.FallbackValue>
-                                                                            </Binding>
-                                                                        </ContentControl.Content>
-                                                                    </ContentControl>
+                                                                    <ContentControl DockPanel.Dock="Left"
+                                                                                    Content="{Binding Value, TargetNullValue={StaticResource DefaultLinkTextBlock}}"
+                                                                                    DataContext="{Binding Url, Converter={PluginConverter Plugin=ThemeExtras, Converter=UrlToAsyncIconConverter}}"/>
                                                                 </Viewbox>
                                                                 <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
                                                                                        ToolTip="{Binding Url}">

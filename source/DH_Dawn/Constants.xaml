@@ -17,6 +17,10 @@
     <sys:Boolean x:Key="EnableFloatingProgressSelector">True</sys:Boolean>
     <sys:Double x:Key="GridItemCornerRadius">10</sys:Double>
     <sys:Double x:Key="DetailsCoverCornerRadius">10</sys:Double>
+    <sys:Boolean x:Key="GridViewBannerOnCover">True</sys:Boolean>
+    <sys:Boolean x:Key="GridViewBannerOnCoverBelow">True</sys:Boolean>
+    <sys:Boolean x:Key="GridViewDropShadow">False</sys:Boolean>
+    <sys:Boolean x:Key="ShowNavigationButtons">True</sys:Boolean>
 
     <!--ThemeExtras-->
     <sys:Boolean x:Key="EnableFloatingRating">True</sys:Boolean>
