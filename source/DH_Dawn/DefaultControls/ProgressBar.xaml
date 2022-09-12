@@ -15,25 +15,24 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ProgressBar}">
                     <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{DynamicResource GlyphBrush}"
-                            CornerRadius="{DynamicResource ControlCornerRadius}">
+                            >
+                        <Border.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border
+                                                    Width="{Binding ActualWidth, ElementName=PART_Track, FallbackValue={StaticResource Zero}}"
+                                                    Height="{Binding ActualHeight, ElementName=PART_Track, FallbackValue={StaticResource Zero}}"
+                                                    Background="Black" CornerRadius="{DynamicResource ControlCornerRadius}"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.OpacityMask>
                         <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                            <Border CornerRadius="{DynamicResource ControlCornerRadius}"
+                            <Border 
                                     Background="{TemplateBinding Background}" />
                             <Border Name="PART_Track" Margin="0" 
-                                    CornerRadius="{DynamicResource ControlCornerRadius}"/>
+                                    />
                             <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                                 <Grid x:Name="IndicatorGrid">
-                                    <!--<Grid.OpacityMask>
-                                        <VisualBrush AutoLayoutContent="True">
-                                            <VisualBrush.Visual>
-                                                <Border
-                                                    Width="{Binding ActualWidth, ElementName=IndicatorGrid, FallbackValue={StaticResource Zero}}"
-                                                    Height="{Binding ActualHeight, ElementName=IndicatorGrid, FallbackValue={StaticResource Zero}}"
-                                                    Background="Black" CornerRadius="{DynamicResource ControlCornerRadius}"/>
-                                            </VisualBrush.Visual>
-                                        </VisualBrush>
-                                    </Grid.OpacityMask>-->
-                                    <Border Background="{TemplateBinding Foreground}" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                                     <Grid x:Name="Animation" Visibility="Hidden">
                                         <Rectangle Fill="Transparent" Margin="0,0,50,0">
                                             <Rectangle.RenderTransform>
@@ -48,6 +47,8 @@
                                     </Grid>
                                 </Grid>
                             </Decorator>
+                            <Border Background="{TemplateBinding Foreground}" CornerRadius="{DynamicResource ControlCornerRadius}"
+                                    Width="{Binding ActualWidth, ElementName=PART_Indicator}" HorizontalAlignment="Left"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>

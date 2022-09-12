@@ -10,7 +10,7 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="AllowsTransparency" Value="True" />
-        <Setter Property="Effect" Value="{DynamicResource PopupDropShadow}"/>
         <Setter Property="Margin" Value="15"/>
+        <Setter Property="Effect" Value="{DynamicResource PopupDropShadow}"/>
     </Style>
 </ResourceDictionary>

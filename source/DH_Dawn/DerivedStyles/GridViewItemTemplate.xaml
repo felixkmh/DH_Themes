@@ -8,8 +8,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
-                    <Border BorderBrush="{DynamicResource GridItemBackgroundBrush}" ClipToBounds="True"
-                            >
+                    <Grid ClipToBounds="True">
                         <DockPanel Name="PART_PanelHost" LastChildFill="False"
                                     d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
                                    Tag="{DynamicResource GridViewBannerOnCoverBelow}">
@@ -33,18 +32,6 @@
                                            TextTrimming="CharacterEllipsis" TextAlignment="Center"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
-                                <Border Background="#AA000000" x:Name="BorderMouseOver" Visibility="Collapsed" />
-                                <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center"
-                                         Name="GameControls"  Visibility="Collapsed">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
-                                                Margin="20,0,2,0" VerticalAlignment="Center"
-                                                Content="&#xec74;" FontFamily="{StaticResource FontIcoFont}" />
-                                        <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
-                                                Margin="2,0,20,0" VerticalAlignment="Center"
-                                                Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
-                                    </StackPanel>
-                                </Viewbox>
                                 <ContentControl 
                                             HorizontalAlignment="Right"
                                             x:Name="ThemeExtras_SettableFavorite"
@@ -90,8 +77,20 @@
                                     </TextBlock.Background>
                                 </TextBlock>
                             </Grid>
-                            </DockPanel>
-                    </Border>
+                        </DockPanel>
+                        <Border Background="#AA000000" x:Name="BorderMouseOver" Visibility="Collapsed" IsHitTestVisible="False"/>
+                        <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                         Name="GameControls"  Visibility="Collapsed">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
+                                                Margin="20,0,2,0" VerticalAlignment="Center"
+                                                Content="&#xec74;" FontFamily="{StaticResource FontIcoFont}" />
+                                <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
+                                                Margin="2,0,20,0" VerticalAlignment="Center"
+                                                Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
+                            </StackPanel>
+                        </Viewbox>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger SourceName="PART_PanelHost" Property="Tag" Value="{StaticResource False}">
                             <Setter TargetName="ThemeExtras_Banner" Property="DockPanel.Dock" Value="Top"/>

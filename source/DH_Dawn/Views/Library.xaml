@@ -6,11 +6,13 @@
 
     <Style TargetType="{x:Type Library}">
         <Setter Property="Background" Value="Yellow" />
+        <Setter Property="ClipToBounds" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Library}">
                     <Grid d:DesignWidth="1500" d:DesignHeight="960"
-                          d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
+                          d:DataContext="{x:Static DesignMainViewModel.DesignIntance}"
+                          ClipToBounds="False">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
@@ -25,7 +27,7 @@
 
                         <TopPanel DockPanel.Dock="Top" Grid.Row="0" />
                         
-                        <DockPanel Grid.Row="1">
+                        <DockPanel Grid.Row="1" ClipToBounds="False">
                             <FilterPanel x:Name="PART_FilterPanel"
                                          DockPanel.Dock="{Settings FilterPanelPosition}"
                                          Width="{Settings FilterPanelWitdh}"
@@ -35,7 +37,7 @@
                                            DockPanel.Dock="{Settings ExplorerPanelPosition}"
                                            Width="{Settings ExplorerPanelWitdh}"/>
                             
-                            <Grid DockPanel.Dock="Left">                                
+                            <Grid DockPanel.Dock="Left" ClipToBounds="False">                                
                                 <LibraryDetailsView x:Name="PART_ViewDetails" />
                                 <LibraryGridView x:Name="PART_ViewGrid" />
                                 <LibraryListView x:Name="PART_ViewList" />

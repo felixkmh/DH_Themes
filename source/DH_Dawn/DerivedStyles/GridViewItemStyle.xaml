@@ -42,7 +42,7 @@
                             <Setter Property="Canvas.ZIndex" Value="90" />
                             <Setter Property="RenderTransform">
                                 <Setter.Value>
-                                    <ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+                                    <ScaleTransform ScaleX="1.04" ScaleY="1.04"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
