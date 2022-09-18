@@ -32,36 +32,6 @@
                                            TextTrimming="CharacterEllipsis" TextAlignment="Center"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
-                                <ContentControl 
-                                            HorizontalAlignment="Right"
-                                            x:Name="ThemeExtras_SettableFavorite"
-                                            VerticalAlignment="Top"
-                                            Margin="5"
-                                    Visibility="Collapsed">
-                                    <ContentControl.Effect>
-                                        <DropShadowEffect BlurRadius="5" ShadowDepth="0" Opacity="0.5" RenderingBias="Quality"/>
-                                    </ContentControl.Effect>
-                                    <ContentControl.Resources>
-                                        <Style TargetType="UserControl">
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="ContentControl">
-                                                        <CheckBox IsChecked="{Binding Value}">
-                                                            <CheckBox.Template>
-                                                                <ControlTemplate TargetType="CheckBox">
-                                                                    <TextBlock Text="&#xF000;" FontFamily="{StaticResource FontIcoFont}" 
-                                                                               FontSize="{DynamicResource FontSizeLarger}"
-                                                                               VerticalAlignment="Center"
-                                                                Opacity="{TemplateBinding IsChecked, Converter={StaticResource OpacityBoolConverter}}"/>
-                                                                </ControlTemplate>
-                                                            </CheckBox.Template>
-                                                        </CheckBox>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </ContentControl.Resources>
-                                </ContentControl>
 
                                 <TextBlock Text="{Binding DisplayName}"
                                    Style="{DynamicResource BaseTextBlockStyle}"                                                                   
@@ -81,15 +51,55 @@
                         <Border Background="#AA000000" x:Name="BorderMouseOver" Visibility="Collapsed" IsHitTestVisible="False"/>
                         <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                                          Name="GameControls"  Visibility="Collapsed">
-                            <StackPanel Orientation="Horizontal">
-                                <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
-                                                Margin="20,0,2,0" VerticalAlignment="Center"
-                                                Content="&#xec74;" FontFamily="{StaticResource FontIcoFont}" />
-                                <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
-                                                Margin="2,0,20,0" VerticalAlignment="Center"
-                                                Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
+                                                    Margin="20,0,2,0" VerticalAlignment="Center"
+                                                    Content="&#xec74;" FontFamily="{StaticResource FontIcoFont}" />
+                                    <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
+                                                    Margin="2,0,20,0" VerticalAlignment="Center"
+                                                    Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
+                                </StackPanel>
+                                <Button Name="ButtonInfo" Style="{StaticResource SimpleButton}"
+                                        HorizontalAlignment="Center"
+                                                Margin="2" VerticalAlignment="Center"
+                                                Content="&#xE145;" FontFamily="Segoe UI Symbol" 
+                                        Command="{PluginSettings Plugin=ThemeExtras, Path=Commands.SwitchToDetailsViewCommand, FallbackValue={x:Null}}"
+                                        CommandParameter="{Binding Game}"
+                                        ToolTip="{DynamicResource LOCDetailsViewLabel}"
+                                        Visibility="{Binding Command, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
                             </StackPanel>
                         </Viewbox>
+                        <ContentControl 
+                                            HorizontalAlignment="Right"
+                                            x:Name="ThemeExtras_SettableFavorite"
+                                            VerticalAlignment="Top"
+                                            Margin="5"
+                                    Visibility="Collapsed">
+                            <ContentControl.Effect>
+                                <DropShadowEffect BlurRadius="5" ShadowDepth="0" Opacity="0.5" RenderingBias="Quality"/>
+                            </ContentControl.Effect>
+                            <ContentControl.Resources>
+                                <Style TargetType="UserControl">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ContentControl">
+                                                <CheckBox IsChecked="{Binding Value}">
+                                                    <CheckBox.Template>
+                                                        <ControlTemplate TargetType="CheckBox">
+                                                            <TextBlock Text="&#xF000;" FontFamily="{StaticResource FontIcoFont}" 
+                                                                               FontSize="{DynamicResource FontSizeLarger}"
+                                                                               VerticalAlignment="Center"
+                                                                Opacity="{TemplateBinding IsChecked, Converter={StaticResource OpacityBoolConverter}}"/>
+                                                        </ControlTemplate>
+                                                    </CheckBox.Template>
+                                                </CheckBox>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ContentControl.Resources>
+                        </ContentControl>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger SourceName="PART_PanelHost" Property="Tag" Value="{StaticResource False}">

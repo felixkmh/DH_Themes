@@ -230,6 +230,11 @@
                                         <ContentPresenter HorizontalAlignment="Center"/>
                                     </Border>
                                 </StackPanel>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+                                        
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
