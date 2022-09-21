@@ -66,7 +66,7 @@
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid Background="{TemplateBinding Background}">
+                        <Grid Background="{TemplateBinding Background}" ClipToBounds="False">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
@@ -75,10 +75,12 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" Grid.Column="0" Grid.Row="0"
+                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1"
                                                 Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}"
                                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                CanContentScroll="{TemplateBinding CanContentScroll}" />
+                                                CanContentScroll="{TemplateBinding CanContentScroll}" 
+                                                ClipToBounds="False"
+                                                />
                             <Rectangle Grid.Column="1" Grid.Row="1" Fill="{DynamicResource ControlBackgroundBrush}" />
                             <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="0" Grid.Row="1"
                                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"

@@ -73,12 +73,15 @@
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Settings SidebarPosition}" Value="Right">
                             <Setter TargetName="AnimatedBorder" Property="Tag" Value="180"/>
+                            <Setter TargetName="Rect" Property="Margin" Value="1,1,4,1"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Settings SidebarPosition}" Value="Top">
                             <Setter TargetName="AnimatedBorder" Property="Tag" Value="-90"/>
+                            <Setter TargetName="Rect" Property="Margin" Value="1,1,1,4"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Settings SidebarPosition}" Value="Bottom">
                             <Setter TargetName="AnimatedBorder" Property="Tag" Value="-90"/>
+                            <Setter TargetName="Rect" Property="Margin" Value="1,1,1,4"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Selected}" Value="True">
                             <DataTrigger.EnterActions>

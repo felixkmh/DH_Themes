@@ -50,8 +50,16 @@
 
     <Style TargetType="{x:Type Expander}">
         <Setter Property="Background" Value="{DynamicResource ExpanderBackgroundBrush}" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#00D3614A" Offset="0"/>
+                    <GradientStop Color="{DynamicResource GlyphColor}" Offset="0.05"/>
+                    <GradientStop Color="#00D3614A" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
@@ -66,7 +74,7 @@
                                       Content="{TemplateBinding Header}"
                                       IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         <Border x:Name="Border" DockPanel.Dock="Top" Visibility="Collapsed"
-                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter Focusable="False"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  />

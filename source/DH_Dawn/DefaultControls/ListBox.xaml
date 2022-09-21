@@ -75,10 +75,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
+        <!--<Style.Triggers>
             <Trigger Property="Selector.IsSelected" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
             </Trigger>
-        </Style.Triggers>
+        </Style.Triggers>-->
     </Style>
 </ResourceDictionary>

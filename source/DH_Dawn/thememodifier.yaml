@@ -9,6 +9,8 @@ Constants:
 - DetailsDimmerColor
 - DetailsViewBannerOnCover
 - DetailsViewBannerOnCoverBelow
+- EnableDetailsListTranslation
+- DetailsCoverCornerRadius(0,50)
 #
 - Details View - Floating Buttons
 - ButtonStackVerticalAlignment
@@ -26,7 +28,6 @@ Constants:
 #
 - Grid View - Common
 - GridItemCornerRadius(0,50)
-- DetailsCoverCornerRadius(0,50)
 - GridViewBannerOnCover
 - GridViewBannerOnCoverBelow
 - GridViewDropShadow

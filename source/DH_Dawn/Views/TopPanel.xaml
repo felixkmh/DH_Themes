@@ -242,6 +242,18 @@
                                         VerticalAlignment="Stretch" Margin="15,6,15,6"
                                         DockPanel.Dock="{Settings PluginTopPanelAlignment}"/>
 
+                            <Button DockPanel.Dock="Right" 
+                                          Style="{DynamicResource TopPanelButtonStyle}"
+                                          Margin="0,6"
+                                    Padding="5"
+                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                    Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Path=IsInstalled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                    ToolTip="DH_Dawn requires the ThemeExtras extension to enable certain features, like platform banners.">
+                                <Viewbox>
+                                    <TextBlock Text="&#xEF4E;" FontFamily="{DynamicResource FontIcoFont}"/>
+                                </Viewbox>
+                            </Button>
+
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left"
                                         HorizontalAlignment="Center" Margin="0,5,0,5">
                                 <Grid MaxWidth="600" MinWidth="300">

@@ -131,6 +131,7 @@
                             </Border.OpacityMask>
                             <Border BorderThickness="0,0,0,1.5" 
                                     VerticalAlignment="Bottom" 
+                                    Margin="3,0"
                                     BorderBrush="{DynamicResource GlyphBrush}" 
                                     Height="4" Background="{DynamicResource GlyphBrush}"
                                     x:Name="LoadingBorder" Visibility="Collapsed">

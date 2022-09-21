@@ -4,6 +4,9 @@
     <ScaleTransform x:Key="UniformScaleTransform" ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}"/>
     
     <Style x:Key="GridViewItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Style.Resources>
+            <CornerRadius x:Key="CornerRadius0">0</CornerRadius>
+        </Style.Resources>
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -18,21 +21,28 @@
                           x:Name="ItemGrid"
                           Tag="{DynamicResource GridItemCornerRadius}">
                         <Border x:Name="SelectionBorder" BorderThickness="4" Margin="-3"  
-                                CornerRadius="{Binding Tag, ElementName=ItemGrid}">
+                                CornerRadius="{Binding Tag, ElementName=ItemGrid}"
+                                Background="Black">
                         </Border>
                         <ContentPresenter x:Name="Content">
                             <ContentPresenter.OpacityMask>
                                 <VisualBrush>
                                     <VisualBrush.Visual>
-                                        <Border x:Name="Mask" Background="Black" CornerRadius="{Binding CornerRadius, ElementName=SelectionBorder}"
-                                                Width="{Binding ActualWidth, ElementName=Content}"
-                                                Height="{Binding ActualHeight, ElementName=Content}"/>
+                                        <Rectangle Fill="Black" x:Name="RectangleMask"
+                                                RadiusX="{DynamicResource GridItemCornerRadius}"
+                                                RadiusY="{DynamicResource GridItemCornerRadius}"
+                                                Width="{Binding ActualWidth, ElementName=SelectionBorder}"
+                                                Height="{Binding ActualHeight, ElementName=SelectionBorder}">
+                                        </Rectangle>
                                     </VisualBrush.Visual>
                                 </VisualBrush>
                             </ContentPresenter.OpacityMask>
                         </ContentPresenter>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding CornerRadius, ElementName=SelectionBorder}" Value="0,0,0,0">
+                            <Setter TargetName="Content" Property="OpacityMask" Value="{x:Null}"/>
+                        </DataTrigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
                             <Setter Property="Canvas.ZIndex" Value="90" />

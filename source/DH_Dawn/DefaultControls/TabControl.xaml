@@ -99,8 +99,56 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
+                    <ControlTemplate.Resources>
+                        <sys:Double x:Key="DoubleOne">1</sys:Double>
+                        <ElasticEase x:Key="FlyOutEase" Oscillations="1"/>
+                        <Storyboard x:Key="HorizontalHoverEnter">
+                            <DoubleAnimation Storyboard.TargetName="HoverBorder" Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="1" Duration="0:0:0.15"/>
+                        </Storyboard>
+                        <Storyboard x:Key="HorizontalHoverExit">
+                            <DoubleAnimation Storyboard.TargetName="HoverBorder" Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="0" Duration="0:0:0.15"/>
+                        </Storyboard>
+                        <Storyboard x:Key="VerticalHoverEnter">
+                            <DoubleAnimation Storyboard.TargetName="HoverBorder" Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                         To="1" Duration="0:0:0.15"/>
+                        </Storyboard>
+                        <Storyboard x:Key="VerticalHoverExit">
+                            <DoubleAnimation Storyboard.TargetName="HoverBorder" Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                         To="0" Duration="0:0:0.15"/>
+                        </Storyboard>
+                        <Storyboard x:Key="HorizontalExpand">
+                            <ThicknessAnimation To="1,0,1,0" Duration="0:0:0.2"
+                                                            Storyboard.TargetName="SelectedBorder" Storyboard.TargetProperty="Margin"
+                                                EasingFunction="{StaticResource FlyOutEase}"/>
+                        </Storyboard>
+                        <Storyboard x:Key="HorizontalCollapse">
+                            <ThicknessAnimation To="12,0,12,0" Duration="0:0:0.2"
+                                                            Storyboard.TargetName="SelectedBorder" Storyboard.TargetProperty="Margin"/>
+                        </Storyboard>
+                        <Storyboard x:Key="VerticalExpand">
+                            <ThicknessAnimation To="0,1,0,1" Duration="0:0:0.2"
+                                                            Storyboard.TargetName="SelectedBorder" Storyboard.TargetProperty="Margin"
+                                                EasingFunction="{StaticResource FlyOutEase}"/>
+                        </Storyboard>
+                        <Storyboard x:Key="VerticalCollapse">
+                            <ThicknessAnimation To="0,6,0,6" Duration="0:0:0.2"
+                                                            Storyboard.TargetName="SelectedBorder" Storyboard.TargetProperty="Margin"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
                     <Grid x:Name="TabGrid">
-                        <Border x:Name="SelectedBorder" Visibility="Collapsed" Margin="1,0,1,0"
+                        <Border x:Name="HoverBorder" Visibility="Visible"
+                                SnapsToDevicePixels="True"
+                                BorderThickness="0,0,0,2" 
+                                Margin="{Binding Margin, ElementName=SelectedBorder}" 
+                                BorderBrush="{DynamicResource GlyphBrush}"
+                                RenderTransformOrigin="0.5,1">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleY="0"/>
+                            </Border.RenderTransform>
+                        </Border>
+                        <Border x:Name="SelectedBorder" Visibility="Collapsed" Margin="12,0,12,0"
                                 SnapsToDevicePixels="True"
                                 BorderThickness="0,0,0,2" BorderBrush="{DynamicResource GlyphBrush}"/>
                         <TextBlock x:Name="TextContent" Padding="5" Style="{DynamicResource BaseTextBlockStyle}"
@@ -112,20 +160,133 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="TabStripPlacement" Value="Left">
                             <Setter Property="BorderThickness" Value="0,0,2,0" TargetName="SelectedBorder" />
+                            <Setter Property="BorderThickness" Value="0,0,2,0" TargetName="HoverBorder" />
+                            <Setter Property="Margin" Value="0,6,0,6" TargetName="SelectedBorder" />
+                            <Setter Property="RenderTransformOrigin" TargetName="HoverBorder" Value="1,0.5"/>
+                            <Setter Property="RenderTransform" TargetName="HoverBorder">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0"/>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Right">
                             <Setter Property="BorderThickness" Value="2,0,0,0" TargetName="SelectedBorder" />
+                            <Setter Property="BorderThickness" Value="2,0,0,0" TargetName="HoverBorder" />
+                            <Setter Property="Margin" Value="0,6,0,6" TargetName="SelectedBorder" />
+                            <Setter Property="RenderTransformOrigin" TargetName="HoverBorder" Value="0,0.5"/>
+                            <Setter Property="RenderTransform" TargetName="HoverBorder">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0"/>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Bottom">
                             <Setter Property="BorderThickness" Value="0,2,0,0" TargetName="SelectedBorder" />
+                            <Setter Property="BorderThickness" Value="0,2,0,0" TargetName="HoverBorder" />
+                            <Setter Property="RenderTransformOrigin" TargetName="HoverBorder" Value="0.5,0"/>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="TabStripPlacement" Value="Left"/>
+                                <Condition Property="IsSelected" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource VerticalExpand}"/>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource VerticalCollapse}"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="TabStripPlacement" Value="Right"/>
+                                <Condition Property="IsSelected" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource VerticalExpand}"/>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource VerticalCollapse}"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="TabStripPlacement" Value="Top"/>
+                                <Condition Property="IsSelected" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource HorizontalExpand}"/>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource HorizontalCollapse}"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="TabStripPlacement" Value="Bottom"/>
+                                <Condition Property="IsSelected" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource HorizontalExpand}"/>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource HorizontalCollapse}"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" TargetName="TextContent"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
                             <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="TabStripPlacement" Value="Left"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource HorizontalHoverEnter}"/>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource HorizontalHoverExit}"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="TabStripPlacement" Value="Right"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource HorizontalHoverEnter}"/>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource HorizontalHoverExit}"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="TabStripPlacement" Value="Top"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource VerticalHoverEnter}"/>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource VerticalHoverExit}"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="TabStripPlacement" Value="Bottom"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource VerticalHoverEnter}"/>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource VerticalHoverExit}"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
                             <Setter Property="BorderThickness" Value="1,1,1,1" TargetName="SelectedBorder" />

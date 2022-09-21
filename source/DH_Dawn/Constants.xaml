@@ -5,7 +5,7 @@
 
     <!--ThemeModifier-->
     <VerticalAlignment x:Key="ButtonStackVerticalAlignment">Top</VerticalAlignment>
-    <sys:Boolean x:Key="EnableDetailsListTranslation">False</sys:Boolean>
+    <sys:Boolean x:Key="EnableDetailsListTranslation">True</sys:Boolean>
     <sys:Boolean x:Key="FillBackgroundImage">True</sys:Boolean>
     <sys:Double x:Key="FloatButtonsMargin">40</sys:Double>
     <sys:Double x:Key="DetailsMaxDimmerOpacity">0.5</sys:Double>
@@ -110,8 +110,8 @@
     <SolidColorBrush x:Key="WarningBrush" Color="#ff6b6b" />
 
     <LinearGradientBrush x:Key="ExpanderBackgroundBrush" StartPoint="-0.1,0.5" EndPoint="1.2,1" >
-        <GradientStop Color="#FF2C3A67" Offset="0"/>
-        <GradientStop Color="#002C3A67" Offset="0.7"/>
+        <GradientStop Color="Transparent" Offset="0"/>
+        <GradientStop Color="Transparent" Offset="0.7"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="WindowBackgourndBrush" StartPoint="0.2,0.2" EndPoint="0.4,1" >

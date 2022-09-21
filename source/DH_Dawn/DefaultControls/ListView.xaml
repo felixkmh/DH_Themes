@@ -142,9 +142,9 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="Selector.IsSelected" Value="True">
+            <!--<Trigger Property="Selector.IsSelected" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
-            </Trigger>
+            </Trigger>-->
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

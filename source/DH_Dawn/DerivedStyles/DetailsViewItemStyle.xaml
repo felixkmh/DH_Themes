@@ -18,33 +18,44 @@
                     <ControlTemplate.Resources>
                         <ElasticEase x:Key="FlyOutEase" Oscillations="1"/>
                     </ControlTemplate.Resources>
-                    <Grid>
-                        <Ellipse Width="5" Height="5" HorizontalAlignment="Left" VerticalAlignment="Center" Fill="{DynamicResource GlyphBrush}"
+                    <Grid Margin="0,2,0,2" x:Name="OuterGrid">
+                        <Border x:Name="BackgroundBorder" 
+                                CornerRadius="{DynamicResource ControlCornerRadius}" 
+                                Background="#48888888" Opacity="0"/>
+                        <Border x:Name="SelectedBorder" 
+                                CornerRadius="{DynamicResource ControlCornerRadius}" 
+                                Background="#40888888" Visibility="Collapsed"/>
+                        <Grid Margin="2,0">
+                            <Ellipse Width="5" Height="5" HorizontalAlignment="Left" VerticalAlignment="Center" Fill="{DynamicResource GlyphBrush}"
                                  x:Name="FavoriteCircle" Visibility="Collapsed" Margin="0"/>
-                        <Border x:Name="SelectedRectangle" IsHitTestVisible="False" Visibility="Visible"
+                            <Border x:Name="SelectedRectangle" IsHitTestVisible="False" Visibility="Collapsed"
                                 HorizontalAlignment="Left" Width="5"
                                 BorderThickness="0,0,0,0" Background="{DynamicResource GlyphBrush}"
                                 Opacity="0"
                                 CornerRadius="0"
                                 RenderTransformOrigin="0,0.5">
-                            <Border.RenderTransform>
-                                <ScaleTransform x:Name="SelectedScale" ScaleX="0"/>
-                            </Border.RenderTransform>
-                        </Border>
-                        <Border x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Visible"
+                                <Border.RenderTransform>
+                                    <ScaleTransform x:Name="SelectedScale" ScaleX="0"/>
+                                </Border.RenderTransform>
+                            </Border>
+                            <Border x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed"
                                 Opacity="0" RenderTransformOrigin="0,0.5"
                                 Width="5" HorizontalAlignment="Left"
                                 BorderThickness="0,0,0,0" Background="{DynamicResource GlyphBrush}"
                                 CornerRadius="0,3,3,0">
-                            <Border.RenderTransform>
-                                <ScaleTransform x:Name="HoverScale" ScaleX="0"/>
-                            </Border.RenderTransform>
-                        </Border>
-                        <Border Padding="{TemplateBinding Padding}" Background="Transparent">
-                            <ContentPresenter />
-                        </Border>
+                                <Border.RenderTransform>
+                                    <ScaleTransform x:Name="HoverScale" ScaleX="0"/>
+                                </Border.RenderTransform>
+                            </Border>
+                            <Border Padding="{TemplateBinding Padding}" Background="Transparent">
+                                <ContentPresenter />
+                            </Border>
+                        </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="Tag" Value="{StaticResource True}">
+                            <Setter TargetName="OuterGrid" Property="Margin" Value="0,2,5,2"/>
+                        </Trigger>
                         <DataTrigger Binding="{Binding Favorite}" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="FavoriteCircle"/>
                         </DataTrigger>
@@ -58,6 +69,7 @@
                             <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
                         </DataTrigger>                        
                         <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="SelectedBorder" Property="Visibility" Value="Visible"/>
                             <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
@@ -95,6 +107,9 @@
                                         <DoubleAnimation Storyboard.TargetName="HoverRectangle"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0.75" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" Duration="0:0:0.1"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
@@ -107,6 +122,9 @@
                                         <DoubleAnimation Storyboard.TargetName="HoverRectangle"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
