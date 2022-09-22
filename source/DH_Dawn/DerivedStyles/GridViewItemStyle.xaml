@@ -1,11 +1,13 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <ScaleTransform x:Key="UniformScaleTransform" ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}"/>
+    
     
     <Style x:Key="GridViewItemStyle" TargetType="{x:Type ListBoxItem}">
         <Style.Resources>
             <CornerRadius x:Key="CornerRadius0">0</CornerRadius>
+            <ScaleTransform x:Key="UniformScaleTransform" ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}"/>
+            <BackEase x:Key="CoverZoomEase"/>
         </Style.Resources>
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -19,30 +21,16 @@
                     <Grid Background="Transparent"
                           Margin="{Settings ItemSpacingMargin}"
                           x:Name="ItemGrid"
-                          Tag="{DynamicResource GridItemCornerRadius}">
+                          Tag="{DynamicResource GridItemCornerRadius}"
+                          >
                         <Border x:Name="SelectionBorder" BorderThickness="4" Margin="-3"  
                                 CornerRadius="{Binding Tag, ElementName=ItemGrid}"
                                 Background="Black">
                         </Border>
                         <ContentPresenter x:Name="Content">
-                            <ContentPresenter.OpacityMask>
-                                <VisualBrush>
-                                    <VisualBrush.Visual>
-                                        <Rectangle Fill="Black" x:Name="RectangleMask"
-                                                RadiusX="{DynamicResource GridItemCornerRadius}"
-                                                RadiusY="{DynamicResource GridItemCornerRadius}"
-                                                Width="{Binding ActualWidth, ElementName=SelectionBorder}"
-                                                Height="{Binding ActualHeight, ElementName=SelectionBorder}">
-                                        </Rectangle>
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </ContentPresenter.OpacityMask>
                         </ContentPresenter>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding CornerRadius, ElementName=SelectionBorder}" Value="0,0,0,0">
-                            <Setter TargetName="Content" Property="OpacityMask" Value="{x:Null}"/>
-                        </DataTrigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
                             <Setter Property="Canvas.ZIndex" Value="90" />
@@ -50,11 +38,22 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
                             <Setter Property="Canvas.ZIndex" Value="90" />
-                            <Setter Property="RenderTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleX="1.04" ScaleY="1.04"/>
-                                </Setter.Value>
-                            </Setter>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="1.05" Duration="0:0:0.15" EasingFunction="{StaticResource CoverZoomEase}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="1.0" Duration="0:0:0.15" EasingFunction="{StaticResource CoverZoomEase}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                         <DataTrigger Binding="{Settings ShowGridItemBackground}" Value="False">
                             <Setter Property="Background" Value="Transparent" TargetName="ItemGrid" />

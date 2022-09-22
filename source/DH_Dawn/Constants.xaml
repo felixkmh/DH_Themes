@@ -28,7 +28,9 @@
     <!--DuplicateHider-->
     <sys:Boolean x:Key="EnableFloatingSourceSelector">True</sys:Boolean>
     <sys:Boolean x:Key="ShowDuplicateHiderInDetailsList">True</sys:Boolean>
-    
+    <HorizontalAlignment x:Key="GridSourceSelectorAlignment">Right</HorizontalAlignment>
+    <sys:Boolean x:Key="GridShowSourceSelector">True</sys:Boolean>
+
     <!--EML-->
     <sys:Boolean x:Key="ShowTrailerInBackground">True</sys:Boolean>
     <sys:Boolean x:Key="ShowBackgroundTrailerControls">True</sys:Boolean>
@@ -102,6 +104,7 @@
     <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{DynamicResource MainColorDark}" />
     <SolidColorBrush x:Key="CheckBoxCheckMarkBkBrush" Color="{DynamicResource MainColorDark}" />
     <SolidColorBrush x:Key="DataChangeNotifBrush" Color="{DynamicResource DataChangeNotifColor}" />
+    <SolidColorBrush x:Key="ControlHoverBrush" Color="#40808080"/>
 
     <SolidColorBrush x:Key="PositiveRatingBrush" Color="#78ffa0" />
     <SolidColorBrush x:Key="NegativeRatingBrush" Color="#ff6b6b" />

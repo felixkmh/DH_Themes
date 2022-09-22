@@ -13,9 +13,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
-                    <ContentPresenter RecognizesAccessKey="True"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Bottom" Text="Delays kindly sponsored by Darklinkpower &#x2665;"
+                                   Visibility="Collapsed"
+                                   x:Name="ExtraText"
+                                   Opacity="0.5" FontSize="9" Margin="1"/>
+                        <ContentPresenter RecognizesAccessKey="True" DockPanel.Dock="Top"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Content" Value="Playnite 10.0">
+                            <Setter TargetName="ExtraText" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="Playnite 10.1">
+                            <Setter TargetName="ExtraText" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="Playnite 10.2">
+                            <Setter TargetName="ExtraText" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

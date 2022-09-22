@@ -21,10 +21,10 @@
                     <Grid Margin="0,2,0,2" x:Name="OuterGrid">
                         <Border x:Name="BackgroundBorder" 
                                 CornerRadius="{DynamicResource ControlCornerRadius}" 
-                                Background="#48888888" Opacity="0"/>
+                                Background="{DynamicResource ControlHoverBrush}" Opacity="0"/>
                         <Border x:Name="SelectedBorder" 
                                 CornerRadius="{DynamicResource ControlCornerRadius}" 
-                                Background="#40888888" Visibility="Collapsed"/>
+                                Background="{DynamicResource ControlHoverBrush}" Visibility="Collapsed"/>
                         <Grid Margin="2,0">
                             <Ellipse Width="5" Height="5" HorizontalAlignment="Left" VerticalAlignment="Center" Fill="{DynamicResource GlyphBrush}"
                                  x:Name="FavoriteCircle" Visibility="Collapsed" Margin="0"/>

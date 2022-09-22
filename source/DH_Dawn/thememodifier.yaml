@@ -31,3 +31,5 @@ Constants:
 - GridViewBannerOnCover
 - GridViewBannerOnCoverBelow
 - GridViewDropShadow
+- GridSourceSelectorAlignment
+- GridShowSourceSelector
