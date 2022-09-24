@@ -1,35 +1,39 @@
 Constants:
 - Common
-- ShowNavigationButtons
+- ShowNavigationButtons: Show navigation buttons
+#
+- ThemeExtras 
+- EnableSmoothProgressBar: Enable smoothly animated progress bars
 #
 - Details View
-- FillBackgroundImage
 - Details View - Common
-- DetailsMaxDimmerOpacity(0,1)
-- DetailsDimmerColor
-- DetailsViewBannerOnCover
-- DetailsViewBannerOnCoverBelow
-- EnableDetailsListTranslation
-- DetailsCoverCornerRadius(0,50)
+- FillBackgroundImage: Fill background image
+- DetailsMaxDimmerOpacity(0,1): Maximal dimming opacity when scrolling down
+- DetailsDimmerColor: Dimming color
+- DetailsViewBannerOnCover: Show platform banner on game cover
+- DetailsViewBannerOnCoverBelow: Place platform banner below game cover
+- EnableDetailsListTranslation: Move list items to the left when hovered
+- DetailsCoverCornerRadius(0,50): Game cover corner radius
+- ShowDuplicateHiderInDetailsList: Show DuplicateHider SourceSelector on list items
 #
 - Details View - Floating Buttons
-- ButtonStackVerticalAlignment
-- FloatButtonsMargin(0,200)
-- EnableFloatingRating
-- EnableFloatingSourceSelector
-- ShowBackgroundTrailerControls
-- EnableFloatingFavoriteToggle
-- EnableFloatingProgressSelector
+- ButtonStackVerticalAlignment: Vertical alignment 
+- FloatButtonsMargin(0,200): Distance to top/bottom
+- EnableFloatingRating: Show rating button
+- EnableFloatingSourceSelector: Show DuplicateHider SourceSelector button
+- ShowBackgroundTrailerControls: Show EML trailer controls button
+- EnableFloatingFavoriteToggle: Show ThemeExtras favorite toggle button
+- EnableFloatingProgressSelector: Show ThemeExtras completion status button
 #
 - Details View - ExtraMetadata
-- ShowTrailerInBackground
-- FadeOutDetailsHeaderWhenVideoPlays
-- ShowDuplicateHiderInDetailsList
+- ShowTrailerInBackground: Show EML trailer in the background
+- FadeOutDetailsHeaderWhenVideoPlays: Fade out header elements when trailer is playing
+- HideTitleIfLogoAvailable: Hide game name if EML logo is displayed
 #
 - Grid View - Common
-- GridItemCornerRadius(0,50)
-- GridViewBannerOnCover
-- GridViewBannerOnCoverBelow
-- GridViewDropShadow
-- GridSourceSelectorAlignment
-- GridShowSourceSelector
+- GridItemCornerRadius(0,50): Game cover corner radius (impacts scrolling performance. Set to 0 to disable)
+- GridViewBannerOnCover: Show platform banner on game cover
+- GridViewBannerOnCoverBelow: Place platform banner below game cover
+- GridViewDropShadow: Enable drop shadow effect (impacts performance)
+- GridShowSourceSelector: Show DuplicateHider SourceSelector
+- GridSourceSelectorAlignment: SourceSelector horizontal alignment

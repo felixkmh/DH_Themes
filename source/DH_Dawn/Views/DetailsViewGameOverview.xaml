@@ -232,7 +232,7 @@
                                 </StackPanel>
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
-                                        
+
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
                             </Border>
@@ -599,6 +599,53 @@
                          Duration="0:0:0.12" To="1">
                 </DoubleAnimation>
             </Storyboard>
+
+            <Style x:Key="HoverHighlightBorderStyle" TargetType="Border">
+                <Setter Property="Background" Value="#00909090"/>
+                <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}"/>
+                <Setter Property="Padding" Value="5"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Duration="0:0:0.1"
+                                                    To="#40909090"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Duration="0:0:0.1"
+                                                    To="#00909090"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="PressHighlightButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Style="{StaticResource HoverHighlightBorderStyle}" Background="{TemplateBinding Background}">
+                                <ContentPresenter/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource ControlHoverBrush}"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource ControlPressedBrush}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
 
             <ScaleTransform x:Key="UniformScaleTransform" ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}"/>
         </Style.Resources>
@@ -1320,11 +1367,11 @@
                                     </FadeImage.ImageOpacityMask>
                                 </FadeImage>
                             </Border>
-                            
+
                             <ContentControl x:Name="BackgroundChanger_PluginBackgroundImage"
 		                                    HorizontalAlignment="Center" VerticalAlignment="Top"
                                             Visibility="{PluginSettings Plugin=BackgroundChanger, Path=HasDataBackground, FallbackValue={x:Static Visibility.Collapsed}}"/>
-                            
+
                             <Border x:Name="ShowTrailerProxy" Tag="{DynamicResource ShowTrailerInBackground}" Visibility="Collapsed"/>
                             <Grid Visibility="{Binding IsChecked, ElementName=BackgroundTrailerCheckBox, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     VerticalAlignment="Top">
@@ -1365,7 +1412,7 @@
                                     </ContentControl.Style>
                                 </ContentControl>
                             </Grid>
-                            
+
                         </Grid>
 
                         <Border Opacity="{DynamicResource DetailsMaxDimmerOpacity}">
@@ -1511,44 +1558,25 @@
                                             </Grid>
                                         </DockPanel>
                                         <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
-                                            <DockPanel>
-                                                <Image Name="PART_ImageIcon" MaxHeight="48" MaxWidth="48"
-                                                    DockPanel.Dock="Left" Margin="0,0,10,0"
-                                                    VerticalAlignment="Center"
-                                                    RenderOptions.BitmapScalingMode="Fant" />
-                                                <TextBlock Name="PART_TextDisplayName" FontFamily="{DynamicResource FontFamily}"
-                                                        DockPanel.Dock="Left"
-                                                        FontSize="{DynamicResource FontSizeLargest}" Margin="0,0,10,0" TextWrapping="Wrap"
+                                            <Border Style="{DynamicResource HoverHighlightBorderStyle}" HorizontalAlignment="Left">
+                                                <DockPanel x:Name="TitleIconPanel">
+                                                    <Image Name="PART_ImageIcon" MaxHeight="48" MaxWidth="48"
+                                                        DockPanel.Dock="Left" Margin="0,0,10,0"
                                                         VerticalAlignment="Center"
-                                                        Foreground="{DynamicResource TextBrush}">
-                                                    <TextBlock.Effect>
-                                                        <DropShadowEffect ShadowDepth="3" RenderingBias="Quality"/>
-                                                    </TextBlock.Effect>
-                                                </TextBlock>
-                                                <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center">
-                                                    <StackPanel.Resources>
-                                                        <sys:Double x:Key="FontSizeLarge">16</sys:Double>
-                                                    </StackPanel.Resources>
-                                                    <ContentControl x:Name="ThemeExtras_UserRating" Visibility="{Binding UserScoreVisibility}"/>
-                                                    <ContentControl x:Name="ThemeExtras_CriticRating" Visibility="{Binding CriticScoreVisibility}"/>
-                                                    <ContentControl x:Name="ThemeExtras_CommunityRating" Visibility="{Binding CommunityScoreVisibility}"/>
-                                                    <ItemsControl ItemsSource="{PluginSettings Plugin=LibraryManagement, Path=DataList}" HorizontalAlignment="Left">
-                                                        <ItemsControl.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <StackPanel Orientation="Horizontal"/>
-                                                            </ItemsPanelTemplate>
-                                                        </ItemsControl.ItemsPanel>
-                                                        <ItemsControl.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <DockPanel Margin="0,2" ToolTip="{Binding NameAssociated}">
-                                                                    <Image DockPanel.Dock="Left" Height="24" VerticalAlignment="Center" Width="24" 
-				                                                           Source="{Binding IconBitmapImage}" />
-                                                                </DockPanel>
-                                                            </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                    </ItemsControl>
-                                                </StackPanel>
-                                            </DockPanel>
+                                                        RenderOptions.BitmapScalingMode="Fant" />
+                                                    <TextBlock Name="PART_TextDisplayName" FontFamily="{DynamicResource FontFamily}"
+                                                            DockPanel.Dock="Left"
+                                                            FontSize="{DynamicResource FontSizeLargest}" Margin="0,0,10,0" TextWrapping="Wrap"
+                                                            VerticalAlignment="Center"
+                                                            FontWeight="SemiBold"
+                                                            Foreground="{DynamicResource TextBrush}"
+                                                            Tag="{DynamicResource HideTitleIfLogoAvailable}">
+                                                        <!--<TextBlock.Effect>
+                                                            <DropShadowEffect ShadowDepth="0" RenderingBias="Quality" BlurRadius="10"/>
+                                                        </TextBlock.Effect>-->
+                                                    </TextBlock>
+                                                </DockPanel>
+                                            </Border>
                                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
                                                     Orientation="Horizontal" Margin="0,15,0,0">
                                             </StackPanel>
@@ -1559,9 +1587,55 @@
                                                     MaxWidth="1024"
                                                     IsHitTestVisible="False"
                                                     Margin="20"
-                                                    Visibility="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable, FallbackValue={x:Static Visibility.Collapsed}}"/>
+                                                    Visibility="Collapsed"/>
 
                                     <DockPanel MaxWidth="1024" Grid.Row="2">
+                                        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,2,0,5"
+                                                    Opacity="{Binding Opacity, ElementName=Header}"
+                                                    Visibility="{PluginSettings Plugin=LibraryManagement, Path=HasData, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue={x:Static Visibility.Collapsed}}">
+                                            <StackPanel.Resources>
+                                                <sys:Double x:Key="FontSizeLarge">16</sys:Double>
+                                            </StackPanel.Resources>
+
+                                            <ItemsControl ItemsSource="{PluginSettings Plugin=LibraryManagement, Path=DataList}" HorizontalAlignment="Left">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border  Margin="0,3" ToolTip="{Binding NameAssociated}"
+                                                                 Style="{StaticResource HoverHighlightBorderStyle}">
+                                                            <Image DockPanel.Dock="Left" Height="24" VerticalAlignment="Center" Width="24" 
+				                                                           Source="{Binding IconBitmapImage}" />
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top" 
+                                                    Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin}"
+                                                    Opacity="{Binding Opacity, ElementName=Header}">
+                                            <Border HorizontalAlignment="Center" Margin="5,0" Style="{StaticResource HoverHighlightBorderStyle}" Visibility="{Settings DetailsVisibility.UserScore}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="{DynamicResource LOCUserScore}" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                                    <ContentControl x:Name="ThemeExtras_UserRating" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border HorizontalAlignment="Center" Margin="5,0" Style="{StaticResource HoverHighlightBorderStyle}" Visibility="{Settings DetailsVisibility.CriticScore}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="{DynamicResource LOCCriticScore}" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                                    <ContentControl x:Name="ThemeExtras_CriticRating" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border HorizontalAlignment="Center" Margin="5,0" Style="{StaticResource HoverHighlightBorderStyle}" Visibility="{Settings DetailsVisibility.CommunityScore}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="{DynamicResource LOCCommunityScore}" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                                    <ContentControl x:Name="ThemeExtras_CommunityRating" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </WrapPanel>
                                         <StackPanel DockPanel.Dock="Left" Width="300"
                                                 Margin="2,0,0,0">
                                             <StackPanel.Resources>
@@ -1751,6 +1825,20 @@
                             <Setter TargetName="TrailerPauseButton" Property="Command" Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPauseCommand, FallbackValue={x:Null}}"/>
                             <Setter TargetName="TrailerPlayButton" Property="Command" Value="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPlayCommand, FallbackValue={x:Null}}"/>
                         </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable, FallbackValue={StaticResource False}}" Value="{StaticResource True}"/>
+                                <Condition Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableLogos, FallbackValue={StaticResource False}}" Value="{StaticResource True}"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ExtraMetadataLoader_LogoLoaderControl" Property="Visibility" Value="Visible"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Tag, ElementName=PART_TextDisplayName}" Value="{StaticResource True}"/>
+                                <Condition Binding="{Binding IsVisible, ElementName=ExtraMetadataLoader_LogoLoaderControl}" Value="True"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="TitleIconPanel" Property="Visibility" Value="Collapsed"/>
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

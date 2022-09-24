@@ -14,8 +14,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ProgressBar}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{DynamicResource GlyphBrush}"
-                            >
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{DynamicResource GlyphBrush}">
                         <Border.OpacityMask>
                             <VisualBrush>
                                 <VisualBrush.Visual>
@@ -31,36 +30,61 @@
                                     Background="{TemplateBinding Background}" />
                             <Border Name="PART_Track" Margin="0" 
                                     />
-                            <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                            <Border Background="{TemplateBinding Foreground}" CornerRadius="{DynamicResource ControlCornerRadius}"
+                                    Tag="{DynamicResource EnableSmoothProgressBar}"
+                                    Width="{Binding ActualWidth, ElementName=PART_Indicator}" HorizontalAlignment="Left"
+                                    x:Name="GlyphIndicator"/>
+                            <Decorator x:Name="PART_Indicator" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Grid x:Name="IndicatorGrid">
-                                    <Grid x:Name="Animation" Visibility="Hidden">
-                                        <Rectangle Fill="Transparent" Margin="0,0,50,0">
-                                            <Rectangle.RenderTransform>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*" x:Name="PreGrid"/>
+                                        <ColumnDefinition Width="1*" x:Name="PostGrid"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" x:Name="WidthProxy"/>
+                                    <Grid x:Name="Animation" Visibility="Hidden" Grid.ColumnSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Rectangle Fill="Transparent" Width="{Binding ActualWidth, ElementName=WidthProxy}" Grid.Column="0">
+                                            <Rectangle.LayoutTransform>
                                                 <ScaleTransform x:Name="HiderPreTransform" ScaleX="0"/>
-                                            </Rectangle.RenderTransform>
+                                            </Rectangle.LayoutTransform>
                                         </Rectangle>
-                                        <Rectangle Fill="Transparent" RenderTransformOrigin="1, 0" Margin="50,0,0,0">
-                                            <Rectangle.RenderTransform>
+                                        <Border Grid.Column="1" Background="{TemplateBinding Foreground}" CornerRadius="{DynamicResource ControlCornerRadius}"/>
+                                        <Rectangle Fill="Transparent" RenderTransformOrigin="1, 0" Width="{Binding ActualWidth, ElementName=WidthProxy}" Grid.Column="2">
+                                            <Rectangle.LayoutTransform>
                                                 <ScaleTransform x:Name="HiderPostTransform" ScaleX="1" />
-                                            </Rectangle.RenderTransform>
+                                            </Rectangle.LayoutTransform>
                                         </Rectangle>
                                     </Grid>
                                 </Grid>
                             </Decorator>
-                            <Border Background="{TemplateBinding Foreground}" CornerRadius="{DynamicResource ControlCornerRadius}"
-                                    Width="{Binding ActualWidth, ElementName=PART_Indicator}" HorizontalAlignment="Left"/>
+                            
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <!-- Will cause binding exceptions when switching the option using ThemeModifier :( -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}" Value="{StaticResource True}"/>
+                                <Condition Binding="{Binding Tag, ElementName=GlyphIndicator}" Value="{StaticResource True}"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="GlyphIndicator" Property="DataContext" Value="{Binding ElementName=PART_Indicator, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToSmoothedValueConverter}, ConverterParameter='ActualWidth, 0.125'}"/>
+                            <Setter TargetName="GlyphIndicator" Property="Width" Value="{Binding CurrentValue}"/>
+                        </MultiDataTrigger>
+
                         <Trigger Property="IsIndeterminate" Value="True">
                             <Setter TargetName="Animation" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="GlyphIndicator" Property="Visibility" Value="Hidden" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
-                                    <Storyboard RepeatBehavior="Forever">
+                                    <Storyboard RepeatBehavior="Forever" AutoReverse="True">
                                         <DoubleAnimation Storyboard.TargetName="HiderPreTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                                         To="1" Duration="0:00:2" AutoReverse="True"/>
+                                                         To="1" Duration="0:00:2" BeginTime="0:0:0.5"/>
                                         <DoubleAnimation Storyboard.TargetName="HiderPostTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                                         To="0" Duration="0:00:2" AutoReverse="True"/>
+                                                         To="0" Duration="0:00:2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>

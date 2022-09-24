@@ -24,6 +24,7 @@
 
     <!--ThemeExtras-->
     <sys:Boolean x:Key="EnableFloatingRating">True</sys:Boolean>
+    <sys:Boolean x:Key="EnableSmoothProgressBar">True</sys:Boolean>
     
     <!--DuplicateHider-->
     <sys:Boolean x:Key="EnableFloatingSourceSelector">True</sys:Boolean>
@@ -35,6 +36,7 @@
     <sys:Boolean x:Key="ShowTrailerInBackground">True</sys:Boolean>
     <sys:Boolean x:Key="ShowBackgroundTrailerControls">True</sys:Boolean>
     <sys:Boolean x:Key="FadeOutDetailsHeaderWhenVideoPlays">True</sys:Boolean>
+    <sys:Boolean x:Key="HideTitleIfLogoAvailable">True</sys:Boolean>
     
 
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
@@ -73,7 +75,8 @@
     <Color x:Key="PanelSeparatorColor">#662C3A67</Color>
     <Color x:Key="WindowPanelSeparatorColor">#3355CDFF</Color>
     <Color x:Key="DataChangeNotifColor">#ffa500</Color>
-
+    <Color x:Key="ControlHoverColor">#40909090</Color>
+    
     <SolidColorBrush x:Key="TogglableBrush" Color="{DynamicResource UserEditableBoxColor}" Opacity="0.08" />
     <SolidColorBrush x:Key="TextBoxBrush" Color="{DynamicResource UserEditableBoxColor}" Opacity="0.005"/>
     <SolidColorBrush x:Key="UserEditableBoxBrush" Color="{DynamicResource UserEditableBoxColor}" Opacity="0.28"/>
@@ -104,7 +107,8 @@
     <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{DynamicResource MainColorDark}" />
     <SolidColorBrush x:Key="CheckBoxCheckMarkBkBrush" Color="{DynamicResource MainColorDark}" />
     <SolidColorBrush x:Key="DataChangeNotifBrush" Color="{DynamicResource DataChangeNotifColor}" />
-    <SolidColorBrush x:Key="ControlHoverBrush" Color="#40808080"/>
+    <SolidColorBrush x:Key="ControlHoverBrush" Color="{DynamicResource ControlHoverColor}"/>
+    <SolidColorBrush x:Key="ControlPressedBrush" Color="#60909090"/>
 
     <SolidColorBrush x:Key="PositiveRatingBrush" Color="#78ffa0" />
     <SolidColorBrush x:Key="NegativeRatingBrush" Color="#ff6b6b" />
