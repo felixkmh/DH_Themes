@@ -13,11 +13,11 @@
                                     CornerRadius="0,15,15,0">
                             <Border x:Name="BlurBorder">
                                 <Border.CacheMode>
-                                    <BitmapCache RenderAtScale="0.5">
+                                    <BitmapCache RenderAtScale="0.25">
                                     </BitmapCache>
                                 </Border.CacheMode>
                                 <Border.Effect>
-                                    <BlurEffect Radius="50" RenderingBias="Quality" KernelType="Gaussian"/>
+                                    <BlurEffect Radius="30" RenderingBias="Performance" KernelType="Gaussian"/>
                                 </Border.Effect>
                                 <Border.Background>
                                     <VisualBrush ViewboxUnits="Absolute" Opacity="0.5" AlignmentX="Left" AlignmentY="Top" Stretch="None" Visual="{Binding Children[0], RelativeSource={RelativeSource FindAncestor, AncestorType=Grid, AncestorLevel=2}}"/>
