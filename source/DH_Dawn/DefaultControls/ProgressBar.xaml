@@ -71,7 +71,7 @@
                                 <Condition Binding="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}" Value="{StaticResource True}"/>
                                 <Condition Binding="{Binding Tag, ElementName=GlyphIndicator}" Value="{StaticResource True}"/>
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="GlyphIndicator" Property="DataContext" Value="{Binding ElementName=PART_Indicator, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToSmoothedValueConverter}, ConverterParameter='ActualWidth, 0.125'}"/>
+                            <Setter TargetName="GlyphIndicator" Property="DataContext" Value="{Binding ElementName=PART_Indicator, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToSmoothedValueConverter}, ConverterParameter='ActualWidth, 0.125, true'}"/>
                             <Setter TargetName="GlyphIndicator" Property="Width" Value="{Binding CurrentValue}"/>
                         </MultiDataTrigger>
 

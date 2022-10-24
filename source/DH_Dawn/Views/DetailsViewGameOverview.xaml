@@ -1764,31 +1764,49 @@
                                             </GridEx>
                                         </StackPanel>
 
-                                        <StackPanel DockPanel.Dock="Right" Margin="10,0,2,0">
-                                            <StackPanel Name="PART_ElemNotes">
-                                                <TextBlock Text="{DynamicResource LOCNotesLabel}" Margin="0,15,0,5"
-                                                       Style="{DynamicResource BaseTextBlockStyle}" />
-                                                <Separator Background="{DynamicResource PanelSeparatorBrush}" />
-                                                <TextBox Name="PART_TextNotes" IsReadOnly="True"
-                                                     BorderThickness="0"
-                                                     AcceptsReturn="True" TextWrapping="Wrap"
-                                                     Margin="-1,5,-1,5" Padding="0"/>
-                                            </StackPanel>
-
-                                            <StackPanel Name="PART_ElemDescription">
-                                                <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Margin="0,15,0,5"
-                                                    Style="{DynamicResource BaseTextBlockStyle}" />
-                                                <Separator Background="{DynamicResource PanelSeparatorBrush}" />
-                                                <HtmlTextView Name="PART_HtmlDescription"
-                                                        Margin="0,5,0,5"
-                                                        HtmlFontSize="{DynamicResource FontSize}"
-                                                        HtmlFontFamily="{DynamicResource FontFamily}"
-                                                        HtmlForeground="{DynamicResource TextColor}"
-                                                        LinkForeground="{DynamicResource GlyphColor}"                                      
-                                                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                        ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
-                                            </StackPanel>
-                                        </StackPanel>
+                                        <TabControl DockPanel.Dock="Right" Margin="10,0,2,0" x:Name="Tabs">
+                                            <TabItem Header="{DynamicResource LOCGameDescriptionTitle}" 
+                                                     Visibility="{Binding Visibility, ElementName=PART_ElemDescription}">
+                                                <StackPanel Name="PART_ElemDescription">
+                                                    <HtmlTextView Name="PART_HtmlDescription"
+                                                            Margin="0,5,0,5"
+                                                            HtmlFontSize="{DynamicResource FontSize}"
+                                                            HtmlFontFamily="{DynamicResource FontFamily}"
+                                                            HtmlForeground="{DynamicResource TextColor}"
+                                                            LinkForeground="{DynamicResource GlyphColor}"                                      
+                                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                            ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                                </StackPanel>
+                                            </TabItem>
+                                            <TabItem Header="{DynamicResource LOCNotesLabel}"
+                                                     Visibility="{Binding Visibility, ElementName=PART_ElemNotes}">
+                                                <StackPanel Name="PART_ElemNotes">
+                                                    <TextBox Name="PART_TextNotes" IsReadOnly="True"
+                                                         BorderThickness="0"
+                                                         AcceptsReturn="True" TextWrapping="Wrap"
+                                                         Margin="-1,5,-1,5" Padding="0"/>
+                                                </StackPanel>
+                                            </TabItem>
+                                            <TabItem Header="{DynamicResource LOCSuccessStoryAchievements}" Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue={x:Static Visibility.Collapsed}}">
+                                                <ContentControl x:Name="SuccessStory_PluginList" VerticalAlignment="Top"/>
+                                            </TabItem>
+                                            <TabItem Header="{DynamicResource LOC_NewsViewer_NewsViewerControl_NewsLabel}">
+                                                <TabItem.Style>
+                                                    <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                                                        <Setter Property="Control.Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{PluginSettings Plugin=NewsViewer, Path=ReviewsAvailable, FallbackValue={StaticResource False}}" Value="True">
+                                                                <Setter Property="Control.Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TabItem.Style>
+                                                <ContentControl x:Name="NewsViewer_NewsViewerControl" />
+                                            </TabItem>
+                                            <TabItem Header="{DynamicResource LOCReview_Viewer_ReviewsLabel}" Visibility="{PluginSettings Plugin=ReviewViewer, Path=IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue={x:Static Visibility.Collapsed}}">
+                                                <ContentControl x:Name="ReviewViewer_ReviewsControl" />
+                                            </TabItem>
+                                        </TabControl>
                                     </DockPanel>
                                 </Grid>
                             </Grid>
