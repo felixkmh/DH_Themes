@@ -8,6 +8,7 @@
   - EnableCoverZoom: Enlarge cover image when hovered
   - PlaybuttonBarOpacity(0,1): Playbutton bar opacity multiplier
   - ShowPanels: Enable panels
+  - TransparentPlayButtonBrush: Playbutton Color
   - Grid View
   - UseFakeShadowInGridView: Use more performant texture based shadows around items
   - DropShadowOpacityGrid(0,1): Opacity of the texture based drop shadow

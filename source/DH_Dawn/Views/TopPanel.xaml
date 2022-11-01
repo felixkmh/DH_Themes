@@ -89,7 +89,7 @@
     <Style x:Key="TopPanelFilterToggle" TargetType="CheckBox">
         <Setter Property="MinWidth" Value="35" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="Background" Value="#990a0e1e" />
+        <Setter Property="Background" Value="#660a0e1e" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Margin" Value="10,6,0,6" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
@@ -97,7 +97,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border Background="{TemplateBinding Background}" BorderThickness="0"
-                            CornerRadius="3">
+                            CornerRadius="{DynamicResource ControlCornerRadius}">
                         <StackPanel Orientation="Horizontal" Margin="6,0,6,0">
                             <TextBlock Text="&#xef29;"
                                        FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
