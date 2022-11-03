@@ -75,22 +75,30 @@
                                                   DockPanel.Dock="Left"/>
                             </DockPanel>
                         </Border>
-                        <ItemsPresenter x:Name="ItemsHost" Margin="20,0,0,0" RenderTransformOrigin="0.5,0">
-                            <ItemsPresenter.LayoutTransform>
-                                <ScaleTransform ScaleY="0"/>
-                            </ItemsPresenter.LayoutTransform>
-                        </ItemsPresenter>
+                        <Border ClipToBounds="True" x:Name="ItemsBorder" RenderTransformOrigin="0.5,0" Opacity="0" Visibility="Collapsed">
+                            <Border.LayoutTransform>
+                                <ScaleTransform ScaleY="0" x:Name="ItemsBorderScale"/>
+                            </Border.LayoutTransform>
+                            <ItemsPresenter x:Name="ItemsHost" Margin="20,0,0,0" RenderTransformOrigin="0.5,0">
+                                <ItemsPresenter.RenderTransform>
+                                    <ScaleTransform ScaleY="{Binding ScaleY, ElementName=ItemsBorderScale, Converter={PluginConverter Plugin=ThemeExtras, Converter=MultiplicativeInverseConverter}, ConverterParameter=0}"/>
+                                </ItemsPresenter.RenderTransform>
+                            </ItemsPresenter>
+                        </Border>
                     </StackPanel>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}" Value="False">
+                            <Setter TargetName="ItemsHost" Property="RenderTransform" Value="{x:Null}"/>
+                        </DataTrigger>
                         <Trigger Property="IsExpanded" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="LayoutTransform.ScaleY"
-                                                         Duration="0:0:0.1" To="1"/>
-                                        <DoubleAnimation Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Opacity"
-                                                         Duration="0:0:0.1" To="1"/>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
+                                        <DoubleAnimation Storyboard.TargetName="ItemsBorder" Storyboard.TargetProperty="LayoutTransform.ScaleY"
+                                                         Duration="0:0:0.15" To="1"/>
+                                        <DoubleAnimation Storyboard.TargetName="ItemsBorder" Storyboard.TargetProperty="Opacity"
+                                                         Duration="0:0:0.15" To="1"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsBorder" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0:0:0"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -99,13 +107,13 @@
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0:0:0.1"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsBorder" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0:0:0.15"/>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="LayoutTransform.ScaleY"
-                                                         Duration="0:0:0.1" To="0"/>
-                                        <DoubleAnimation Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Opacity"
-                                                         Duration="0:0:0.1" To="0"/>
+                                        <DoubleAnimation Storyboard.TargetName="ItemsBorder" Storyboard.TargetProperty="LayoutTransform.ScaleY"
+                                                         Duration="0:0:0.15" To="0"/>
+                                        <DoubleAnimation Storyboard.TargetName="ItemsBorder" Storyboard.TargetProperty="Opacity"
+                                                         Duration="0:0:0.15" To="0"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>

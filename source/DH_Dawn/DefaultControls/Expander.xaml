@@ -95,27 +95,35 @@
                                       IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         <Border x:Name="Border" DockPanel.Dock="Top" Visibility="Collapsed"
                                 BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}">
-                            <Grid x:Name="ContentGrid" RenderTransformOrigin="0.5,0" Opacity="0">
+                            <Grid x:Name="ContentGrid" RenderTransformOrigin="0.5,0" Opacity="0" ClipToBounds="True">
                                 <Grid.LayoutTransform>
-                                    <ScaleTransform ScaleY="0"/>
+                                    <ScaleTransform x:Name="LayoutScale" ScaleY="0"/>
                                 </Grid.LayoutTransform>
 
                                 <ContentPresenter Focusable="False" x:Name="Content"
+                                                  RenderTransformOrigin="0.5,0"
                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  />
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <ContentPresenter.RenderTransform>
+                                        <ScaleTransform ScaleY="{Binding ScaleY, ElementName=LayoutScale, Converter={PluginConverter Plugin=ThemeExtras, Converter=MultiplicativeInverseConverter}, ConverterParameter=0}"/>
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
                             </Grid>
                         </Border>
                     </DockPanel>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}" Value="False">
+                            <Setter TargetName="Content" Property="RenderTransform" Value="{x:Null}"/>
+                        </DataTrigger>
                         <Trigger Property="IsExpanded" Value="True">
                             <!--<Setter Property="Visibility" TargetName="Border" Value="Visible" />-->
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="LayoutTransform.ScaleY"
-                                                         Duration="0:0:0.1" To="1"/>
+                                                         Duration="0:0:0.15" To="1"/>
                                         <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Opacity"
-                                                         Duration="0:0:0.1" To="1"/>
+                                                         Duration="0:0:0.15" To="1"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0:0:0"/>
                                         </ObjectAnimationUsingKeyFrames>
@@ -126,12 +134,12 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0:0:0.1"/>
+                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0:0:0.15"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="LayoutTransform.ScaleY"
-                                                         Duration="0:0:0.1" To="0"/>
+                                                         Duration="0:0:0.15" To="0"/>
                                         <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Opacity"
-                                                         Duration="0:0:0.1" To="0"/>
+                                                         Duration="0:0:0.15" To="0"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
