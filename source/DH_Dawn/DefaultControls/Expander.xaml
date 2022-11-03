@@ -12,32 +12,52 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="&#xeaa0;" x:Name="CollapsedIcon" FontFamily="{StaticResource FontIcoFont}"
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                Grid.ColumnSpan="2" x:Name="Seperator" RenderTransformOrigin="0,1">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="0"/>
+                            </Border.RenderTransform>
+                        </Border>
+                        <TextBlock Text="&#xeaa0;" x:Name="CollapsedIcon" FontFamily="{StaticResource FontIcoFont}"
                                        VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Style="{DynamicResource BaseTextBlockStyle}"
                                        Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" Margin="5,0,5,0"
                                        Grid.Column="0" TextAlignment="Center" />
-                            <TextBlock Text="&#xea99;" x:Name="ExpandedIcon" FontFamily="{StaticResource FontIcoFont}"
+                        <TextBlock Text="&#xea99;" x:Name="ExpandedIcon" FontFamily="{StaticResource FontIcoFont}"
                                        VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Style="{DynamicResource BaseTextBlockStyle}"
                                        Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" Margin="5,0,5,0"
                                        Visibility="Collapsed"
                                        Grid.Column="0" TextAlignment="Center"/>
-                            <ContentPresenter Grid.Column="1" VerticalAlignment="Center"
+                        <ContentPresenter Grid.Column="1" VerticalAlignment="Center"
                                               SnapsToDevicePixels="True" HorizontalAlignment="Stretch" RecognizesAccessKey="True"  />
-                        </Grid>
-                    </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Visibility" TargetName="ExpandedIcon" Value="Visible" />
                             <Setter Property="Visibility" TargetName="CollapsedIcon" Value="Collapsed" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Seperator" Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         Duration="0:0:0.2" To="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Seperator" Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         Duration="0:0:0.2" To="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Opacity" Value="0.75" />
@@ -75,14 +95,46 @@
                                       IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         <Border x:Name="Border" DockPanel.Dock="Top" Visibility="Collapsed"
                                 BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter Focusable="False"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  />
+                            <Grid x:Name="ContentGrid" RenderTransformOrigin="0.5,0" Opacity="0">
+                                <Grid.LayoutTransform>
+                                    <ScaleTransform ScaleY="0"/>
+                                </Grid.LayoutTransform>
+
+                                <ContentPresenter Focusable="False" x:Name="Content"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  />
+                            </Grid>
                         </Border>
                     </DockPanel>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsExpanded" Value="true">
-                            <Setter Property="Visibility" TargetName="Border" Value="Visible" />
+                        <Trigger Property="IsExpanded" Value="True">
+                            <!--<Setter Property="Visibility" TargetName="Border" Value="Visible" />-->
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="LayoutTransform.ScaleY"
+                                                         Duration="0:0:0.1" To="1"/>
+                                        <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Opacity"
+                                                         Duration="0:0:0.1" To="1"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" KeyTime="0:0:0"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0:0:0.1"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="LayoutTransform.ScaleY"
+                                                         Duration="0:0:0.1" To="0"/>
+                                        <DoubleAnimation Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Opacity"
+                                                         Duration="0:0:0.1" To="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
