@@ -1,15 +1,15 @@
 ThemeId: felixkmh_DesktopTheme_DH_Dawn
-Recommendations:
-- AddonName: DuplicateHider
-  AddonId: felixkmh_DuplicateHider_Plugin
-  Features:
-  - Floating SourceSelelctor
-  - SourceSelector in DetailsList
-  - LOCReloadScriptsSuccess
-- AddonName: ScreenshotVisualizer
-  AddonId: playnite-screenshotsvisualizer-plugin
-  Features:
-  - Show Button
+#Recommendations:
+#- AddonName: DuplicateHider
+#  AddonId: felixkmh_DuplicateHider_Plugin
+#  Features:
+#  - Floating SourceSelelctor
+#  - SourceSelector in DetailsList
+#  - LOCReloadScriptsSuccess
+#- AddonName: ScreenshotVisualizer
+#  AddonId: playnite-screenshotsvisualizer-plugin
+#  Features:
+#  - Show Button
 PersistentPaths:
 - Images/Banners
 - Images/Icons

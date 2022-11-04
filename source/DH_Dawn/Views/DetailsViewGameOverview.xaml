@@ -1803,8 +1803,8 @@
                                                 </TabItem.Style>
                                                 <ContentControl x:Name="NewsViewer_NewsViewerControl" />
                                             </TabItem>
-                                            <TabItem Header="{DynamicResource LOCSuccessStoryAchievements}" Visibility="{PluginSettings Plugin=ScreenshotsVisualizer, Path=HasData, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue={x:Static Visibility.Collapsed}}">
-                                                <ContentControl x:Name="ScreenshotsVisualizer_PluginListScreenshotsVertical" />
+                                            <TabItem Header="{DynamicResource LOCSsvTitle}" Visibility="{PluginSettings Plugin=ScreenshotsVisualizer, Path=HasData, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue={x:Static Visibility.Collapsed}}">
+                                                <ContentControl x:Name="ScreenshotsVisualizer_PluginListScreenshotsVertical" VerticalAlignment="Top" />
                                             </TabItem>
                                             <TabItem Header="{DynamicResource LOCReview_Viewer_ReviewsLabel}" Visibility="{PluginSettings Plugin=ReviewViewer, Path=IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue={x:Static Visibility.Collapsed}}">
                                                 <ContentControl x:Name="ReviewViewer_ReviewsControl" />
