@@ -5,7 +5,7 @@ Author: felixkmh
 ShortDescription: Showcase theme for the ThemeExtras extension. Also has support for many other extensions.
 InstallerManifestUrl: https://raw.githubusercontent.com/felixkmh/DH_Themes/main/InstallerManifest/felixkmh_DesktopTheme_DH_Dawn.yaml
 SourceUrl: https://github.com/felixkmh/DH_Themes
-Tags: ["duplicates", "libary", "dark", "duplicatehider", "custom ui", "orange", "purple"]
+Tags: ["duplicates", "libary", "dark", "duplicatehider", "custom ui", "orange", "purple", "themeextras", "extensions"]
 Links:
     GitHub: https://github.com/felixkmh/DH_Themes
 IconUrl: https://github.com/felixkmh/DH_Themes/raw/main/source/DH_Dawn/Images/applogo.png
