@@ -8,7 +8,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
-                    <Grid ClipToBounds="True">
+                    <Grid ClipToBounds="True" x:Name="MainGrid" Tag="{DynamicResource GridViewBannerOnCover}">
                         <DockPanel Name="PART_PanelHost" LastChildFill="False"
                                     d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
                                    Tag="{DynamicResource GridViewBannerOnCoverBelow}">
@@ -29,8 +29,8 @@
                                                 RenderOptions.BitmapScalingMode="Fant"
                                                 Padding="0" Margin="0" Width="{Settings GridItemWidth}"
                                             DockPanel.Dock="Bottom"
-                                            Tag="{DynamicResource GridViewBannerOnCover}"
-                                            Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                            Tag="{Binding ElementName=DuplicateHider_SourceSelector1, Path=Content.Current, FallbackValue={x:Null}, TargetNullValue={x:Null}}"
+                                            Visibility="{Binding Tag, ElementName=MainGrid, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <Grid Width="{Settings GridItemWidth}"
                               Height="{Settings GridItemHeight}"
                                   DockPanel.Dock="Top">
