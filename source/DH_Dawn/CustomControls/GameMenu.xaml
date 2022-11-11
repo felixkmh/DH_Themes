@@ -16,7 +16,9 @@
                             Background="{TemplateBinding Background}"
                             CornerRadius="{DynamicResource ControlCornerRadius}"
                             Grid.IsSharedSizeScope="True">
-                        <ItemsPresenter />
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle"/>
+                        </ScrollViewer>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
