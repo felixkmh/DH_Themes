@@ -1,5 +1,12 @@
 AddonId: felixkmh_DesktopTheme_DH_Dawn
 Packages:
+  - Version: 1.2
+    RequiredApiVersion: 2.4.0
+    ReleaseDate: 2022-12-22
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/DH_DawnV1.2.0/felixkmh_DesktopTheme_DH_Dawn_1_2.pthm
+    Changelog: 
+      - Performance improvements with rounded covers enabled in grid view
+      - Minor tweaks
   - Version: 1.1
     RequiredApiVersion: 2.4.0
     ReleaseDate: 2022-11-11
