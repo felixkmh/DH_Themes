@@ -32,7 +32,8 @@
                                         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding GameView.IsInstalled}" Value="False">
-                                                    <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
+                                                    <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                                                    <Setter Property="Opacity" Value="0.8" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -49,7 +50,7 @@
                             <ItemsControl Name="PART_ItemsAdditionalInfo" Margin="0,5,0,0">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Foreground="{DynamicResource TextBrushDarker}">
+                                        <TextBlock Foreground="{DynamicResource TextBrush}" Opacity="0.8">
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                                                     <Setter Property="Margin" Value="5,0,0,0" />
@@ -94,8 +95,8 @@
                         <StackPanel Margin="10,0,0,0" VerticalAlignment="Center" >
                             <TextBlock Name="PART_TextName"
                                        VerticalAlignment="Center" FontWeight="Normal" FontSize="{DynamicResource FontSizeLarge}" />
-                            <TextBlock Name="PART_TextDescription"
-                                       Foreground="{DynamicResource TextBrushDarker}"
+                            <TextBlock Name="PART_TextDescription" Opacity="0.8"
+                                       Foreground="{DynamicResource TextBrush}"
                                        Margin="0,5,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
@@ -209,9 +210,9 @@
                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                 <Grid>
                                     <Border x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed"
-                                            Background="#003f59" CornerRadius="{DynamicResource ControlCornerRadius}" />
+                                            Background="{DynamicResource GlyphBrush}" Opacity="0.6" CornerRadius="{DynamicResource ControlCornerRadius}" />
                                     <Border x:Name="SelectedRectangle" IsHitTestVisible="False" Visibility="Collapsed"
-                                            Background="#003f59" CornerRadius="{DynamicResource ControlCornerRadius}"/>
+                                            Background="{DynamicResource GlyphBrush}" Opacity="0.8" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                                     <Border Padding="{TemplateBinding Padding}" Background="Transparent">
                                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
