@@ -8,52 +8,42 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
-                    <Grid ClipToBounds="True" x:Name="MainGrid" Tag="{DynamicResource GridViewBannerOnCover}">
-                        <DockPanel Name="PART_PanelHost" LastChildFill="False"
+                    <DockPanel LastChildFill="False">
+                        <Grid ClipToBounds="True" x:Name="MainGrid" Tag="{DynamicResource GridViewBannerOnCover}" DockPanel.Dock="Top">
+                            <Grid Name="PART_PanelHost"
                                     d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
                                    Tag="{DynamicResource GridViewBannerOnCoverBelow}">
-                            <DockPanel.OpacityMask>
-                                <VisualBrush>
-                                    <VisualBrush.Visual>
-                                        <Rectangle Fill="Black" x:Name="RectangleMask" SnapsToDevicePixels="False"
-                                                    RadiusX="{DynamicResource GridItemCornerRadius}"
-                                                    RadiusY="{DynamicResource GridItemCornerRadius}"
-                                                    Width="{Binding ActualWidth, ElementName=PART_PanelHost}"
-                                                    Height="{Binding ActualHeight, ElementName=PART_PanelHost}"
-                                                    RenderOptions.BitmapScalingMode="LowQuality">
-                                        </Rectangle>
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </DockPanel.OpacityMask>
-                            <ContentControl x:Name="ThemeExtras_Banner"  
-                                                RenderOptions.BitmapScalingMode="Fant"
-                                                Padding="0" Margin="0" Width="{Settings GridItemWidth}"
-                                            DockPanel.Dock="Bottom"
-                                            Tag="{Binding ElementName=DuplicateHider_SourceSelector1, Path=Content.Current, FallbackValue={x:Null}, TargetNullValue={x:Null}}"
-                                            Visibility="{Binding Tag, ElementName=MainGrid, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <Grid Width="{Settings GridItemWidth}"
+                                <ContentControl x:Name="ThemeExtras_BannerData"  
+                                            Tag="{Binding ElementName=DuplicateHider_SourceSelector1, Path=Content.Current, FallbackValue={x:Null}, TargetNullValue={x:Null}}"/>
+                                <Grid Width="{Settings GridItemWidth}"
                               Height="{Settings GridItemHeight}"
                                   DockPanel.Dock="Top">
-                                <Image Name="PART_ImageCover"
-                                   RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Stretch="{Settings CoverArtStretch}"/>
-                                <Image Name="PART_ImageCover2"
-                               RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Stretch="{Settings CoverArtStretch}" 
-                               Grid.RowSpan="2"
-                               Source="{Binding ElementName=DuplicateHider_SourceSelector1, Path=Content.Current.CoverImage, Converter={StaticResource ImageStringToImageConverter}, FallbackValue={x:Null}, TargetNullValue={x:Null}}"
-                                />
-                                <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
-                                    <TextBlock Text="{Binding DisplayName}"
+                                    <Border Tag="{DynamicResource GridItemCornerRadius}"
+                                CornerRadius="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToCornerRadiusConverter}, ConverterParameter=Top}" 
+                                        RenderOptions.BitmapScalingMode="Fant"
+                                        x:Name="CoverBorder">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding GridViewCoverObjectCached, IsAsync=True}" Stretch="UniformToFill"/>
+                                        </Border.Background>
+                                    </Border>
+                                    <Border Tag="{DynamicResource GridItemCornerRadius}" x:Name="CopyCoverBorder"
+                                CornerRadius="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToCornerRadiusConverter}, ConverterParameter=Top}"
+                                        RenderOptions.BitmapScalingMode="Fant">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding ElementName=DuplicateHider_SourceSelector1, Path=Content.Current.CoverImage, Converter={StaticResource ImageStringToImageConverter}, FallbackValue={x:Null}, TargetNullValue={x:Null}}"
+                                                    Stretch="UniformToFill"
+                                                    RenderOptions.BitmapScalingMode="Fant"/>
+                                        </Border.Background>
+                                    </Border>
+                                    <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
+                                        <TextBlock Text="{Binding DisplayName}"
                                            TextWrapping="Wrap" Margin="5"
                                            Style="{StaticResource BaseTextBlockStyle}"
                                            TextTrimming="CharacterEllipsis" TextAlignment="Center"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
+                                    </Border>
 
-                                <TextBlock Text="{Binding DisplayName}"
+                                    <TextBlock Text="{Binding DisplayName}"
                                    Style="{DynamicResource BaseTextBlockStyle}"                                                                   
                                    TextAlignment="Center" TextTrimming="CharacterEllipsis"
                                            TextWrapping="Wrap"
@@ -62,27 +52,27 @@
                                    Width="{Settings GridItemWidth}" 
                                    Visibility="{Settings ShowNamesUnderCovers}"
                                            x:Name="BottomName">
-                                    <TextBlock.Background>
-                                        <SolidColorBrush Color="Black" Opacity="0.5"/>
-                                    </TextBlock.Background>
-                                </TextBlock>
+                                        <TextBlock.Background>
+                                            <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                        </TextBlock.Background>
+                                    </TextBlock>
+                                </Grid>
                             </Grid>
-                        </DockPanel>
-                        <Border Background="#AA000000" x:Name="BorderMouseOver" Visibility="Collapsed" IsHitTestVisible="False"
+                            <Border Background="#99000000" x:Name="BorderMouseOver" Visibility="Collapsed" IsHitTestVisible="False"
                                 Tag="{DynamicResource GridItemCornerRadius}"
                                 CornerRadius="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
-                        <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                                          Name="GameControls"  Visibility="Collapsed">
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Name="PART_ButtonPlay" Style="{StaticResource SimpleButton}"
                                                     Margin="20,0,2,0" VerticalAlignment="Center"
                                                     Content="&#xec74;" FontFamily="{StaticResource FontIcoFont}" />
-                                    <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
+                                        <Button Name="PART_ButtonInfo" Style="{StaticResource SimpleButton}"
                                                     Margin="2,0,20,0" VerticalAlignment="Center"
                                                     Content="&#xef4f;" FontFamily="{StaticResource FontIcoFont}" />
-                                </StackPanel>
-                                <Button Name="ButtonInfo" Style="{StaticResource SimpleButton}"
+                                    </StackPanel>
+                                    <Button Name="ButtonInfo" Style="{StaticResource SimpleButton}"
                                         HorizontalAlignment="Center"
                                                 Margin="2" VerticalAlignment="Center"
                                                 Content="&#xE145;" FontFamily="Segoe UI Symbol" 
@@ -90,56 +80,96 @@
                                         CommandParameter="{Binding Game}"
                                         ToolTip="{DynamicResource LOCDetailsViewLabel}"
                                         Visibility="{Binding Command, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
-                            </StackPanel>
-                        </Viewbox>
-                        <StackPanel VerticalAlignment="Bottom" Tag="{DynamicResource GridShowSourceSelector}"
+                                </StackPanel>
+                            </Viewbox>
+                            <StackPanel VerticalAlignment="Bottom" Tag="{DynamicResource GridShowSourceSelector}"
                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Border HorizontalAlignment="{DynamicResource GridSourceSelectorAlignment}"  
+                                <Border HorizontalAlignment="{DynamicResource GridSourceSelectorAlignment}"  
                                     Margin="4">
-                                <ContentControl x:Name="DuplicateHider_SourceSelector1" RenderOptions.BitmapScalingMode="Fant" Visibility="Visible" MaxHeight="25"/>
-                            </Border>
-                            <Border x:Name="Spacer" Background="{x:Null}" Height="{Binding ActualHeight, ElementName=ThemeExtras_Banner}"/>
-                        </StackPanel>
-                        <ContentControl 
+                                    <ContentControl x:Name="DuplicateHider_SourceSelector1" RenderOptions.BitmapScalingMode="Fant" Visibility="Visible" MaxHeight="25"/>
+                                </Border>
+                            </StackPanel>
+                            <ContentControl 
                                             HorizontalAlignment="Right"
                                             x:Name="ThemeExtras_SettableFavorite"
                                             VerticalAlignment="Top"
                                             Margin="5"
                                     Visibility="Collapsed">
-                            <ContentControl.Effect>
-                                <DropShadowEffect BlurRadius="5" ShadowDepth="0" Opacity="0.5" RenderingBias="Quality"/>
-                            </ContentControl.Effect>
-                            <ContentControl.Resources>
-                                <Style TargetType="UserControl">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="ContentControl">
-                                                <CheckBox IsChecked="{Binding Value}">
-                                                    <CheckBox.Template>
-                                                        <ControlTemplate TargetType="CheckBox">
-                                                            <TextBlock Text="&#xF000;" FontFamily="{StaticResource FontIcoFont}" 
+                                <ContentControl.Effect>
+                                    <DropShadowEffect BlurRadius="5" ShadowDepth="0" Opacity="0.5" RenderingBias="Quality"/>
+                                </ContentControl.Effect>
+                                <ContentControl.Resources>
+                                    <Style TargetType="UserControl">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ContentControl">
+                                                    <CheckBox IsChecked="{Binding Value}">
+                                                        <CheckBox.Template>
+                                                            <ControlTemplate TargetType="CheckBox">
+                                                                <TextBlock Text="&#xF000;" FontFamily="{StaticResource FontIcoFont}" 
                                                                                FontSize="{DynamicResource FontSizeLarger}"
                                                                                VerticalAlignment="Center"
                                                                 Opacity="{TemplateBinding IsChecked, Converter={StaticResource OpacityBoolConverter}}"/>
-                                                        </ControlTemplate>
-                                                    </CheckBox.Template>
-                                                </CheckBox>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ContentControl.Resources>
-                        </ContentControl>
-                    </Grid>
+                                                            </ControlTemplate>
+                                                        </CheckBox.Template>
+                                                    </CheckBox>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ContentControl.Resources>
+                            </ContentControl>
+                        </Grid>
+                        <Border Tag="{DynamicResource GridItemCornerRadius}"
+                                    CornerRadius="{Binding Tag, ElementName=ThemeExtras_Banner, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToCornerRadiusConverter}, ConverterParameter=Bottom}" 
+                                    Visibility="{Binding Tag, ElementName=MainGrid, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Width="{Settings GridItemWidth}" x:Name="ThemeExtras_Banner"
+                                    RenderOptions.BitmapScalingMode="Fant"
+                                    DockPanel.Dock="Bottom"
+                                    Height="{Binding Content.BannerHeight, ElementName=ThemeExtras_BannerData, FallbackValue=0, TargetNullValue=0}"
+                                    Margin="0,-1,0,0">
+                            <Border.Background>
+                                <ImageBrush ImageSource="{Binding ElementName=ThemeExtras_BannerData, Path=Content.BannerSource, FallbackValue={x:Null}, TargetNullValue={x:Null}}"
+                                                    Stretch="Uniform" AlignmentY="Bottom"
+                                                    RenderOptions.BitmapScalingMode="Fant"/>
+                            </Border.Background>
+                        </Border>
+                    </DockPanel>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding CornerRadius, ElementName=BorderMouseOver}" Value="0,0,0,0">
                             <Setter TargetName="PART_PanelHost" Property="OpacityMask" Value="{x:Null}"/>
                         </DataTrigger>
-                        <Trigger SourceName="PART_PanelHost" Property="Tag" Value="{StaticResource False}">
-                            <Setter TargetName="ThemeExtras_Banner" Property="DockPanel.Dock" Value="Top"/>
-                            <Setter TargetName="BottomName" Property="VerticalAlignment" Value="Bottom"/>
-                            <Setter TargetName="Spacer" Property="Height" Value="{Binding ActualHeight, ElementName=BottomName}"/>
+                        <Trigger SourceName="PART_PanelHost" Property="Tag" Value="{StaticResource True}">
+                            <Setter TargetName="BorderMouseOver" Property="CornerRadius" Value="{Binding Tag, ElementName=CoverBorder, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToCornerRadiusConverter}, ConverterParameter=Top}"/>
                         </Trigger>
+                        <Trigger SourceName="PART_PanelHost" Property="Tag" Value="{StaticResource False}">
+                            <Setter TargetName="ThemeExtras_Banner" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{Binding ElementName=ThemeExtras_BannerData, Path=Content.BannerSource, FallbackValue={x:Null}, TargetNullValue={x:Null}}"
+                                                    Stretch="Uniform" AlignmentY="Top"
+                                                    RenderOptions.BitmapScalingMode="Fant"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="ThemeExtras_Banner" Property="Margin" Value="0,0,0,-1"/>
+                            <Setter TargetName="CoverBorder" Property="CornerRadius" Value="{Binding Tag, ElementName=CoverBorder, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToCornerRadiusConverter}, ConverterParameter=Bottom}"/>
+                            <Setter TargetName="CopyCoverBorder" Property="CornerRadius" Value="{Binding Tag, ElementName=CopyCoverBorder, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToCornerRadiusConverter}, ConverterParameter=Bottom}"/>
+                            <Setter TargetName="ThemeExtras_Banner" Property="CornerRadius" Value="{Binding Tag, ElementName=ThemeExtras_Banner, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToCornerRadiusConverter}, ConverterParameter=Top}"/>
+                            <Setter TargetName="BottomName" Property="VerticalAlignment" Value="Bottom"/>
+                            <Setter TargetName="ThemeExtras_Banner" Property="DockPanel.Dock" Value="Top"/>
+                            <Setter TargetName="MainGrid" Property="DockPanel.Dock" Value="Bottom"/>
+                            <Setter TargetName="BorderMouseOver" Property="CornerRadius" Value="{Binding Tag, ElementName=CoverBorder, Converter={PluginConverter Plugin=ThemeExtras, Converter=DoubleToCornerRadiusConverter}, ConverterParameter=Bottom}"/>
+                        </Trigger>
+                        <Trigger SourceName="ThemeExtras_Banner" Property="Visibility" Value="Collapsed">
+                            <Setter TargetName="CoverBorder" Property="CornerRadius" Value="{Binding Tag, ElementName=CoverBorder}"/>
+                            <Setter TargetName="CopyCoverBorder" Property="CornerRadius" Value="{Binding Tag, ElementName=CopyCoverBorder}"/>
+                            <Setter TargetName="BorderMouseOver" Property="CornerRadius" Value="{Binding Tag, ElementName=BorderMouseOver}"/>
+                        </Trigger>
+                        <DataTrigger Binding="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}" Value="False">
+                            <Setter TargetName="CoverBorder" Property="CornerRadius" Value="{Binding Tag, ElementName=CoverBorder}"/>
+                            <Setter TargetName="CopyCoverBorder" Property="CornerRadius" Value="{Binding Tag, ElementName=CopyCoverBorder}"/>
+                            <Setter TargetName="BorderMouseOver" Property="CornerRadius" Value="{Binding Tag, ElementName=BorderMouseOver}"/>
+                            <Setter TargetName="ThemeExtras_Banner" Property="Margin" Value="0"/>
+                        </DataTrigger>
                         <DataTrigger Binding="{Binding IsInstalled}" Value="False">
                             <Setter Property="Content" Value="&#xef08;" TargetName="PART_ButtonPlay" />
                         </DataTrigger>

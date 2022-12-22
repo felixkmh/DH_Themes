@@ -25,7 +25,7 @@
                           >
                         <Border x:Name="SelectionBorder" BorderThickness="4" Margin="-3"  
                                 CornerRadius="{Binding Tag, ElementName=ItemGrid}"
-                                Background="Black">
+                                Background="Transparent">
                         </Border>
                         <ContentPresenter x:Name="Content">
                         </ContentPresenter>

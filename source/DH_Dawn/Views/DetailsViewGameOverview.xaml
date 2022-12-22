@@ -652,7 +652,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DetailsViewGameOverview}">
-                    <Grid ClipToBounds="True">
+                    <Grid ClipToBounds="True" x:Name="root">
                         <StackPanel Margin="0,0" VerticalAlignment="{DynamicResource ButtonStackVerticalAlignment}" HorizontalAlignment="Left"
                                         Panel.ZIndex="100"
                                     Visibility="{Binding Game, FallbackValue={x:Static Visibility.Collapsed}, Converter={StaticResource InvertedObjectEqualityToVisibilityConverter}, ConverterParameter={x:Null}}"
@@ -1605,11 +1605,18 @@
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
-                                                        <Border  Margin="0,3" ToolTip="{Binding NameAssociated}"
-                                                                 Style="{StaticResource HoverHighlightBorderStyle}">
-                                                            <Image DockPanel.Dock="Left" Height="24" VerticalAlignment="Center" Width="24" 
-				                                                           Source="{Binding IconBitmapImage}" />
-                                                        </Border>
+                                                        <Button Padding="0" Margin="0,3" ToolTip="{Binding NameAssociated}"
+                                                                Command="{Binding ElementName=root, Path=DataContext.SetFeatureFilterCommand}"
+                                                                CommandParameter="{Binding Feature}">
+                                                            <Button.Template>
+                                                                <ControlTemplate>
+                                                                    <Border Style="{StaticResource HoverHighlightBorderStyle}">
+                                                                        <Image DockPanel.Dock="Left" Height="24" VerticalAlignment="Center" Width="24" 
+				                                                                       Source="{Binding IconBitmapImage}" />
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Button.Template>
+                                                        </Button>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>

@@ -11,7 +11,7 @@
                 <ControlTemplate TargetType="{x:Type Sidebar}">
                     <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PanelSeparatorBrush}"
                             x:Name="BorderContentHolder" Margin="{TemplateBinding Padding}">
-                        <DockPanel x:Name="DockContentHolder">                            
+                        <DockPanel x:Name="DockContentHolder" Background="Transparent">                            
                             <Border x:Name="PART_ElemMainMenu" Background="Transparent"
                                     Width="44" Height="44" Margin="0,0,0,5"
                                     DockPanel.Dock="Top" Padding="5" Cursor="Hand"
@@ -92,6 +92,27 @@
                             <Setter Property="DockPanel.Dock" Value="Left" TargetName="ScrollSidebarItems" />
                             <Setter Property="Orientation" Value="Horizontal" TargetName="PART_PanelSideBarItems" />
                         </DataTrigger>
+                        <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                            <Setter TargetName="BorderContentHolder" Property="BorderThickness" Value="0"/>
+                        </DataTrigger>
+                        <!--<Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Gradient1" Storyboard.TargetProperty="Offset"
+                                                         To="1" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Gradient1" Storyboard.TargetProperty="Offset"
+                                                         To="0" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

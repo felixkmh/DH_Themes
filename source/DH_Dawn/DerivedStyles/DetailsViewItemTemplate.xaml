@@ -313,11 +313,14 @@
                         </StackPanel>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding SourceName}" Value="Playnite">
+                            <Setter TargetName="SourceText" Property="Text" Value="{Binding Game.Platforms[0].Name}"/>
+                        </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Border.Visibility" Value="Visible" TargetName="IconBackground"/>
                             <Setter Property="Border.Background" Value="{DynamicResource GlyphBrush}" TargetName="IconBackground"/>
                             <Setter Property="Border.Opacity" Value="0.5" TargetName="IconBackground"/>
-                            <Setter Property="Effect" Value="{StaticResource glowEffect}" />
+                            <Setter TargetName="IconBackground" Property="Effect" Value="{StaticResource glowEffect}" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
