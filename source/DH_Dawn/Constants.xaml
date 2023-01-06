@@ -21,10 +21,12 @@
     <sys:Boolean x:Key="GridViewBannerOnCoverBelow">True</sys:Boolean>
     <sys:Boolean x:Key="GridViewDropShadow">False</sys:Boolean>
     <sys:Boolean x:Key="ShowNavigationButtons">True</sys:Boolean>
+    <Visibility x:Key="GridViewStatusBanner">Visible</Visibility>
 
     <!--ThemeExtras-->
     <sys:Boolean x:Key="EnableFloatingRating">True</sys:Boolean>
     <sys:Boolean x:Key="EnableSmoothProgressBar">True</sys:Boolean>
+    <sys:Boolean x:Key="GridViewShowCommunityRating">False</sys:Boolean>
     
     <!--DuplicateHider-->
     <sys:Boolean x:Key="EnableFloatingSourceSelector">True</sys:Boolean>

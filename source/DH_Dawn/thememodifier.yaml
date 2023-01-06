@@ -37,3 +37,5 @@ Constants:
 - GridViewDropShadow: Enable drop shadow effect (impacts performance)
 - GridShowSourceSelector: Show DuplicateHider SourceSelector
 - GridSourceSelectorAlignment: SourceSelector horizontal alignment
+- GridViewStatusBanner: Status banner visibility
+- GridViewShowCommunityRating: Show community rating

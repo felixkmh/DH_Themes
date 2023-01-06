@@ -61,7 +61,7 @@
                         <DataTrigger Binding="{Binding Tag, ElementName=PART_ListGames}" Value="{StaticResource True}">
                             <Setter Property="Effect" TargetName="PART_ListGames">
                                 <Setter.Value>
-                                    <DropShadowEffect BlurRadius="15" RenderingBias="Performance" Opacity="0.5"/>
+                                    <DropShadowEffect BlurRadius="15" RenderingBias="Performance" Opacity="0.3" Color="Black" ShadowDepth="0"/>
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>

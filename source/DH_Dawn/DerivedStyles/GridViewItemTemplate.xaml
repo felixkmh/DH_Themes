@@ -9,6 +9,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameListItem}">
                     <DockPanel LastChildFill="False">
+                        <Viewbox DockPanel.Dock="Bottom" MaxHeight="22" StretchDirection="DownOnly" x:Name="RatingViewbox">
+                            <ContentControl x:Name="ThemeExtras_CommunityRating" Margin="5,4,5,2" IsHitTestVisible="False" Tag="{DynamicResource GridViewShowCommunityRating}"/>
+                        </Viewbox>
                         <Grid ClipToBounds="True" x:Name="MainGrid" Tag="{DynamicResource GridViewBannerOnCover}" DockPanel.Dock="Top">
                             <Grid Name="PART_PanelHost"
                                     d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
@@ -136,6 +139,9 @@
                         </Border>
                     </DockPanel>
                     <ControlTemplate.Triggers>
+                        <Trigger SourceName="ThemeExtras_CommunityRating" Property="Tag" Value="{StaticResource False}">
+                            <Setter TargetName="RatingViewbox" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
                         <DataTrigger Binding="{Binding CornerRadius, ElementName=BorderMouseOver}" Value="0,0,0,0">
                             <Setter TargetName="PART_PanelHost" Property="OpacityMask" Value="{x:Null}"/>
                         </DataTrigger>
