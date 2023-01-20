@@ -131,7 +131,7 @@
                                                               MaxWidth="{Binding ElementName=GameDetailsDockPanel, Path=ActualWidth}"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        
+
                                         <Grid Margin="0,20,0,5" MaxWidth="{DynamicResource DetailsViewMaxContentWidth}" Grid.Column="1" Panel.ZIndex="20" 
                                           Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
                                               x:Name="GameCoverGrid">
@@ -235,8 +235,8 @@
                                             </StackPanel>
                                         </DockPanel>
                                     </Grid>
-                                    
-                                    
+
+
 
                                     <Border Grid.Row="2" Background="{DynamicResource WindowBackgourndBrushLight}" Margin="-20,0,-20,0">
                                     </Border>
@@ -272,76 +272,82 @@
                                                 <GridEx Margin="0,5,0,10"
                                                 ColumnCount="2" StarColumns="1"
                                                 RowCount="21" AutoLayoutColumns="2">
-                                                <Grid.Resources>
-                                                    <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
-                                                </Grid.Resources>
+                                                    <Grid.Resources>
+                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+                                                    </Grid.Resources>
 
-                                                <!--<Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" />
+                                                    <!--<Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" />
                                                 <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center" />-->
 
-                                                <!--<Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" />
+                                                    <!--<Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" />
                                                 <TextBlock Name="PART_TextLastActivity" VerticalAlignment="Center" />-->
 
-                                                <!--<Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" />
+                                                    <!--<Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" />
                                                 <TextBlock Name="PART_TextCompletionStatus" VerticalAlignment="Center" />-->
-                                                
-                                                <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
-                                                <Button Name="PART_ButtonLibrary" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemPlatform" Content="{DynamicResource LOCPlatformTitle}" />
-                                                <ItemsControl Name="PART_ItemsPlatforms" />
+                                                    <Label Name="PART_ElemInstallDirectory" Content="{DynamicResource LOCGameInstallDirTitle}" />
+                                                    <Button Name="PART_ButtonInstallDirectory" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemGenres" Content="{DynamicResource LOCGenreLabel}" />
-                                                <ItemsControl Name="PART_ItemsGenres"  />
+                                                    <Label Name="PART_ElemInstallSize" Content="{DynamicResource LOCInstallSizeLabel}" />
+                                                    <TextBlock Name="PART_TextInstallSize" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemDevelopers" Content="{DynamicResource LOCDeveloperLabel}" />
-                                                <ItemsControl Name="PART_ItemsDevelopers" />
+                                                    <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
+                                                    <Button Name="PART_ButtonLibrary" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemPublishers" Content="{DynamicResource LOCPublisherLabel}" />
-                                                <ItemsControl Name="PART_ItemsPublishers" />
+                                                    <Label Name="PART_ElemPlatform" Content="{DynamicResource LOCPlatformTitle}" />
+                                                    <ItemsControl Name="PART_ItemsPlatforms" />
 
-                                                <Label Name="PART_ElemReleaseDate" Content="{DynamicResource LOCGameReleaseDateTitle}" />
-                                                <Button Name="PART_ButtonReleaseDate" VerticalAlignment="Center" />
+                                                    <Label Name="PART_ElemGenres" Content="{DynamicResource LOCGenreLabel}" />
+                                                    <ItemsControl Name="PART_ItemsGenres"  />
 
-                                                <Label Name="PART_ElemCategories" Content="{DynamicResource LOCGameCategoriesTitle}" />
-                                                <ItemsControl Name="PART_ItemsCategories" />
+                                                    <Label Name="PART_ElemDevelopers" Content="{DynamicResource LOCDeveloperLabel}" />
+                                                    <ItemsControl Name="PART_ItemsDevelopers" />
 
-                                                <Label Name="PART_ElemFeatures" Content="{DynamicResource LOCFeaturesLabel}" />
-                                                <ItemsControl Name="PART_ItemsFeatures" />
+                                                    <Label Name="PART_ElemPublishers" Content="{DynamicResource LOCPublisherLabel}" />
+                                                    <ItemsControl Name="PART_ItemsPublishers" />
 
-                                                <Label Name="PART_ElemTags" Content="{DynamicResource LOCTagsLabel}" />
-                                                <ItemsControl Name="PART_ItemsTags" />
+                                                    <Label Name="PART_ElemReleaseDate" Content="{DynamicResource LOCGameReleaseDateTitle}" />
+                                                    <Button Name="PART_ButtonReleaseDate" VerticalAlignment="Center" />
 
-                                                <Label Name="PART_ElemAgeRating" Content="{DynamicResource LOCAgeRatingLabel}" />
-                                                <ItemsControl Name="PART_ItemsAgeRatings" />
+                                                    <Label Name="PART_ElemCategories" Content="{DynamicResource LOCGameCategoriesTitle}" />
+                                                    <ItemsControl Name="PART_ItemsCategories" />
 
-                                                <Label Name="PART_ElemSeries" Content="{DynamicResource LOCSeriesLabel}" />
-                                                <ItemsControl Name="PART_ItemsSeries" />
+                                                    <Label Name="PART_ElemFeatures" Content="{DynamicResource LOCFeaturesLabel}" />
+                                                    <ItemsControl Name="PART_ItemsFeatures" />
 
-                                                <Label Name="PART_ElemSource" Content="{DynamicResource LOCSourceLabel}" />
-                                                <Button Name="PART_ButtonSource" VerticalAlignment="Center" />
+                                                    <Label Name="PART_ElemTags" Content="{DynamicResource LOCTagsLabel}" />
+                                                    <ItemsControl Name="PART_ItemsTags" />
 
-                                                <Label Name="PART_ElemRegion" Content="{DynamicResource LOCRegionLabel}" />
-                                                <ItemsControl Name="PART_ItemsRegions" />
+                                                    <Label Name="PART_ElemAgeRating" Content="{DynamicResource LOCAgeRatingLabel}" />
+                                                    <ItemsControl Name="PART_ItemsAgeRatings" />
 
-                                                <Label Name="PART_ElemVersion" Content="{DynamicResource LOCVersionLabel}" />
-                                                <Button Name="PART_ButtonVersion" VerticalAlignment="Center" />
+                                                    <Label Name="PART_ElemSeries" Content="{DynamicResource LOCSeriesLabel}" />
+                                                    <ItemsControl Name="PART_ItemsSeries" />
 
-                                                <Label Name="PART_ElemCommunityScore" Content="{DynamicResource LOCCommunityScore}" />
-                                                <TextBlock Name="PART_TextCommunityScore" VerticalAlignment="Center"
+                                                    <Label Name="PART_ElemSource" Content="{DynamicResource LOCSourceLabel}" />
+                                                    <Button Name="PART_ButtonSource" VerticalAlignment="Center" />
+
+                                                    <Label Name="PART_ElemRegion" Content="{DynamicResource LOCRegionLabel}" />
+                                                    <ItemsControl Name="PART_ItemsRegions" />
+
+                                                    <Label Name="PART_ElemVersion" Content="{DynamicResource LOCVersionLabel}" />
+                                                    <Button Name="PART_ButtonVersion" VerticalAlignment="Center" />
+
+                                                    <Label Name="PART_ElemCommunityScore" Content="{DynamicResource LOCCommunityScore}" />
+                                                    <TextBlock Name="PART_TextCommunityScore" VerticalAlignment="Center"
                                                         Style="{DynamicResource TextBlockGameScore}" />
 
-                                                <Label Name="PART_ElemCriticScore" Content="{DynamicResource LOCCriticScore}" />
-                                                <TextBlock Name="PART_TextCriticScore" VerticalAlignment="Center"
+                                                    <Label Name="PART_ElemCriticScore" Content="{DynamicResource LOCCriticScore}" />
+                                                    <TextBlock Name="PART_TextCriticScore" VerticalAlignment="Center"
                                                         Style="{DynamicResource TextBlockGameScore}" />
 
-                                                <Label Name="PART_ElemUserScore" Content="{DynamicResource LOCUserScore}" />
-                                                <TextBlock Name="PART_TextUserScore" VerticalAlignment="Center"
+                                                    <Label Name="PART_ElemUserScore" Content="{DynamicResource LOCUserScore}" />
+                                                    <TextBlock Name="PART_TextUserScore" VerticalAlignment="Center"
                                                         Style="{DynamicResource TextBlockGameScore}" />
 
-                                                <Label Name="PART_ElemLinks" Content="{DynamicResource LOCLinksLabel}" />
-                                                <ItemsControl Name="PART_ItemsLinks" />
-                                            </GridEx>
+                                                    <Label Name="PART_ElemLinks" Content="{DynamicResource LOCLinksLabel}" />
+                                                    <ItemsControl Name="PART_ItemsLinks" />
+                                                </GridEx>
                                             </Border>
                                         </StackPanel>
 
@@ -571,6 +577,7 @@
                             </Grid>
                         </ScrollViewer>
                         <Border Visibility="Hidden" Tag="{DynamicResource EnableCoverZoom}" x:Name="EnableCoverZoomProxy"/>
+                        <!--GridConverterGridPanelCloseButton-->
                     </Grid>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
@@ -635,7 +642,7 @@
                                 </BeginStoryboard>
                             </MultiDataTrigger.ExitActions>
                         </MultiDataTrigger>
-                 
+
                         <Trigger Property="IsMouseOver" SourceName="PlayButtonStack" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
@@ -668,159 +675,6 @@
                             </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-
-    <Style x:Key="DuplicateHider_ContentControlHeader_Style" TargetType="ContentControl">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Grid>
-                        <!--
-                            DataContext has an ObservableCollection called Games
-                            containing all copys of the Game in the current context (inlcuding itself).
-                            Each entry is of Type
-                            ListData {
-                                Playnite.SDK.Models.Game Game;
-                                Boolean IsCurrent;  // True if this copy eqal to the current GameContext property.
-                                BitmapImage Icon;   // Source Icon
-                                String SourceName;  // Source name. Use this rather than Game.Source.Name, 
-                                                    // because Source might be null.
-                                ICommand LaunchCommand;
-                                ICommand SelectCommand;
-                                ICommand InstallCommand;
-                                ICommand UninstallCommand;
-                            }
-                        -->
-                        <ItemsControl
-                            x:Name="DH_ListBox"
-                            Focusable="False"
-                            IsTextSearchEnabled="False"
-                            ItemsSource="{Binding Games}"
-                            VirtualizingPanel.VirtualizationMode="Recycling">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid ClipToBounds="True">
-                                        <Border 
-                                            x:Name="_ItemBorder" 
-                                            Background="Transparent" 
-                                            BorderThickness="0"
-                                            OpacityMask="{DynamicResource BottomFadingBrush}"
-                                            Margin="0,0,0,2"/>
-                                        <StackPanel Margin="0,3,0,0" >
-                                            <!--  StackPanel containing icon and source name of a game.  -->
-                                            <StackPanel
-                                                x:Name="_Item"
-                                                Background="Transparent"
-                                                Orientation="Horizontal"
-                                                Effect="{DynamicResource TextDropShadow}">
-                                                <Image
-                                                    MaxHeight="20"
-                                                    Margin="5,0,5,0"
-                                                    VerticalAlignment="Center"
-                                                    DockPanel.Dock="Left"
-                                                    RenderOptions.BitmapScalingMode="Fant"
-                                                    Source="{Binding Icon}" />
-                                                <TextBlock
-                                                    x:Name="_SourceText"
-                                                    Margin="5,0,5,0"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="White"
-                                                    Text="{Binding SourceName}" Style="{DynamicResource BaseTextBlockStyle}"/>
-                                            </StackPanel>
-                                            <!--  Rectangle used to indicate the currently selected copy.  -->
-                                            <Rectangle
-                                                x:Name="_Rect"
-                                                Height="2"
-                                                Margin="0,3,0,0"
-                                                VerticalAlignment="Bottom"
-                                                RenderTransformOrigin="0.5,0"
-                                                Visibility="Visible"
-                                                Fill="{DynamicResource WindowBackgourndBrushHighlight}">
-                                                <!--<Rectangle.Fill>
-                                                    <SolidColorBrush Color="{StaticResource GlyphColor}" />
-                                                </Rectangle.Fill>-->
-                                                <Rectangle.RenderTransform>
-                                                    <ScaleTransform x:Name="_RectScale" ScaleX="0" />
-                                                </Rectangle.RenderTransform>
-                                            </Rectangle>
-                                        </StackPanel>
-                                        <!--  Binding gestures to commands.  -->
-                                        <Grid.InputBindings>
-                                            <MouseBinding Command="{Binding LaunchCommand}" Gesture="LeftDoubleClick" />
-                                            <MouseBinding Command="{Binding SelectCommand}" Gesture="LeftClick" />
-                                        </Grid.InputBindings>
-                                    </Grid>
-                                    <DataTemplate.Triggers>
-                                        <!--  Workaround to prevent the animation when switching to a copy of a game for the first time  -->
-                                        <!--#region Workaround-->
-                                        <DataTrigger Binding="{Binding DataContext.SwitchedGroup, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True">
-                                            <Setter Property="Rectangle.Visibility" Value="{Binding IsCurrent, Converter={StaticResource BooleanToVisibilityConverter}}" TargetName="_Rect"/>
-                                            <Setter Property="Rectangle.RenderTransform" TargetName="_Rect">
-                                                <Setter.Value>
-                                                    <ScaleTransform ScaleX="1" />
-                                                </Setter.Value>
-                                            </Setter>
-                                        </DataTrigger>
-                                        <!--#endregion-->
-                                        <!--  Animation for the selection bar below the selected item.  -->
-                                        <DataTrigger Binding="{Binding IsCurrent}" Value="True">
-                                            <DataTrigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation
-                                                            Storyboard.TargetName="_RectScale"
-                                                            Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                                            To="1"
-                                                            Duration="0:0:0.2">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <CubicEase />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.EnterActions>
-                                            <DataTrigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation
-                                                            Storyboard.TargetName="_RectScale"
-                                                            Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                                            To="0"
-                                                            Duration="0:0:0.2">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <CubicEase />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.ExitActions>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding IsCurrent}" Value="False">
-                                            <Setter Property="Cursor" Value="Hand"/>
-                                        </DataTrigger>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <!--  MouseOver glow effect.  -->
-                                            <!--<Setter TargetName="_SourceText" Property="Foreground" Value="{DynamicResource GlyphBrush}"/>-->
-                                            <Setter TargetName="_ItemBorder" Property="Background" Value="{DynamicResource WindowBackgourndBrushHighlight}"/>
-                                        </Trigger>
-                                        <!--  Make items for unisntalled games slightly transparent.  -->
-                                        <DataTrigger Binding="{Binding Game.IsInstalled}" Value="False">
-                                            <Setter TargetName="_Item" Property="Opacity" Value="0.5" />
-                                        </DataTrigger>
-                                    </DataTemplate.Triggers>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

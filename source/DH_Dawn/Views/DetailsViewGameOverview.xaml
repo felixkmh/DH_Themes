@@ -1821,6 +1821,8 @@
                                 </Grid>
                             </Grid>
                         </ScrollViewer>
+
+                        <!--GridConverterGridPanelCloseButton-->
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Tag, ElementName=CoverGrid}" Value="{StaticResource False}">
