@@ -133,3 +133,9 @@ Packages:
     PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/v2.9.0/felixkmh_DuplicateHider_Night_Theme_2_9.pthm
     Changelog:  
       - selecting sources in grid view also changes the cover image
+  - Version: 3.0
+    RequiredApiVersion: 2.0.0
+    ReleaseDate: 2023-01-20
+    PackageUrl: https://github.com/felixkmh/DH_Themes/releases/download/DH_Nightv3.0/felixkmh_DuplicateHider_Night_Theme_3_0.pthm
+    Changelog:  
+      - DetailsToGridViewConverter support
