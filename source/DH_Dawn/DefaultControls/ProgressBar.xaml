@@ -41,7 +41,7 @@
                                         <ColumnDefinition Width="1*" x:Name="PostGrid"/>
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" x:Name="WidthProxy"/>
-                                    <Grid x:Name="Animation" Visibility="Hidden" Grid.ColumnSpan="2">
+                                    <Grid x:Name="Animation" Visibility="Collapsed" Grid.ColumnSpan="2">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
